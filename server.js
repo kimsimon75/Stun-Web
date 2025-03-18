@@ -1,4 +1,11 @@
 const express = require('express');
+const path = require('path');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const nunjucks = require('nunjucks');
+const dotenv = require('dotenv');
+
 const app = express();
 
 app.use('/Stun.css', express.static(__dirname + '/Stun.css'));
@@ -14,3 +21,8 @@ app.get("/", function(요청, 응답){
     응답.sendFile(__dirname + '/index.html');
 });
 
+const socket = new WebSocket("");
+
+socket.onopen = () =>{
+    console.log("WebSocket is open");
+}
