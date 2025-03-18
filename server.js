@@ -1,18 +1,17 @@
-const fs = require('fs');
-const https = require('https');
+const http = require('http');
 const WebSocket = require('ws');
 
-// SSL 인증서 불러오기
-const server = https.createServer({
-    cert: fs.readFileSync('cert.pem'),
-    key: fs.readFileSync('key.pem')
+// HTTP 서버 생성 (웹소켓을 위한 기본 HTTP 서버)
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('WebSocket 서버가 실행 중입니다!');
 });
 
 // WebSocket 서버 생성
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', (ws) => {
-    console.log('✅ 클라이언트가 wss:// 로 연결되었습니다!');
+    console.log('✅ 클라이언트가 ws:// 로 연결되었습니다!');
 
     ws.on('message', (message) => {
         console.log(`📩 받은 메시지: ${message}`);
@@ -24,7 +23,7 @@ wss.on('connection', (ws) => {
     });
 });
 
-// HTTPS & WebSocket 서버 실행
+// 서버 실행 (ws://localhost:8080 사용 가능)
 server.listen(8080, () => {
-    console.log('🚀 HTTPS & WebSocket 서버가 wss://localhost:8443 에서 실행 중!');
+    console.log('🚀 HTTP & WebSocket 서버가 ws://localhost:8080 에서 실행 중!');
 });
