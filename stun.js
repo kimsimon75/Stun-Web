@@ -1,19 +1,4 @@
 
-const ws = new WebSocket('ws://localhost:8080');
-
-ws.onopen = () => {
-    console.log('서버와 웹소켓 연결 완료!');
-};
-
-ws.onmessage = (event) => {
-    console.log(`서버 응답: ${event.data}`);
-};
-
-function sendMessage() {
-    const msg = document.getElementById('message').value;
-    ws.send(msg);
-}
-
 const unitRates = {
     특별함: ["특별함",0],
     희귀함: ["희귀함", 1],
