@@ -1,5 +1,5 @@
 
-const ws = new WebSocket('wss://localhost:8080');
+const ws = new WebSocket('ws://localhost:8080');
 
 ws.onopen = () => {
     console.log('서버와 웹소켓 연결 완료!');
