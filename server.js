@@ -1,10 +1,15 @@
 const http = require('http');
 const WebSocket = require('ws');
+const express = require('express');
+
+const app = express();
+app.get('/', (req, res) =>{
+    res.sendFile(__dirname + "/index.html");
+})
 
 // HTTP 서버 생성 (웹소켓을 위한 기본 HTTP 서버)
 const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('WebSocket 서버가 실행 중입니다!');
 });
 
 // WebSocket 서버 생성
@@ -31,3 +36,4 @@ wss.on('connection', (ws) => {
 server.listen(8080, () => {
     console.log('🚀 HTTP & WebSocket 서버가 ws://localhost:8080 에서 실행 중!');
 });
+
