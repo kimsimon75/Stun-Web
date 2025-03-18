@@ -3,12 +3,10 @@ const ws = new WebSocket('ws://localhost:8080');
 
 ws.onopen = () => {
     console.log('서버와 웹소켓 연결 완료!');
-    document.getElementById('output').innerText = "서버와 연결되었습니다!";
 };
 
 ws.onmessage = (event) => {
     console.log(`서버 응답: ${event.data}`);
-    document.getElementById('output').innerText = `서버 응답: ${event.data}`;
 };
 
 function sendMessage() {
