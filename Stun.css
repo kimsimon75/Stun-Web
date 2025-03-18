@@ -1,0 +1,125 @@
+
+
+body{
+    padding :2vw;
+    display:flex;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    width: 70vw;
+    height: 40vw;
+    border: 0.001rem solid black;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+}
+
+.Button{
+    padding:0.3vw;
+}
+
+.BigFont{
+    font-size:1.1vw;
+}
+
+.SmallFont{
+    font-size:0.8vw;
+}
+
+.MoreSmallFont{
+    font-size:0.65vw;
+}
+
+.div {
+    border: 0;
+    box-sizing: border-box;
+}
+.unitSort {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.unitName {
+    margin: 0;
+    padding-left: 0.5vw;
+    display: flex;
+    align-items: center;
+    float: left;
+    box-sizing: border-box;
+}
+.Rate {
+    border: 0.001rem solid black;
+    align-items: center;
+    display: flex;
+    float: left;
+    box-sizing: border-box;
+}
+.Count {
+    border: 0.001rem solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.IMG {
+    border: 0.001rem solid black;
+    display: flex;
+    align-items: center;
+    float: left;
+    box-sizing: border-box;
+}
+
+
+.Stack {
+    display: flex;
+    flex-direction: column-reverse;
+    box-sizing: border-box;
+}
+
+
+
+.ChildStack {
+    display: flex;
+}
+/* 개별 요소들의 수평 정렬 */
+
+.TotalStun, .clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+
+.clear {
+    box-sizing: border-box;
+}
+
+.Bonus {
+    border: 0.001rem solid black;
+    padding : 0;
+    margin : 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.Mana{
+    margin-left:auto;
+    box-sizing:border-box;
+}
+
+.CheckBox-Stack {
+    display: flex;
+    justify-content: space-between; /* 텍스트 왼쪽, 체크박스 오른쪽 */
+}
