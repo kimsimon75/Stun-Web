@@ -1,32 +1,20 @@
-const express = require('express');
-const app = express();
+const WebSocket = require('ws');
 
-app.use('/Stun.css', express.static(__dirname + '/Stun.css'));
-app.use('/stun.js', express.static(__dirname + '/stun.js'));
-app.use('/plus.png', express.static(__dirname + '/plus.png'));
-app.use('/minus.png', express.static(__dirname + '/minus.png'));
+const server = new WebSocket.Server({ port: 8080 });
 
-app.listen(8080, function(){
-    console.log('listening on 8080');
+server.on('connection', (ws) => {
+    console.log('새로운 클라이언트 연결됨!');
+
+    ws.send('서버: 연결 성공!');
+
+    ws.on('message', (message) => {
+        console.log(`클라이언트로부터 받은 메시지: ${message}`);
+        ws.send(`서버에서 받은 메시지: ${message}`);
+    });
+
+    ws.on('close', () => {
+        console.log('클라이언트 연결 종료');
+    });
 });
 
-app.get("/", function(요청, 응답){
-    응답.sendFile(__dirname + '/index.html');
-});
-
-const ws = new WebSocket('ws://localhost:8080');
-
-ws.onopen = () => {
-    console.log('서버와 웹소켓 연결 완료!');
-    document.getElementById('output').innerText = "서버와 연결되었습니다!";
-};
-
-ws.onmessage = (event) => {
-    console.log(`서버 응답: ${event.data}`);
-    document.getElementById('output').innerText = `서버 응답: ${event.data}`;
-};
-
-function sendMessage() {
-    const msg = document.getElementById('message').value;
-    ws.send(msg);
-}
+console.log('웹소켓 서버가 ws://localhost:8080 에서 실행 중!');
