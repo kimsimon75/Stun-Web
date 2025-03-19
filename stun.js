@@ -1,4 +1,4 @@
-const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/sendMessage/");
+const socket = new WebSocket("wss://your-websocket-api.execute-api.your-region.amazonaws.com/production");
 
 socket.onopen = () => {
   console.log("✅ 웹소켓 연결 성공!");
@@ -7,8 +7,8 @@ socket.onopen = () => {
 socket.onmessage = (event) => {
   const message = JSON.parse(event.data);
   if (message.action === "webhook") {
-    alert(message.data);  // 알림 띄우기
-    location.reload();     // 새로고침
+    alert(message.data); // 알림 띄우기
+    location.reload(); // 새로고침
   }
 };
 
