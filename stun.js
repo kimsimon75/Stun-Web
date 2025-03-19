@@ -279,9 +279,9 @@ var afterShockSort = 0;
 const UnitTotalStun = () => {
 
     speedBonus = parseFloat(speedBonus.toFixed(3));
-    speedBonusEx = parseFloat(speedBonusEx.toFixed(2));
-    manaRegen = parseFloat(manaRegen.toFixed(2));
-    healthRegen = parseFloat(healthRegen.toFixed(2));
+    speedBonusEx = parseFloat(speedBonusEx.toFixed(3));
+    manaRegen = parseFloat(manaRegen.toFixed(3));
+    healthRegen = parseFloat(healthRegen.toFixed(3));
 
     for (var i = 0; i < 8; i++)
     {
