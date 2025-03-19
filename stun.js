@@ -1904,7 +1904,3 @@ const message = JSON.stringify({
     data: "Hello, WebSocket!"
 });
 
-
-socket.onclose = () => {
-  console.log("❌ 웹소켓 연결 종료됨");
-};
