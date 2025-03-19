@@ -30,4 +30,4 @@ wss.on("connection", (ws) => {
     res.send("웹훅 처리 완료");
   });
   
-  app.listen(3000, () => console.log("서버 실행 중 🚀"));
+  app.listen(8080, () => console.log("서버 실행 중 🚀"));
