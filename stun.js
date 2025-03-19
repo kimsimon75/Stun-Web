@@ -16,8 +16,7 @@ socket.onmessage = (event) => {
 socket.onclose = () => {
   console.log("❌ 웹소켓 연결 종료됨");
 };
-const app = require("express")();
-
+const char = 1;
 const unitRates = {
     특별함: ["특별함",0],
     희귀함: ["희귀함", 1],
