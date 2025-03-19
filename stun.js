@@ -12,6 +12,11 @@ socket.onmessage = (event) => {
     location.reload(); // 새로고침
   }
 };
+const message = JSON.stringify({
+    action: "connect",  // API Gateway에서 설정한 라우트 이름
+    data: "Hello, WebSocket!"
+});
+socket.send(message);
 
 socket.onclose = () => {
   console.log("❌ 웹소켓 연결 종료됨");
