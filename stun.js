@@ -1,4 +1,26 @@
 
+const wss = new WebSocket('wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/sendMessage/');
+
+wss.onopen = () => {
+    console.log('✅ WebSocket 연결 성공!');
+};
+
+wss.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    if (data.type === "update") {
+        console.log("📢 업데이트 알림 수신:", data.content);
+        document.getElementById('notification').innerText = `🔔 ${data.content}`;
+    }
+};
+
+wss.onerror = (error) => {
+    console.error("❌ WebSocket 오류:", error);
+};
+
+wss.onclose = () => {
+    console.log("❌ WebSocket 연결 종료됨.");
+};
+
 const unitRates = {
     특별함: ["특별함",0],
     희귀함: ["희귀함", 1],
