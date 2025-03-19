@@ -14,26 +14,33 @@ function sendMessage() {
     ws.send(msg);
 }
 
-const wss = new WebSocket('wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/sendMessage/');
+import express from "express";
+import { WebSocketServer } from "ws";
 
-wss.onopen = () => {
-    console.log('✅ WebSocket 연결 성공!');
-};
+const app = express();
+app.use(express.json());
 
-wss.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-    if (data.type === "update") {
-        console.log("📢 업데이트 알림 수신:", data.content);
+const wss = new WebSocketServer({ port: 8080 }); // 웹소켓 서버 실행
+
+wss.on("connection", (ws) => {
+  console.log("클라이언트가 연결됨");
+});
+
+app.post("/webhook", (req, res) => {
+  console.log("웹훅 요청 받음:", req.body);
+
+  // 모든 웹소켓 클라이언트에게 메시지 전송
+  wss.clients.forEach((client) => {
+    if (client.readyState === 1) {
+      client.send("새로운 웹훅이 도착했습니다. 새로고침하세요!");
     }
-};
+  });
 
-wss.onerror = (error) => {
-    console.error("❌ WebSocket 오류:", error);
-};
+  res.send("웹훅 처리 완료");
+});
 
-wss.onclose = () => {
-    console.log("❌ WebSocket 연결 종료됨.");
-};
+app.listen(3000, () => console.log("서버 실행 중 🚀"));
+
 
 const unitRates = {
     특별함: ["특별함",0],
