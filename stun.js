@@ -20,7 +20,7 @@ import { WebSocketServer } from "ws";
 const app = express();
 app.use(express.json());
 
-const wss = new WebSocketServer({ port: 8080 }); // 웹소켓 서버 실행
+const wss = new WebSocketServer("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/sendMessage/"); // 웹소켓 서버 실행
 
 wss.on("connection", (ws) => {
   console.log("클라이언트가 연결됨");
