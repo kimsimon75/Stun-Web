@@ -16,6 +16,7 @@ const message = JSON.stringify({
     action: "connect",  // API Gateway에서 설정한 라우트 이름
     data: "Hello, WebSocket!"
 });
+
 socket.send(message);
 
 socket.onclose = () => {
