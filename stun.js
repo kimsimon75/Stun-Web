@@ -1,4 +1,4 @@
-const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/sendMessage/");
+const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
 
 socket.onopen = () => {
   console.log("✅ 웹소켓 연결 성공!");
