@@ -1,4 +1,11 @@
 
+setInterval(() => {
+    if (socket.readyState === WebSocket.OPEN) {
+        socket.send(JSON.stringify({ action: "ping" }));
+        console.log("📡 Ping 메시지 전송");
+    }
+}, 50000); // 50초마다 Ping 전송
+
 const unitRates = {
     특별함: ["특별함",0],
     희귀함: ["희귀함", 1],
