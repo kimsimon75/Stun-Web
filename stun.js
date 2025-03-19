@@ -1,4 +1,19 @@
 
+const ws = new WebSocket('ws://localhost:8080');
+
+ws.onopen = () => {
+    console.log('서버와 웹소켓 연결 완료!');
+};
+
+ws.onmessage = (event) => {
+    console.log(`서버 응답: ${event.data}`);
+};
+
+function sendMessage() {
+    const msg = document.getElementById('message').value;
+    ws.send(msg);
+}
+
 const wss = new WebSocket('wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/sendMessage/');
 
 wss.onopen = () => {
