@@ -5,6 +5,7 @@ socket.onopen = () => {
 };
 
 socket.onmessage = (event) => {
+    console.log("hello");
   const message = JSON.parse(event.data);
   if (message.action === "webhook") {
     alert(message.data); // 알림 띄우기
