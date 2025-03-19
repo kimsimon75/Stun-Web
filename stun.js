@@ -1,11 +1,22 @@
+const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
 
-setInterval(() => {
-    if (socket.readyState === WebSocket.OPEN) {
-        socket.send(JSON.stringify({ action: "ping" }));
-        console.log("📡 Ping 메시지 전송");
-    }
-}, 50000); // 50초마다 Ping 전송
+socket.onopen = () => {
+  console.log("✅ 웹소켓 연결 성공!");
+};
 
+socket.onmessage = (event) => {
+    console.log("hello");
+  const message = JSON.parse(event.data);
+  if (message.action === "webhook") {
+    alert(message.data); // 알림 띄우기
+    location.reload(); // 새로고침
+  }
+};
+
+socket.onclose = () => {
+  console.log("❌ 웹소켓 연결 종료됨");
+};
+const char = 1;
 const unitRates = {
     특별함: ["특별함",0],
     희귀함: ["희귀함", 1],
