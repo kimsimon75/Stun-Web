@@ -23,6 +23,25 @@ export const disconnectHandler = async (event) => {
   return { statusCode: 200 };
 };
 
+const socket = new WebSocket("wss://your-websocket-api.execute-api.your-region.amazonaws.com/production");
+
+socket.onopen = () => {
+  console.log("✅ 웹소켓 연결 성공!");
+};
+
+socket.onmessage = (event) => {
+  const message = JSON.parse(event.data);
+  if (message.action === "webhook") {
+    alert(message.data);  // 알림 띄우기
+    location.reload();     // 새로고침
+  }
+};
+
+socket.onclose = () => {
+  console.log("❌ 웹소켓 연결 종료됨");
+};
+
+
 const unitRates = {
     특별함: ["특별함",0],
     희귀함: ["희귀함", 1],
