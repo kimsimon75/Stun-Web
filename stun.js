@@ -24,7 +24,6 @@ wss.onmessage = (event) => {
     const data = JSON.parse(event.data);
     if (data.type === "update") {
         console.log("📢 업데이트 알림 수신:", data.content);
-        document.getElementById('notification').innerText = `🔔 ${data.content}`;
     }
 };
 
