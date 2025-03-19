@@ -1,5 +1,5 @@
 
-    alert(message.data);  // 알림 띄우기
+    alert(hello);  // 알림 띄우기
     location.reload();     // 새로고침
   
 socket.onclose = () => {
