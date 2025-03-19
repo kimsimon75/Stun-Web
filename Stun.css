@@ -89,7 +89,7 @@ body{
 .ChildStack {
     display: flex;
 }
-/* °³º° ¿ä¼ÒµéÀÇ ¼öÆò Á¤·Ä */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Òµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 
 .TotalStun, .clear {
     display: flex;
@@ -121,5 +121,5 @@ body{
 
 .CheckBox-Stack {
     display: flex;
-    justify-content: space-between; /* ÅØ½ºÆ® ¿ÞÂÊ, Ã¼Å©¹Ú½º ¿À¸¥ÂÊ */
+    justify-content: space-between; /* ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½, Ã¼Å©ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 }
