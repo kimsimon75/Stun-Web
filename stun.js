@@ -1,29 +1,4 @@
-import AWS from "aws-sdk";
-
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const CONNECTIONS_TABLE = "WebSocketConnections";
-
-export const connectHandler = async (event) => {
-  const { connectionId } = event.requestContext;
-  await dynamoDb.put({
-    TableName: CONNECTIONS_TABLE,
-    Item: { connectionId }
-  }).promise();
-  
-  return { statusCode: 200 };
-};
-
-export const disconnectHandler = async (event) => {
-  const { connectionId } = event.requestContext;
-  await dynamoDb.delete({
-    TableName: CONNECTIONS_TABLE,
-    Key: { connectionId }
-  }).promise();
-  
-  return { statusCode: 200 };
-};
-
-const socket = new WebSocket("wss://your-websocket-api.execute-api.your-region.amazonaws.com/production");
+const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/sendMessage/");
 
 socket.onopen = () => {
   console.log("✅ 웹소켓 연결 성공!");
@@ -40,7 +15,6 @@ socket.onmessage = (event) => {
 socket.onclose = () => {
   console.log("❌ 웹소켓 연결 종료됨");
 };
-
 
 const unitRates = {
     특별함: ["특별함",0],
