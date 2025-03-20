@@ -1909,3 +1909,12 @@ socket.onerror = (error) => {
 socket.onclose = (event) => {
     console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 };
+
+function startPing() {
+    setInterval(() => {
+        if (socket.readyState === WebSocket.OPEN) {
+            console.log("📡 Ping 전송");
+            socket.send(JSON.stringify({ action: "ping" }));
+        }
+    }, 30000); // 30초마다 신호 전송
+}
