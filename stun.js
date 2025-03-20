@@ -1888,26 +1888,25 @@ document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
 
 socket.onopen = () => {
-  console.log("✅ 웹소켓 연결 성공!");
+    console.log("✅ WebSocket 연결 성공!");
+
+    // 서버로 메시지 전송
+    const message = JSON.stringify({
+        action: "sendMessage",  // API Gateway에서 설정한 라우트
+        data: "Hello, WebSocket!"
+    });
+
+    socket.send(message);
 };
 
 socket.onmessage = (event) => {
-    console.log("hello");
-  const message = JSON.parse(event.data);
-  if (message.action === "webhook") {
-    alert(message.data); // 알림 띄우기
-    location.reload(); // 새로고침
-  }
+    console.log("📩 서버로부터 메시지 수신:", event.data);
 };
-const message = JSON.stringify({
-    action: "connect",  // API Gateway에서 설정한 라우트 이름
-    data: "Hello, WebSocket!"
-});
 
 socket.onerror = (error) => {
-    console.error("❌ WebSocket 연결 오류 발생:", error);
+    console.error("❌ WebSocket 오류 발생:", error);
 };
 
-socket.onclose = () => {
-  console.log("❌ 웹소켓 연결 종료됨");
+socket.onclose = (event) => {
+    console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 };
