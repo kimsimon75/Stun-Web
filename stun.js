@@ -1899,7 +1899,7 @@ socket.onopen = () => {
 };
 
 socket.onmessage = (event) => {
-    console.log("📩 서버로부터 메시지 수신:", event.data );
+    console.log("📩 서버로부터 메시지 수신:", event.data);
 };
 
 socket.onerror = (error) => {
