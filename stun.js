@@ -1885,6 +1885,8 @@ MoveSpeedPage.addEventListener('click', () => {
 
 document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 
+
+
 const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
 
 socket.onopen = () => {
@@ -1911,3 +1913,24 @@ function startPing() {
         }
     }, 30000); // 30초마다 신호 전송
 }
+
+const CHECK_INTERVAL = 10000; // 10초마다 서버에 요청
+
+async function checkForUpdates() {
+    try {
+        const response = await fetch("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
+        const data = await response.json();
+
+        if (data.newUpdate) {
+            console.log("🔄 새로운 업데이트 감지:", data.message);
+            // 여기서 UI 업데이트 처리 (예: DOM 변경, 알림 띄우기 등)
+        } else {
+            console.log("✅ 새로운 업데이트 없음");
+        }
+    } catch (error) {
+        console.error("❌ 서버 요청 중 오류 발생:", error);
+    }
+}
+
+// 일정 간격마다 업데이트 확인 실행
+setInterval(checkForUpdates, CHECK_INTERVAL);
