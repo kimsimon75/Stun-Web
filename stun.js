@@ -1890,21 +1890,6 @@ const data = 0;
 
 async function checkForUpdates() {
     try {
-        const response = await fetch("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
-
-        if (data.newUpdate) {
-            console.log("🔄 새로운 업데이트 감지:", data.message);
-            // 여기서 UI 업데이트 처리 (예: DOM 변경, 알림 띄우기 등)
-        } else {
-            console.log("✅ 새로운 업데이트 없음");
-        }
-    } catch (error) {
-        console.error("❌ 서버 요청 중 오류 발생:", error);
-    }
-}
-
-async function checkForUpdates() {
-    try {
         const message = JSON.stringify({
             action: "$default",  // API Gateway에서 설정한 라우트
             data: "time"
