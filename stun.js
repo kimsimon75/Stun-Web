@@ -1885,7 +1885,7 @@ MoveSpeedPage.addEventListener('click', () => {
 
 document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 
-const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
+const socket = new WebSocket("wss://pws64c1qe6.execute-api.ap-southeast-2.amazonaws.com/production/");
 
 socket.onopen = () => {
     console.log("✅ WebSocket 연결 성공!");
