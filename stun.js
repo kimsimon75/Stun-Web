@@ -1905,7 +1905,7 @@ socket.onopen = () => {
 };
 
 socket.onmessage = (event) => {
-    const preData = data;
+    let preData = data;
     if(event.data!==0)
         data = event.data;
     if(preData !== data)
