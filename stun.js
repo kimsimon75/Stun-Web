@@ -1906,7 +1906,7 @@ socket.onopen = () => {
 
 socket.onmessage = (event) => {
     const preData = data;
-    data = event.data;
+    data = event;
     if(preData !== data)
         console.log("시간이 다름");
     console.log("hello");
