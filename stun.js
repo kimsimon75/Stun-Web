@@ -1918,7 +1918,7 @@ const CHECK_INTERVAL = 10000; // 10초마다 서버에 요청
 
 async function checkForUpdates() {
     try {
-        const response = await fetch("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
+        const response = await fetch("https://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
         const data = await response.json();
 
         if (data.newUpdate) {
