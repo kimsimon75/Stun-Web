@@ -1896,7 +1896,6 @@ socket.onopen = () => {
         data: "Hello, WebSocket!"
     });
 
-    socket.send(message);
 };
 
 socket.onmessage = (event) => {
