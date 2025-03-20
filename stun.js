@@ -1892,7 +1892,7 @@ socket.onopen = () => {
 
     // 서버로 메시지 전송
     const message = JSON.stringify({
-        action: "$default",  // API Gateway에서 설정한 라우트
+        action: "$sendMessage",  // API Gateway에서 설정한 라우트
         data: "Hello, WebSocket!"
     });
     socket.send(message);
