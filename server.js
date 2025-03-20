@@ -13,20 +13,30 @@ const server = http.createServer(app);
 // WebSocket 서버 생성
 const wss = new WebSocket.Server({ server });
 
-wss.on('connection', (ws) => {
-    console.log('✅ 클라이언트가 WebSocket으로 연결되었습니다!');
+wss.on("connection", (ws) => {
+    console.log("✅ 클라이언트가 WebSocket으로 연결됨!");
 
-    ws.send('서버: 연결 성공!'); // ✅ 한글 정상 출력
+    ws.send("서버: 연결 성공!");
 
-    ws.on('message', (message) => {
-        const decodedMessage = message.toString('utf-8');  // ✅ 한글 깨짐 방지
-        console.log(`📩 받은 메시지: ${decodedMessage}`);
+    ws.on("message", (message) => {
+        try {
+            const decodedMessage = message.toString("utf-8");
+            console.log(`📩 받은 메시지: ${decodedMessage}`);
 
-        ws.send(`서버에서 받은 메시지: ${decodedMessage}`); // ✅ 한글 정상 응답
+            // 연결된 모든 클라이언트에게 메시지 전송
+            wss.clients.forEach((client) => {
+                if (client.readyState === WebSocket.OPEN) {
+                    client.send(`📢 모든 클라이언트에게: ${decodedMessage}`);
+                }
+            });
+        } catch (error) {
+            console.error("❌ WebSocket 메시지 처리 중 오류 발생:", error);
+            ws.send("서버 오류 발생");
+        }
     });
 
-    ws.on('close', () => {
-        console.log('❌ 클라이언트 연결 종료');
+    ws.on("close", () => {
+        console.log("❌ 클라이언트 연결 종료");
     });
 });
 
