@@ -1909,8 +1909,7 @@ socket.onmessage = (event) => {
     if(event.data!==0)
         data = event.data;
     if(preData !== data)
-        console.log("시간이 다름");
-    console.log("hello");
+        alert("📢 새로운 업데이트가 있습니다!");
     console.log("📩 서버로부터 메시지 수신:", event.data);
 };
 
