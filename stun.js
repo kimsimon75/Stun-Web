@@ -1912,7 +1912,7 @@ socket.onmessage = (event) => {
     data = event.data;
     if(!firstRun && preData !== data)
     {
-        alert("📢 새로운 업데이트가 있습니다!");
+        alert("📢 새로운 업데이트가 있습니다!\n 새로고침해 주세요!");
     }
     else
         firstRun = false;
