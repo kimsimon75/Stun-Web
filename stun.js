@@ -1927,7 +1927,7 @@ socket.onclose = (event) => {
     console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 };
 
-const CHECK_INTERVAL = 1000; // 10초마다 서버에 요청
+const CHECK_INTERVAL = 10000; // 10초마다 서버에 요청
 
 
 
