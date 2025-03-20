@@ -1910,3 +1910,4 @@ socket.onclose = (event) => {
     console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 };
 
+const chat = 1;
