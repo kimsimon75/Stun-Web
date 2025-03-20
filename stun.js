@@ -1888,7 +1888,7 @@ document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
 let data = 0;
 let preData = 0;
-
+let firstRun = true;
 async function checkForUpdates() {
     try {
         const message = JSON.stringify({
@@ -1909,10 +1909,13 @@ socket.onopen = (event) => {
 
 socket.onmessage = (event) => {
     preData = data;
-    if(event.data!==0)
-        data = event.data;
-    if(preData !== data)
+    data = event.data;
+    if(!firstRun && preData !== data)
+    {
         alert("📢 새로운 업데이트가 있습니다!");
+    }
+    else
+        firstRun = false;
     console.log("📩 서버로부터 메시지 수신:", event.data);
 };
 
