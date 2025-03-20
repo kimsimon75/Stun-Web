@@ -1886,7 +1886,7 @@ MoveSpeedPage.addEventListener('click', () => {
 document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 
 const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
-let data = 0;
+const data = 0;
 
 async function checkForUpdates() {
     try {
@@ -1906,6 +1906,8 @@ socket.onopen = () => {
 
 socket.onmessage = (event) => {
     const preData = data;
+    if(event.data!==0)
+        data = event.data;
     if(preData !== data)
         console.log("시간이 다름");
     console.log("hello");
@@ -1920,6 +1922,9 @@ socket.onclose = (event) => {
     console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 };
 
-const CHECK_INTERVAL = 1000000; // 10초마다 서버에 요청
+const CHECK_INTERVAL = 1000; // 10초마다 서버에 요청
 
 
+
+// 일정 간격마다 업데이트 확인 실행
+setInterval(checkForUpdates, CHECK_INTERVAL);
