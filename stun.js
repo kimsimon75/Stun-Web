@@ -1887,6 +1887,7 @@ document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 
 const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
 let data = 0;
+let preData = 0;
 
 async function checkForUpdates() {
     try {
@@ -1900,12 +1901,14 @@ async function checkForUpdates() {
     }
 }
 
-socket.onopen = () => {
+socket.onopen = (event) => {
     console.log("✅ WebSocket 연결 성공!");
+    data = event.data;
+    preData= event.data;
 };
 
 socket.onmessage = (event) => {
-    let preData = data;
+    preData = data;
     if(event.data!==0)
         data = event.data;
     if(preData !== data)
