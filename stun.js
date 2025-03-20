@@ -1923,6 +1923,3 @@ socket.onclose = (event) => {
 const CHECK_INTERVAL = 1000000; // 10초마다 서버에 요청
 
 
-
-// 일정 간격마다 업데이트 확인 실행
-setInterval(checkForUpdates, CHECK_INTERVAL);
