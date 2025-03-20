@@ -1885,7 +1885,7 @@ MoveSpeedPage.addEventListener('click', () => {
 
 document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 
-const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production/");
+const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
 
 socket.onopen = () => {
     console.log("✅ WebSocket 연결 성공!");
@@ -1900,11 +1900,6 @@ socket.onopen = () => {
 
 socket.onmessage = (event) => {
     console.log("📩 서버로부터 메시지 수신:", event.data);
-    const message = JSON.stringify({
-        action: "sendMessage",  // API Gateway에서 설정한 라우트
-        data: "Hello, WebSocket!"
-    });
-    socket.send(message);
 };
 
 socket.onerror = (error) => {
@@ -1914,5 +1909,3 @@ socket.onerror = (error) => {
 socket.onclose = (event) => {
     console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 };
-
-const chat = 1;
