@@ -1885,41 +1885,12 @@ MoveSpeedPage.addEventListener('click', () => {
 
 document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 
-
-
 const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
-
-socket.onopen = () => {
-    console.log("✅ WebSocket 연결 성공!");
-};
-
-socket.onmessage = (event) => {
-    console.log("📩 서버로부터 메시지 수신:", event.data);
-};
-
-socket.onerror = (error) => {
-    console.error("❌ WebSocket 오류 발생:", error);
-};
-
-socket.onclose = (event) => {
-    console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
-};
-
-function startPing() {
-    setInterval(() => {
-        if (socket.readyState === WebSocket.OPEN) {
-            console.log("📡 Ping 전송");
-            socket.send(JSON.stringify({ action: "ping" }));
-        }
-    }, 30000); // 30초마다 신호 전송
-}
-
-const CHECK_INTERVAL = 10000; // 10초마다 서버에 요청
+const data = 0;
 
 async function checkForUpdates() {
     try {
-        const response = await fetch("https://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
-        const data = await response.json();
+        const response = await fetch("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
 
         if (data.newUpdate) {
             console.log("🔄 새로운 업데이트 감지:", data.message);
@@ -1931,6 +1902,31 @@ async function checkForUpdates() {
         console.error("❌ 서버 요청 중 오류 발생:", error);
     }
 }
+
+socket.onopen = () => {
+    console.log("✅ WebSocket 연결 성공!");
+};
+
+socket.onmessage = (event) => {
+    const preData = data;
+    data = event.data;
+    if(preData !== data)
+        console.log("시간이 다름");
+    console.log("hello");
+    console.log("📩 서버로부터 메시지 수신:", event.data);
+};
+
+socket.onerror = (error) => {
+    console.error("❌ WebSocket 오류 발생:", error);
+};
+
+socket.onclose = (event) => {
+    console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
+};
+
+const CHECK_INTERVAL = 10000; // 10초마다 서버에 요청
+
+
 
 // 일정 간격마다 업데이트 확인 실행
 setInterval(checkForUpdates, CHECK_INTERVAL);
