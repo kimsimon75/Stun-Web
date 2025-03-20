@@ -1889,6 +1889,13 @@ const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazon
 
 socket.onopen = () => {
     console.log("✅ WebSocket 연결 성공!");
+
+    // 서버로 메시지 전송
+    const message = JSON.stringify({
+        action: "$sendMessage",  // API Gateway에서 설정한 라우트
+        data: "Hello, WebSocket!"
+    });
+    socket.send(message);
 };
 
 socket.onmessage = (event) => {
