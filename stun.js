@@ -1899,7 +1899,6 @@ socket.onopen = () => {
 };
 
 socket.onmessage = (event) => {
-    console.log("hello");
     console.log("📩 서버로부터 메시지 수신:", event.data);
 };
 
