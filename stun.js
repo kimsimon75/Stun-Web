@@ -1899,12 +1899,12 @@ socket.onopen = () => {
 };
 
 socket.onmessage = (event) => {
+    console.log("📩 서버로부터 메시지 수신:", event.data);
     const message = JSON.stringify({
         action: "sendMessage",  // API Gateway에서 설정한 라우트
         data: "Hello, WebSocket!"
     });
     socket.send(message);
-    console.log("📩 서버로부터 메시지 수신:", event.data);
 };
 
 socket.onerror = (error) => {
