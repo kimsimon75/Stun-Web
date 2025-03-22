@@ -1912,5 +1912,5 @@ socket.onclose = (event) => {
     console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 
     const newSocket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production/")
-    newSocket.onclose = socket.onclose();
+    newSocket.onclose = socket.onclose;
 };
