@@ -1050,7 +1050,6 @@ function CheckEvent(Check, item, index) {
 }
 
 function ButtonColor(name) {
-    name.style.aspectRatio = "1";
     name.style.background = "rgb(245, 245, 245)";
 
     name.addEventListener('mouseenter', () => {
@@ -1073,11 +1072,12 @@ function ButtonColor(name) {
 function Stack() {
     const Stack = document.createElement("div");
     Stack.className = "Stack";
+    Stack.style.display = "flex";
+    Stack.style.flexDirection = "column-reverse";
+    Stack.style.boxSizing = "border-box";
     const container = document.getElementsByClassName("container")[0];
 
     if (document.getElementById("container1") != null) {
-        const containerHeightPercentage = (container.offsetHeight / window.innerHeight) * 100;
-        const unitAdjustment = (container.offsetHeight / window.innerHeight * 100 / 20) * (Unit - 40 > 0 ? (Unit - 40) : 0);
         Stack.style.height = `calc(${40 - 2 * (Unit - 40 > 0  ? (Unit - 40) : 0)}vw)`;
     }
     else {
@@ -1089,42 +1089,46 @@ function Stack() {
     for (var i = 0; i <= 3; i++) {
         const ChildStack = document.createElement("div");
         ChildStack.className = `ChildStack Stack${i}`;
-        ChildStack.style.height = `2vw`;
-        ChildStack.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 3}vw)`;
+        ChildStack.style.height = "2vw";
 
         Stack.appendChild(ChildStack);
     }
 
-    const TotalStun = document.createElement("button");
-    TotalStun.className = 'TotalStun BigFont';
-    TotalStun.style.height = "100%";
-    TotalStun.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 3 * 0.6}vw)`
+    document.getElementsByClassName('Stack0')[0].style.display = "grid";
+    document.getElementsByClassName('Stack0')[0].style.gridTemplateColumns = "6fr 4fr";
+    document.getElementsByClassName('Stack1')[0].style.display = "grid";
+    document.getElementsByClassName('Stack1')[0].style.gridTemplateColumns = "repeat(4, 1fr)";
+    document.getElementsByClassName('Stack2')[0].style.display = "grid";
+    document.getElementsByClassName('Stack2')[0].style.gridTemplateColumns = "repeat(4, 1fr)";
+    document.getElementsByClassName('Stack3')[0].style.display = "grid";
+    document.getElementsByClassName('Stack3')[0].style.gridTemplateColumns = "repeat(4, 1fr)";
+
+    const TotalStun = document.createElement("div");
+    TotalStun.className = 'Button TotalStun BigFont';
     TotalStun.addEventListener('click', () => {
         openOverlay(100, 100);
     });
     TotalStun.innerText = `${totalStun.toFixed(3)}스턴`;
+    ButtonColor(TotalStun);
     document.getElementsByClassName(`Stack0`)[0].appendChild(TotalStun);
 
 
-    const clear = document.createElement("button");
-    clear.className = "clear BigFont";
+    const clear = document.createElement("div");
+    clear.className = "Button clear BigFont";
     clear.innerText = '초기화';
-    clear.style.height = "100%";
-    clear.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 3 * 0.4}vw)`
     clear.addEventListener("click", ClearAll);
+    ButtonColor(clear);
 
     document.getElementsByClassName(`Stack0`)[0].appendChild(clear);
 
     const SpeedBonusButton = document.createElement("div");
-    SpeedBonusButton.className = "AttackSpeed div BigFont";
+    SpeedBonusButton.className = "AttackSpeed BigFont";
     SpeedBonusButton.style.border = "0.001rem solid black";
     SpeedBonusButton.style.alignContent = "center";
     SpeedBonusButton.style.paddingRight = "0.25vw";
     SpeedBonusButton.style.fontWeight = 'bold';
     SpeedBonusButton.innerText = `${speedBonus}%`;
     SpeedBonusButton.style.boxSizing = "border-box";
-    SpeedBonusButton.style.height = "100%";
-    SpeedBonusButton.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
     SpeedBonusButton.style.textAlign = "right";
 
     document.getElementsByClassName(`Stack1`)[0].appendChild(SpeedBonusButton);
@@ -1133,17 +1137,16 @@ function Stack() {
     SpeedBonus.className = "Bonus SmallFont";
     SpeedBonus.innerText = "공속 보너스";
     SpeedBonus.style.height = "100%";
-    SpeedBonus.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
 
     document.getElementsByClassName('Stack1')[0].appendChild(SpeedBonus);
 
-    const SpeedBonusExButton = document.createElement("button");
+    const SpeedBonusExButton = document.createElement("div");
     SpeedBonusExButton.className = "AttackSpeedEx Button BigFont";
     SpeedBonusExButton.innerText = `${speedBonusEx}%`;
-    SpeedBonusExButton.style.boxSizing = "border-box";
-    SpeedBonusExButton.style.height = "100%";
-    SpeedBonusExButton.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
     SpeedBonusExButton.style.textAlign = "right";
+    SpeedBonusExButton.style.alignContent = "center";
+    SpeedBonusExButton.style.paddingRight = "0.25vw";
+    ButtonColor(SpeedBonusExButton);
 
     const SpeedBonusExOverlay = document.createElement("div");
     SpeedBonusExOverlay.className = "SpeedBonusExOverlay";
@@ -1354,20 +1357,20 @@ function Stack() {
     const SpeedBonusEx = document.createElement("div");
     SpeedBonusEx.className = "Bonus SmallFont";
     SpeedBonusEx.innerText = "추가 공속";
-    SpeedBonusEx.style.height = "100%";
-    SpeedBonusEx.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
 
     document.getElementsByClassName('Stack1')[0].appendChild(SpeedBonusEx);
 
 
-    const MRegenButton = document.createElement("button");
+    const MRegenButton = document.createElement("div");
     MRegenButton.className = "MRegen Button BigFont";
     MRegenButton.id = "MRegen";
     MRegenButton.innerText = `${manaRegen}`;
     MRegenButton.style.boxSizing = "border-box";
-    MRegenButton.style.height = "100%";
     MRegenButton.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
     MRegenButton.style.textAlign = "right";
+    MRegenButton.style.alignContent = "center";
+    MRegenButton.style.paddingRight = "0.25vw";
+    ButtonColor(MRegenButton);
 
     MRegenButton.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -1397,11 +1400,10 @@ function Stack() {
     MRegen.innerText = "마나 리젠";
     MRegen.style.boxSizing = "border-box";
     MRegen.style.height = "100%";
-    MRegen.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
 
     document.getElementsByClassName('Stack2')[0].appendChild(MRegen);
 
-    const HRegenButton = document.createElement("button");
+    const HRegenButton = document.createElement("div");
     HRegenButton.className = "HRegen Button BigFont";
     HRegenButton.id = "HRegen";
     HRegenButton.innerText = `${healthRegen}`;
@@ -1409,6 +1411,9 @@ function Stack() {
     HRegenButton.style.height = "100%";
     HRegenButton.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
     HRegenButton.style.textAlign = "right";
+    HRegenButton.style.alignContent = "center";
+    HRegenButton.style.paddingRight = "0.25vw";
+    ButtonColor(HRegenButton);
 
     HRegenButton.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -1437,27 +1442,29 @@ function Stack() {
     HRegen.innerText = "체력 리젠";
     HRegen.style.boxSizing = "border-box";
     HRegen.style.height = "100%";
-    HRegen.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
 
     document.getElementsByClassName('Stack2')[0].appendChild(HRegen);
 
-    const Formula = document.createElement("button");
-    Formula.className = "Formula SmallFont";
+    const Formula = document.createElement("div");
+    Formula.className = "Button Formula SmallFont";
     Formula.innerText = "가동률 공식";
-    Formula.style.height = `2vw`;
-    Formula.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
+    Formula.style.gridArea = "1/ 1/ 2/ 2"
+    Formula.style.alignContent = "center";
+    Formula.style.textAlign = "center";
     Formula.addEventListener("click", () => {
         openOverlay(200, 200);
     });
+    ButtonColor(Formula);
 
     document.getElementsByClassName(`Stack3`)[0].appendChild(Formula);
 
     if (document.getElementById("container1")) {
-        const Mana = document.createElement("button");
-        Mana.className = "Mana SmallFont";
+        const Mana = document.createElement("div");
+        Mana.className = "Button Mana SmallFont";
         Mana.innerText = "마나 끄기";
-        Mana.style.height = `2vw`;
-        Mana.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
+        Mana.style.gridArea = "1/ 4/ 2/ 5"
+        Mana.style.alignContent = "center";
+        Mana.style.textAlign = "center";
         Mana.addEventListener("click", () => {
             if (mana)
                 Mana.innerText = "마나 켜기";
@@ -1467,6 +1474,8 @@ function Stack() {
             UnitTotalStun();
             CountOn();
         });
+
+        ButtonColor(Mana);
         document.getElementsByClassName(`Stack3`)[0].appendChild(Mana);
     }
 
@@ -1550,6 +1559,7 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         unitName.addEventListener("click", (event) => {
             openOverlay(event.target.id.split('-')[1], event.target.id.split('-')[2]);
         })
+        ButtonColor(unitName);
 
         const stunRate = document.createElement("div");
         stunRate.className = 'Rate SmallFont';
@@ -1578,6 +1588,7 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         plus.className = 'IMG SmallFont';
         plus.src = "plus.png";
         plus.id = `p-${sortCount}-${unitCount}`;
+        plus.style.aspectRatio = "1";
         plus.addEventListener('click', () => {
             const id = plus.id.split(`-`);
             const sort = id[1];
@@ -1609,6 +1620,7 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         minus.className = 'IMG SmallFont';
         minus.src = "minus.png";
         minus.id = `m-${sortCount}-${unitCount}`;
+        minus.style.aspectRatio = "1";
         minus.addEventListener('click', () => {
             const id = minus.id.split(`-`);
             const sort = id[1];
@@ -1641,8 +1653,6 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
 
         ButtonColor(minus);
 
-        minus.style.height = `calc(${container.offsetHeight / 20})`;
-
         UnitBar.appendChild(unitName);
         UnitBar.appendChild(stunRate);
         UnitBar.appendChild(percentage);
@@ -1668,8 +1678,6 @@ MoveSpeedPage.addEventListener('click', () => {
     Container2.className = "container";
     Container2.id = "container2";
 
-    document.body.appendChild(Container2);
-
     container.replaceWith(Container2);
 
     for (var i = 0; i < 3; i++) {
@@ -1683,8 +1691,6 @@ MoveSpeedPage.addEventListener('click', () => {
 
         const Unit = document.createElement("div");
         Unit.id = `u-${i}`;
-        Unit.style.width = "100%";
-        Unit.style.height = `calc(${Container2.offsetHeight / window.innerHeight * 100 / 20}vh)`
         Unit.style.parseFloat = "left";
         Unit.style.boxSizing = "border-box";
         Unit.style.display = "grid";
@@ -1695,7 +1701,6 @@ MoveSpeedPage.addEventListener('click', () => {
         if (i % 20 == 0) {
             const UnitName = document.createElement("button");
             UnitName.className = "unitSort MoreSmallFont UnitNameBar";
-            UnitName.style.height = "100%";
             UnitName.boxSizing = "border-box";
             UnitName.textContent = (nameSort == 0) ? "유닛명" : (nameSort == -1) ? "유닛명 ⬇" : "유닛명 ⬆";
             UnitName.addEventListener("click", () => {
@@ -1726,7 +1731,6 @@ MoveSpeedPage.addEventListener('click', () => {
 
             const UnitSort = document.createElement("button");
             UnitSort.className = "unitSort MoreSmallFont UnitSortBar";
-            UnitSort.style.height = "100%";
             UnitSort.boxSizing = "border-box";
             UnitSort.textContent = "등급";
             UnitSort.addEventListener("click", () => {
@@ -1751,7 +1755,6 @@ MoveSpeedPage.addEventListener('click', () => {
 
             const MoveSpeed = document.createElement("button");
             MoveSpeed.className = "unitSort MoreSmallFont MoveSpeedBar";
-            MoveSpeed.style.height = "100%";
             MoveSpeed.style.boxSizing = "border-box"; // boxSizing 추가
             MoveSpeed.textContent = "이감 발동률";
             MoveSpeed.addEventListener("click", () => {
@@ -1776,7 +1779,6 @@ MoveSpeedPage.addEventListener('click', () => {
 
             const AfterShock = document.createElement("button");
             AfterShock.className = "unitSort MoreSmallFont AfterShockBar";
-            AfterShock.style.height = "100%";
             AfterShock.style.boxSizing = "border-box"; // boxSizing 추가
             AfterShock.textContent = "여진 가동률";
 
@@ -1804,7 +1806,6 @@ MoveSpeedPage.addEventListener('click', () => {
             const UnitName = document.createElement("div");
             UnitName.className = "unitName SmallFont";
             UnitName.id = `n-${i - 1 - Math.floor(i / 20) }`;
-            UnitName.style.height = "100%";
             UnitName.style.border = "0.001rem solid black";
             UnitName.style.boxSizing = "border-box"; // boxSizing 추가
             UnitName.textContent = `${speedState[i - 1 - parseInt(Math.floor(i / 20))][0]}`;
@@ -1814,7 +1815,6 @@ MoveSpeedPage.addEventListener('click', () => {
             const UnitSort = document.createElement("div");
             UnitSort.className = "unitName SmallFont";
             UnitSort.id = `s-${i - 1 - Math.floor(i / 20) }`;
-            UnitSort.style.height = "100%";
             UnitSort.style.border = "0.001rem solid black";
             UnitSort.boxSizing = "border-box";
             UnitSort.textContent = `${speedState[i - 1 - Math.floor(i / 20)][1][0]}`;
@@ -1824,7 +1824,6 @@ MoveSpeedPage.addEventListener('click', () => {
             const MoveSpeed = document.createElement("button");
             MoveSpeed.className = "Button SmallFont";
             MoveSpeed.id = `m-${i - 1 - Math.floor(i / 20)}`;
-            MoveSpeed.style.height = "100%";
             MoveSpeed.style.boxSizing = "border-box"; // boxSizing 추가
             MoveSpeed.addEventListener('click', () => {
                 const id = MoveSpeed.parentElement.id.split('-');
@@ -1838,7 +1837,6 @@ MoveSpeedPage.addEventListener('click', () => {
             const AfterShock = document.createElement("button");
             AfterShock.className = "Button SmallFont";
             AfterShock.id = `a-${i - 1 - Math.floor(i / 20)}`;
-            AfterShock.style.height = "100%";
             AfterShock.style.boxSizing = "border-box"; // boxSizing 추가
             AfterShock.addEventListener('click', () => {
                 const id = AfterShock.parentElement.id.split('-');
@@ -1885,38 +1883,25 @@ MoveSpeedPage.addEventListener('click', () => {
 
 document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 
-const socket = new WebSocket("wss://o5wmuffu1h.execute-api.ap-southeast-2.amazonaws.com/production");
-let data = 0;
-let preData = 0;
-let firstRun = true;
-async function checkForUpdates() {
-    try {
-        const message = JSON.stringify({
-            action: "$default",  // API Gateway에서 설정한 라우트
-            data: "time"
-        });
-        socket.send(message);
-    } catch (error) {
-        console.error("❌ 서버 요청 중 오류 발생:", error);
-    }
-}
+const socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production/");
+
 
 socket.onopen = (event) => {
     console.log("✅ WebSocket 연결 성공!");
-    data = event.data;
-    preData= event.data;
+
+
+        const messageData = {
+        action: "$default", // API Gateway에서 설정한 routeKey
+        message: "Hello, WebSocket!"
+    };
+
+    socket.send(JSON.stringify(messageData));
+    console.log("📡 메시지 전송:", messageData);
 };
 
 socket.onmessage = (event) => {
-    preData = data;
-    data = event.data;
-    if(!firstRun && preData !== data)
-    {
+
         alert("📢 새로운 업데이트가 있습니다!\n 새로고침해 주세요!");
-    }
-    else
-        firstRun = false;
-    console.log("📩 서버로부터 메시지 수신:", event.data);
 };
 
 socket.onerror = (error) => {
@@ -1926,10 +1911,3 @@ socket.onerror = (error) => {
 socket.onclose = (event) => {
     console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 };
-
-const CHECK_INTERVAL = 10000; // 10초마다 서버에 요청
-
-
-
-// 일정 간격마다 업데이트 확인 실행
-setInterval(checkForUpdates, CHECK_INTERVAL);

@@ -13,12 +13,12 @@ body{
     border: 0.001rem solid black;
     margin-left: 2.5vw;
     margin-right: 2.5vw;
-    grid-template-columns: 1fr 1fr 1fr;
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .Button{
-    padding:0.3vw;
+    border : 0.001rem solid black;
 }
 
 .BigFont{
@@ -35,7 +35,10 @@ body{
 
 .div {
     border: 0;
+    height:40vw;
     box-sizing: border-box;
+    display:grid;
+    grid-template-rows: repeat(20, 1fr);
 }
 .unitSort {
     margin: 0;
@@ -78,19 +81,6 @@ body{
 }
 
 
-.Stack {
-    display: flex;
-    flex-direction: column-reverse;
-    box-sizing: border-box;
-}
-
-
-
-.ChildStack {
-    display: flex;
-}
-/* ���� ��ҵ��� ���� ���� */
-
 .TotalStun, .clear {
     display: flex;
     align-items: center;
@@ -112,11 +102,6 @@ body{
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-}
-
-.Mana{
-    margin-left:auto;
-    box-sizing:border-box;
 }
 
 .CheckBox-Stack {
