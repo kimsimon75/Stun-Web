@@ -1891,7 +1891,7 @@ socket.onopen = (event) => {
 
 
         const messageData = {
-        action: "$disconnect", // API Gateway에서 설정한 routeKey
+        action: "$default", // API Gateway에서 설정한 routeKey
         message: "Hello, WebSocket!"
     };
 
