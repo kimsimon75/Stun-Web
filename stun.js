@@ -1408,7 +1408,6 @@ function Stack() {
     HRegenButton.innerText = `${healthRegen}`;
     HRegenButton.style.boxSizing = "border-box";
     HRegenButton.style.height = "100%";
-    HRegenButton.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
     HRegenButton.style.textAlign = "right";
     HRegenButton.style.alignContent = "center";
     HRegenButton.style.paddingRight = "0.25vw";
