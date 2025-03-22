@@ -1669,7 +1669,6 @@ const MoveSpeedPage = document.createElement("button");
 MoveSpeedPage.className = "MoveSpeedPage MoreSmallFont";
 MoveSpeedPage.innerText = "이동 속도 감소";
 MoveSpeedPage.style.height = `2vw`;
-MoveSpeedPage.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
 MoveSpeedPage.style.marginLeft = "auto";
 
 MoveSpeedPage.addEventListener('click', () => {
