@@ -1366,7 +1366,6 @@ function Stack() {
     MRegenButton.id = "MRegen";
     MRegenButton.innerText = `${manaRegen}`;
     MRegenButton.style.boxSizing = "border-box";
-    MRegenButton.style.width = `calc(${(container.offsetWidth / window.innerWidth) * 100 / 12}vw)`;
     MRegenButton.style.textAlign = "right";
     MRegenButton.style.alignContent = "center";
     MRegenButton.style.paddingRight = "0.25vw";
