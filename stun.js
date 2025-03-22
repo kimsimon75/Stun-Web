@@ -1667,7 +1667,6 @@ const MoveSpeedPage = document.createElement("button");
 MoveSpeedPage.className = "MoveSpeedPage MoreSmallFont";
 MoveSpeedPage.innerText = "이동 속도 감소";
 MoveSpeedPage.style.height = `2vw`;
-MoveSpeedPage.style.width = `calc(${70/3/4})vw`;
 MoveSpeedPage.style.marginLeft = "auto";
 
 MoveSpeedPage.addEventListener('click', () => {
@@ -1881,34 +1880,42 @@ MoveSpeedPage.addEventListener('click', () => {
 
 document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
 
-const socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production/");
+function connectWebSocket(){
+    const socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production/");
 
  
-socket.onopen = (event) => {
-    console.log("✅ WebSocket 연결 성공!");
-
-
-        const messageData = {
-        action: "$default", // API Gateway에서 설정한 routeKey
-        message: "Hello, WebSocket!"
+    socket.onopen = (event) => {
+        console.log("✅ WebSocket 연결 성공!");
+    
+    
+            const messageData = {
+            action: "$default", // API Gateway에서 설정한 routeKey
+            message: "Hello, WebSocket!"
+        };
+    
+        socket.send(JSON.stringify(messageData));
+        console.log("📡 메시지 전송:", messageData);
     };
+    
+    socket.onmessage = (event) => {
+    
+            alert("📢 새로운 업데이트가 있습니다!\n 새로고침해 주세요!");
+    };
+    
+    socket.onerror = (error) => {
+        console.error("❌ WebSocket 오류 발생:", error);
+    };
+    
+    socket.onclose = (event) => {
+        console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
 
-    socket.send(JSON.stringify(messageData));
-    console.log("📡 메시지 전송:", messageData);
-};
+        // 백오프 전략 적용 (최대 30초까지 증가)
+        let delay = Math.min(3000 * (2 ** reconnectAttempts), 30000);
+        console.log(`⏳ ${delay / 1000}초 후 재연결 시도...`);
+        setTimeout(connectWebSocket, delay);
 
-socket.onmessage = (event) => {
+        reconnectAttempts++;
+    };
+}
 
-        alert("📢 새로운 업데이트가 있습니다!\n 새로고침해 주세요!");
-};
-
-socket.onerror = (error) => {
-    console.error("❌ WebSocket 오류 발생:", error);
-};
-
-socket.onclose = (event) => {
-    console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
-
-    const newSocket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production/")
-    newSocket.onclose = socket.onclose;
-};
+connectWebSocket();
