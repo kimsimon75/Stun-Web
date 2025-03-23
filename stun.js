@@ -1,5 +1,6 @@
 
 const char = 1;
+const container = document.getElementsByClassName("container")[0];
 const unitRates = {
     특별함: ["특별함",0],
     희귀함: ["희귀함", 1],
@@ -1070,38 +1071,22 @@ function ButtonColor(name) {
 }
 
 function Stack() {
-    const Stack = document.createElement("div");
-    Stack.className = "Stack";
-    Stack.style.display = "flex";
-    Stack.style.flexDirection = "column-reverse";
-    Stack.style.boxSizing = "border-box";
-    const container = document.getElementsByClassName("container")[0];
 
-    if (document.getElementById("container1") != null) {
-        Stack.style.height = `calc(${40 - 2 * (Unit - 40 > 0  ? (Unit - 40) : 0)}vw)`;
+    for (let i = 0; i <= 4; i++) {
+        const Stack = document.createElement("div");
+        Stack.className = `Stack${i}`
+        Stack.style.display = "grid";   
+        Stack.style.gridArea = ` ${20 - i} / 3 /  ${21 - i} / 4`;
+
+        document.getElementsByClassName("container")[0].appendChild(Stack);
+
+        if (i === 0)
+            Stack.style.gridTemplateColumns = "6fr 4fr";
+        else
+            Stack.style.gridTemplateColumns = "repeat(4, 1fr)";
     }
-    else {
-        Stack.style.height = "40vw";
-    }
+    
 
-    document.getElementById("div2").appendChild(Stack);
-
-    for (var i = 0; i <= 3; i++) {
-        const ChildStack = document.createElement("div");
-        ChildStack.className = `ChildStack Stack${i}`;
-        ChildStack.style.height = "2vw";
-
-        Stack.appendChild(ChildStack);
-    }
-
-    document.getElementsByClassName('Stack0')[0].style.display = "grid";
-    document.getElementsByClassName('Stack0')[0].style.gridTemplateColumns = "6fr 4fr";
-    document.getElementsByClassName('Stack1')[0].style.display = "grid";
-    document.getElementsByClassName('Stack1')[0].style.gridTemplateColumns = "repeat(4, 1fr)";
-    document.getElementsByClassName('Stack2')[0].style.display = "grid";
-    document.getElementsByClassName('Stack2')[0].style.gridTemplateColumns = "repeat(4, 1fr)";
-    document.getElementsByClassName('Stack3')[0].style.display = "grid";
-    document.getElementsByClassName('Stack3')[0].style.gridTemplateColumns = "repeat(4, 1fr)";
 
     const TotalStun = document.createElement("div");
     TotalStun.className = 'Button TotalStun BigFont';
@@ -1110,6 +1095,7 @@ function Stack() {
     });
     TotalStun.innerText = `${totalStun.toFixed(3)}스턴`;
     ButtonColor(TotalStun);
+
     document.getElementsByClassName(`Stack0`)[0].appendChild(TotalStun);
 
 
@@ -1136,7 +1122,6 @@ function Stack() {
     const SpeedBonus = document.createElement("div");
     SpeedBonus.className = "Bonus SmallFont";
     SpeedBonus.innerText = "공속 보너스";
-    SpeedBonus.style.height = "100%";
 
     document.getElementsByClassName('Stack1')[0].appendChild(SpeedBonus);
 
@@ -1392,13 +1377,11 @@ function Stack() {
     });
 
     document.getElementsByClassName('Stack2')[0].appendChild(MRegenButton);
-    MRegenScroll.style.width = `${(MRegenButton.offsetWidth * 2) / window.innerWidth * 100}vw`;
 
     const MRegen = document.createElement("div");
     MRegen.className = "Bonus SmallFont";
     MRegen.innerText = "마나 리젠";
     MRegen.style.boxSizing = "border-box";
-    MRegen.style.height = "100%";
 
     document.getElementsByClassName('Stack2')[0].appendChild(MRegen);
 
@@ -1407,7 +1390,6 @@ function Stack() {
     HRegenButton.id = "HRegen";
     HRegenButton.innerText = `${healthRegen}`;
     HRegenButton.style.boxSizing = "border-box";
-    HRegenButton.style.height = "100%";
     HRegenButton.style.textAlign = "right";
     HRegenButton.style.alignContent = "center";
     HRegenButton.style.paddingRight = "0.25vw";
@@ -1439,7 +1421,6 @@ function Stack() {
     HRegen.className = "Bonus SmallFont";
     HRegen.innerText = "체력 리젠";
     HRegen.style.boxSizing = "border-box";
-    HRegen.style.height = "100%";
 
     document.getElementsByClassName('Stack2')[0].appendChild(HRegen);
 
@@ -1480,6 +1461,8 @@ function Stack() {
 }
 
 UnitTotalStun();
+
+
 speedState.sort((a, b) => {
 
     if (a[0] < b[0]) return -1;
@@ -1488,15 +1471,6 @@ speedState.sort((a, b) => {
     return SortFunction(a, b);
 })
 
-const container = document.getElementsByClassName("container")[0];
-
-for (var i = 0; i < 3; i++) {
-    const newDiv = document.createElement("div");
-    newDiv.className = "div";
-    newDiv.id = `div${i}`;
-    container.appendChild(newDiv);
-}
-
 for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
     if (unitCount >= unitState[sortCount].length) {
         sortCount++;
@@ -1504,16 +1478,16 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
     }
 
     const UnitBar = document.createElement("div");
-    UnitBar.style.height = `2vw`;
     UnitBar.style.display = "flex";
-    document.getElementById(`div${Math.floor(i / 20)}`).appendChild(UnitBar);
+    UnitBar.style.boxSizing = "border-box";
+    container.appendChild(UnitBar);
 
     if (unitCount == 0) {
         const newChild = document.createElement("div");
         newChild.className = 'unitSort BigFont';
         newChild.innerText = unitState[sortCount][unitCount][0];
-        newChild.style.width = "100%";
         newChild.style.border = "0.001rem solid black";
+        newChild.style.width = "100%";
 
         switch (sortCount) {
             case 0:
@@ -1543,16 +1517,23 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
                 newChild.style.color = "rgb(091,151,213)";
                 break;
         }
-
         UnitBar.appendChild(newChild);
     }
     else {
 
+        const UnitChildBar = document.createElement("div");
+        UnitChildBar.style.display = "grid";
+        UnitChildBar.style.gridTemplateColumns = "repeat(3, 1fr)";
+        UnitChildBar.style.width = "100%";
+
+        UnitBar.appendChild(UnitChildBar);
+
         const unitName = document.createElement("button");
         unitName.className = 'Button unitName SmallFont';
         unitName.id = `n-${sortCount}-${unitCount}`;
-        unitName.style.width = "100%";
         unitName.innerText = unitState[sortCount][unitCount][0];
+        if (unitState[sortCount][unitCount][0] === "크로커다일(특강)")
+            unitName.style.fontSize = "0.65vw";
 
         unitName.addEventListener("click", (event) => {
             openOverlay(event.target.id.split('-')[1], event.target.id.split('-')[2]);
@@ -1565,7 +1546,6 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         stunRate.style.boxSizing = 'border-box';
         stunRate.innerText = unitRate[sortCount][unitCount].toFixed(3) + "스턴";
         stunRate.style.justifyContent = "center";
-        stunRate.style.width = "100%";
 
         const percentage = document.createElement("div");
         percentage.className = 'Rate SmallFont';
@@ -1573,20 +1553,23 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         percentage.style.boxSizing = 'border-box';
         percentage.innerText = ((1 - Math.pow(0.2, unitRate[sortCount][unitCount])) * 100).toFixed(2) + "%";
         percentage.style.justifyContent = "center";
-        percentage.style.width = "100%";
 
         const count = document.createElement("div");
         count.className = 'Count SmallFont';
         count.id = `c-${sortCount}-${unitCount}`;
         count.innerText = `${stunCount[sortCount][unitCount]}`;
         count.style.justifyContent = "center";
-        count.style.aspectRatio= "1";
+        count.style.aspectRatio = "1";
+        count.style.height = "2vw";
+        count.style.boxSizing = "border-box";
 
         const plus = document.createElement("img");
         plus.className = 'IMG SmallFont';
         plus.src = "plus.png";
         plus.id = `p-${sortCount}-${unitCount}`;
+        plus.style.height = "2vw";
         plus.style.aspectRatio = "1";
+        plus.style.boxSizing = "border-box";
         plus.addEventListener('click', () => {
             const id = plus.id.split(`-`);
             const sort = id[1];
@@ -1618,7 +1601,9 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         minus.className = 'IMG SmallFont';
         minus.src = "minus.png";
         minus.id = `m-${sortCount}-${unitCount}`;
+        minus.style.height = "2vw";
         minus.style.aspectRatio = "1";
+        minus.style.boxSizing = "border-box";
         minus.addEventListener('click', () => {
             const id = minus.id.split(`-`);
             const sort = id[1];
@@ -1651,9 +1636,9 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
 
         ButtonColor(minus);
 
-        UnitBar.appendChild(unitName);
-        UnitBar.appendChild(stunRate);
-        UnitBar.appendChild(percentage);
+        UnitChildBar.appendChild(unitName);
+        UnitChildBar.appendChild(stunRate);
+        UnitChildBar.appendChild(percentage);
         UnitBar.appendChild(count);
         UnitBar.appendChild(plus);
         UnitBar.appendChild(minus);
@@ -1662,12 +1647,10 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
 
 Stack();
 
-
 const MoveSpeedPage = document.createElement("button");
-MoveSpeedPage.className = "MoveSpeedPage MoreSmallFont";
+MoveSpeedPage.className = "Button MoveSpeedPage MoreSmallFont";
 MoveSpeedPage.innerText = "이동 속도 감소";
-MoveSpeedPage.style.height = `2vw`;
-MoveSpeedPage.style.marginLeft = "auto";
+MoveSpeedPage.style.gridArea = "1/4/2/5";
 
 MoveSpeedPage.addEventListener('click', () => {
 
@@ -1677,27 +1660,18 @@ MoveSpeedPage.addEventListener('click', () => {
 
     container.replaceWith(Container2);
 
-    for (var i = 0; i < 3; i++) {
-        const newDiv = document.createElement("div");
-        newDiv.className = "div";
-        newDiv.id = `div${i}`;
-        Container2.appendChild(newDiv);
-    }
-
     for (let i = 0; i <= speedState.length+Math.floor(i/20); i++) {
 
         const Unit = document.createElement("div");
         Unit.id = `u-${i}`;
-        Unit.style.parseFloat = "left";
         Unit.style.boxSizing = "border-box";
         Unit.style.display = "grid";
-        Unit.style.gridTemplateColumns = "repeat(4,1fr)";
-
-        document.getElementById(`div${Math.floor(i / 20)}`).appendChild(Unit);
+        Unit.style.gridTemplateColumns = "repeat(4, 1fr)";
+        Container2.appendChild(Unit);
 
         if (i % 20 == 0) {
             const UnitName = document.createElement("button");
-            UnitName.className = "unitSort MoreSmallFont UnitNameBar";
+            UnitName.className = "Button unitSort MoreSmallFont UnitNameBar";
             UnitName.boxSizing = "border-box";
             UnitName.textContent = (nameSort == 0) ? "유닛명" : (nameSort == -1) ? "유닛명 ⬇" : "유닛명 ⬆";
             UnitName.addEventListener("click", () => {
@@ -1727,7 +1701,7 @@ MoveSpeedPage.addEventListener('click', () => {
             Unit.append(UnitName);
 
             const UnitSort = document.createElement("button");
-            UnitSort.className = "unitSort MoreSmallFont UnitSortBar";
+            UnitSort.className = "Button unitSort MoreSmallFont UnitSortBar";
             UnitSort.boxSizing = "border-box";
             UnitSort.textContent = "등급";
             UnitSort.addEventListener("click", () => {
@@ -1751,7 +1725,7 @@ MoveSpeedPage.addEventListener('click', () => {
             Unit.append(UnitSort);
 
             const MoveSpeed = document.createElement("button");
-            MoveSpeed.className = "unitSort MoreSmallFont MoveSpeedBar";
+            MoveSpeed.className = "Button unitSort MoreSmallFont MoveSpeedBar";
             MoveSpeed.style.boxSizing = "border-box"; // boxSizing 추가
             MoveSpeed.textContent = "이감 발동률";
             MoveSpeed.addEventListener("click", () => {
@@ -1775,7 +1749,7 @@ MoveSpeedPage.addEventListener('click', () => {
             Unit.appendChild(MoveSpeed);
 
             const AfterShock = document.createElement("button");
-            AfterShock.className = "unitSort MoreSmallFont AfterShockBar";
+            AfterShock.className = "Button unitSort MoreSmallFont AfterShockBar";
             AfterShock.style.boxSizing = "border-box"; // boxSizing 추가
             AfterShock.textContent = "여진 가동률";
 
@@ -1851,20 +1825,10 @@ MoveSpeedPage.addEventListener('click', () => {
     Stack();
 
 
-    const ChildChildStack = document.createElement("div");
-    ChildChildStack.style.height = `2vw`;
-    ChildChildStack.style.display = "grid";
-    ChildChildStack.style.gridTemplateColumns = "3fr 1fr";
-
-    document.getElementsByClassName(`Stack`)[0].appendChild(ChildChildStack);
-
-    const Void = document.createElement("div");
-
-    ChildChildStack.appendChild(Void);
-
     const StunPage = document.createElement("button");
-    StunPage.className = "Stun SmallFont";
+    StunPage.className = "Button Stun SmallFont";
     StunPage.innerText = "스턴";
+    StunPage.style.gridArea = "1/4/2/5";
 
     StunPage.addEventListener('click', () => {
 
@@ -1874,14 +1838,17 @@ MoveSpeedPage.addEventListener('click', () => {
         document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
     })
 
-    ChildChildStack.appendChild(StunPage);
+    document.getElementsByClassName(`Stack4`)[0].appendChild(StunPage);
 
 })
 
-document.getElementsByClassName(`Stack`)[0].appendChild(MoveSpeedPage);
+document.getElementsByClassName(`Stack4`)[0].appendChild(MoveSpeedPage);
+
+let socket;
+let reconnectAttempts = 0;
 
 function connectWebSocket(){
-    const socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production/");
+    socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production/");
 
  
     socket.onopen = (event) => {
