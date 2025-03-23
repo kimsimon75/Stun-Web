@@ -360,7 +360,6 @@ const Unit = unitState[0].length + unitState[1].length + unitState[2].length + u
 let CountOn = () => {
     if (document.getElementById("container1") != null)
     {
-        totalStun = 0;  
         for (var sortCount = 0; sortCount < unitState.length; sortCount++) {
         for (var unitCount = 1; unitCount < unitState[sortCount].length; unitCount++) {
             const rate = document.getElementById(`r-${sortCount}-${unitCount}`);
@@ -968,7 +967,7 @@ function ClearAll() {
     manaRegen = 0;
     healthRegen = 0;
 
-    if (document.getElementById("container1" != null))
+    if (document.getElementById("container1") != null)
         for (var i = 0; i < unitState.length; i++) {
             for (var j = 1; j < unitState[i].length; j++) {
                 stunCount[i][j] = 0;
