@@ -360,6 +360,7 @@ const Unit = unitState[0].length + unitState[1].length + unitState[2].length + u
 let CountOn = () => {
     if (document.getElementById("container1") != null)
     {
+        totalStun = 0;
         for (var sortCount = 0; sortCount < unitState.length; sortCount++) {
         for (var unitCount = 1; unitCount < unitState[sortCount].length; unitCount++) {
             const rate = document.getElementById(`r-${sortCount}-${unitCount}`);
@@ -1574,7 +1575,6 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
             const sort = id[1];
             const unit = id[2];
             stunCount[sort][unit]++;
-            document.getElementById(`c-${sort}-${unit}`).innerText = stunCount[sort][unit];
             if (stunCount[sort][unit] == 1) {
                 speedBonus += unitState[sort][unit][9];
                 if (unitState[sort][unit][0] === "퀸") {
@@ -1587,13 +1587,13 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
                 }
                 MyArray.sort((a, b) => a[2] - b[2]);
                 document.getElementsByClassName(`AttackSpeed`)[0].innerText = (speedBonus).toFixed(0) + "%";
-                UnitTotalStun();
-                CountOn();
+
             }
-            else
-                totalStun += unitRate[sort][unit];
-            document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + `스턴`;
-        });
+            document.getElementById(`c-${sort}-${unit}`).innerText = stunCount[sort][unit];
+            UnitTotalStun();
+            CountOn();
+            console.log(totalStun);
+        });                
         ButtonColor(plus);
 
         const minus = document.createElement("IMG");
@@ -1621,15 +1621,11 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
                 MyArray = MyArray.filter(item => item[0] !== sort || item[1] !== unit || item[2] !== stunRange[sort][unit - 1][1]);
                 MyArray = MyArray.filter(item => item[0] !== sort || item[1] !== unit || item[2] !== stunRange[sort][unit - 1][2]);
                 document.getElementsByClassName(`AttackSpeed`)[0].innerText = (speedBonus).toFixed(0) + "%";
-                UnitTotalStun();
-                CountOn();
-            }
-            else
-            {
-                totalStun -= unitRate[sort][unit];
-            }
-            count.innerText = stunCount[sort][unit];
-            document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) +`스턴`;
+  
+            }  
+            document.getElementById(`c-${sort}-${unit}`).innerText = stunCount[sort][unit];
+            UnitTotalStun();
+            CountOn();
         }
         );
 
@@ -1832,6 +1828,8 @@ MoveSpeedPage.addEventListener('click', () => {
     StunPage.addEventListener('click', () => {
 
         Container2.replaceWith(container);
+        document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + "스턴";
+        document.getElementsByClassName("AttackSpeed")[0].innerText = speedBonus + "%";
         document.getElementsByClassName("AttackSpeedEx")[0].innerText = speedBonusEx + "%";
         document.getElementsByClassName("MRegen")[0].innerText = manaRegen;
         document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
@@ -1852,15 +1850,6 @@ function connectWebSocket(){
  
     socket.onopen = (event) => {
         console.log("✅ WebSocket 연결 성공!");
-    
-    
-            const messageData = {
-            action: "$default", // API Gateway에서 설정한 routeKey
-            message: "Hello, WebSocket!"
-        };
-    
-        socket.send(JSON.stringify(messageData));
-        console.log("📡 메시지 전송:", messageData);
     };
     
     socket.onmessage = (event) => {
