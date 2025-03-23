@@ -1,6 +1,11 @@
 
-const char = 1;
+
 const container = document.getElementsByClassName("container")[0];
+
+const containerGrid = 20;
+const GridHeight = 40 / containerGrid;
+
+document.getElementsByClassName("container")[0].style.gridTemplateRows = `repeat(${containerGrid}, 1fr)`;
 const unitRates = {
     특별함: ["특별함",0],
     희귀함: ["희귀함", 1],
@@ -1076,7 +1081,7 @@ function Stack() {
         const Stack = document.createElement("div");
         Stack.className = `Stack${i}`
         Stack.style.display = "grid";   
-        Stack.style.gridArea = ` ${20 - i} / 3 /  ${21 - i} / 4`;
+        Stack.style.gridArea = ` ${containerGrid - i} / 3 /  ${containerGrid + 1 - i} / 4`;
 
         document.getElementsByClassName("container")[0].appendChild(Stack);
 
@@ -1236,81 +1241,38 @@ function Stack() {
     MRegenOverlay.appendChild(MRegenScroll);
     SpeedBonusExOverlay.appendChild(speedBonusExScroll);
 
+    const Scrolls = [speedBonusExScroll, MRegenScroll, HRegenScroll];
+
     BuffState.forEach((item, index) => {
 
-        if (item[2] != 0) {
-            const menu = document.createElement("label");
-            menu.className = "CheckBox-Stack";
-            menu.style.border = "0.001rem solid black";
-            speedBonusExScroll.appendChild(menu);
+        for(let i=0;i<3;i++)
+        {
+            if(item[2+i]!==0)
+            {
 
-            const unitName = document.createElement("p");
-            unitName.innerText = `${item[0]}(${item[1]}) ${item[2]}%`;
-            unitName.className = `SmallFont s${index}`;
-            unitName.style.margin = "0";
-            unitName.style.padding = "0.5rem";
-            menu.appendChild(unitName);
-
-            const Check = document.createElement("input");
-            Check.type = "checkbox";
-            Check.style.marginRight = "0.7vw";
-            Check.style.transform = "scale(1.5)";
-            Check.dataset.value = item[2];
-            Check.checked = item[5];
-
-            CheckEvent(Check, item, index);
-
-            menu.appendChild(Check);
-        }
-
-        if (item[3] != 0) {
-            const menu = document.createElement("label");
-            menu.className = "CheckBox-Stack";
-            menu.style.border = "0.001rem solid black";
-            MRegenScroll.appendChild(menu);
-
-            const unitName = document.createElement("p");
-            unitName.innerText = `${item[0]}(${item[1]}) ${item[3]}`;
-            unitName.className = `SmallFont m${index}`;
-            unitName.style.margin = "0";
-            unitName.style.padding = "0.5rem";
-            menu.appendChild(unitName);
-
-            const Check = document.createElement("input");
-            Check.type = "checkbox";
-            Check.style.marginRight = "0.7vw";
-            Check.style.transform = "scale(1.5)";
-            Check.dataset.value = item[3];
-            Check.checked = item[5];
-
-            CheckEvent(Check, item, index);
-
-            menu.appendChild(Check);
-        }
-
-        if (item[4] != 0) {
-            const menu = document.createElement("label");
-            menu.className = "CheckBox-Stack";
-            menu.style.border = "0.001rem solid black";
-            HRegenScroll.appendChild(menu);
-
-            const unitName = document.createElement("p");
-            unitName.innerText = `${item[0]}(${item[1]}) ${item[4]}`;
-            unitName.className = `SmallFont h${index}`;
-            unitName.style.margin = "0";
-            unitName.style.padding = "0.5rem";
-            menu.appendChild(unitName);
-
-            const Check = document.createElement("input");
-            Check.type = "checkbox";
-            Check.style.marginRight = "0.7vw";
-            Check.style.transform = "scale(1.5)";
-            Check.dataset.value = item[4];
-            Check.checked = item[5];
-
-            CheckEvent(Check, item, index);
-
-            menu.appendChild(Check);
+                const menu = document.createElement("label");
+                menu.className = "CheckBox-Stack";
+                menu.style.border = "0.001rem solid black";
+                Scrolls[i].appendChild(menu);
+    
+                const unitName = document.createElement("p");
+                unitName.innerText = `${item[0]}(${item[1]}) ${item[2+i]}${(i===0) ? "%" : ""}`;
+                unitName.className = `SmallFont s${index}`;
+                unitName.style.margin = "0";
+                unitName.style.padding = "0.5rem";
+                menu.appendChild(unitName);
+    
+                const Check = document.createElement("input");
+                Check.type = "checkbox";
+                Check.style.marginRight = "0.7vw";
+                Check.style.transform = "scale(1.5)";
+                Check.dataset.value = item[2+i];
+                Check.checked = item[5];
+    
+                CheckEvent(Check, item, index);
+    
+                menu.appendChild(Check);
+            }
         }
 
     })
@@ -1560,14 +1522,14 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         count.innerText = `${stunCount[sortCount][unitCount]}`;
         count.style.justifyContent = "center";
         count.style.aspectRatio = "1";
-        count.style.height = "2vw";
+        count.style.height = `${GridHeight}vw`;
         count.style.boxSizing = "border-box";
 
         const plus = document.createElement("img");
         plus.className = 'IMG SmallFont';
         plus.src = "plus.png";
         plus.id = `p-${sortCount}-${unitCount}`;
-        plus.style.height = "2vw";
+        plus.style.height = `${GridHeight}vw`;
         plus.style.aspectRatio = "1";
         plus.style.boxSizing = "border-box";
         plus.addEventListener('click', () => {
@@ -1592,7 +1554,6 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
             document.getElementById(`c-${sort}-${unit}`).innerText = stunCount[sort][unit];
             UnitTotalStun();
             CountOn();
-            console.log(totalStun);
         });                
         ButtonColor(plus);
 
@@ -1600,7 +1561,7 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         minus.className = 'IMG SmallFont';
         minus.src = "minus.png";
         minus.id = `m-${sortCount}-${unitCount}`;
-        minus.style.height = "2vw";
+        minus.style.height = `${GridHeight}vw`;
         minus.style.aspectRatio = "1";
         minus.style.boxSizing = "border-box";
         minus.addEventListener('click', () => {
@@ -1643,8 +1604,8 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
 Stack();
 
 const MoveSpeedPage = document.createElement("button");
-MoveSpeedPage.className = "Button MoveSpeedPage MoreSmallFont";
-MoveSpeedPage.innerText = "이동 속도 감소";
+MoveSpeedPage.className = "Button MoveSpeedPage SmallFont";
+MoveSpeedPage.innerText = "발동 이감";
 MoveSpeedPage.style.gridArea = "1/4/2/5";
 
 MoveSpeedPage.addEventListener('click', () => {
@@ -1652,10 +1613,10 @@ MoveSpeedPage.addEventListener('click', () => {
     const Container2 = document.createElement('div');
     Container2.className = "container";
     Container2.id = "container2";
+    Container2.style.gridTemplateRows = `repeat(${containerGrid}, 1fr)`;
 
     container.replaceWith(Container2);
-
-    for (let i = 0; i <= speedState.length+Math.floor(i/20); i++) {
+    for (let i = 0; i <= speedState.length+Math.floor(i/containerGrid); i++) {
 
         const Unit = document.createElement("div");
         Unit.id = `u-${i}`;
@@ -1664,7 +1625,7 @@ MoveSpeedPage.addEventListener('click', () => {
         Unit.style.gridTemplateColumns = "repeat(4, 1fr)";
         Container2.appendChild(Unit);
 
-        if (i % 20 == 0) {
+        if (i % containerGrid == 0) {
             const UnitName = document.createElement("button");
             UnitName.className = "Button unitSort MoreSmallFont UnitNameBar";
             UnitName.boxSizing = "border-box";
@@ -1693,6 +1654,7 @@ MoveSpeedPage.addEventListener('click', () => {
                 CountOn();
             })
 
+            ButtonColor(UnitName);
             Unit.append(UnitName);
 
             const UnitSort = document.createElement("button");
@@ -1717,6 +1679,7 @@ MoveSpeedPage.addEventListener('click', () => {
                 CountOn();
             })
 
+            ButtonColor(UnitSort);
             Unit.append(UnitSort);
 
             const MoveSpeed = document.createElement("button");
@@ -1741,6 +1704,7 @@ MoveSpeedPage.addEventListener('click', () => {
                 CountOn();
             })
 
+            ButtonColor(MoveSpeed);
             Unit.appendChild(MoveSpeed);
 
             const AfterShock = document.createElement("button");
@@ -1766,51 +1730,54 @@ MoveSpeedPage.addEventListener('click', () => {
                 CountOn();
             })
 
+            ButtonColor(AfterShock);
             Unit.appendChild(AfterShock);
         }
         else {
             const UnitName = document.createElement("div");
             UnitName.className = "unitName SmallFont";
-            UnitName.id = `n-${i - 1 - Math.floor(i / 20) }`;
+            UnitName.id = `n-${i - 1 - Math.floor(i / containerGrid) }`;
             UnitName.style.border = "0.001rem solid black";
             UnitName.style.boxSizing = "border-box"; // boxSizing 추가
-            UnitName.textContent = `${speedState[i - 1 - parseInt(Math.floor(i / 20))][0]}`;
+            UnitName.textContent = `${speedState[i - 1 - parseInt(Math.floor(i / containerGrid))][0]}`;
 
             Unit.appendChild(UnitName);
 
             const UnitSort = document.createElement("div");
             UnitSort.className = "unitName SmallFont";
-            UnitSort.id = `s-${i - 1 - Math.floor(i / 20) }`;
+            UnitSort.id = `s-${i - 1 - Math.floor(i / containerGrid) }`;
             UnitSort.style.border = "0.001rem solid black";
             UnitSort.boxSizing = "border-box";
-            UnitSort.textContent = `${speedState[i - 1 - Math.floor(i / 20)][1][0]}`;
+            UnitSort.textContent = `${speedState[i - 1 - Math.floor(i / containerGrid)][1][0]}`;
 
             Unit.append(UnitSort);
 
             const MoveSpeed = document.createElement("button");
             MoveSpeed.className = "Button SmallFont";
-            MoveSpeed.id = `m-${i - 1 - Math.floor(i / 20)}`;
+            MoveSpeed.id = `m-${i - 1 - Math.floor(i / containerGrid)}`;
             MoveSpeed.style.boxSizing = "border-box"; // boxSizing 추가
             MoveSpeed.addEventListener('click', () => {
                 const id = MoveSpeed.parentElement.id.split('-');
-                openOverlay(-1, id[1] - 1 - Math.floor(i/20));
+                openOverlay(-1, id[1] - 1 - Math.floor(i/containerGrid));
 
             })
 
+            ButtonColor(MoveSpeed);
             Unit.appendChild(MoveSpeed);
-            MoveSpeed.textContent = `${(lowSpeed(MoveSpeed.parentElement.id.split('-')[1] - 1 - Math.floor(i/20), 0) * 100).toFixed(2)}%`;
+            MoveSpeed.textContent = `${(lowSpeed(MoveSpeed.parentElement.id.split('-')[1] - 1 - Math.floor(i/containerGrid), 0) * 100).toFixed(2)}%`;
 
             const AfterShock = document.createElement("button");
             AfterShock.className = "Button SmallFont";
-            AfterShock.id = `a-${i - 1 - Math.floor(i / 20)}`;
+            AfterShock.id = `a-${i - 1 - Math.floor(i / containerGrid)}`;
             AfterShock.style.boxSizing = "border-box"; // boxSizing 추가
             AfterShock.addEventListener('click', () => {
                 const id = AfterShock.parentElement.id.split('-');
-                openOverlay(-2, id[1] - 1 - Math.floor(i / 20));
+                openOverlay(-2, id[1] - 1 - Math.floor(i / containerGrid));
             })
 
+            ButtonColor(AfterShock);
             Unit.appendChild(AfterShock);
-            AfterShock.textContent = `${(lowSpeed(MoveSpeed.parentElement.id.split('-')[1] - 1 - Math.floor(i / 20), 1) * 100).toFixed(2)}%`;
+            AfterShock.textContent = `${(lowSpeed(MoveSpeed.parentElement.id.split('-')[1] - 1 - Math.floor(i / containerGrid), 1) * 100).toFixed(2)}%`;
         }
         
         
@@ -1835,10 +1802,12 @@ MoveSpeedPage.addEventListener('click', () => {
         document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
     })
 
+    ButtonColor(StunPage);
     document.getElementsByClassName(`Stack4`)[0].appendChild(StunPage);
 
 })
 
+ButtonColor(MoveSpeedPage);
 document.getElementsByClassName(`Stack4`)[0].appendChild(MoveSpeedPage);
 
 let socket;
