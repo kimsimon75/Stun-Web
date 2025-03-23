@@ -19,7 +19,7 @@ const unitRates = {
     특수함: ["특수함", 9]
 }
 
-const unitState = [
+const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, 스턴1 지속시간, 스턴2 확률, 스턴2 지속시간, 마나통, 마나지속시간, 공속버프
     [["희귀함"],
     ['바제스', 1.3, 0.85, 0.1, 0.9, 0, 0, 0, 0, 0],
     ['아오키지', 1.3,0.94, 0.1, 0.95, 0, 0, 0, 0, 0],
@@ -236,6 +236,8 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
     ['히루루크', '전설적인', 0, 0, 1.6, 0],
 ]
 
+
+
 let unitRate = [];
 let stunCount = [];
 let MyArray = [];
@@ -278,7 +280,7 @@ const UnitTotalStun = () => {
         {
             
             var x1 = unitState[i][j][3];
-            var x2 = unitState[i][j][5];
+            var x2 = (1 - unitState[i][j][3]) * unitState[i][j][5];
             var s1 = unitState[i][j][4];
             var s2 = unitState[i][j][6];
             let t = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3))));
@@ -765,7 +767,7 @@ function openOverlay(sortCount, unitCount) {
     }
     else {
         var x1 = unitState[sortCount][unitCount][3];
-        var x2 = unitState[sortCount][unitCount][5];
+        var x2 = (1 - unitState[sortCount][unitCount][3]) * unitState[sortCount][unitCount][5];
         var s1 = unitState[sortCount][unitCount][4];
         var s2 = unitState[sortCount][unitCount][6];
         let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3))));
@@ -887,7 +889,7 @@ function openOverlay(sortCount, unitCount) {
                         item.innerText = `스턴 1 편차 : ${(1 / x1 / t).toFixed(3)}초`;
                     break;
                 case 12:
-                    item.innerText = `스턴 2 확률 : ${(x2 * 100).toFixed(2)}%`
+                    item.innerText = `스턴 2 확률 : ${(unitState[sortCount][unitCount][5] * 100).toFixed(2)}%`
                     break;
                 case 13:
                     item.innerText = `스턴 2 지속시간 : ${s2}초`;
@@ -1810,6 +1812,8 @@ MoveSpeedPage.addEventListener('click', () => {
 ButtonColor(MoveSpeedPage);
 document.getElementsByClassName(`Stack4`)[0].appendChild(MoveSpeedPage);
 
+
+
 let socket;
 let reconnectAttempts = 0;
 
@@ -1819,6 +1823,7 @@ function connectWebSocket(){
  
     socket.onopen = (event) => {
         console.log("✅ WebSocket 연결 성공!");
+        reconnectAttempts = 0;
     };
     
     socket.onmessage = (event) => {
