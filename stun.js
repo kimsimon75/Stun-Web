@@ -204,11 +204,11 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
     ['아냐 포저', "신비함", 30, 1.75, 2, 0],
     ['츠바사', "랜덤", 20, 0, 0, 0],
     ['베티', "특수함", 11, 1.25, 2, 0],
-    ['버기', "영원한", 65, 0, 0, 0],
+    ['버기', "영원함", 65, 0, 0, 0],
     ['레일리', "불멸의", 45, 0, 0, 0],
     ['사보', "초월함", 20, 0, 0, 0],
     ['상디(강화)', "초월함", 15, 0, 0, 0],
-    ['우타의 헤드셋', "초월함", 12, 0, 0, 0],
+    ['우타의 헤드셋', "아이템", 12, 0, 0, 0],
     ['징베', "초월함", 20, 3, 0, 0],
     ['쵸파', "초월함", 28, 0, 0, 0],
     ['코비', "초월함", 10, 0, 0, 0],
@@ -234,13 +234,19 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
     ['카타쿠리', '제한됨', 0, 0, 2.85, 0],
     ['모비딕호', '히든', 0, 0, 1.25, 0],
     ['히루루크', '전설적인', 0, 0, 1.6, 0],
+    ['드래곤', '전설적인', 5, 0, 0, 0],
+    ['라분', '전설적인', 17, 0, 0, 0],
+    ['드래곤', '불멸의', 20, 0, 0, 0],
+    ['니카', '영원함', 25, 0, 0, 0],
+    ['우타', '영원함', 27, 0, 0, 0],
+    ['퀸', '히든', 0, 1, 1, 0],
 ]
 
 
 
 let unitRate = [];
 let stunCount = [];
-let MyArray = [];
+let Sort = [];
 
 for (var i = 0; i < 8; i++) {
     unitRate[i] = [];
@@ -254,7 +260,7 @@ for (let i = 0; i < 8; i++) {
     }
 }
 
-var speedBonus = 0;
+var speedDebuff= 0;
 var speedBonusEx = 0;
 var mana = true;
 var manaRegen = 0;
@@ -269,7 +275,6 @@ var afterShockSort = 0;
 
 const UnitTotalStun = () => {
 
-    speedBonus = parseFloat(speedBonus.toFixed(3));
     speedBonusEx = parseFloat(speedBonusEx.toFixed(3));
     manaRegen = parseFloat(manaRegen.toFixed(3));
     healthRegen = parseFloat(healthRegen.toFixed(3));
@@ -283,8 +288,13 @@ const UnitTotalStun = () => {
             var x2 = (1 - unitState[i][j][3]) * unitState[i][j][5];
             var s1 = unitState[i][j][4];
             var s2 = unitState[i][j][6];
-            let t = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3))));
+            let t = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? speedBonusEx - unitState[i][j][9] : speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? speedBonusEx - unitState[i][j][9] : speedBonusEx) / 100).toFixed(3))));
             
+            if(unitState[i][j][0]==="우타")
+            {
+                const index = BuffState.findIndex((items) => {return items.includes("우타의 헤드셋")});
+                t = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((( speedBonusEx - (stunCount[i][j] ? unitState[i][j][9] : BuffState[index][5] ? BuffState[index][2] : 0)) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat(((( speedBonusEx - (stunCount[i][j] ? unitState[i][j][9] : BuffState[index][5] ? BuffState[index][2] : 0))) / 100).toFixed(3))));
+            }
             var maxMana = unitState[i][j][7];
             var m_stun = unitState[i][j][8];
             var n1 = Math.floor(s1 * t);
@@ -341,7 +351,7 @@ const UnitTotalStun = () => {
             }
             else if (unitState[i][j][0] === "니카")
             {
-                let t2 = 1 / unitState[i][j][2] * (((1 + unitState[i][j][1] - 2.25 + speedBonus + speedBonusEx) > 5) ? 5 : (1 + unitState[i][j][1] - 2.25 + speedBonus + speedBonusEx));
+                let t2 = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? speedBonusEx - unitState[i][j][9] : speedBonusEx) / 100).toFixed(3)) - 2.25 > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? speedBonusEx - unitState[i][j][9] : speedBonusEx) / 100).toFixed(3))- 2.25));
                 let time = (4.25 + ((115 - 4.25 * (t2 + healthRegen + 0.25)) / (t + healthRegen + 0.25)) <= 4.25) ? 4.25 : (4.25 + ((115 - 4.25 * (t2 + healthRegen + 0.25)) / (t + healthRegen + 0.25)));
                 n2 = Math.floor(s1 * t2);
 
@@ -350,7 +360,7 @@ const UnitTotalStun = () => {
                         ((1 - (1 + (0.18 * s1 * t2 - n2 * 0.18 - 1) * Math.pow(1 - 0.18, n2)) * 4.25 / time - (1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1)) * (time - 4.25) / time)) * (1 - m_stun / maxMana * ((4.25 * t2 + (time - 4.25) * t) / time + manaRegen)))
                         / Math.log(0.2);
                 else
-                    stun = Math.log((1-(1 + (0.18 * s1 * t2 - n2 * 0.18 - 1) * Math.pow(1 - 0.18, n2)) * 4.25 / time )) / Math.log(0.2);
+                    stun = Math.log((1-(1 + (0.18 * s1 * t2 - n2 * 0.18 - 1) * Math.pow(1 - 0.18, n2)) * 4.25 / time )- (1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1))* (time - 4.25) / time) / Math.log(0.2);
             }
             else if (mana)
                 stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (t + manaRegen)) : 0))) / Math.log(0.2);
@@ -376,16 +386,13 @@ let CountOn = () => {
             const percentage = document.getElementById(`per-${sortCount}-${unitCount}`);
             percentage.innerText = ((1 - Math.pow(0.2, unitRate[sortCount][unitCount])) * 100).toFixed(2) + "%";
 
+            const Count = document.getElementById(`c-${sortCount}-${unitCount}`);
+            Count.innerText = stunCount[sortCount][unitCount];
+
             totalStun += stunCount[sortCount][unitCount] ? unitRate[sortCount][unitCount] * stunCount[sortCount][unitCount] : 0;
         }
         }
     }
-
-    document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + "스턴";
-    document.getElementsByClassName("MRegen")[0].innerText = manaRegen;
-    document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
-    document.getElementsByClassName("AttackSpeedEx")[0].innerText = speedBonusEx + "%";
-
     if (document.getElementById("container2") != null) {
         for (var unitCount = 0; unitCount < speedState.length; unitCount++) {
             const AfterShockRate = document.getElementById(`a-${unitCount}`);
@@ -408,6 +415,13 @@ let CountOn = () => {
             document.getElementsByClassName("AfterShockBar")[i].textContent = (afterShockSort == 0) ? "여진 가동률" : (afterShockSort == -1) ? "여진 가동률 ⬇" : "여진 가동률 ⬆";
         }
     }
+
+    document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + "스턴";
+    document.getElementsByClassName("MRegen")[0].innerText = manaRegen;
+    document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
+    document.getElementsByClassName("AttackSpeedEx")[0].innerText = speedBonusEx + "%";
+
+   
         
 }
 
@@ -420,10 +434,8 @@ function lowSpeed(unitcount, AfterShock) {
     // 1. t 계산
     var t = speedState[unitcount][3] / (1 + speedState[unitcount][2]) *
         (((1 + speedState[unitcount][2] +
-            parseFloat((speedBonus / 100).toFixed(3)) +
             parseFloat((speedBonusEx / 100).toFixed(3))) > 5) ? 5 :
             (1 + speedState[unitcount][2] +
-                parseFloat((speedBonus / 100).toFixed(3)) +
                 parseFloat((speedBonusEx / 100).toFixed(3))));
 
     // 2. AfterShock가 0일 때 계산
@@ -546,7 +558,7 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `14초 기준 몹 이동 거리(풀이감 기준) : ${(14 * 70 * Math.pow(0.2, totalStun)).toFixed(2)}`;
                     break;
                 case 6:
-                    item.textContent = `최소 스턴 범위 : ${MyArray.length ? MyArray[0][2] : 0}`;
+                    item.textContent = `최소 스턴 범위 : ${Sort.length ? Sort[0][2] : 0}`;
                     break;
             }
 
@@ -602,10 +614,8 @@ function openOverlay(sortCount, unitCount) {
             return;
         var t = speedState[unitCount][3] / (1 + speedState[unitCount][2]) *
             (((1 + speedState[unitCount][2] +
-                parseFloat((speedBonus / 100).toFixed(3)) +
                 parseFloat((speedBonusEx / 100).toFixed(3))) > 5) ? 5 :
                 (1 + speedState[unitCount][2] +
-                    parseFloat((speedBonus / 100).toFixed(3)) +
                     parseFloat((speedBonusEx / 100).toFixed(3))));
         var s = speedState[unitCount][5];
         var x = speedState[unitCount][4];
@@ -641,10 +651,8 @@ function openOverlay(sortCount, unitCount) {
             return;
         var t = speedState[unitCount][3] / (1 + speedState[unitCount][2]) *
             (((1 + speedState[unitCount][2] +
-                parseFloat((speedBonus / 100).toFixed(3)) +
                 parseFloat((speedBonusEx / 100).toFixed(3))) > 5) ? 5 :
                 (1 + speedState[unitCount][2] +
-                    parseFloat((speedBonus / 100).toFixed(3)) +
                     parseFloat((speedBonusEx / 100).toFixed(3))));
         var s = speedState[unitCount][8];
         var x = speedState[unitCount][7];
@@ -676,8 +684,8 @@ function openOverlay(sortCount, unitCount) {
         var x1 = unitState[sortCount][unitCount][3];
         var x2 = unitState[sortCount][unitCount][5];
         var s1 = unitState[sortCount][unitCount][4];
-        let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3))));
-        var t2 = parseFloat((3.7 / (1 + 1.1) * ((1 + 1.1 + parseFloat((speedBonus / 100).toFixed(3)) + parseFloat((speedBonusEx / 100).toFixed(3)) - ((stunCount[sortCount][unitCount]) ? parseFloat((110 / 100).toFixed(3)) : 0) > 5) ? 5 : (1 + 1.1 + parseFloat((speedBonus / 100).toFixed(3)) + parseFloat((speedBonusEx / 100).toFixed(3)) - ((stunCount[sortCount][unitCount]) ? parseFloat((unitState[sortCount][unitCount][9] / 100).toFixed(3)) : 0)))).toFixed(3));
+        let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))));
+        let t2 = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3)) - 2.25 > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))- 2.25));
         let time = (4.25 + ((115 - 4.25 * (t2 + healthRegen + 0.25)) / (t + healthRegen + 0.25)) <= 4.25) ? 4.25 : (4.25 + ((115 - 4.25 * (t2 + healthRegen + 0.25)) / (t + healthRegen + 0.25)));
 
         var maxMana = unitState[sortCount][unitCount][7];
@@ -706,7 +714,7 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `거인화 모드 공속 : 초당${t2.toFixed(3)}`
                     break;
                 case 4:
-                    item.textContent = `공속 보너스(자체 버프 포함) : ${(unitState[sortCount][unitCount][1] + parseFloat((speedBonus / 100).toFixed(3)) + parseFloat((speedBonusEx / 100).toFixed(3)) - ((stunCount[sortCount][unitCount]) ? parseFloat((unitState[sortCount][unitCount][9] / 100).toFixed(3)) : 0)) * 100}%`;
+                    item.textContent = `공속 보너스(자체 버프 포함) : ${(unitState[sortCount][unitCount][1] + parseFloat((speedBonusEx / 100).toFixed(3)) - ((stunCount[sortCount][unitCount]) ? parseFloat((unitState[sortCount][unitCount][9] / 100).toFixed(3)) : 0)) * 100}%`;
                     break;
                 case 5:
                     item.innerText = `공속 버프 : ${unitState[sortCount][unitCount][9]}%`
@@ -770,7 +778,7 @@ function openOverlay(sortCount, unitCount) {
         var x2 = (1 - unitState[sortCount][unitCount][3]) * unitState[sortCount][unitCount][5];
         var s1 = unitState[sortCount][unitCount][4];
         var s2 = unitState[sortCount][unitCount][6];
-        let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonus + speedBonusEx) / 100).toFixed(3))));
+        let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonusEx) / 100).toFixed(3))));
 
         var maxMana = unitState[sortCount][unitCount][7];
         var m_stun = unitState[sortCount][unitCount][8];
@@ -801,7 +809,7 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = `공속 : 초당${t.toFixed(3)}`;
                     break;
                 case 4:
-                    item.innerText = `공속 보너스(자체 버프 포함) : ${((unitState[sortCount][unitCount][1] + parseFloat((speedBonus / 100).toFixed(3)) + parseFloat((speedBonusEx / 100).toFixed(3)) - ((stunCount[sortCount][unitCount]) ? parseFloat((unitState[sortCount][unitCount][9] / 100).toFixed(3)) : 0)) * 100).toFixed(2)}%`;
+                    item.innerText = `공속 보너스(자체 버프 포함) : ${((unitState[sortCount][unitCount][1] + parseFloat((speedBonusEx / 100).toFixed(3)) - ((stunCount[sortCount][unitCount]) ? parseFloat((unitState[sortCount][unitCount][9] / 100).toFixed(3)) : 0)) * 100).toFixed(2)}%`;
                     break;
                 case 5:
                     item.innerText = `공속 버프 : ${unitState[sortCount][unitCount][9]}%`
@@ -969,7 +977,6 @@ function openOverlay(sortCount, unitCount) {
 }
 
 function ClearAll() {
-    speedBonus = 0;
     speedBonusEx = 0;
     totalStun = 0;
     manaRegen = 0;
@@ -984,7 +991,6 @@ function ClearAll() {
         }
     document.getElementsByClassName("MRegen")[0].innerText = 0;
     document.getElementsByClassName("HRegen")[0].innerText = 0;
-    document.getElementsByClassName("AttackSpeed")[0].innerText = 0 + "%";
     document.getElementsByClassName("AttackSpeedEx")[0].innerText = 0 + "%";
 
     BuffState.forEach((item) => {
@@ -1050,6 +1056,69 @@ function CheckEvent(Check, item, index) {
                 document.getElementsByClassName(`h${index}`)[0].checked = false;
             }
         }
+          let sortCount = -1;
+          let unitCount = -1;
+          sortCount = unitState.findIndex((items) => {
+            return items[0][0] === item[1];
+          })
+          if(sortCount !== -1)
+          unitCount = unitState[sortCount].findIndex((items, index) =>{
+            return index > 0 && items[0] === item[0];
+          })
+
+          if(sortCount !== -1 && unitCount !== -1)
+          {
+            if(stunCount[sortCount][unitCount]===0 && event.target.checked)
+                stunCount[sortCount][unitCount]++;
+            else if(stunCount[sortCount][unitCount] > 0 && event.target.checked === false)
+                stunCount[sortCount][unitCount] = 0;          
+
+            if(item[0]==="우타" )
+            {
+                let index = BuffState.findIndex((items => items.includes("우타의 헤드셋")));
+                if(event.target.checked)
+                {
+                    if(!BuffState[index][5])
+                    {
+                        BuffState[index][5] = true;
+                        document.getElementsByClassName(`s${index}`)[0].checked = true;
+                    }
+                    else
+                    {
+                        speedBonusEx -= BuffState[index][2];
+                    }
+                }
+                else
+                {
+                    speedBonusEx += BuffState[index][2];
+                }
+            }
+          }
+          if(item[0]==="우타의 헤드셋")
+            {
+
+                const sortCount = unitState.findIndex((items) => {
+                    return items[0][0] === "영원함";
+                })
+                const unitCount = unitState[sortCount].findIndex((items)=>{
+                    return items[0] === "우타";
+                })
+
+                if(event.target.checked === false)
+                {                
+                    if(stunCount[sortCount][unitCount])
+                    stunCount[sortCount][unitCount] = 0;
+
+                    let index = BuffState.findIndex(items => items.includes("우타"));
+                    if(document.getElementsByClassName(`s${index}`)[0].checked)
+                    {
+                        document.getElementsByClassName(`s${index}`)[0].checked = false;
+                        speedBonusEx -= 15;
+                    }
+                }
+            }
+
+
 
         UnitTotalStun();
         CountOn();
@@ -1114,23 +1183,22 @@ function Stack() {
 
     document.getElementsByClassName(`Stack0`)[0].appendChild(clear);
 
-    const SpeedBonusButton = document.createElement("div");
-    SpeedBonusButton.className = "AttackSpeed BigFont";
-    SpeedBonusButton.style.border = "0.001rem solid black";
-    SpeedBonusButton.style.alignContent = "center";
-    SpeedBonusButton.style.paddingRight = "0.25vw";
-    SpeedBonusButton.style.fontWeight = 'bold';
-    SpeedBonusButton.innerText = `${speedBonus}%`;
-    SpeedBonusButton.style.boxSizing = "border-box";
-    SpeedBonusButton.style.textAlign = "right";
+    const MoveSpeedDebuffButton = document.createElement("div");
+    MoveSpeedDebuffButton.className = "Button BigFont";
+    MoveSpeedDebuffButton.style.textAlign = "right";
+    MoveSpeedDebuffButton.style.alignContent = "center";
+    MoveSpeedDebuffButton.style.paddingRight = "0.25vw";
+    MoveSpeedDebuffButton.innerText = "준비중";
 
-    document.getElementsByClassName(`Stack1`)[0].appendChild(SpeedBonusButton);
+    ButtonColor(MoveSpeedDebuffButton);
 
-    const SpeedBonus = document.createElement("div");
-    SpeedBonus.className = "Bonus SmallFont";
-    SpeedBonus.innerText = "공속 보너스";
+    document.getElementsByClassName('Stack1')[0].appendChild(MoveSpeedDebuffButton);
 
-    document.getElementsByClassName('Stack1')[0].appendChild(SpeedBonus);
+    const Debuff = document.createElement("div");
+    Debuff.className = "Bonus SmallFont";
+    Debuff.innerText = "이속 감소";
+
+    document.getElementsByClassName('Stack1')[0].appendChild(Debuff);
 
     const SpeedBonusExButton = document.createElement("div");
     SpeedBonusExButton.className = "AttackSpeedEx Button BigFont";
@@ -1152,22 +1220,23 @@ function Stack() {
     SpeedBonusExOverlay.style.display = "flex";
     SpeedBonusExOverlay.style.justifyContent = "center";
     SpeedBonusExOverlay.style.alignItems = "center";
-    SpeedBonusExOverlay.style.display = "none";
+    SpeedBonusExOverlay.style.visibility = "hidden";
 
     SpeedBonusExOverlay.addEventListener("click", () => {
-        SpeedBonusExOverlay.style.display = (SpeedBonusExOverlay.style.display === "none") ? "block" : "none";
+        SpeedBonusExOverlay.style.visibility = (SpeedBonusExOverlay.style.visibility === "hidden") ? "visible" : "hidden";
+        speedBonusExScroll.style.visibility = (speedBonusExScroll.style.visibility === "hidden") ? "visible" : "hidden";
     });
 
     document.body.appendChild(SpeedBonusExOverlay);
 
     const speedBonusExScroll = document.createElement("div");
+    speedBonusExScroll.className = "SmallFont";
     speedBonusExScroll.style.position = "absolute";
     speedBonusExScroll.style.height = "60vh";
     speedBonusExScroll.style.overflowY = "auto";
     speedBonusExScroll.style.background = "white";
     speedBonusExScroll.style.border = "0.05rem solid #ccc";
     speedBonusExScroll.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
-    speedBonusExScroll.style.display = "none";
 
     speedBonusExScroll.addEventListener("click", function (event) {
         event.stopPropagation();
@@ -1185,21 +1254,22 @@ function Stack() {
     MRegenOverlay.style.display = "flex";
     MRegenOverlay.style.justifyContent = "center";
     MRegenOverlay.style.alignItems = "center";
-    MRegenOverlay.style.display = "none";
+    MRegenOverlay.style.visibility = "hidden";
 
     MRegenOverlay.addEventListener("click", () => {
-        MRegenOverlay.style.display = (MRegenOverlay.style.display === "none") ? "block" : "none";
+        MRegenOverlay.style.visibility = (MRegenOverlay.style.visibility === "hidden") ? "visible" : "hidden";
+        MRegenScroll.style.visibility = (MRegenScroll.style.visibility === "hidden") ? "visible" : "hidden";
     });
 
     document.body.appendChild(MRegenOverlay);
 
     const MRegenScroll = document.createElement("div");
     MRegenScroll.style.position = "absolute";
+    MRegenScroll.className = "SmallFont";
     MRegenScroll.style.height = "60vh";
     MRegenScroll.style.overflowY = "auto";
     MRegenScroll.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
     MRegenScroll.style.border = "0.05rem solid #ccc";
-    MRegenScroll.style.display = "none";
     MRegenScroll.style.background = "white";
 
     MRegenScroll.addEventListener("click", function (event) {
@@ -1218,21 +1288,22 @@ function Stack() {
     HRegenOverlay.style.display = "flex";
     HRegenOverlay.style.justifyContent = "center";
     HRegenOverlay.style.alignItems = "center";
-    HRegenOverlay.style.display = "none";
+    HRegenOverlay.style.visibility = "hidden";
 
     HRegenOverlay.addEventListener("click", () => {
-        HRegenOverlay.style.display = (HRegenOverlay.style.display === "none") ? "block" : "none";
+        HRegenOverlay.style.visibility = (HRegenOverlay.style.visibility === "hidden") ? "visible" : "hidden";
+        HRegenScroll.style.visibility = (HRegenScroll.style.visibility === "hidden") ? "visible" : "hidden";
     });
 
     document.body.appendChild(HRegenOverlay);
 
     const HRegenScroll = document.createElement("div");
     HRegenScroll.style.position = "absolute";
+    HRegenScroll.className = "SmallFont";
     HRegenScroll.style.height = "60vh";
     HRegenScroll.style.overflowY = "auto";
     HRegenScroll.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
     HRegenScroll.style.border = "0.05rem solid #ccc";
-    HRegenScroll.style.display = "none";
     HRegenScroll.style.background = "white";
 
     HRegenScroll.addEventListener("click", function (event) {
@@ -1259,7 +1330,18 @@ function Stack() {
     
                 const unitName = document.createElement("p");
                 unitName.innerText = `${item[0]}(${item[1]}) ${item[2+i]}${(i===0) ? "%" : ""}`;
-                unitName.className = `SmallFont s${index}`;
+                switch(i)
+                {
+                    case 0:
+                        unitName.className = `u-s${index}`;
+                        break;
+                        case 1:
+                            unitName.className = `u-m${index}`;
+                            break;
+                            case 2:
+                                unitName.className = `u-h${index}`;
+                                break;
+                }
                 unitName.style.margin = "0";
                 unitName.style.padding = "0.5rem";
                 menu.appendChild(unitName);
@@ -1269,7 +1351,19 @@ function Stack() {
                 Check.style.marginRight = "0.7vw";
                 Check.style.transform = "scale(1.5)";
                 Check.dataset.value = item[2+i];
-                Check.checked = item[5];
+                Check.checked = item[5];        
+                switch(i)
+                {
+                    case 0:
+                        Check.className = `s${index}`;
+                        break;
+                        case 1:
+                            Check.className = `m${index}`;
+                            break;
+                            case 2:
+                                Check.className = `h${index}`;
+                                break;
+                }
     
                 CheckEvent(Check, item, index);
     
@@ -1284,9 +1378,9 @@ function Stack() {
         event.stopPropagation();
 
 
-        if (SpeedBonusExOverlay.style.display === "none") {
-            speedBonusExScroll.style.display = "block";
-            SpeedBonusExOverlay.style.display = "block";
+        if (SpeedBonusExOverlay.style.visibility === "hidden") {
+            SpeedBonusExOverlay.style.visibility = "visible";
+            speedBonusExScroll.style.visibility = "visible";
             const rect = SpeedBonusExButton.getBoundingClientRect();
             const dropdownHeight = speedBonusExScroll.offsetHeight || 160;
 
@@ -1294,10 +1388,9 @@ function Stack() {
             speedBonusExScroll.style.top = `${(rect.top - dropdownHeight) / window.innerHeight * 100}vh`;
         }
         else {
-            speedBonusExScroll.style.display = "none";
-            SpeedBonusExOverlay.style.display = "none";
+            speedBonusExScroll.style.visibility = "hidden";
+            SpeedBonusExOverlay.style.visibility = "hidden";
         }
-
     });
 
     document.getElementsByClassName('Stack1')[0].appendChild(SpeedBonusExButton);
@@ -1324,9 +1417,9 @@ function Stack() {
         event.stopPropagation();
 
 
-        if (MRegenOverlay.style.display === "none") {
-            MRegenScroll.style.display = "block";
-            MRegenOverlay.style.display = "block";
+        if (MRegenOverlay.style.visibility === "hidden") {
+            MRegenScroll.style.visibility = "visible";
+            MRegenOverlay.style.visibility = "visible";
             const rect = MRegenButton.getBoundingClientRect();
             const dropdownHeight = MRegenScroll.offsetHeight || 160;
 
@@ -1334,13 +1427,14 @@ function Stack() {
             MRegenScroll.style.top = `${(rect.top - dropdownHeight) / window.innerHeight * 100}vh`;
         }
         else {
-            MRegenScroll.style.display = "none";
-            MRegenOverlay.style.display = "none";
+            MRegenScroll.style.visibility = "hidden";
+            MRegenOverlay.style.visibility = "hidden";
         }
 
     });
 
     document.getElementsByClassName('Stack2')[0].appendChild(MRegenButton);
+    MRegenScroll.style.width = `${(MRegenButton.offsetWidth * 2) / window.innerWidth * 100}vw`;
 
     const MRegen = document.createElement("div");
     MRegen.className = "Bonus SmallFont";
@@ -1363,9 +1457,9 @@ function Stack() {
         event.stopPropagation();
 
 
-        if (HRegenOverlay.style.display === "none") {
-            HRegenScroll.style.display = "block";
-            HRegenOverlay.style.display = "block";
+        if (HRegenOverlay.style.visibility === "hidden") {
+            HRegenScroll.style.visibility = "visible";
+            HRegenOverlay.style.visibility = "visible";
             const rect = HRegenButton.getBoundingClientRect();
             const dropdownHeight = HRegenScroll.offsetHeight || 160;
 
@@ -1373,13 +1467,14 @@ function Stack() {
             HRegenScroll.style.top = `${(rect.top - dropdownHeight) / window.innerHeight * 100}vh`;
         }
         else {
-            HRegenScroll.style.display = "none";
-            MRegenOverlay.style.display = "none";
+            HRegenScroll.style.visibility = "hidden"; 
+            MRegenOverlay.style.visibility = "hidden";
         }
 
     });
 
     document.getElementsByClassName('Stack2')[0].appendChild(HRegenButton);
+    HRegenScroll.style.width = `${(HRegenButton.offsetWidth * 2) / window.innerWidth * 100}vw`;
 
     const HRegen = document.createElement("div");
     HRegen.className = "Bonus SmallFont";
@@ -1423,6 +1518,58 @@ function Stack() {
     }
 
 }
+
+function Checked(target, sort, unit)
+        {
+            if(unitState[sort][unit][0]==="퀸")
+                {
+                    if(target.id.split(`-`)[0] === "p")
+                    {
+                        manaRegen += 1;
+                        healthRegen += 1;
+                    }
+                    else
+                    {
+                        manaRegen -= 1;
+                        healthRegen -= 1;
+                    }
+                    let index = BuffState.findIndex((items => items.includes("퀸")&&items.includes("히든")));
+                    BuffState[index][5] = target.id.split(`-`)[0]==="p" ? true : false;
+                    document.getElementsByClassName(`m${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
+                    document.getElementsByClassName(`h${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
+                }
+            else{
+                let index = BuffState.findIndex((items => items.includes(`${unitState[sort][unit][0]}`)&&items.includes(`${unitState[sort][0][0]}`)));
+                if(index !== -1)
+                {
+                    BuffState[index][5] = true;
+                    document.getElementsByClassName(`s${index}`)[0].checked = target.id.split('-')[0]==="p" ? true : false;
+                }
+            }
+
+            if(unitState[sort][unit][0] === '우타')
+            {
+                let index = BuffState.findIndex((items => items.includes(`우타의 헤드셋`)));
+
+                if(target.id.split(`-`)[0] === "p")
+                {
+                    if(!BuffState[index][5])
+                    {
+                        BuffState[index][5] = true;
+                        document.getElementsByClassName(`s${index}`)[0].checked = true;
+                    }
+                    else
+                    {
+                        speedBonusEx -= BuffState[index][2];
+                    }
+                }
+                else
+                {
+                    speedBonusEx += BuffState[index][2];
+                }
+
+            }
+        }
 
 UnitTotalStun();
 
@@ -1540,20 +1687,16 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
             const unit = id[2];
             stunCount[sort][unit]++;
             if (stunCount[sort][unit] == 1) {
-                speedBonus += unitState[sort][unit][9];
-                if (unitState[sort][unit][0] === "퀸") {
-                    manaRegen += 1;
-                    healthRegen += 1;
-                }
+                speedBonusEx += unitState[sort][unit][9];
+
+                Checked(plus, sort, unit);
+
                 for (let k = 0; k < 3; k++) {
                     if (stunRange[sort][unit - 1][k])
-                        MyArray.push([sort, unit, stunRange[sort][unit - 1][k]]);
+                        Sort.push([sort, unit, stunRange[sort][unit - 1][k]]);
                 }
-                MyArray.sort((a, b) => a[2] - b[2]);
-                document.getElementsByClassName(`AttackSpeed`)[0].innerText = (speedBonus).toFixed(0) + "%";
-
+                Sort.sort((a, b) => a[2] - b[2]);
             }
-            document.getElementById(`c-${sort}-${unit}`).innerText = stunCount[sort][unit];
             UnitTotalStun();
             CountOn();
         });                
@@ -1575,18 +1718,14 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
                 stunCount[sort][unit] = 0;
             }
             else if (stunCount[sort][unit] == 0) {
-                speedBonus -= unitState[sort][unit][9];
-                if (unitState[sort][unit][0] === "퀸") {
-                    manaRegen -= 1;
-                    healthRegen -= 1;
-                }
-                MyArray = MyArray.filter(item => item[0] !== sort || item[1] !== unit || item[2] !== stunRange[sort][unit - 1][0]);
-                MyArray = MyArray.filter(item => item[0] !== sort || item[1] !== unit || item[2] !== stunRange[sort][unit - 1][1]);
-                MyArray = MyArray.filter(item => item[0] !== sort || item[1] !== unit || item[2] !== stunRange[sort][unit - 1][2]);
-                document.getElementsByClassName(`AttackSpeed`)[0].innerText = (speedBonus).toFixed(0) + "%";
+                speedBonusEx -= unitState[sort][unit][9];
+                Checked(minus, sort, unit);
+
+                Sort = Sort.filter(item => item[0] !== sort || item[1] !== unit || item[2] !== stunRange[sort][unit - 1][0]);
+                Sort = Sort.filter(item => item[0] !== sort || item[1] !== unit || item[2] !== stunRange[sort][unit - 1][1]);
+                Sort = Sort.filter(item => item[0] !== sort || item[1] !== unit || item[2] !== stunRange[sort][unit - 1][2]);
   
             }  
-            document.getElementById(`c-${sort}-${unit}`).innerText = stunCount[sort][unit];
             UnitTotalStun();
             CountOn();
         }
@@ -1798,7 +1937,6 @@ MoveSpeedPage.addEventListener('click', () => {
 
         Container2.replaceWith(container);
         document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + "스턴";
-        document.getElementsByClassName("AttackSpeed")[0].innerText = speedBonus + "%";
         document.getElementsByClassName("AttackSpeedEx")[0].innerText = speedBonusEx + "%";
         document.getElementsByClassName("MRegen")[0].innerText = manaRegen;
         document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
