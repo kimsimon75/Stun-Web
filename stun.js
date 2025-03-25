@@ -14,7 +14,7 @@ const unitRates = {
     제한됨: ["제한됨", 4],
     초월함: ["초월함", 5],
     불멸의: ["불멸의", 6],
-    영원함: ["영원함",7],
+    영원한: ["영원한",7],
     신비함: ["신비함", 8],
     특수함: ["특수함", 9]
 }
@@ -63,7 +63,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     ['시키', 3.3, 0.49, 0.1, 3, 0, 0, 125, 3, 0],
     ['흰수염', 3.3, 0.73, 0.05, 3, 0, 0, 115, 3, 0],],
 
-    [['영원함'],
+    [['영원한'],
     ['니카', 3.35, 0.57, 0.04, 2, 0, 0, 150, 3, 25],
     ['우타', 3.37, 0.67, 0.1, 1.5, 0, 0, 0, 0, 27],
     ['카벤딧슈', 3.15, 0.71, 0.1, 2.3, 0, 0, 0, 0, 0],
@@ -173,7 +173,7 @@ const speedState = // 공속 보너스, 공속, 발이감 확률, 발이감 지�
 
         ['흰수염', unitRates.불멸의, 3.30, 5.89, 0.125, 3.5, 45, 0.125, 3, 15],
 
-        ['핸콕', unitRates.영원함, 3.30, 5.811, 0.075, 2.5, 60, 0, 0, 0],
+        ['핸콕', unitRates.영원한, 3.30, 5.811, 0.075, 2.5, 60, 0, 0, 0],
 
         ['에넬', unitRates.제한됨, 2.85, 5.133, 0, 0, 0, 0.1, 4, 35],
 
@@ -201,45 +201,97 @@ const speedState = // 공속 보너스, 공속, 발이감 확률, 발이감 지�
     ];
 
 const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
-    ['아냐 포저', "신비함", 30, 1.75, 2, 0],
-    ['츠바사', "랜덤", 20, 0, 0, 0],
-    ['베티', "특수함", 11, 1.25, 2, 0],
-    ['버기', "영원함", 65, 0, 0, 0],
-    ['레일리', "불멸의", 45, 0, 0, 0],
-    ['사보', "초월함", 20, 0, 0, 0],
-    ['상디(강화)', "초월함", 15, 0, 0, 0],
-    ['우타의 헤드셋', "아이템", 12, 0, 0, 0],
-    ['징베', "초월함", 20, 3, 0, 0],
-    ['쵸파', "초월함", 28, 0, 0, 0],
-    ['코비', "초월함", 10, 0, 0, 0],
-    ['발라티에', "히든", 22, 0, 0, 0],
-    ['크래커', "전설적인", 9, 0, 0, 0],
-    ['레일리', "전설적인", 20, 0, 0, 0],
-    ['토키', "전설적인", 20, 0, 0, 0],
-    ['브룩', "희귀함", 10, 0, 0, 0],
-    ['식량 보급', '연구소', 0, 0.8, 0, 0],
-    ['키쿄우', '신비함', 0, 1.5, 1.5, 0],
-    ['카이조 토우마', '랜덤', 0, 0.3, 0.3, 0],
-    ['요츠바', '랜덤', 0, 2.5, 0, 0],
-    ['프랑키', '초월함', 0, 5, 0, 0],
-    ['에넬', '제한됨', 0, 1.5, 0, 0],
-    ['코알라', '히든', 0, 3.25, 0, 0],
-    ['슈가', '전설적인', 0, 1.25, 0, 0],
-    ['징베', '전설적인', 0, 2.5, 0, 0],
-    ['슈가', '희귀함', 0, 0.6, 0, 0],
-    ['해상 디너', '아이템',0, 0, 0.45, 0],
-    ['불사조의 깃털', '아이템', 0, 0, 0.3, 0],
-    ['마르코', '제한됨', 0, 0, 3, 0],
-    ['마르코(특강)', '제한됨', 0, 0, 4, 0],
-    ['카타쿠리', '제한됨', 0, 0, 2.85, 0],
-    ['모비딕호', '히든', 0, 0, 1.25, 0],
-    ['히루루크', '전설적인', 0, 0, 1.6, 0],
-    ['드래곤', '전설적인', 5, 0, 0, 0],
-    ['라분', '전설적인', 17, 0, 0, 0],
-    ['드래곤', '불멸의', 20, 0, 0, 0],
-    ['니카', '영원함', 25, 0, 0, 0],
-    ['우타', '영원함', 27, 0, 0, 0],
-    ['퀸', '히든', 0, 1, 1, 0],
+    ['아냐 포저', "신비함", 30, 1.75, 2, 40, 0],
+    ['츠바사', "랜덤", 20, 0, 0, 0, 0],
+    ['베티', "특수함", 11, 1.25, 2, 0, 0],
+    ['버기', "영원한", 65, 0, 0, 0, 0],
+    ['레일리', "불멸의", 45, 0, 0, 0, 0],
+    ['사보', "초월함", 20, 0, 0, 0, 0],
+    ['상디(강화)', "초월함", 15, 0, 0, 0, 0],
+    ['우타의 헤드셋', "아이템", 12, 0, 0, 0, 0],
+    ['징베', "초월함", 20, 3, 0, 0, 0],
+    ['쵸파', "초월함", 28, 0, 0, 0, 0],
+    ['코비', "초월함", 10, 0, 0, 0, 0],
+    ['발라티에', "히든", 22, 0, 0, 0, 0],
+    ['크래커', "전설적인", 9, 0, 0, 0, 0],
+    ['레일리', "전설적인", 20, 0, 0, 0, 0],
+    ['토키', "전설적인", 20, 0, 0, 0, 0],
+    ['브룩', "희귀함", 10, 0, 0, 0, 0],
+    ['식량 보급', '연구소', 0, 0.8, 0, 0, 0],
+    ['키쿄우', '신비함', 0, 1.5, 1.5, 0, 0],
+    ['카이조 토우마', '랜덤', 0, 0.3, 0.3, 0, 0],
+    ['요츠바', '랜덤', 0, 2.5, 0, 0, 0],
+    ['프랑키', '초월함', 0, 5, 0, 0, 0],
+    ['에넬', '제한됨', 0, 1.5, 0, 0, 0],
+    ['코알라', '히든', 0, 3.25, 0, 0, 0],
+    ['슈가', '전설적인', 0, 1.25, 0, 0, 0],
+    ['징베', '전설적인', 0, 2.5, 0, 0, 0],
+    ['슈가', '희귀함', 0, 0.6, 0, 0, 0],
+    ['해상 디너', '아이템',0, 0, 0.45, 0, 0],
+    ['불사조의 깃털', '아이템', 0, 0, 0.3, 0, 0],
+    ['마르코', '제한됨', 0, 0, 3, 45, 0],
+    ['마르코(특강)', '제한됨', 0, 0, 4, 60, 0],
+    ['카타쿠리', '제한됨', 0, 0, 2.85, 0, 0],
+    ['모비딕 호', '히든', 0, 0, 1.25, 40, 0],
+    ['히루루크', '전설적인', 0, 0, 1.6, 0, 0],
+    ['드래곤', '전설적인', 5, 0, 0, 10, 0],
+    ['라분', '전설적인', 17, 0, 0, 0, 0],
+    ['드래곤', '불멸의', 20, 0, 0, 0, 0],
+    ['니카', '영원한', 25, 0, 0, 0, 0],
+    ['우타', '영원한', 27, 0, 0, 0, 0],
+    ['퀸', '히든', 0, 1, 1, 0, 0],
+    ['둔화의 지팡이', '아이템', 0, 0, 0, 12, 0],
+    ['비구름생성기', '아이템', 0, 0, 0, 12, 0],
+    ['기후 변화', '연구소', 0, 0, 0, 10, 0],
+    ['냉철함', '연구소', 0, 0, 0, 6, 0],
+    ['패왕의 길', '항법', 0, 0, 0, 5, 0],
+    ['사토루', '신비함', 0, 0, 0, 30, 0],
+    ['히그마', '신비함', 0, 0, 0, 30, 0],
+    ['쿠치키 뱌쿠야', '신비함', 0, 0, 0, 35, 0],
+    ['타츠마키', '신비함', 0, 0, 0, 50, 0],
+    ['엘리자베스', '신비함', 0, 0, 0, 20, 0],
+    ['버기', '영원한', 0, 0, 0, 25, 0],
+    ['우타', '영원한', 0, 0, 0, 45, 0],
+    ['미호크', '영원한', 0, 0, 0, 45, 0],
+    ['에이스', '영원한', 0, 0, 0, 45, 0],
+    ['로져', '불멸의', 0, 0, 0, 50, 0],
+    ['빅맘', '불멸의', 0, 0, 0, 70, 0],
+    ['제트', '불멸의', 0, 0, 0, 35, 0],
+    ['카이도', '불멸의', 0, 0, 0, 60, 0],
+    ['조로', '초월함', 0, 0, 0, 30, 0],
+    ['조로(강화)', '초월함', 0, 0, 0, 45, 0],
+    ['조로(염왕)', '초월함', 0, 0, 0, 50, 0],
+    ['바질 호킨스', '초월함', 0, 0, 0, 7, 0],
+    ['브룩', '초월함', 0, 0, 0, 15, 0],
+    ['사보', '초월함', 0, 0, 0, 35, 0],
+    ['야마토', '초월함', 0, 0, 0, -15, 0],
+    ['아오키지', '초월함', 0, 0, 0, 80, 0],
+    ['키드', '초월함', 0, 0, 0, 33, 0],
+    ['후지토라', '초월함', 0, 0, 0, 55, 0],
+    ['시노부', '제한됨', 0, 0, 0, 30, 0],
+    ['크로커다일', '제한됨', 0, 0, 0, 40, 0],
+    ['비비', '변화된', 0, 0, 0, 20, 0],
+    ['에이스', '변화된', 0, 0, 0, 20, 0],
+    ['사보', '히든', 0, 0, 0, 25, 0],
+    ['아오키지', '히든', 0, 0, 0, 35, 0],
+    ['페로나', '히든', 0, 0, 0, 45, 0],
+    ['모리아', '전설적인', 0, 0, 0, 30, 0],
+    ['네코마무시', '전설적인', 0, 0, 0, 30, 0],
+    ['마르코', '전설적인', 0, 0, 0, 30, 0],
+    ['레이쥬', '전설적인', 0, 0, 0, 35, 0],
+    ['센고쿠', '전설적인', 0, 0, 0, 20, 0],
+    ['스모커', '전설적인', 0, 0, 0, 50, 0],
+    ['토키', '전설적인', 0, 0, 0, 25, 0],
+    ['킹', '전설적인', 0, 0, 0, 10, 0],
+    ['후지토라', '전설적인', 0, 0, 0, 24, 0],
+    ['X-드레이크', '전설적인', 0, 0, 0, 10, 0],
+    ['키드', '희귀함', 0, 0, 0, 15, 0],
+    ['아오키지', '희귀함', 0, 0, 0, 10, 0],
+    ['크로커다일', '희귀함', 0, 0, 0, 15, 0],
+    ['페로나', '희귀함', 0, 0, 0, 20, 0],
+    ['스모커', '특별함', 0, 0, 0, 5, 0],
+    ['키드', '특별함', 0, 0, 0, 5, 0],
+    ['크로커다일', '특별함', 0, 0, 0, 5, 0],
 ]
 
 const Rate = [
@@ -272,6 +324,9 @@ var manaRegen = 0;
 var healthRegen = 0;
 var totalStun = 0;
 
+var m_nightmare = 0;
+var m_god = 0;
+
 var nameSort = 1;
 var rateSort = 0;
 var moveSpeedSort = 0;
@@ -283,6 +338,10 @@ const UnitTotalStun = () => {
     speedBonusEx = parseFloat(speedBonusEx.toFixed(3));
     manaRegen = parseFloat(manaRegen.toFixed(3));
     healthRegen = parseFloat(healthRegen.toFixed(3));
+    speedDebuff = parseFloat(speedDebuff.toFixed(3));
+
+    m_god = parseFloat((484.625-3.875*speedDebuff).toFixed(3)) < 70 ? 70 : parseFloat((484.625-3.875*speedDebuff).toFixed(3)) > 490 ? 490 : parseFloat((484.625-3.875*speedDebuff).toFixed(3));
+    m_nightmare = parseFloat((542.75-3.875*speedDebuff).toFixed(3)) < 70 ? 70 : parseFloat((542.75-3.875*speedDebuff).toFixed(3)) > 490 ? 490 : parseFloat((542.75-3.875*speedDebuff).toFixed(3));
 
     for (var i = 0; i < 8; i++)
     {
@@ -298,7 +357,7 @@ const UnitTotalStun = () => {
             if(unitState[i][j][0]==="우타")
             {
                 const index = BuffState.findIndex((items) => {return items.includes("우타의 헤드셋")});
-                t = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((( speedBonusEx - (stunCount[i][j] ? unitState[i][j][9] : BuffState[index][5] ? BuffState[index][2] : 0)) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat(((( speedBonusEx - (stunCount[i][j] ? unitState[i][j][9] : BuffState[index][5] ? BuffState[index][2] : 0))) / 100).toFixed(3))));
+                t = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((( speedBonusEx - (stunCount[i][j] ? unitState[i][j][9] - BuffState[index][2] : 0) - (BuffState[index][6] ? BuffState[index][2] : 0)) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat((( speedBonusEx - (stunCount[i][j] ? unitState[i][j][9] - BuffState[index][2]: 0) - (BuffState[index][6] ? BuffState[index][2] : 0)) / 100).toFixed(3))));
             }
             var maxMana = unitState[i][j][7];
             var m_stun = unitState[i][j][8];
@@ -379,6 +438,14 @@ const UnitTotalStun = () => {
 
 const Unit = unitState[0].length + unitState[1].length + unitState[2].length + unitState[3].length + unitState[4].length + unitState[5].length + unitState[6].length + unitState[7].length;
 
+function SetElemental(){
+    document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + "스턴";
+    document.getElementsByClassName("MRegen")[0].innerText = manaRegen;
+    document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
+    document.getElementsByClassName("AttackSpeedEx")[0].innerText = speedBonusEx + "%";
+    document.getElementsByClassName("Debuff")[0].innerText = speedDebuff + "%";
+}
+
 let CountOn = () => {
     if (document.getElementById("container1") != null)
     {
@@ -421,13 +488,7 @@ let CountOn = () => {
         }
     }
 
-    document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + "스턴";
-    document.getElementsByClassName("MRegen")[0].innerText = manaRegen;
-    document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
-    document.getElementsByClassName("AttackSpeedEx")[0].innerText = speedBonusEx + "%";
-
-   
-        
+    SetElemental();
 }
 
 function lowSpeed(unitcount, AfterShock) {
@@ -524,9 +585,10 @@ function openOverlay(sortCount, unitCount) {
 
     if (sortCount == 100 && unitCount == 100) 
         title.textContent = `${totalStun.toFixed(3)}스턴`;
-
     else if (sortCount == 200 && unitCount == 200)
         title.textContent = `가동률 공식`;
+    else if (sortCount == 300 && unitCount == 300)
+        title.textContent = "이동속도 감소";
     else if (sortCount < 0)
         title.textContent = `${speedState[unitCount][0]} (${(speedState[unitCount][1])[0]})`;
     else
@@ -540,12 +602,12 @@ function openOverlay(sortCount, unitCount) {
     itemList.style.padding = 0;
     if (sortCount == 100 && unitCount == 100) {
 
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 10; i++) {
             const item = document.createElement("li");
-            item.textContent = `Item ${i}`;
+            item.textContent = ``;
             item.style.padding = "0.5rem 0";
             item.style.borderBottom = "0.1rem solid #ddd";
-
+            let result = 0;
             switch (i) {
                 case 1:
                     item.textContent = `스턴 가동률 : ${((1 - Math.pow(0.2, totalStun)) * 100).toFixed(2)}%`;
@@ -554,15 +616,39 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `스턴 샐 확률 : ${(Math.pow(0.2, totalStun) * 100).toFixed(2)}%`;
                     break;
                 case 3:
-                    item.textContent = `초당 몹 이동 거리(풀이감 기준) : ${(70 * Math.pow(0.2, totalStun)).toFixed(2)}`;
+                    result = m_god * Math.pow(0.2, totalStun)
+                    result = result % 1 === 0 ? result.toString() : result.toFixed(3);
+
+                    item.textContent = `초당 몹 이동 거리(신 기준) : ${result}`;
                     break;
-                case 4:
-                    item.textContent = `35초 기준 몹 이동 거리(풀이감 기준) : ${(35 * 70 * Math.pow(0.2, totalStun)).toFixed(2)}`;
+                case 4:                    
+                    result = 35 * m_god * Math.pow(0.2, totalStun)
+                    result = result % 1 === 0 ? result.toString() : result.toFixed(3);
+                    item.textContent = `35초 후 몹 이동 거리(신 기준) : ${result}`;
                     break;
                 case 5:
-                    item.textContent = `14초 기준 몹 이동 거리(풀이감 기준) : ${(14 * 70 * Math.pow(0.2, totalStun)).toFixed(2)}`;
+                    result = 14 * m_god * Math.pow(0.2, totalStun)
+                    result = result % 1 === 0 ? result.toString() : result.toFixed(3);
+                    item.textContent = `14초 후 몹 이동 거리(신 기준) : ${result}`;
                     break;
                 case 6:
+                    break;
+                case 7:
+                    result = m_nightmare * Math.pow(0.2, totalStun)
+                    result = result % 1 === 0 ? result.toString() : result.toFixed(3);
+                    item.textContent = `초당 몹 이동 거리(악몽 기준) : ${result}`;
+                    break;
+                case 8:
+                    result = 35 * m_nightmare * Math.pow(0.2, totalStun)
+                    result = result % 1 === 0 ? result.toString() : result.toFixed(3);
+                    item.textContent = `35초 후 몹 이동 거리(악몽 기준) : ${result}`;
+                    break;
+                case 9:
+                    result = 14 * m_nightmare * Math.pow(0.2, totalStun)
+                    result = result % 1 === 0 ? result.toString() : result.toFixed(3);
+                    item.textContent = `14초 후 몹 이동 거리(악몽 기준) : ${result}`;
+                    break;
+                case 10:
                     item.textContent = `최소 스턴 범위 : ${Sort.length ? Sort[0][2] : 0}`;
                     break;
             }
@@ -613,6 +699,41 @@ function openOverlay(sortCount, unitCount) {
             itemList.appendChild(item);
         }
 
+    }
+    else if (sortCount == 300 && unitCount == 300)
+    {
+        for (let i = 0; i <= 6; i++) {
+            const item = document.createElement("li");
+            item.textContent = `Item ${i}`;
+            item.style.padding = "0.5rem   0";
+            item.style.borderBottom = "0.1rem solid #ddd";
+
+            switch (i) {
+                case 0:
+                    item.textContent = `수치 : ${speedDebuff}%`
+                    break;
+                case 1:
+                    item.textContent = `※이감 40%당 이속 155 감소`
+                    break;
+                case 2:
+                    item.textContent = `※이감 1%당 이속 3.875 감소`
+                    break;
+                case 3:
+                    item.textContent = `신 최대 이감 : 107%`
+                    break;
+                case 4:
+                    item.textContent = `악몽 최대 이감 : 122%`;
+                    break;
+                case 5:
+                    item.textContent = `몹 이동속도(신) : ${m_god}`;
+                    break;
+                case 6:
+                    item.textContent = `몹 이동속도(악몽) : ${m_nightmare}`;
+                    break;
+            }
+
+            itemList.appendChild(item);
+        }
     }
     else if (sortCount == -1) {
         if (speedState[unitCount][5] == 0)
@@ -986,6 +1107,8 @@ function ClearAll() {
     totalStun = 0;
     manaRegen = 0;
     healthRegen = 0;
+    speedDebuff = 0;
+
 
     if (document.getElementById("container1") != null)
         for (var i = 0; i < unitState.length; i++) {
@@ -994,12 +1117,9 @@ function ClearAll() {
                 document.getElementById(`c-${i}-${j}`).innerText = "0";
             }
         }
-    document.getElementsByClassName("MRegen")[0].innerText = 0;
-    document.getElementsByClassName("HRegen")[0].innerText = 0;
-    document.getElementsByClassName("AttackSpeedEx")[0].innerText = 0 + "%";
 
     BuffState.forEach((item) => {
-        item[5] = false;
+        item[6] = false;
     })
 
     document.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
@@ -1026,25 +1146,26 @@ function SortFunction(a, b) {
     return 0;
 }
 
-function BuffAdd(event, item)
+function BuffAdd(checked, item)
 {
-    speedBonusEx += event.target.checked ? item[2] : -item[2];
-    manaRegen += event.target.checked ? item[3] : -item[3];
-    healthRegen += event.target.checked ? item[4] : -item[4];
-    item[5] = event.target.checked ? true : false;
+    speedBonusEx += checked ? item[2] : -item[2];
+    manaRegen += checked ? item[3] : -item[3];
+    healthRegen += checked ? item[4] : -item[4];
+    speedDebuff += checked ? item[5] : -item[5];
+    item[6] = checked ? true : false;
 }
+
 
 function Collect(item, index)
 {
-    if (item[2] != 0) {
-        document.getElementsByClassName(`s${index}`)[0].checked = item[5];
-    }
-    if (item[3] != 0) {
-        document.getElementsByClassName(`m${index}`)[0].checked = item[5];
-    }
-    if (item[4] != 0) {
-        document.getElementsByClassName(`h${index}`)[0].checked = item[5];
-    }
+    const ClassN = [`s${index}`, `m${index}`, `h${index}`, `d${index}`]
+    for(let i=0;i<=3;i++)
+    {
+        if(item[i+2] != 0)
+        {
+            document.getElementsByClassName(ClassN[i])[0].checked = item[6];
+        }
+    }        
 }
 
 function CheckEvent(Check, item, index) {
@@ -1070,12 +1191,12 @@ function CheckEvent(Check, item, index) {
             {
                 let row = Rate[int].findIndex(items => items === item[0]);
 
-                BuffAdd(event,BuffState[index]);    
+                BuffAdd(event.target.checked,BuffState[index]);    
                 
                 let find = -1;
                 for(let i = row-1; i>=0;i--)
                 {
-                    if(BuffState[BuffState.findIndex(items => items[0] === Rate[int][i] )][5]==true)
+                    if(BuffState[BuffState.findIndex(items => items[0] === Rate[int][i] )][6]==true)
                     {
                         find = BuffState.findIndex((items => items[0] === Rate[int][i]));
                         break;
@@ -1085,14 +1206,14 @@ function CheckEvent(Check, item, index) {
                 if(find !== -1)
                 {
                     event.target.checked = false;
-                     BuffAdd(event, BuffState[find]);
+                     BuffAdd(event.target.checked, BuffState[find]);
                      event.target.checked = true;
                 }
                 
                 for(let i=row; i>=0;i--)
                 {
                     let col = BuffState.findIndex(items => items[0] === Rate[int][i] );
-                    BuffState[col][5] = true;
+                    BuffState[col][6] = true;
                     Collect(BuffState[col], col);
                 }
 
@@ -1100,7 +1221,7 @@ function CheckEvent(Check, item, index) {
             }
             else
             {
-                BuffAdd(event, BuffState[index]);
+                BuffAdd(event.target.checked, BuffState[index]);
                 Collect(BuffState[index], index);
             }
         }
@@ -1121,33 +1242,33 @@ function CheckEvent(Check, item, index) {
                 let find = -1;
                 for(let i = length-1; i >= row; i--)
                 {
-                    if(BuffState[BuffState.findIndex(items => items[0] === Rate[int][i] )][5]==true)
+                    if(BuffState[BuffState.findIndex(items => items[0] === Rate[int][i] )][6]==true)
                     {
                         find = BuffState.findIndex(items => items[0] === Rate[int][i]);
                         break;
                     }
                 }
-                BuffAdd(event, BuffState[find]);
+                BuffAdd(event.target.checked, BuffState[find]);
 
 
 
                 if(row !== 0)
                 {
                     event.target.checked = true;
-                    BuffAdd(event, BuffState[BuffState.findIndex(items => items[0] === Rate[int][row-1])]);
+                    BuffAdd(event.target.checked, BuffState[BuffState.findIndex(items => items[0] === Rate[int][row-1])]);
                     event.target.checked = false;
                 }
 
                 for(let i=row;i<length;i++)
                 {
                     let col = BuffState.findIndex(items => items[0] === Rate[int][i] );
-                    BuffState[col][5] = false;
+                    BuffState[col][6] = false;
                     Collect(BuffState[col], col);
                 }
             }
             else
             {
-                BuffAdd(event, BuffState[index]);
+                BuffAdd(event.target.checked, BuffState[index]);
                 Collect(BuffState[index], index);
             }
         }
@@ -1176,6 +1297,32 @@ function ButtonColor(name) {
         name.style.background = "rgb(225, 225, 225)";
     });
 }
+
+function separateKorean(text) {
+    const CHO = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
+    const JUNG = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
+    const JONG = "ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
+
+    let result = "";
+    
+    for (let char of text) {
+        const code = char.charCodeAt(0) - 44032;
+        
+        if (code < 0 || code > 11171) {
+            result += char; // 한글이 아니면 그대로 추가
+            continue;
+        }
+        
+        const cho = CHO[Math.floor(code / 588)];
+        const jung = JUNG[Math.floor((code % 588) / 28)];
+        const jong = JONG[(code % 28) - 1] || ""; // 받침이 없으면 빈 문자열
+
+        result += cho + jung + jong; // 초성 + 중성 + 종성 합쳐서 저장
+    }
+    
+    return result;
+}
+
 
 function Stack() {
 
@@ -1214,22 +1361,94 @@ function Stack() {
 
     document.getElementsByClassName(`Stack0`)[0].appendChild(clear);
 
-    const MoveSpeedDebuffButton = document.createElement("div");
-    MoveSpeedDebuffButton.className = "Button BigFont";
-    MoveSpeedDebuffButton.style.textAlign = "right";
-    MoveSpeedDebuffButton.style.alignContent = "center";
-    MoveSpeedDebuffButton.style.paddingRight = "0.25vw";
-    MoveSpeedDebuffButton.innerText = "준비중";
+    const DebuffOverlay = document.createElement("div");
+    DebuffOverlay.className = "SpeedBonusExOverlay";
+    DebuffOverlay.style.position = "fixed";
+    DebuffOverlay.style.top = 0;
+    DebuffOverlay.style.left = 0;
+    DebuffOverlay.style.width = "100%";
+    DebuffOverlay.style.height = "100%";
+    DebuffOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+    DebuffOverlay.style.zIndex = 1000;
+    DebuffOverlay.style.display = "flex";
+    DebuffOverlay.style.justifyContent = "center";
+    DebuffOverlay.style.alignItems = "center";
+    DebuffOverlay.style.visibility = "hidden";
 
-    ButtonColor(MoveSpeedDebuffButton);
+    DebuffOverlay.addEventListener("click", () => {
+        DebuffOverlay.style.visibility = (DebuffOverlay.style.visibility === "hidden") ? "visible" : "hidden";
+        DebuffScroll.style.visibility = (DebuffScroll.style.visibility === "hidden") ? "visible" : "hidden";
 
-    document.getElementsByClassName('Stack1')[0].appendChild(MoveSpeedDebuffButton);
+        DebuffspeedBonusExSearchBar.querySelector("input").value = ""; 
 
-    const Debuff = document.createElement("div");
-    Debuff.className = "Bonus SmallFont";
-    Debuff.innerText = "이속 감소";
+        // 모든 항목 다시 보이게 설정
+        let items = document.querySelectorAll(".CheckBox-Stack");
+        items.forEach(item => {
+            item.style.display = "flex"; // 모든 항목을 표시
+        });
+    });
 
-    document.getElementsByClassName('Stack1')[0].appendChild(Debuff);
+    document.body.appendChild(DebuffOverlay);
+
+// ✅ 1️⃣ 스크롤 가능한 컨테이너(`DebuffScroll`) 동적 생성
+    const DebuffScroll = document.createElement("div");
+    DebuffScroll.className = "SmallFont";
+    DebuffScroll.style.position = "absolute";
+    DebuffScroll.style.height = "60vh";
+    DebuffScroll.style.overflowY = "auto";  // 스크롤 가능하게 설정
+    DebuffScroll.style.background = "white";
+    DebuffScroll.style.border = "0.05rem solid #ccc";
+    DebuffScroll.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+
+    // ✅ 2️⃣ 검색창(`DebuffspeedBonusExSearchBar`)을 `DebuffScroll` 안에 동적으로 추가
+    const DebuffspeedBonusExSearchBar = document.createElement("div");
+    DebuffspeedBonusExSearchBar.className = "search-bar";
+    DebuffspeedBonusExSearchBar.style.position = "sticky"; // ✅ 스크롤해도 고정되게 설정
+    DebuffspeedBonusExSearchBar.style.zIndex = 1000;
+    DebuffspeedBonusExSearchBar.style.top = "0";
+    DebuffspeedBonusExSearchBar.style.left = "0";
+    DebuffspeedBonusExSearchBar.style.width = "100%";
+    DebuffspeedBonusExSearchBar.style.background = "white";
+    DebuffspeedBonusExSearchBar.style.padding = "10px";
+    DebuffspeedBonusExSearchBar.style.borderBottom = "1px solid #ccc";
+    DebuffspeedBonusExSearchBar.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+    DebuffspeedBonusExSearchBar.innerHTML = `<input type="text" placeholder="검색어 입력..." style="width: 80%; padding: 8px;">`;
+
+    DebuffspeedBonusExSearchBar.querySelector("input").addEventListener("input", function () {
+        let query = this.value.trim().toLowerCase(); // 검색어를 공백을 제외한 소문자로 변환
+        query = separateKorean(query); // 검색어 한글 분리
+    
+        let items = document.querySelectorAll(".CheckBox-Stack");
+    
+        if (query === "") {
+            items.forEach(item => {
+                item.style.display = "flex"; // 검색어가 없으면 모든 항목 표시
+            });
+        } else {
+            items.forEach(item => {
+                let text = item.innerText.toLowerCase(); // 텍스트 가져오기
+                let separatedText = separateKorean(text); // 리스트 항목도 한글 분리
+    
+                if (separatedText.includes(query)) {
+                    item.style.display = "flex"; // 검색어가 포함되면 표시
+                } else {
+                    item.style.display = "none"; // 검색어가 없으면 숨김
+                }
+            });
+        }
+    });
+
+// ✅ 3️⃣ `DebuffScroll`에 `DebuffspeedBonusExSearchBar` 추가 + `body`에 추가
+    DebuffScroll.appendChild(DebuffspeedBonusExSearchBar);  // 검색창을 스크롤 박스 안에 추가
+
+// ✅ 4️⃣ `scroll` 이벤트 필요 없음 (CSS `sticky` 사용)
+
+    
+    // ✅ 클릭 이벤트 방지 (필요하면 유지)
+    DebuffScroll.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
+    
 
     const SpeedBonusExButton = document.createElement("div");
     SpeedBonusExButton.className = "AttackSpeedEx Button BigFont";
@@ -1238,6 +1457,7 @@ function Stack() {
     SpeedBonusExButton.style.alignContent = "center";
     SpeedBonusExButton.style.paddingRight = "0.25vw";
     ButtonColor(SpeedBonusExButton);
+    
 
     const SpeedBonusExOverlay = document.createElement("div");
     SpeedBonusExOverlay.className = "SpeedBonusExOverlay";
@@ -1256,7 +1476,16 @@ function Stack() {
     SpeedBonusExOverlay.addEventListener("click", () => {
         SpeedBonusExOverlay.style.visibility = (SpeedBonusExOverlay.style.visibility === "hidden") ? "visible" : "hidden";
         speedBonusExScroll.style.visibility = (speedBonusExScroll.style.visibility === "hidden") ? "visible" : "hidden";
-    });
+
+        speedBonusExSearchBar.querySelector("input").value = ""; 
+
+        // 모든 항목 다시 보이게 설정
+        let items = document.querySelectorAll(".CheckBox-Stack");
+        items.forEach(item => {
+            item.style.display = "flex"; // 모든 항목을 표시
+        });
+        
+       });
 
     document.body.appendChild(SpeedBonusExOverlay);
 
@@ -1272,6 +1501,44 @@ function Stack() {
     speedBonusExScroll.addEventListener("click", function (event) {
         event.stopPropagation();
     });
+
+    const speedBonusExSearchBar = document.createElement("div");
+    speedBonusExSearchBar.className = "search-bar";
+    speedBonusExSearchBar.style.position = "sticky"; // ✅ 스크롤해도 고정되게 설정
+    speedBonusExSearchBar.style.zIndex = 1000;
+    speedBonusExSearchBar.style.top = "0";
+    speedBonusExSearchBar.style.left = "0";
+    speedBonusExSearchBar.style.width = "100%";
+    speedBonusExSearchBar.style.background = "white";
+    speedBonusExSearchBar.style.padding = "10px";
+    speedBonusExSearchBar.style.borderBottom = "1px solid #ccc";
+    speedBonusExSearchBar.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+    speedBonusExSearchBar.innerHTML = `<input type="text" placeholder="검색어 입력..." style="width: 80%; padding: 8px;">`;
+
+    speedBonusExSearchBar.querySelector("input").addEventListener("input", function () {
+        let query = this.value.trim().toLowerCase(); // 검색어를 공백을 제외한 소문자로 변환
+        query = separateKorean(query); // 검색어 한글 분리
+    
+        let items = document.querySelectorAll(".CheckBox-Stack");
+    
+        if (query === "") {
+            items.forEach(item => {
+                item.style.display = "flex"; // 검색어가 없으면 모든 항목 표시
+            });
+        } else {
+            items.forEach(item => {
+                let text = item.innerText.toLowerCase(); // 텍스트 가져오기
+                let separatedText = separateKorean(text); // 리스트 항목도 한글 분리
+    
+                if (separatedText.includes(query)) {
+                    item.style.display = "flex"; // 검색어가 포함되면 표시
+                } else {
+                    item.style.display = "none"; // 검색어가 없으면 숨김
+                }
+            });
+        }
+    });
+    speedBonusExScroll.appendChild(speedBonusExSearchBar);  // 검색창을 스크롤 박스 안에 추가
 
     const MRegenOverlay = document.createElement("div");
     MRegenOverlay.className = "MRegenOverlay";
@@ -1341,15 +1608,16 @@ function Stack() {
         event.stopPropagation();
     });
 
+    DebuffOverlay.appendChild(DebuffScroll);
     HRegenOverlay.appendChild(HRegenScroll);
     MRegenOverlay.appendChild(MRegenScroll);
     SpeedBonusExOverlay.appendChild(speedBonusExScroll);
 
-    const Scrolls = [speedBonusExScroll, MRegenScroll, HRegenScroll];
+    const Scrolls = [speedBonusExScroll, MRegenScroll, HRegenScroll, DebuffScroll];
 
     BuffState.forEach((item, index) => {
 
-        for(let i=0;i<3;i++)
+        for(let i=0;i<=3;i++)
         {
             if(item[2+i]!==0)
             {
@@ -1360,7 +1628,7 @@ function Stack() {
                 Scrolls[i].appendChild(menu);
     
                 const unitName = document.createElement("p");
-                unitName.innerText = `${item[0]}(${item[1]}) ${item[2+i]}${(i===0) ? "%" : ""}`;
+                unitName.innerText = `${item[0]}(${item[1]}) ${item[2+i]}${(i===0||i==3) ? "%" : ""}`;
                 switch(i)
                 {
                     case 0:
@@ -1372,6 +1640,9 @@ function Stack() {
                             case 2:
                                 unitName.className = `u-h${index}`;
                                 break;
+                                case 3:
+                                    unitName.className = `u-d${index}`;
+                                    break;
                 }
                 unitName.style.margin = "0";
                 unitName.style.padding = "0.5rem";
@@ -1379,10 +1650,12 @@ function Stack() {
     
                 const Check = document.createElement("input");
                 Check.type = "checkbox";
+                Check.style.position = 'relative';
+                Check.style.zIndex = 10;
                 Check.style.marginRight = "0.7vw";
                 Check.style.transform = "scale(1.5)";
                 Check.dataset.value = item[2+i];
-                Check.checked = item[5];        
+                Check.checked = item[6];        
                 switch(i)
                 {
                     case 0:
@@ -1394,6 +1667,9 @@ function Stack() {
                             case 2:
                                 Check.className = `h${index}`;
                                 break;
+                                case 3:
+                                Check.className = `d${index}`;
+                                break;
                 }
     
                 CheckEvent(Check, item, index);
@@ -1404,6 +1680,46 @@ function Stack() {
 
     })
 
+    const MoveSpeedDebuffButton = document.createElement("div");
+    MoveSpeedDebuffButton.className = "Debuff Button BigFont";
+    MoveSpeedDebuffButton.style.textAlign = "right";
+    MoveSpeedDebuffButton.style.alignContent = "center";
+    MoveSpeedDebuffButton.style.paddingRight = "0.25vw";
+    MoveSpeedDebuffButton.innerText = speedDebuff + "%";
+
+    ButtonColor(MoveSpeedDebuffButton);
+
+    MoveSpeedDebuffButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+
+        if (DebuffOverlay.style.visibility === "hidden") {
+            DebuffOverlay.style.visibility = "visible";
+            DebuffScroll.style.visibility = "visible";
+            const rect = MoveSpeedDebuffButton.getBoundingClientRect();
+            const dropdownHeight = DebuffScroll.offsetHeight || 160;
+
+            DebuffScroll.style.left = `${rect.left / window.innerWidth * 100}vw`; // vw 사용
+            DebuffScroll.style.top = `${(rect.top - dropdownHeight) / window.innerHeight * 100}vh`;
+        }
+        else {
+            DebuffScroll.style.visibility = "hidden";
+            DebuffOverlay.style.visibility = "hidden";
+        }
+    });
+
+    document.getElementsByClassName('Stack1')[0].appendChild(MoveSpeedDebuffButton);
+
+
+    const Debuff = document.createElement("div");
+    Debuff.className = "Button Bonus SmallFont";
+    Debuff.innerText = "이속 감소";
+
+    ButtonColor(Debuff);
+    
+    Debuff.addEventListener("click", () =>openOverlay(300, 300));
+
+    document.getElementsByClassName('Stack1')[0].appendChild(Debuff);
 
     SpeedBonusExButton.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -1565,28 +1881,19 @@ function Checked(target, sort, unit)
                         healthRegen -= 1;
                     }
                     let index = BuffState.findIndex((items => items.includes("퀸")&&items.includes("히든")));
-                    BuffState[index][5] = target.id.split(`-`)[0]==="p" ? true : false;
+                    BuffState[index][6] = target.id.split(`-`)[0]==="p" ? true : false;
                     document.getElementsByClassName(`m${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                     document.getElementsByClassName(`h${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                 }
-            else{
-                let index = BuffState.findIndex((items => items.includes(`${unitState[sort][unit][0]}`)&&items.includes(`${unitState[sort][0][0]}`)));
-                if(index !== -1)
-                {
-                    BuffState[index][5] = true;
-                    document.getElementsByClassName(`s${index}`)[0].checked = target.id.split('-')[0]==="p" ? true : false;
-                }
-            }
-
-            if(unitState[sort][unit][0] === '우타')
+            else if(unitState[sort][unit][0] === '우타')
             {
                 let index = BuffState.findIndex((items => items.includes(`우타의 헤드셋`)));
 
                 if(target.id.split(`-`)[0] === "p")
                 {
-                    if(!BuffState[index][5])
+                    if(!BuffState[index][6])
                     {
-                        BuffState[index][5] = true;
+                        BuffState[index][6] = true;
                         document.getElementsByClassName(`s${index}`)[0].checked = true;
                     }
                     else
@@ -1597,8 +1904,20 @@ function Checked(target, sort, unit)
                 else
                 {
                     speedBonusEx += BuffState[index][2];
+                    index = BuffState.findIndex((items => items[0] === '우타'));
+                    BuffState[index][6] = false;
+                    Collect(BuffState[index], index);
                 }
 
+            }
+            else{
+                let index = BuffState.findIndex((items => items.includes(`${unitState[sort][unit][0]}`)&&items.includes(`${unitState[sort][0][0]}`)));
+                if(index !== -1)
+                {
+                    BuffState[index][6] = target.id.split(`-`)[0] === "p" ? true : false;
+                    BuffAdd(BuffState[index][6], BuffState[index]);
+                    Collect(BuffState[index], index);
+                }
             }
         }
 
@@ -1967,10 +2286,7 @@ MoveSpeedPage.addEventListener('click', () => {
     StunPage.addEventListener('click', () => {
 
         Container2.replaceWith(container);
-        document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + "스턴";
-        document.getElementsByClassName("AttackSpeedEx")[0].innerText = speedBonusEx + "%";
-        document.getElementsByClassName("MRegen")[0].innerText = manaRegen;
-        document.getElementsByClassName("HRegen")[0].innerText = healthRegen;
+        SetElemental();
     })
 
     ButtonColor(StunPage);
