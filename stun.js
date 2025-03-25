@@ -242,6 +242,11 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
     ['퀸', '히든', 0, 1, 1, 0],
 ]
 
+const Rate = [
+    ['우타의 헤드셋', '우타'],
+    ['불사조의 깃털', '마르코', '마르코(특강)'],
+]
+
 
 
 let unitRate = [];
@@ -1021,105 +1026,131 @@ function SortFunction(a, b) {
     return 0;
 }
 
+function BuffAdd(event, item)
+{
+    speedBonusEx += event.target.checked ? item[2] : -item[2];
+    manaRegen += event.target.checked ? item[3] : -item[3];
+    healthRegen += event.target.checked ? item[4] : -item[4];
+    item[5] = event.target.checked ? true : false;
+}
+
+function Collect(item, index)
+{
+    if (item[2] != 0) {
+        document.getElementsByClassName(`s${index}`)[0].checked = item[5];
+    }
+    if (item[3] != 0) {
+        document.getElementsByClassName(`m${index}`)[0].checked = item[5];
+    }
+    if (item[4] != 0) {
+        document.getElementsByClassName(`h${index}`)[0].checked = item[5];
+    }
+}
 
 function CheckEvent(Check, item, index) {
     Check.addEventListener("change", (event) => {
-        if (event.target.checked) {
-            speedBonusEx += item[2];
-            manaRegen += item[3];
-            healthRegen += item[4];
-            item[5] = true;
 
-            if (item[2] != 0) {
-                document.getElementsByClassName(`s${index}`)[0].checked = true;
+        let sortCount = unitState.findIndex(items => items[0][0] === item[1]);
+        let unitCount = -1;
+
+        if(sortCount !== -1)
+            unitCount = unitState[sortCount].findIndex(items => items[0] === item[0]);
+
+        if (event.target.checked) {
+
+            if(sortCount !== -1 && unitCount !== -1 && !stunCount[sortCount][unitCount])
+            {
+                stunCount[sortCount][unitCount] = 1;
             }
-            if (item[3] != 0) {
-                document.getElementsByClassName(`m${index}`)[0].checked = true;
+
+            let int = Rate.findIndex((items) => {
+                return items.includes(item[0]);
+            })  ;
+            if(int !== -1)
+            {
+                let row = Rate[int].findIndex(items => items === item[0]);
+
+                BuffAdd(event,BuffState[index]);    
+                
+                let find = -1;
+                for(let i = row-1; i>=0;i--)
+                {
+                    if(BuffState[BuffState.findIndex(items => items[0] === Rate[int][i] )][5]==true)
+                    {
+                        find = BuffState.findIndex((items => items[0] === Rate[int][i]));
+                        break;
+                    }
+                }
+   
+                if(find !== -1)
+                {
+                    event.target.checked = false;
+                     BuffAdd(event, BuffState[find]);
+                     event.target.checked = true;
+                }
+                
+                for(let i=row; i>=0;i--)
+                {
+                    let col = BuffState.findIndex(items => items[0] === Rate[int][i] );
+                    BuffState[col][5] = true;
+                    Collect(BuffState[col], col);
+                }
+
+
             }
-            if (item[4] != 0) {
-                document.getElementsByClassName(`h${index}`)[0].checked = true;
+            else
+            {
+                BuffAdd(event, BuffState[index]);
+                Collect(BuffState[index], index);
             }
         }
         else {
-            speedBonusEx -= item[2];
-            manaRegen -= item[3];
-            healthRegen -= item[4];
-            item[5] = false;
 
-            if (item[2] != 0) {
-                document.getElementsByClassName(`s${index}`)[0].checked = false;
+            if(sortCount !== -1 && unitCount !== -1 && stunCount[sortCount][unitCount])
+                {
+                    stunCount[sortCount][unitCount] = 0;
+                }
+
+            let int = Rate.findIndex((items => items.includes(item[0])));
+
+            if(int !== -1)
+            {
+                let row = Rate[int].findIndex((items => items === item[0] ));
+                let length = Rate[int].length;
+
+                let find = -1;
+                for(let i = length-1; i >= row; i--)
+                {
+                    if(BuffState[BuffState.findIndex(items => items[0] === Rate[int][i] )][5]==true)
+                    {
+                        find = BuffState.findIndex(items => items[0] === Rate[int][i]);
+                        break;
+                    }
+                }
+                BuffAdd(event, BuffState[find]);
+
+
+
+                if(row !== 0)
+                {
+                    event.target.checked = true;
+                    BuffAdd(event, BuffState[BuffState.findIndex(items => items[0] === Rate[int][row-1])]);
+                    event.target.checked = false;
+                }
+
+                for(let i=row;i<length;i++)
+                {
+                    let col = BuffState.findIndex(items => items[0] === Rate[int][i] );
+                    BuffState[col][5] = false;
+                    Collect(BuffState[col], col);
+                }
             }
-            if (item[3] != 0) {
-                document.getElementsByClassName(`m${index}`)[0].checked = false;
-            }
-            if (item[4] != 0) {
-                document.getElementsByClassName(`h${index}`)[0].checked = false;
+            else
+            {
+                BuffAdd(event, BuffState[index]);
+                Collect(BuffState[index], index);
             }
         }
-          let sortCount = -1;
-          let unitCount = -1;
-          sortCount = unitState.findIndex((items) => {
-            return items[0][0] === item[1];
-          })
-          if(sortCount !== -1)
-          unitCount = unitState[sortCount].findIndex((items, index) =>{
-            return index > 0 && items[0] === item[0];
-          })
-
-          if(sortCount !== -1 && unitCount !== -1)
-          {
-            if(stunCount[sortCount][unitCount]===0 && event.target.checked)
-                stunCount[sortCount][unitCount]++;
-            else if(stunCount[sortCount][unitCount] > 0 && event.target.checked === false)
-                stunCount[sortCount][unitCount] = 0;          
-
-            if(item[0]==="우타" )
-            {
-                let index = BuffState.findIndex((items => items.includes("우타의 헤드셋")));
-                if(event.target.checked)
-                {
-                    if(!BuffState[index][5])
-                    {
-                        BuffState[index][5] = true;
-                        document.getElementsByClassName(`s${index}`)[0].checked = true;
-                    }
-                    else
-                    {
-                        speedBonusEx -= BuffState[index][2];
-                    }
-                }
-                else
-                {
-                    speedBonusEx += BuffState[index][2];
-                }
-            }
-          }
-          if(item[0]==="우타의 헤드셋")
-            {
-
-                const sortCount = unitState.findIndex((items) => {
-                    return items[0][0] === "영원함";
-                })
-                const unitCount = unitState[sortCount].findIndex((items)=>{
-                    return items[0] === "우타";
-                })
-
-                if(event.target.checked === false)
-                {                
-                    if(stunCount[sortCount][unitCount])
-                    stunCount[sortCount][unitCount] = 0;
-
-                    let index = BuffState.findIndex(items => items.includes("우타"));
-                    if(document.getElementsByClassName(`s${index}`)[0].checked)
-                    {
-                        document.getElementsByClassName(`s${index}`)[0].checked = false;
-                        speedBonusEx -= 15;
-                    }
-                }
-            }
-
-
-
         UnitTotalStun();
         CountOn();
     })
