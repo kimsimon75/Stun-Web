@@ -215,7 +215,7 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
     ['발라티에', "히든", 22, 0, 0, 0, 0],
     ['크래커', "전설적인", 9, 0, 0, 0, 0],
     ['레일리', "전설적인", 20, 0, 0, 0, 0],
-    ['토키', "전설적인", 20, 0, 0, 0, 0],
+    ['토키', "전설적인", 20, 0, 0, 25, 0],
     ['브룩', "희귀함", 10, 0, 0, 0, 0],
     ['식량 보급', '연구소', 0, 0.8, 0, 0, 0],
     ['키쿄우', '신비함', 0, 1.5, 1.5, 0, 0],
@@ -281,7 +281,6 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
     ['레이쥬', '전설적인', 0, 0, 0, 35, 0],
     ['센고쿠', '전설적인', 0, 0, 0, 20, 0],
     ['스모커', '전설적인', 0, 0, 0, 50, 0],
-    ['토키', '전설적인', 0, 0, 0, 25, 0],
     ['킹', '전설적인', 0, 0, 0, 10, 0],
     ['후지토라', '전설적인', 0, 0, 0, 24, 0],
     ['X-드레이크', '전설적인', 0, 0, 0, 10, 0],
@@ -565,10 +564,12 @@ function openOverlay(sortCount, unitCount) {
     overlay.style.alignItems = "center";
 
     overlay.addEventListener("click", () => {
+        if(sortCount!==400 || unitCount !== 400)
         document.body.removeChild(overlay);
     }) 
 
     // 2. 오버레이 내부의 콘텐츠 박스 div 생성
+
     const overlayContent = document.createElement("div");
     overlayContent.style.width = "22.5vw";
     overlayContent.style.height = "70vh";
@@ -577,6 +578,30 @@ function openOverlay(sortCount, unitCount) {
     overlayContent.style.borderRadius = "5px";
     overlayContent.style.position = "relative";
     overlayContent.style.overflowY = "auto"; // 스크롤 가능하도록 설정
+
+    overlayContent.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
+    if(sortCount === 400 && unitCount === 400)
+        {
+            const closeButton = document.createElement("button");
+            closeButton.innerText = "X";
+            closeButton.style.position = "absolute";
+            closeButton.style.top = "10px";
+            closeButton.style.right = "10px";
+            closeButton.style.background = "red";
+            closeButton.style.color = "white";
+            closeButton.style.border = "none";
+            closeButton.style.padding = "5px 10px";
+            closeButton.style.cursor = "pointer";
+            closeButton.style.fontSize = "16px";
+            closeButton.style.borderRadius = "5px";
+            closeButton.onclick = () => document.body.removeChild(overlay);
+        
+            overlayContent.appendChild(closeButton);
+        }
+
+
 
     // 3. 콘텐츠 박스 상단에 타이틀 추가
     const title = document.createElement("h2");
@@ -589,6 +614,8 @@ function openOverlay(sortCount, unitCount) {
         title.textContent = `가동률 공식`;
     else if (sortCount == 300 && unitCount == 300)
         title.textContent = "이동속도 감소";
+    else if(sortCount == 400 && unitCount == 400)
+        title.textContent = "스턴 계산기";
     else if (sortCount < 0)
         title.textContent = `${speedState[unitCount][0]} (${(speedState[unitCount][1])[0]})`;
     else
@@ -734,6 +761,113 @@ function openOverlay(sortCount, unitCount) {
 
             itemList.appendChild(item);
         }
+    }
+    else if(sortCount == 400 && unitCount == 400)
+    {
+        for(let i=0; i<=5;i++)
+        {   overlayContent.style.margin = "auto";
+
+            const item = document.createElement("div");
+
+            const input = document.createElement("input");
+            input.type = "number";
+            input.style.width = "90%";
+            input.style.padding = "8px";
+            input.style.margin = "5px 5px";
+
+            switch(i)
+            {
+                case 0:            
+                    item.textContent = "공격 주기: ";
+                    input.id = "attack_speed";
+                    break;
+                case 1:
+                    item.textContent = "공속 보너스 (%): ";
+                    input.id = "attack_speed_bonus";
+                    break;
+                    case 2:
+                        item.textContent = "스턴 1 확률 (%): ";
+                        input.id = "stun1_prob";
+                        break;
+                    case 3:
+                        item.textContent = "스턴 1 지속시간 (초): ";
+                        input.id = "stun1_duration";
+                        break;                
+                        case 4:
+                        item.textContent = "스턴 2 확률 (%): ";
+                        input.id = "stun2_prob";
+                        break;
+                    case 5:
+                        item.textContent = "스턴 2 지속시간 (초): ";
+                        input.id = "stun2_duration";
+                        break;
+            }
+            item.appendChild(input);
+            overlayContent.appendChild(item);
+
+        }
+        
+        const StunButton = document.createElement("button");
+        StunButton.className = "Button";
+        StunButton.style.fontSize = "1.1vw";
+        StunButton.innerText = "입  력";
+        StunButton.style.width = "100%";
+        StunButton.style.padding = "10px";
+        StunButton.style.marginTop = "10px";
+
+        ButtonColor(StunButton);
+
+        StunButton.addEventListener("click", ()=>{
+            document.querySelectorAll(".StunDocument").forEach(el => overlayContent.removeChild(el));
+
+           
+            const attack_speed = document.getElementById("attack_speed").value;
+            const attack_speed_bonus = document.getElementById("attack_speed_bonus").value;
+            const t = 1 / attack_speed *( (1 + parseFloat((attack_speed_bonus/100).toFixed(3)) ) > 5 ? 5 : (1 + parseFloat((attack_speed_bonus/100).toFixed(3))) );
+            const bigOne = document.getElementById("stun1_duration").value > document.getElementById("stun2_duration").value ? true : false;
+
+            let x1 = parseFloat((document.getElementById("stun1_prob").value / 100).toFixed(3));
+            const s1 = document.getElementById("stun1_duration").value;
+            const n1 = Math.floor(s1 * t);
+            let x2 = parseFloat((document.getElementById("stun2_prob").value / 100).toFixed(3));
+            const s2 = document.getElementById("stun2_duration").value;
+            const n2 = Math.floor(s2 * t);
+
+            x1 = bigOne ? x1 : (x1 - x1 * x2);
+            x2 = !bigOne ? x2 : (x2 - x1 * x2);
+            
+            const degree1 = 1 + ( x1 * s1 * t - n1 * x1 -1 ) * Math.pow( 1 - x1 , n1 );
+            const degree2 = 1 + ( x2 * s2 * t - n2 * x2 -1 ) * Math.pow( 1 - x2 , n2 );
+            if(attack_speed===0 || attack_speed_bonus === 0 || x1 === 0 || s1 === 0)
+                alert("잘못된 정보입니다.");
+            else
+            for(let i=0;i<=5;i++)
+            {   
+                const Stun = document.createElement("div");
+                Stun.className = "StunDocument"
+                switch(i)
+                {
+                    case 0:
+                        Stun.innerText = `공격 속도 : ${t.toFixed(3)}`
+                        break;
+                    case 1:
+                        Stun.innerText = `스턴 1 등급 : ${(Math.log(1-degree1) / Math.log(0.2)).toFixed(3)} 스턴`
+                        break;
+                    case 2:
+                        Stun.innerText = `스턴 1 가동률 : ${(degree1*100).toFixed(3)} %`
+                        break;                    
+                    case 3:
+                        Stun.innerText = `스턴 2 등급 : ${(Math.log(1-degree2) / Math.log(0.2)).toFixed(3)} 스턴`
+                        break;
+                    case 4:
+                        Stun.innerText = `스턴 2 가동률 : ${(degree2*100).toFixed(3)} %`
+                        break;
+                }
+                overlayContent.appendChild(Stun);
+            }
+        })
+
+        overlayContent.appendChild(StunButton);
     }
     else if (sortCount == -1) {
         if (speedState[unitCount][5] == 0)
@@ -1279,14 +1413,14 @@ function CheckEvent(Check, item, index) {
 }
 
 function ButtonColor(name) {
-    name.style.background = "rgb(245, 245, 245)";
+    name.style.background = "rgb(235, 235, 235)";
 
     name.addEventListener('mouseenter', () => {
-        name.style.background = "rgb(225, 225, 225)";
+        name.style.background = "rgb(215, 215, 215)";
     });
 
     name.addEventListener('mouseleave', () => {
-        name.style.background = "rgb(245, 245, 245)";
+        name.style.background ="rgb(235, 235, 235)";
     });
 
     name.addEventListener('mousedown', () => {
@@ -1843,6 +1977,20 @@ function Stack() {
 
     document.getElementsByClassName(`Stack3`)[0].appendChild(Formula);
 
+    const StunCalCulateMachine = document.createElement("div");
+    StunCalCulateMachine.className = "Button Machine SmallFont";
+    StunCalCulateMachine.innerText = "스턴 계산기";
+    StunCalCulateMachine.style.gridArea = "1/ 2/ 2/ 3";
+    StunCalCulateMachine.style.alignContent = "center";
+    StunCalCulateMachine.style.textAlign = "center";
+    StunCalCulateMachine.addEventListener("click", () =>
+    {
+        openOverlay(400, 400);
+    })
+
+    document.getElementsByClassName(`Stack3`)[0].appendChild(StunCalCulateMachine);
+    ButtonColor(StunCalCulateMachine);
+
     if (document.getElementById("container1")) {
         const Mana = document.createElement("div");
         Mana.className = "Button Mana SmallFont";
@@ -2303,7 +2451,7 @@ let socket;
 let reconnectAttempts = 0;
 
 function connectWebSocket(){
-    socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production/");
+    socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production");
 
  
     socket.onopen = (event) => {
