@@ -407,18 +407,18 @@ const UnitTotalStun = () => {
             else if (unitState[sortCount][unitCount][0] === "흰수염") // 흰수염
             {
                 if(mana)
-                    stun = Math.log((1 - StunCalCulator(t, x1, s1, 0.69)) *
+                    stun = Math.log((1 - StunCalCulator(1/t, x1, s1, 0.69)) *
                         (1 - ( m_stun / (maxMana / (t + healthRegen + 0.5))))) / Math.log(0.2);
                 else
-                    stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.69)) / Math.log(0.2);
+                    stun = Math.log(1 - StunCalCulator(1/t, x1, s1, 0.69)) / Math.log(0.2);
             }
             else if(unitState[sortCount][unitCount][0] === "흰수염(약주)")
             {
                 if(mana)
-                    stun = Math.log((1 - StunCalCulator(t, x1, s1, 0.49)) *
+                    stun = Math.log((1 - StunCalCulator(1/t, x1, s1, 0.49)) *
                 (1 - ( m_stun / (maxMana / (t + healthRegen + 0.5))))) / Math.log(0.2);
                 else
-                    stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.49)) / Math.log(0.2);
+                    stun = Math.log(1 - StunCalCulator(1/t, x1, s1, 0.49)) / Math.log(0.2);
                 
             }
             else if (unitState[sortCount][unitCount][0]==="타츠마키") // 타츠마키
