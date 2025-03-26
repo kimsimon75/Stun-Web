@@ -337,7 +337,6 @@ const StunCalCulator =(T,X,S,L) =>
         if(T==0 || X==0 || S==0 || L==0)
             return 0;
         const n = Math.floor((S - L)/T) + 1;
-        console.log(n, S, T);
         const stun_duration = (L-T) * ( 1 - Math.pow(1 - X, n) ) + T / X * (1 - (n * X + 1) * Math.pow(1 - X, n)) + S *  Math.pow(1-X,n);
         const total_duration = L-T + T / X;
     
@@ -364,7 +363,7 @@ const UnitTotalStun = () => {
             var s1 = unitState[sortCount][unitCount][4];
             var s2 = unitState[sortCount][unitCount][6];
             let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))));
-            t = 1/t;
+
             if(unitState[sortCount][unitCount][0]==="우타")
             {
                 const index = BuffState.findIndex((items) => {return items.includes("우타의 헤드셋")});
@@ -451,7 +450,7 @@ const UnitTotalStun = () => {
                     stun = Math.log((1-(1 + (0.18 * s1 * t2 - n2 * 0.18 - 1) * Math.pow(1 - 0.18, n2)) * 4.25 / time )- (1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1))* (time - 4.25) / time) / Math.log(0.2);
             }
             else if (mana)
-                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (t + manaRegen)) : 0))) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(1/t, x1, s1, 1/t)) * (1-StunCalCulator(1/t, x2, s2, 1/t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (t + manaRegen)) : 0))) / Math.log(0.2);
             else
                 stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2)) / Math.log(0.2);
 
