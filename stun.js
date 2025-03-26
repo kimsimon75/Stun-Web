@@ -61,7 +61,8 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     ['센고쿠', 3.3, 0.7, 0.1, 2.85, 0, 0, 0, 0, 0],
     ['센고쿠(특강)', 3.3, 0.7, 0.1, 2.85, 0.08, 2.5, 0, 0, 0],
     ['시키', 3.3, 0.49, 0.1, 3, 0, 0, 125, 3, 0],
-    ['흰수염', 3.3, 0.73, 0.05, 3, 0, 0, 115, 3, 0],],
+    ['흰수염', 3.3, 0.73, 0.05, 3, 0, 0, 115, 3, 0],
+    ['흰수염(약주)', 3.3, 0.73, 0.05, 3, 0, 0, 115, 3, 0]],
 
     [['영원한'],
     ['니카', 3.35, 0.57, 0.04, 2, 0, 0, 150, 3, 25],
@@ -304,15 +305,15 @@ let unitRate = [];
 let stunCount = [];
 let Sort = [];
 
-for (var i = 0; i < 8; i++) {
-    unitRate[i] = [];
-    stunCount[i] = [];
+for (var sortCount = 0; sortCount < 8; sortCount++) {
+    unitRate[sortCount] = [];
+    stunCount[sortCount] = [];
 }
 
-for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 10; j++) {
-        unitRate[i][j] = 0;
-        stunCount[i][j] = 0;
+for (let sortCount = 0; sortCount < 8; sortCount++) {
+    for (let unitCount = 0; unitCount < 10; unitCount++) {
+        unitRate[sortCount][unitCount] = 0;
+        stunCount[sortCount][unitCount] = 0;
     }
 }
 
@@ -331,6 +332,17 @@ var rateSort = 0;
 var moveSpeedSort = 0;
 var afterShockSort = 0;
 
+const StunCalCulator =(T,X,S,L) =>
+    {
+        if(T==0 || X==0 || S==0 || L==0)
+            return 0;
+        const n = Math.floor((S - L)/T) + 1;
+        console.log(n, S, T);
+        const stun_duration = (L-T) * ( 1 - Math.pow(1 - X, n) ) + T / X * (1 - (n * X + 1) * Math.pow(1 - X, n)) + S *  Math.pow(1-X,n);
+        const total_duration = L-T + T / X;
+    
+        return stun_duration / total_duration;
+    }
 
 const UnitTotalStun = () => {
 
@@ -342,40 +354,45 @@ const UnitTotalStun = () => {
     m_god = parseFloat((484.625-3.875*speedDebuff).toFixed(3)) < 70 ? 70 : parseFloat((484.625-3.875*speedDebuff).toFixed(3)) > 490 ? 490 : parseFloat((484.625-3.875*speedDebuff).toFixed(3));
     m_nightmare = parseFloat((542.75-3.875*speedDebuff).toFixed(3)) < 70 ? 70 : parseFloat((542.75-3.875*speedDebuff).toFixed(3)) > 490 ? 490 : parseFloat((542.75-3.875*speedDebuff).toFixed(3));
 
-    for (var i = 0; i < 8; i++)
+    for (var sortCount = 0; sortCount < 8; sortCount++)
     {
-        for (var j = 1; j < unitState[i].length; j++)
+        for (var unitCount = 1; unitCount < unitState[sortCount].length; unitCount++)
         {
             
-            var x1 = unitState[i][j][3];
-            var x2 = (1 - unitState[i][j][3]) * unitState[i][j][5];
-            var s1 = unitState[i][j][4];
-            var s2 = unitState[i][j][6];
-            let t = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? speedBonusEx - unitState[i][j][9] : speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? speedBonusEx - unitState[i][j][9] : speedBonusEx) / 100).toFixed(3))));
-            
-            if(unitState[i][j][0]==="우타")
+            var x1 = unitState[sortCount][unitCount][3];
+            var x2 = (1 - unitState[sortCount][unitCount][3]) * unitState[sortCount][unitCount][5];
+            var s1 = unitState[sortCount][unitCount][4];
+            var s2 = unitState[sortCount][unitCount][6];
+            let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))));
+            t = 1/t;
+            if(unitState[sortCount][unitCount][0]==="우타")
             {
                 const index = BuffState.findIndex((items) => {return items.includes("우타의 헤드셋")});
-                t = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((( speedBonusEx - (stunCount[i][j] ? unitState[i][j][9] - BuffState[index][2] : 0) - (BuffState[index][6] ? BuffState[index][2] : 0)) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat((( speedBonusEx - (stunCount[i][j] ? unitState[i][j][9] - BuffState[index][2]: 0) - (BuffState[index][6] ? BuffState[index][2] : 0)) / 100).toFixed(3))));
+                t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((( speedBonusEx - (stunCount[sortCount][unitCount] ? unitState[sortCount][unitCount][9] - BuffState[index][2] : 0) - (BuffState[index][6] ? BuffState[index][2] : 0)) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((( speedBonusEx - (stunCount[sortCount][unitCount] ? unitState[sortCount][unitCount][9] - BuffState[index][2]: 0) - (BuffState[index][6] ? BuffState[index][2] : 0)) / 100).toFixed(3))));
             }
-            var maxMana = unitState[i][j][7];
-            var m_stun = unitState[i][j][8];
+            var maxMana = unitState[sortCount][unitCount][7];
+            var m_stun = unitState[sortCount][unitCount][8];
             var n1 = Math.floor(s1 * t);
             var n2 = Math.floor(s2 * t);
             var stun = 0;
 
-            if (unitState[i][j][0] === "라분") // 라분
+            if (unitState[sortCount][unitCount][0] === "라분") // 라분
             {
                 for (var k = 0; k < 6; k++) {
                     window['time' + k] = k / t;
                 }
                 stun = Math.log(1 - (((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + ((0.65 + time2 > 2.15) ? 2.15 : (0.65 + time2)) * 0.27 * Math.pow(1 - 0.27, 2) + ((0.65 + time3 > 2.15) ? 2.15 : (0.65 + time3)) * 0.27 * Math.pow(1 - 0.27, 3) + ((0.65 + time4 > 2.15) ? 2.15 : (0.65 + time4)) * 0.27 * Math.pow(1 - 0.27, 4) + ((0.65 + time5 > 2.15) ? 2.15 : (0.65 + time5)) * (1 - 0.27 - 0.27 * (1 - 0.27) - 0.27 * Math.pow(1 - 0.27, 2) - 0.27 * Math.pow(1 - 0.27, 3) - 0.27 * Math.pow(1 - 0.27, 4))) / ((0.65 + time0) * 0.27 + (0.65 + time1) * 0.27 * (1 - 0.27) + (0.65 + time2) * 0.27 * Math.pow(1 - 0.27, 2) + (0.65 + time3) * 0.27 * Math.pow(1 - 0.27, 3) + (0.65 + time4) * 0.27 * Math.pow(1 - 0.27, 4) + (0.65 + time5 ) * (1 - (0.27 + 0.27 * Math.pow(1 - 0.27, 1) + 0.27 * Math.pow(1 - 0.27, 2) + 0.27 * Math.pow(1 - 0.27, 3) + 0.27 * Math.pow(1 - 0.27, 4))))) / Math.log(0.2);
             }
-            else if (unitState[i][0][0] === '초월함' && unitState[i][j][0] === "샹크스") // 샹크스
+            else if(unitState[sortCount][unitCount][0] === "죠즈")
+            {
+                n1=0;
+                stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.855)) / Math.log(0.2);
+            }
+            else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "샹크스") // 샹크스
             {
                 stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2) * (1 - 3 / 14.25) * (1 - 3 * (1.35 + manaRegen) / 35)) / Math.log(0.2);
             }
-            else if (unitState[i][0][0] === '초월함' && unitState[i][j][0] === "루피")
+            else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "루피")
             {
                 let n3 = Math.ceil(1.75 * t);
                 let time = n3 / t;
@@ -385,36 +402,44 @@ const UnitTotalStun = () => {
                 else
                     stun = Math.log(1 - ((time + 1 / t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + 1 / t / 0.0125)) * (1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1))) / Math.log(0.2);
             }
-            else if (unitState[i][0][0] ==='초월함' &&  unitState[i][j][0] === "아오키지") // 아오키지
+            else if (unitState[sortCount][0][0] ==='초월함' &&  unitState[sortCount][unitCount][0] === "아오키지") // 아오키지
             {
                 stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * (1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + 1 / t * manaRegen))) + 50 / (t + manaRegen)))) / Math.log(0.2);
             }
-            else if (unitState[i][j][0] === "흰수염") // 흰수염
+            else if (unitState[sortCount][unitCount][0] === "흰수염") // 흰수염
             {
                 if(mana)
-                    stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) *
-                        -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2) *
+                    stun = Math.log((1 - StunCalCulator(t, x1, s1, 0.69)) *
                         (1 - ( m_stun / (maxMana / (t + healthRegen + 0.5))))) / Math.log(0.2);
                 else
-                    stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2)) / Math.log(0.2);
+                    stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.69)) / Math.log(0.2);
             }
-            else if (unitState[i][j][0]==="타츠마키") // 타츠마키
+            else if(unitState[sortCount][unitCount][0] === "흰수염(약주)")
+            {
+                if(mana)
+                    stun = Math.log((1 - StunCalCulator(t, x1, s1, 0.49)) *
+                (1 - ( m_stun / (maxMana / (t + healthRegen + 0.5))))) / Math.log(0.2);
+                else
+                    stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.49)) / Math.log(0.2);
+                
+            }
+            else if (unitState[sortCount][unitCount][0]==="타츠마키") // 타츠마키
             {
                 if(mana)
                     stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2) * (1 - (m_stun / (maxMana / (t + healthRegen))))) / Math.log(0.2);
                 else
                     stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2)) / Math.log(0.2);
             }
-            else if (unitState[i][j][0] === "크로커다일(특강)")
+            else if (unitState[sortCount][unitCount][0] === "크로커다일(특강)")
             {
                 if (mana)
                     stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (t + healthRegen)) : 0))) / Math.log(0.2);
                 else
                     stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2)) / Math.log(0.2);
             }
-            else if (unitState[i][j][0] === "니카")
+            else if (unitState[sortCount][unitCount][0] === "니카")
             {
-                let t2 = 1 / unitState[i][j][2] * ((1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? speedBonusEx - unitState[i][j][9] : speedBonusEx) / 100).toFixed(3)) - 2.25 > 5) ? 5 : (1 + unitState[i][j][1] + parseFloat((((stunCount[i][j]) ? speedBonusEx - unitState[i][j][9] : speedBonusEx) / 100).toFixed(3))- 2.25));
+                let t2 = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3)) - 2.25 > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))- 2.25));
                 let time = (4.25 + ((115 - 4.25 * (t2 + healthRegen + 0.25)) / (t + healthRegen + 0.25)) <= 4.25) ? 4.25 : (4.25 + ((115 - 4.25 * (t2 + healthRegen + 0.25)) / (t + healthRegen + 0.25)));
                 n2 = Math.floor(s1 * t2);
 
@@ -426,11 +451,11 @@ const UnitTotalStun = () => {
                     stun = Math.log((1-(1 + (0.18 * s1 * t2 - n2 * 0.18 - 1) * Math.pow(1 - 0.18, n2)) * 4.25 / time )- (1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1))* (time - 4.25) / time) / Math.log(0.2);
             }
             else if (mana)
-                stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (t + manaRegen)) : 0))) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (t + manaRegen)) : 0))) / Math.log(0.2);
             else
                 stun = Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * -(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2)) / Math.log(0.2);
 
-            unitRate[i][j] = stun;
+            unitRate[sortCount][unitCount] = stun;
         }
     }
 }
@@ -1245,10 +1270,10 @@ function ClearAll() {
 
 
     if (document.getElementById("container1") != null)
-        for (var i = 0; i < unitState.length; i++) {
-            for (var j = 1; j < unitState[i].length; j++) {
-                stunCount[i][j] = 0;
-                document.getElementById(`c-${i}-${j}`).innerText = "0";
+        for (var sortCount = 0; sortCount < unitState.length; sortCount++) {
+            for (var unitCount = 1; unitCount < unitState[sortCount].length; unitCount++) {
+                stunCount[sortCount][unitCount] = 0;
+                document.getElementById(`c-${sortCount}-${unitCount}`).innerText = "0";
             }
         }
 
