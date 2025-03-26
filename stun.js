@@ -384,8 +384,7 @@ const UnitTotalStun = () => {
             }
             else if(unitState[sortCount][unitCount][0] === "죠즈")
             {
-                n1=0;
-                stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.855)) / Math.log(0.2);
+                stun = Math.log(1 - StunCalCulator(1/t, x1, s1, 0.855)) / Math.log(0.2);
             }
             else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "샹크스") // 샹크스
             {
