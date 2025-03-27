@@ -1326,6 +1326,11 @@ function Collect(item, index)
     {
         if(item[i+2] != 0)
         {
+            if(document.getElementById("container2") !== null)
+            {
+                document.getElementsByClassName(ClassN[i])[1].checked = item[6];    
+            }
+
             document.getElementsByClassName(ClassN[i])[0].checked = item[6];
         }
     }        
@@ -1525,7 +1530,7 @@ function Stack() {
     document.getElementsByClassName(`Stack0`)[0].appendChild(clear);
 
     const DebuffOverlay = document.createElement("div");
-    DebuffOverlay.className = "SpeedBonusExOverlay";
+    DebuffOverlay.className = "DebuffOverlay";
     DebuffOverlay.style.position = "fixed";
     DebuffOverlay.style.top = 0;
     DebuffOverlay.style.left = 0;
@@ -1562,6 +1567,7 @@ function Stack() {
     DebuffScroll.style.background = "white";
     DebuffScroll.style.border = "0.05rem solid #ccc";
     DebuffScroll.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+
 
     // ✅ 2️⃣ 검색창(`DebuffspeedBonusExSearchBar`)을 `DebuffScroll` 안에 동적으로 추가
     const DebuffspeedBonusExSearchBar = document.createElement("div");
@@ -1813,27 +1819,14 @@ function Stack() {
     
                 const Check = document.createElement("input");
                 Check.type = "checkbox";
+                const CheckName = [`s${index}`,`m${index}`,`h${index}`,`d${index}`]; 
+                Check.className = CheckName[i];
                 Check.style.position = 'relative';
                 Check.style.zIndex = 10;
                 Check.style.marginRight = "0.7vw";
                 Check.style.transform = "scale(1.5)";
                 Check.dataset.value = item[2+i];
-                Check.checked = item[6];        
-                switch(i)
-                {
-                    case 0:
-                        Check.className = `s${index}`;
-                        break;
-                        case 1:
-                            Check.className = `m${index}`;
-                            break;
-                            case 2:
-                                Check.className = `h${index}`;
-                                break;
-                                case 3:
-                                Check.className = `d${index}`;
-                                break;
-                }
+                Check.checked = item[6];   
     
                 CheckEvent(Check, item, index);
     
