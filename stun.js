@@ -800,9 +800,10 @@ function openOverlay(sortCount, unitCount) {
 
             const input = document.createElement("input");
             input.type = "number";
+            input.style.fontSize = "0.65vw";
             input.style.width = "90%";
-            input.style.padding = "8px";
-            input.style.margin = "5px 5px";
+            input.style.padding = "0.4vw";
+            input.style.margin = "0.2vw 0.2vw";
 
             switch(i)
             {
@@ -841,8 +842,8 @@ function openOverlay(sortCount, unitCount) {
         StunButton.style.fontSize = "1.1vw";
         StunButton.innerText = "입  력";
         StunButton.style.width = "100%";
-        StunButton.style.padding = "10px";
-        StunButton.style.marginTop = "10px";
+        StunButton.style.padding = "0.4vw";
+        StunButton.style.marginTop = "0.4vw";
 
         ButtonColor(StunButton);
 
@@ -852,7 +853,7 @@ function openOverlay(sortCount, unitCount) {
            
             const attack_speed = document.getElementById("attack_speed").value;
             const attack_speed_bonus = document.getElementById("attack_speed_bonus").value;
-            const t = 1 / attack_speed *( (1 + parseFloat((attack_speed_bonus/100).toFixed(3)) ) > 5 ? 5 : (1 + parseFloat((attack_speed_bonus/100).toFixed(3))) );
+            const t = attack_speed /( (1 + parseFloat((attack_speed_bonus/100).toFixed(3)) ) > 5 ? 5 : (1 + parseFloat((attack_speed_bonus/100).toFixed(3))) );
             const bigOne = document.getElementById("stun1_duration").value > document.getElementById("stun2_duration").value ? true : false;
 
             let x1 = parseFloat((document.getElementById("stun1_prob").value / 100).toFixed(3));
@@ -865,8 +866,8 @@ function openOverlay(sortCount, unitCount) {
             x1 = bigOne ? x1 : (x1 - x1 * x2);
             x2 = !bigOne ? x2 : (x2 - x1 * x2);
             
-            const degree1 = 1 + ( x1 * s1 * t - n1 * x1 -1 ) * Math.pow( 1 - x1 , n1 );
-            const degree2 = 1 + ( x2 * s2 * t - n2 * x2 -1 ) * Math.pow( 1 - x2 , n2 );
+            const degree1 = StunCalCulator(t, x1, s1, t);
+            const degree2 = StunCalCulator(t, x2, s2, t);
             if(attack_speed===0 || attack_speed_bonus === 0 || x1 === 0 || s1 === 0)
                 alert("잘못된 정보입니다.");
             else
