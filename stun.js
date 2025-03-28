@@ -123,6 +123,7 @@ const stunRange = [
         [525, 500, 0], //센고쿠(특강)
         [600, 0, 600], //시키
         [625, 0, 0], //흰수염
+        [625, 0, 0], //흰수염(약주)
     ],
     [
         [500, 0, 750], // 니카
@@ -574,10 +575,26 @@ function lowSpeed(unitcount, AfterShock) {
     return Rate;
 }
 
-function openOverlay(sortCount, unitCount) {
+function closeOverlay() {
+    const overlay = document.getElementById("overlay");
+    if (overlay) {
+        document.body.removeChild(overlay);
+        document.removeEventListener("keydown", handleEnterKey); // 🔥 이벤트 제거
+    }
+}
 
-    
-    // 1. 오버레이 div 생성
+// ✅ 엔터 키 이벤트 핸들러
+function handleEnterKey(event) {
+    if (event.code === "Enter") {
+        closeOverlay(); // 엔터를 누르면 오버레이 닫기
+    }
+}
+
+// ✅ 오버레이 열기 함수 (중복 실행 방지)
+function openOverlay(sortCount, unitCount) {
+    if (document.getElementById("overlay")) return; // 이미 오버레이가 있으면 실행 안 함
+
+    // 🔥 오버레이 생성
     const overlay = document.createElement("div");
     overlay.id = "overlay";
     overlay.style.position = "fixed";
@@ -591,12 +608,9 @@ function openOverlay(sortCount, unitCount) {
     overlay.style.justifyContent = "center";
     overlay.style.alignItems = "center";
 
-    overlay.addEventListener("click", () => {
-        if(sortCount!==400 || unitCount !== 400)
-        document.body.removeChild(overlay);
-    }) 
-
-    // 2. 오버레이 내부의 콘텐츠 박스 div 생성
+    overlay.tabIndex = -1;
+    if(sortCount !== 400 && unitCount !== 400)
+        overlay.addEventListener("click", closeOverlay);
 
     const overlayContent = document.createElement("div");
     overlayContent.style.width = "22.5vw";
@@ -605,11 +619,41 @@ function openOverlay(sortCount, unitCount) {
     overlayContent.style.backgroundColor = "white";
     overlayContent.style.borderRadius = "5px";
     overlayContent.style.position = "relative";
-    overlayContent.style.overflowY = "auto"; // 스크롤 가능하도록 설정
+    overlayContent.style.overflowY = "auto"; // 스크롤 가능
 
     overlayContent.addEventListener("click", function (event) {
         event.stopPropagation();
     });
+
+    overlay.appendChild(overlayContent);
+    document.body.appendChild(overlay);
+
+    if(sortCount !== 400 && unitCount !== 400)
+        document.addEventListener("keydown", handleEnterKey); // 🔥 오버레이가 떴을 때만 이벤트 추가
+
+    else
+    overlayContent.addEventListener("keydown", (event) => {
+        if (event.code === "Enter") {
+            event.preventDefault(); // 기본 스크롤 방지
+
+            const inputs = overlayContent.querySelectorAll("input"); // overlay 내부 input 가져오기
+            let currentIndex = Array.from(inputs).indexOf(document.activeElement); // 현재 포커스된 input 찾기
+
+            if (currentIndex !== -1) {
+                if (currentIndex < inputs.length - 1) {
+                    // 다음 input으로 포커스 이동
+                    inputs[currentIndex + 1].focus();
+                } else {
+                    // 마지막 input이면 "입력" 버튼 클릭
+                    document.getElementsByClassName("StunButton")[0].click();
+                }
+            }
+        }
+    });
+    
+    setTimeout(() => {
+        overlay.focus();
+    }, 0);
     if(sortCount === 400 && unitCount === 400)
         {
             const closeButton = document.createElement("button");
@@ -837,7 +881,7 @@ function openOverlay(sortCount, unitCount) {
         }
         
         const StunButton = document.createElement("button");
-        StunButton.className = "Button";
+        StunButton.className = "StunButton";
         StunButton.style.fontSize = "1.1vw";
         StunButton.innerText = "입  력";
         StunButton.style.width = "100%";
@@ -845,6 +889,7 @@ function openOverlay(sortCount, unitCount) {
         StunButton.style.marginTop = "0.4vw";
 
         ButtonColor(StunButton);
+
 
         StunButton.addEventListener("click", ()=>{
             document.querySelectorAll(".StunDocument").forEach(el => overlayContent.removeChild(el));
@@ -1263,6 +1308,34 @@ function openOverlay(sortCount, unitCount) {
 
     // 7. 오버레이를 body에 추가
     document.body.appendChild(overlay);
+}
+
+function ClearAll() {
+    speedBonusEx = 0;
+    totalStun = 0;
+    manaRegen = 0;
+    healthRegen = 0;
+    speedDebuff = 0;
+
+
+    if (document.getElementById("container1") != null)
+        for (var sortCount = 0; sortCount < unitState.length; sortCount++) {
+            for (var unitCount = 1; unitCount < unitState[sortCount].length; unitCount++) {
+                stunCount[sortCount][unitCount] = 0;
+                document.getElementById(`c-${sortCount}-${unitCount}`).innerText = "0";
+            }
+        }
+
+    BuffState.forEach((item) => {
+        item[6] = false;
+    })
+
+    document.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
+        checkbox.checked = false;
+    })
+
+    UnitTotalStun();
+    CountOn();
 }
 
 function SortFunction(a, b) {
