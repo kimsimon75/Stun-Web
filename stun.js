@@ -362,7 +362,6 @@ const UnitTotalStun = () => {
             var unitSpeedBonusEx = parseFloat((unitState[sortCount][unitCount][1] + parseFloat(((stunCount[sortCount][unitCount] ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))).toFixed(3));
             if(unitState[sortCount][unitCount][0]==="우타" && BuffState[BuffState.findIndex(items => items[0] === "우타의 헤드셋")][6])
                 {
-                    console.log("hello");
                     const index = BuffState.findIndex((items) => {return items[0] === ("우타의 헤드셋")});
                     unitSpeedBonusEx = parseFloat((unitState[sortCount][unitCount][1] + parseFloat(((stunCount[sortCount][unitCount] ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx - ((BuffState[index][6]&&!stunCount[sortCount][unitCount]) ? BuffState[index][2] : 0)) / 100).toFixed(3))).toFixed(3));
     
@@ -1266,34 +1265,6 @@ function openOverlay(sortCount, unitCount) {
     document.body.appendChild(overlay);
 }
 
-function ClearAll() {
-    speedBonusEx = 0;
-    totalStun = 0;
-    manaRegen = 0;
-    healthRegen = 0;
-    speedDebuff = 0;
-
-
-    if (document.getElementById("container1") != null)
-        for (var sortCount = 0; sortCount < unitState.length; sortCount++) {
-            for (var unitCount = 1; unitCount < unitState[sortCount].length; unitCount++) {
-                stunCount[sortCount][unitCount] = 0;
-                document.getElementById(`c-${sortCount}-${unitCount}`).innerText = "0";
-            }
-        }
-
-    BuffState.forEach((item) => {
-        item[6] = false;
-    })
-
-    document.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
-        checkbox.checked = false;
-    })
-
-    UnitTotalStun();
-    CountOn();
-}
-
 function SortFunction(a, b) {
     if (lowSpeed(speedState.indexOf(a), 1) < lowSpeed(speedState.indexOf(b), 1)) return 1;
     if (lowSpeed(speedState.indexOf(a), 1) > lowSpeed(speedState.indexOf(b), 1)) return -1;
@@ -1525,7 +1496,9 @@ function Stack() {
     const clear = document.createElement("div");
     clear.className = "Button clear BigFont";
     clear.innerText = '초기화';
-    clear.addEventListener("click", ClearAll);
+    clear.addEventListener("click", ()=>{
+        location.reload();
+    });
     ButtonColor(clear);
 
     document.getElementsByClassName(`Stack0`)[0].appendChild(clear);
