@@ -585,7 +585,7 @@ function closeOverlay() {
 
 // ✅ 엔터 키 이벤트 핸들러
 function handleEnterKey(event) {
-    if (event.code === "Enter") {
+    if (event.code === "Enter" || event.code === "NumpadEnter") {
         closeOverlay(); // 엔터를 누르면 오버레이 닫기
     }
 }
@@ -633,7 +633,7 @@ function openOverlay(sortCount, unitCount) {
 
     else
     overlayContent.addEventListener("keydown", (event) => {
-        if (event.code === "Enter") {
+        if (event.code === "Enter" || event.code === "NumpadEnter") {
             event.preventDefault(); // 기본 스크롤 방지
 
             const inputs = overlayContent.querySelectorAll("input"); // overlay 내부 input 가져오기
