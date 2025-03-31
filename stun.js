@@ -202,7 +202,7 @@ const speedState = // 공속 보너스, 공속, 발이감 확률, 발이감 지�
         ['시키(4레벨)', unitRates.불멸의, 3.3, 8.776, 0, 0, 0, 0.045, 5, 35],
     ];
 
-const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
+const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 이감, 체크
     ['아냐 포저', "신비함", 30, 1.75, 2, 40, 0],
     ['츠바사', "랜덤", 20, 0, 0, 0, 0],
     ['베티', "특수함", 11, 1.25, 2, 0, 0],
@@ -245,7 +245,7 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
     ['둔화의 지팡이', '아이템', 0, 0, 0, 12, 0],
     ['비구름생성기', '아이템', 0, 0, 0, 12, 0],
     ['기후 변화', '연구소', 0, 0, 0, 10, 0],
-    ['냉철함', '연구소', 0, 0, 0, 6, 0],
+    ['냉철함(아오키지)', '연구소', 0, 0, 0, 6, 0],
     ['패왕의 길', '항법', 0, 0, 0, 5, 0],
     ['사토루', '신비함', 0, 0, 0, 30, 0],
     ['히그마', '신비함', 0, 0, 0, 30, 0],
@@ -293,6 +293,7 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 체크
     ['스모커', '특별함', 0, 0, 0, 5, 0],
     ['키드', '특별함', 0, 0, 0, 5, 0],
     ['크로커다일', '특별함', 0, 0, 0, 5, 0],
+    ['신속함(키자루)', '연구소', 4, 0, 0, 0, 0],
 ]
 
 const Rate = [
@@ -300,6 +301,18 @@ const Rate = [
     ['불사조의 깃털', '마르코', '마르코(특강)'],
 ]
 
+const Mana = [
+    ['미호크', unitRates.영원한,1.45, 0.93, 175],
+    ['에넬', unitRates.제한됨, 2.85, 0.75,  145],
+    ['핸콕', unitRates.영원한, 3.3, 0.74, 175],
+    ['에이스', unitRates.영원한, 3.14, 0.58, 185],
+    ['제트', unitRates.불멸의, 3.3, 0.66, 160],
+    ['쿠마', unitRates.전설적인, 2.95, 0.69, 115],
+    ['오뎅', unitRates.영원한, 3.15, 0.64, 145],
+    ['프랑키', unitRates.초월함, 3.35, 0.75, 150],
+    ['시라호시', unitRates.초월함, 3.35, 0.7, 120],
+    ['타시기', unitRates.초월함, 3.35, 0.88, 135],  
+]
 
 
 let unitRate = [];
@@ -603,6 +616,8 @@ function openOverlay(sortCount, unitCount) {
     overlay.style.width = "100%";
     overlay.style.height = "100%";
     overlay.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+    if(sortCount === 600)
+        overlay.style.backgroundColor = "none";
     overlay.style.zIndex = 1000;
     overlay.style.display = "flex";
     overlay.style.justifyContent = "center";
@@ -688,6 +703,10 @@ function openOverlay(sortCount, unitCount) {
         title.textContent = "이동속도 감소";
     else if(sortCount == 400 && unitCount == 400)
         title.textContent = "스턴 계산기";
+    else if(sortCount === 500 && unitCount === 500)
+        title.textContent = "마나뻥 (72라 기준)"
+    else if(sortCount === 600)
+        title.textContent = Mana[unitCount][0];
     else if (sortCount < 0)
         title.textContent = `${speedState[unitCount][0]} (${(speedState[unitCount][1])[0]})`;
     else
@@ -942,6 +961,68 @@ function openOverlay(sortCount, unitCount) {
         })
 
         overlayContent.appendChild(StunButton);
+    }
+    else if(sortCount === 500 && unitCount === 500)
+    {
+        console.log("hello");
+        console.log("hello");
+        console.log("hello");
+        console.log("hello");
+        console.log("hello");
+        Mana.forEach((item,index) =>{
+            const Grid = document.createElement("div");
+            Grid.style.display = "grid";
+            Grid.style.gridTemplateColumns = "1.5fr 1fr"
+
+            itemList.appendChild(Grid);
+
+            const UnitName = document.createElement("div");
+            UnitName.className = "Button BigFont";
+            UnitName.style.padding = "1rem";
+            UnitName.style.borderRight = "none";
+            if(index !== 0)
+                UnitName.style.borderTop = "none";
+            UnitName.innerText = item[0];
+
+            Grid.appendChild(UnitName);
+
+            const Time = document.createElement("div");
+            Time.className = "Button unitSort BigFont";
+            Time.style.padding = "1rem";
+            if(index !== 0)
+                Time.style.borderTop = "none";
+
+
+            let t = parseFloat((1 / item[3] * (parseFloat((1 + item[2] + parseFloat((speedBonusEx / 100).toFixed(3))).toFixed(3)) > 5 ? 5 : parseFloat((1 + item[2] + parseFloat((speedBonusEx / 100).toFixed(3))).toFixed(3)) )).toFixed(3))
+
+            let Buffindex = BuffState.findIndex(items => {
+                return (item[0] == items[0] && item[1][0] === items[1]);
+            })
+
+            if(Buffindex !== -1 && BuffState[Buffindex][3] && !document.getElementsByClassName(`m${Buffindex}`)[0].checked)
+            {
+                if(item[0] !== "프랑키")
+                    t += BuffState[Buffindex][3];
+            }
+            if(Buffindex !== -1 && BuffState[Buffindex][3] && document.getElementsByClassName(`m${Buffindex}`)[0].checked)
+                {
+                    if(item[0] === "프랑키")
+                        t -= BuffState[Buffindex][3];
+                }
+
+            t = parseFloat(t.toFixed(3));
+
+            let cycle = item[4] / (t + manaRegen + ((item[0]==="미호크") ? 2 : 0));
+            let time = parseInt((cycle * Math.ceil(105 / cycle) - 100).toFixed(3) >=35 ? 0 : (cycle * Math.ceil(105 / cycle) - 100).toFixed(3));
+
+            console.log(t, cycle, time);
+            Time.innerText = time + "초";
+            Grid.appendChild(Time);
+        })
+    }
+    else if(sortCount === 600)
+    {
+        console.log("hello");
     }
     else if (sortCount == -1) {
         if (speedState[unitCount][5] == 0)
@@ -2042,12 +2123,12 @@ function Stack() {
     Formula.addEventListener("click", () => {
         openOverlay(200, 200);
     });
-    ButtonColor(Formula);
+    ButtonColor(Formula);   
 
     document.getElementsByClassName(`Stack3`)[0].appendChild(Formula);
 
     const StunCalCulateMachine = document.createElement("div");
-    StunCalCulateMachine.className = "Button Machine SmallFont";
+    StunCalCulateMachine.className = "Button SmallFont";
     StunCalCulateMachine.innerText = "스턴 계산기";
     StunCalCulateMachine.style.gridArea = "1/ 2/ 2/ 3";
     StunCalCulateMachine.style.alignContent = "center";
@@ -2059,6 +2140,20 @@ function Stack() {
 
     document.getElementsByClassName(`Stack3`)[0].appendChild(StunCalCulateMachine);
     ButtonColor(StunCalCulateMachine);
+
+    const ManaControlCalculate = document.createElement("div");
+    ManaControlCalculate.className = "Button SmallFont";
+    ManaControlCalculate.innerText = "마나뻥 계산기";
+    ManaControlCalculate.style.gridArea = "1/ 3/ 2/ 4";
+    ManaControlCalculate.style.alignContent = "center";
+    ManaControlCalculate.style.textAlign = "center";    
+    ManaControlCalculate.addEventListener("click", () =>
+        {
+            openOverlay(500, 500);
+        })
+
+    document.getElementsByClassName(`Stack3`)[0].appendChild(ManaControlCalculate);
+    ButtonColor(ManaControlCalculate);
 
     if (document.getElementById("container1")) {
         const Mana = document.createElement("div");
@@ -2080,6 +2175,8 @@ function Stack() {
         ButtonColor(Mana);
         document.getElementsByClassName(`Stack3`)[0].appendChild(Mana);
     }
+
+    
 
 }
 
