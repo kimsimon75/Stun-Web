@@ -616,8 +616,6 @@ function openOverlay(sortCount, unitCount) {
     overlay.style.width = "100%";
     overlay.style.height = "100%";
     overlay.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-    if(sortCount === 600)
-        overlay.style.backgroundColor = "none";
     overlay.style.zIndex = 1000;
     overlay.style.display = "flex";
     overlay.style.justifyContent = "center";
@@ -705,8 +703,6 @@ function openOverlay(sortCount, unitCount) {
         title.textContent = "스턴 계산기";
     else if(sortCount === 500 && unitCount === 500)
         title.textContent = "마나뻥 (72라 기준)"
-    else if(sortCount === 600)
-        title.textContent = Mana[unitCount][0];
     else if (sortCount < 0)
         title.textContent = `${speedState[unitCount][0]} (${(speedState[unitCount][1])[0]})`;
     else
@@ -964,11 +960,6 @@ function openOverlay(sortCount, unitCount) {
     }
     else if(sortCount === 500 && unitCount === 500)
     {
-        console.log("hello");
-        console.log("hello");
-        console.log("hello");
-        console.log("hello");
-        console.log("hello");
         Mana.forEach((item,index) =>{
             const Grid = document.createElement("div");
             Grid.style.display = "grid";
@@ -1015,14 +1006,9 @@ function openOverlay(sortCount, unitCount) {
             let cycle = item[4] / (t + manaRegen + ((item[0]==="미호크") ? 2 : 0));
             let time = parseInt((cycle * Math.ceil(105 / cycle) - 100).toFixed(3) >=35 ? 0 : (cycle * Math.ceil(105 / cycle) - 100).toFixed(3));
 
-            console.log(t, cycle, time);
             Time.innerText = time + "초";
             Grid.appendChild(Time);
         })
-    }
-    else if(sortCount === 600)
-    {
-        console.log("hello");
     }
     else if (sortCount == -1) {
         if (speedState[unitCount][5] == 0)
