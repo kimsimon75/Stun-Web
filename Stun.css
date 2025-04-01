@@ -106,4 +106,5 @@
 .CheckBox-Stack {
     display: flex;
     justify-content: space-between; /* �ؽ�Ʈ ����, üũ�ڽ� ������ */
+    align-items: center;
 }

@@ -80,7 +80,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     ['고죠 사토루', 3.3, 1.01, 0.1, 2, 0, 0, 185, 5, 0],
     ['나루토', 3.05, 0.5, 0.05, 2.85, 0, 0, 0, 0, 0],
     ['미나토', 3.42, 0.73, 0.0425, 3, 0.16, 2.75, 100, 2.75, 0],
-    ['타츠마키', 3.3, 0.79, 0.1425, 1.75, 0, 0, 50, 1.75, 0],]
+    ['타츠마키', 3.3, 0.79, 0.1425, 1.75, 0, 0, 50, 1.75, 0],],
 ]
 
 const stunRange = [
@@ -346,6 +346,20 @@ var rateSort = 0;
 var moveSpeedSort = 0;
 var afterShockSort = 0;
 
+var koby = 0;
+var intel = 0;
+var dex = 0;
+
+
+function Brave(koby){
+    let t = 1 / 0.57 * (parseFloat((1 + 2.95 + speedBonusEx/ 100).toFixed(3)) > 5 ? 5 :  parseFloat((1 +2.95 + speedBonusEx / 100).toFixed(3)));
+    let core = (115 - koby * 5) / (t + manaRegen);
+    if(core < koby*5)
+        return 1;
+    else 
+        return parseFloat(koby * 5 / core);
+}
+
 const StunCalCulator =(T,X,S,L) =>
     {
         if(T==0 || X==0 || S==0 || L==0)
@@ -380,11 +394,15 @@ const UnitTotalStun = () => {
                     unitSpeedBonusEx = parseFloat((unitState[sortCount][unitCount][1] + parseFloat(((stunCount[sortCount][unitCount] ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx - ((BuffState[index][6]&&!stunCount[sortCount][unitCount]) ? BuffState[index][2] : 0)) / 100).toFixed(3))).toFixed(3));
     
                 }
+            if(unitState[sortCount][0][0] === "초월함" || unitState[sortCount][unitCount][0] === "니카")
+                unitSpeedBonusEx = parseFloat((unitSpeedBonusEx + dex/100).toFixed(3));
             let t = unitState[sortCount][unitCount][2] / ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx));
+
+            let unitManaRegen = manaRegen + Brave(koby) + ((unitState[sortCount][0][0] === "초월함" || unitState[sortCount][unitCount][0] === "니카") ? intel * 0.08 : 0);
+            let unitHealthRegen = healthRegen + Brave(koby) + ((unitState[sortCount][0][0] === "초월함" || unitState[sortCount][unitCount][0] === "니카") ? intel * 0.04 : 0);
 
             var maxMana = unitState[sortCount][unitCount][7];
             var m_stun = unitState[sortCount][unitCount][8];
-            var n1 = Math.floor(s1 / t);
             var n2 = Math.floor(s2 / t);
             var stun = 0;
 
@@ -401,7 +419,7 @@ const UnitTotalStun = () => {
             }
             else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "샹크스") // 샹크스
             {
-                stun = Math.log((1-StunCalCulator(t,x1,s1,t))* (1-StunCalCulator(t, x2, s2, t)) * (1 - 3 / 14.25) * (1 - 3 * (1.35 + manaRegen) / 35)) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(t,x1,s1,t))* (1-StunCalCulator(t, x2, s2, t)) * (1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35)) / Math.log(0.2);
             }
             else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "루피")
                 {
@@ -409,19 +427,19 @@ const UnitTotalStun = () => {
                     let time = n3 * t;
                     let n4 = Math.floor((2.75 - time) / t);
                     if (mana)
-                        stun = Math.log((1 - ((time + t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + t / 0.0125)) * StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1/t + manaRegen)) : 0))) / Math.log(0.2);
+                        stun = Math.log((1 - ((time + t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + t / 0.0125)) * StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1/t + unitManaRegen)) : 0))) / Math.log(0.2);
                     else
                         stun = Math.log(1 - ((time +t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + t / 0.0125)) * StunCalCulator(t, x1, s1, t)) / Math.log(0.2);
                 }
             else if (unitState[sortCount][0][0] ==='초월함' &&  unitState[sortCount][unitCount][0] === "아오키지") // 아오키지
             {
-                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - 3 / (t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + t * manaRegen))) + 50 / (1 / t + manaRegen)))) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - 3 / (t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + t * unitManaRegen))) + 50 / (1 / t + unitManaRegen)))) / Math.log(0.2);
             }
             else if (unitState[sortCount][unitCount][0] === "흰수염") // 흰수염
             {
                 if(mana)
                     stun = Math.log((1 - StunCalCulator(t, x1, s1, 0.69)) *
-                        (1 - ( m_stun / (maxMana / (1 /t + healthRegen + 0.5))))) / Math.log(0.2);
+                        (1 - ( m_stun / (maxMana / (1 /t + unitHealthRegen + 0.5))))) / Math.log(0.2);
                 else
                     stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.69)) / Math.log(0.2);
             }
@@ -429,7 +447,7 @@ const UnitTotalStun = () => {
             {
                 if(mana)
                     stun = Math.log((1 - StunCalCulator(t, x1, s1, 0.49)) *
-                (1 - ( m_stun / (maxMana / (1 / t + healthRegen + 0.5))))) / Math.log(0.2);
+                (1 - ( m_stun / (maxMana / (1 / t + unitHealthRegen + 0.5))))) / Math.log(0.2);
                 else
                     stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.49)) / Math.log(0.2);
                 
@@ -437,14 +455,14 @@ const UnitTotalStun = () => {
             else if (unitState[sortCount][unitCount][0]==="타츠마키") // 타츠마키
             {
                 if(mana)
-                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - (m_stun / (maxMana / (1 / t + healthRegen))))) / Math.log(0.2);
+                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - (m_stun / (maxMana / (1 / t + unitHealthRegen))))) / Math.log(0.2);
                 else
                     stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * Math.pow(1 - x2, n2)) / Math.log(0.2);
             }
             else if (unitState[sortCount][unitCount][0] === "크로커다일(특강)")
             {
                 if (mana)
-                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1 / t + healthRegen)) : 0))) / Math.log(0.2);
+                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1 / t + unitHealthRegen)) : 0))) / Math.log(0.2);
                 else
                     stun = Math.log((1-StunCalCulator(t, x1, s1, t)))/ Math.log(0.2);
             }
@@ -452,18 +470,18 @@ const UnitTotalStun = () => {
             {
                 const nikkaBuff = parseFloat((unitState[sortCount][unitCount][1] - 2.25 + parseFloat(((stunCount[sortCount][unitCount] ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))).toFixed(3));
                 let t2 =  unitState[sortCount][unitCount][2] / ((1 + nikkaBuff) > 5 ? 5 : (1 + nikkaBuff));
-                let time = (4.25 + ((115 - 4.25 * (1 / t2 + healthRegen + 0.25)) / (1 / t + healthRegen + 0.25)) <= 4.25) ? 4.25 : (4.25 + ((115 - 4.25 * (1 /t2 + healthRegen + 0.25)) / (1 / t + healthRegen + 0.25)));
+                let time = (4.25 + ((115 - 4.25 * (1 / t2 + unitHealthRegen + 0.25)) / (1 / t + unitHealthRegen + 0.25)) <= 4.25) ? 4.25 : (4.25 + ((115 - 4.25 * (1 /t2 + unitHealthRegen + 0.25)) / (1 / t + unitHealthRegen + 0.25)));
                 n2 = Math.floor(s1 * t2);
 
                 if (mana)
                     stun = Math.log(
-                        (((1-StunCalCulator(t2, 0.18, s1, t2)) * 4.25 / time + (1-StunCalCulator(t, x1, s1, t)) * (time - 4.25) / time)) * (1 - m_stun / maxMana * ((4.25 * 1 / t2 + (time - 4.25) * 1/ t) / time + manaRegen)))
+                        (((1-StunCalCulator(t2, 0.18, s1, t2)) * 4.25 / time + (1-StunCalCulator(t, x1, s1, t)) * (time - 4.25) / time)) * (1 - m_stun / maxMana * ((4.25 * 1 / t2 + (time - 4.25) * 1/ t) / time + unitManaRegen)))
                         / Math.log(0.2);
                 else
                     stun = Math.log(((1-StunCalCulator(t2, 0.18, s1, t2)) * 4.25 / time ) + (1-StunCalCulator(t, x1, s1, t))* (time - 4.25) / time) / Math.log(0.2);
             }
             else if (mana)
-                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1 / t + manaRegen)) : 0))) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1 / t + unitManaRegen)) : 0))) / Math.log(0.2);
             else
                 stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t))) / Math.log(0.2);
 
@@ -917,10 +935,9 @@ function openOverlay(sortCount, unitCount) {
 
             let x1 = parseFloat((document.getElementById("stun1_prob").value / 100).toFixed(3));
             const s1 = document.getElementById("stun1_duration").value;
-            const n1 = Math.floor(s1 * t);
+            
             let x2 = parseFloat((document.getElementById("stun2_prob").value / 100).toFixed(3));
             const s2 = document.getElementById("stun2_duration").value;
-            const n2 = Math.floor(s2 * t);
 
             x1 = bigOne ? x1 : (x1 - x1 * x2);
             x2 = !bigOne ? x2 : (x2 - x1 * x2);
@@ -982,9 +999,12 @@ function openOverlay(sortCount, unitCount) {
             Time.style.padding = "1rem";
             if(index !== 0)
                 Time.style.borderTop = "none";
+            let AttackSpeedBuff = parseFloat((1 + item[2] + parseFloat((speedBonusEx / 100).toFixed(3))).toFixed(3));
+            if(item[1][0] === "초월함")
+                AttackSpeedBuff += parseFloat((dex / 100).toFixed(3));
+            let t = parseFloat((1 / item[3] * (AttackSpeedBuff > 5 ? 5 : AttackSpeedBuff)).toFixed(3));
 
-
-            let t = parseFloat((1 / item[3] * (parseFloat((1 + item[2] + parseFloat((speedBonusEx / 100).toFixed(3))).toFixed(3)) > 5 ? 5 : parseFloat((1 + item[2] + parseFloat((speedBonusEx / 100).toFixed(3))).toFixed(3)) )).toFixed(3))
+            let unitManaRegen = manaRegen + Brave(koby) + ((item[1][0] === "초월함") ? intel * 0.08 : 0 );
 
             let Buffindex = BuffState.findIndex(items => {
                 return (item[0] == items[0] && item[1][0] === items[1]);
@@ -1003,7 +1023,7 @@ function openOverlay(sortCount, unitCount) {
 
             t = parseFloat(t.toFixed(3));
 
-            let cycle = item[4] / (t + manaRegen + ((item[0]==="미호크") ? 2 : 0));
+            let cycle = item[4] / (t + unitManaRegen + Brave(koby) + ((item[0]==="미호크") ? 2 : 0));
             let time = parseInt((cycle * Math.ceil(105 / cycle) - 100).toFixed(3) >=35 ? 0 : (cycle * Math.ceil(105 / cycle) - 100).toFixed(3));
 
             Time.innerText = time + "초";
@@ -1085,9 +1105,13 @@ function openOverlay(sortCount, unitCount) {
         var x1 = unitState[sortCount][unitCount][3];
         var x2 = unitState[sortCount][unitCount][5];
         var s1 = unitState[sortCount][unitCount][4];
-        let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))));
-        let t2 = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3)) - 2.25 > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100).toFixed(3))- 2.25));
-        let time = (4.25 + ((115 - 4.25 * (t2 + healthRegen + 0.25)) / (t + healthRegen + 0.25)) <= 4.25) ? 4.25 : (4.25 + ((115 - 4.25 * (t2 + healthRegen + 0.25)) / (t + healthRegen + 0.25)));
+        let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? (speedBonusEx + dex) - unitState[sortCount][unitCount][9] : (speedBonusEx + dex)) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  (speedBonusEx + dex) - unitState[sortCount][unitCount][9] : (speedBonusEx + dex)) / 100).toFixed(3))));
+        let t2 = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  (speedBonusEx + dex) - unitState[sortCount][unitCount][9] : (speedBonusEx + dex)) / 100).toFixed(3)) - 2.25 > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ?  (speedBonusEx + dex) - unitState[sortCount][unitCount][9] : (speedBonusEx + dex)) / 100).toFixed(3))- 2.25));
+        let unitHealthRegen = healthRegen + intel * 0.04 + Brave(koby);
+
+
+        let time = (4.25 + ((115 - 4.25 * (t2 + (unitHealthRegen + intel*0.04) + 0.25)) / (t + (unitHealthRegen + intel*0.04) + 0.25)) <= 4.25) ? 4.25 : (4.25 + ((115 - 4.25 * (t2 + (unitHealthRegen + intel*0.04) + 0.25)) / (t + (unitHealthRegen + intel*0.04) + 0.25)));
+        let unitManaRegen = manaRegen + intel * 0.08 + Brave(koby);
 
         var maxMana = unitState[sortCount][unitCount][7];
         var m_stun = unitState[sortCount][unitCount][8];
@@ -1115,7 +1139,7 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `거인화 모드 공속 : 초당${t2.toFixed(3)}`
                     break;
                 case 4:
-                    item.textContent = `공속 보너스(자체 버프 포함) : ${(unitState[sortCount][unitCount][1] + parseFloat((speedBonusEx / 100).toFixed(3)) - ((stunCount[sortCount][unitCount]) ? parseFloat((unitState[sortCount][unitCount][9] / 100).toFixed(3)) : 0)) * 100}%`;
+                    item.textContent = `공속 보너스(자체 버프 포함) : ${(unitState[sortCount][unitCount][1] + parseFloat(((speedBonusEx + dex) / 100).toFixed(3)) - ((stunCount[sortCount][unitCount]) ? parseFloat((unitState[sortCount][unitCount][9] / 100).toFixed(3)) : 0)) * 100}%`;
                     break;
                 case 5:
                     item.innerText = `공속 버프 : ${unitState[sortCount][unitCount][9]}%`
@@ -1163,10 +1187,10 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = `마나 스턴 범위 : ${stunRange[sortCount][unitCount - 1][2]}`;
                     break;
                 case 20:
-                    item.innerText = `마나 스턴 가동률 : ${(m_stun / maxMana * ((4.25 * t2 + (time - 4.25) * t) / time + manaRegen) * 100).toFixed(2)}%`
+                    item.innerText = `마나 스턴 가동률 : ${(m_stun / maxMana * ((4.25 * t2 + (time - 4.25) * t) / time + unitManaRegen) * 100).toFixed(2)}%`
                     break;
                 case 21:
-                    item.innerText = `마나 스턴 수치 : ${(Math.log(1 - (m_stun / maxMana * ((4.25 * t2 + (time - 4.25) * t) / time + manaRegen))) / Math.log(0.2)).toFixed(3)}스턴`
+                    item.innerText = `마나 스턴 수치 : ${(Math.log(1 - (m_stun / maxMana * ((4.25 * t2 + (time - 4.25) * t) / time + unitManaRegen))) / Math.log(0.2)).toFixed(3)}스턴`
                     break;
             }
             itemList.appendChild(item);
@@ -1180,6 +1204,8 @@ function openOverlay(sortCount, unitCount) {
         var s1 = unitState[sortCount][unitCount][4];
         var s2 = unitState[sortCount][unitCount][6];
         let t = 1 / unitState[sortCount][unitCount][2] * ((1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonusEx) / 100).toFixed(3)) > 5) ? 5 : (1 + unitState[sortCount][unitCount][1] + parseFloat((((stunCount[sortCount][unitCount]) ? 0 : speedBonusEx) / 100).toFixed(3))));
+        let unitManaRegen = manaRegen + Brave(koby) + ((unitState[sortCount][unitCount][1] === "초월함") ? intel * 0.08 : 0) ;
+        let unitHealthRegen = healthRegen + Brave(koby) + ((unitState[sortCount][unitCount][1] === "초월함") ? intel * 0.04 : 0); 
 
         var maxMana = unitState[sortCount][unitCount][7];
         var m_stun = unitState[sortCount][unitCount][8];
@@ -1327,19 +1353,19 @@ function openOverlay(sortCount, unitCount) {
                 case 21:
                     item.innerText = `마나(체력)스턴 수치 : `;
                     if (unitState[sortCount][unitCount][0] === "샹크스") {
-                        item.innerText += (Math.log((1 - 3 / 14.25) * (1 - 3 * (1.35 + manaRegen) / 35)) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log((1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35)) / Math.log(0.2)).toFixed(3);
                     }
                     else if (unitState[sortCount][unitCount][0] === "아오키지") {
-                        item.innerText += (Math.log(1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, floor(25 / (1 + 1 / t * manaRegen))) + 50 / (t + manaRegen))) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log(1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, floor(25 / (1 + 1 / t * unitManaRegen))) + 50 / (t + unitManaRegen))) / Math.log(0.2)).toFixed(3);
                     }
                     else if (unitState[sortCount][unitCount][0] === "흰수염") {
-                        item.innerText += (Math.log(1 - m_stun / (maxMana / (t + healthRegen + 0.5))) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log(1 - m_stun / (maxMana / (t + unitHealthRegen + 0.5))) / Math.log(0.2)).toFixed(3);
                     }
                     else if (unitState[sortCount][unitCount][0] === "타츠마키") {
-                        item.innerText += (Math.log((1 - m_stun / (maxMana / (t + healthRegen)))) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log((1 - m_stun / (maxMana / (t + unitHealthRegen)))) / Math.log(0.2)).toFixed(3);
                     }
                     else if (maxMana)
-                        item.innerText += (Math.log(1 - m_stun / (maxMana / (manaRegen + t))) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log(1 - m_stun / (maxMana / (unitManaRegen + t))) / Math.log(0.2)).toFixed(3);
                     else
                         item.innerText += 0;
                     item.innerText += '스턴';
@@ -1347,19 +1373,19 @@ function openOverlay(sortCount, unitCount) {
                 case 22:
                     item.innerText = `마나(체력)스턴 공백 :`;
                     if (unitState[sortCount][unitCount][0] === "샹크스") {
-                        item.innerText += ((1 - 3 / 14.25) * (1 - 3 * (1.35 + manaRegen) / 35) * 100).toFixed(2);
+                        item.innerText += ((1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35) * 100).toFixed(2);
                     }
                     else if (unitState[sortCount][unitCount][0] === "아오키지") {
-                        item.innerText += ((1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + 1 / t * manaRegen))) + 50 / (t + manaRegen))) * 100).toFixed(2);
+                        item.innerText += ((1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + 1 / t * unitManaRegen))) + 50 / (t + unitManaRegen))) * 100).toFixed(2);
                     }
                     else if (unitState[sortCount][unitCount][0] === "흰수염") {
-                        item.innerText += ((1 - ((maxMana != 0) ? m_stun / (maxMana / (t + healthRegen + 0.5)) : 0)) * 100).toFixed(2);
+                        item.innerText += ((1 - ((maxMana != 0) ? m_stun / (maxMana / (t + unitHealthRegen + 0.5)) : 0)) * 100).toFixed(2);
                     }
                     else if (unitState[sortCount][unitCount][0] === "타츠마키") {
-                        item.innerText += ((1 - ((maxMana != 0) ? m_stun / (maxMana / (t + healthRegen)) : 0)) * 100).toFixed(2);
+                        item.innerText += ((1 - ((maxMana != 0) ? m_stun / (maxMana / (t + unitHealthRegen)) : 0)) * 100).toFixed(2);
                     }
                     else if (maxMana)
-                        item.innerText += ((1 - m_stun / (maxMana / (manaRegen + t))) * 100).toFixed(2);
+                        item.innerText += ((1 - m_stun / (maxMana / (unitManaRegen + t))) * 100).toFixed(2);
                     else
                         item.innerText = 0;
                     item.innerText += `%`;
@@ -1606,7 +1632,7 @@ function separateKorean(text) {
 
 function Stack() {
 
-    for (let i = 0; i <= 4; i++) {
+    for (let i = 0; i <= 5; i++) {
         const Stack = document.createElement("div");
         Stack.className = `Stack${i}`
         Stack.style.display = "grid";   
@@ -2160,7 +2186,172 @@ function Stack() {
 
         ButtonColor(Mana);
         document.getElementsByClassName(`Stack3`)[0].appendChild(Mana);
-    }
+    }    
+    
+    const Koby = document.createElement("div");
+    Koby.className = "Button SmallFont";
+    Koby.innerText = "코비";
+    Koby.style.gridArea = "1/ 2/ 2/ 3";
+    Koby.style.alignContent = "center";
+    Koby.style.textAlign = "center";
+
+    document.getElementsByClassName(`Stack4`)[0].appendChild(Koby);
+
+    const KobyButton = document.createElement("div");
+    KobyButton.className = "Button SmallFont";
+    KobyButton.innerText = "0";
+    KobyButton.style.paddingRight = "0.25vw";
+    KobyButton.style.gridArea = "1/ 1/ 2/ 2";
+    KobyButton.style.alignContent = "center";
+    KobyButton.style.textAlign = "right";
+    
+    ButtonColor(KobyButton);
+    document.getElementsByClassName(`Stack4`)[0].appendChild(KobyButton);
+    
+    // 버튼을 클릭하면 input으로 변환
+    KobyButton.addEventListener("click", function () {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = KobyButton.innerText;
+        input.className = "SmallFont";
+        input.style.textAlign = "right";
+        input.style.boxSizing = "border-box";
+        input.style.width = getComputedStyle(KobyButton).width;
+    
+        // 버튼 숨기기
+        KobyButton.style.display = "none";
+    
+        // 버튼 다음에 input 삽입
+        KobyButton.after(input);
+        input.focus();
+    
+        function revertToButton() {
+            KobyButton.innerText = input.value; // 입력값 유지
+            koby = parseInt(input.value);
+            UnitTotalStun();
+            CountOn();
+            input.remove(); // input 삭제
+            KobyButton.style.display = ""; // 버튼 다시 표시
+        }
+    
+        input.addEventListener("blur", revertToButton);
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                this.blur();
+            }
+        });
+    });
+
+    const Dex = document.createElement("div");
+    Dex.className = "Button SmallFont";
+    Dex.innerText = "민첩성";
+    Dex.style.gridArea = "1/ 2/ 2/ 3";
+    Dex.style.alignContent = "center";
+    Dex.style.textAlign = "center";
+
+    document.getElementsByClassName(`Stack5`)[0].appendChild(Dex);
+
+    const DexButton = document.createElement("div");
+    DexButton.className = "Button SmallFont";
+    DexButton.innerText = "0";
+    DexButton.style.paddingRight = "0.25vw";
+    DexButton.style.gridArea = "1/ 1/ 2/ 2";
+    DexButton.style.alignContent = "center";
+    DexButton.style.textAlign = "right";
+    
+    ButtonColor(DexButton);
+    document.getElementsByClassName(`Stack5`)[0].appendChild(DexButton);
+    
+    // 버튼을 클릭하면 input으로 변환
+    DexButton.addEventListener("click", function () {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = DexButton.innerText;
+        input.className = "SmallFont";
+        input.style.textAlign = "right";
+        input.style.boxSizing = "border-box";
+        input.style.width = getComputedStyle(DexButton).width;
+    
+        // 버튼 숨기기
+        DexButton.style.display = "none";
+    
+        // 버튼 다음에 input 삽입
+        DexButton.after(input);
+        input.focus();
+    
+        function revertToButton() {
+            DexButton.innerText = input.value; // 입력값 유지
+            dex = input.value;
+            UnitTotalStun();
+            CountOn();
+            input.remove(); // input 삭제
+            DexButton.style.display = ""; // 버튼 다시 표시
+        }
+    
+        input.addEventListener("blur", revertToButton);
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                this.blur();
+            }
+        });
+    });
+
+    const Intel = document.createElement("div");
+    Intel.className = "Button SmallFont";
+    Intel.innerText = "지능";
+    Intel.style.gridArea = "1/ 4/ 2/ 5";
+    Intel.style.alignContent = "center";
+    Intel.style.textAlign = "center";
+
+    document.getElementsByClassName(`Stack5`)[0].appendChild(Intel);
+
+    const IntelButton = document.createElement("div");
+    IntelButton.className = "Button SmallFont";
+    IntelButton.innerText = "0";
+    IntelButton.style.paddingRight = "0.25vw";
+    IntelButton.style.gridArea = "1/ 3/ 2/ 4";
+    IntelButton.style.alignContent = "center";
+    IntelButton.style.textAlign = "right";
+    
+    ButtonColor(IntelButton);
+    document.getElementsByClassName(`Stack5`)[0].appendChild(IntelButton);
+    
+    // 버튼을 클릭하면 input으로 변환
+    IntelButton.addEventListener("click", function () {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = IntelButton.innerText;
+        input.className = "SmallFont";
+        input.style.textAlign = "right";
+        input.style.boxSizing = "border-box";
+        input.style.width = getComputedStyle(IntelButton).width;
+    
+        // 버튼 숨기기
+        IntelButton.style.display = "none";
+    
+        // 버튼 다음에 input 삽입
+        IntelButton.after(input);
+        input.focus();
+    
+        function revertToButton() {
+            IntelButton.innerText = input.value; // 입력값 유지
+            intel = input.value;
+            UnitTotalStun();
+            CountOn();
+            input.remove(); // input 삭제
+            IntelButton.style.display = ""; // 버튼 다시 표시
+        }
+    
+        input.addEventListener("blur", revertToButton);
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                this.blur();
+            }
+        });
+
+    });
+
+
 
     
 
