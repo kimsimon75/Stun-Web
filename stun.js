@@ -12,7 +12,7 @@ const unitRates = {
     전설적인: ["전설적인", 2],
     히든: ["히든", 3],
     제한됨: ["제한됨", 4],
-    초월함: ["초월함", 5],
+    초월함: ["초월함", 5],  
     불멸의: ["불멸의", 6],
     영원한: ["영원한",7],
     신비함: ["신비함", 8],
@@ -702,7 +702,7 @@ function openOverlay(sortCount, unitCount) {
     else if(sortCount == 400 && unitCount == 400)
         title.textContent = "스턴 계산기";
     else if(sortCount === 500 && unitCount === 500)
-        title.textContent = "마나뻥 (72라 기준)"
+        title.innerHTML = "마나뻥 (72라 기준)<br>(75라 5초 시전)";
     else if (sortCount < 0)
         title.textContent = `${speedState[unitCount][0]} (${(speedState[unitCount][1])[0]})`;
     else
@@ -1623,7 +1623,7 @@ function Stack() {
 
 
     const TotalStun = document.createElement("div");
-    TotalStun.className = 'Button TotalStun BigFont';
+    TotalStun.className = 'Button TotalStun SmallFont';
     TotalStun.addEventListener('click', () => {
         openOverlay(100, 100);
     });
@@ -1634,7 +1634,7 @@ function Stack() {
 
 
     const clear = document.createElement("div");
-    clear.className = "Button clear BigFont";
+    clear.className = "Button clear SmallFont";
     clear.innerText = '초기화';
     clear.addEventListener("click", ()=>{
         location.reload();
@@ -1734,7 +1734,7 @@ function Stack() {
     
 
     const SpeedBonusExButton = document.createElement("div");
-    SpeedBonusExButton.className = "AttackSpeedEx Button BigFont";
+    SpeedBonusExButton.className = "AttackSpeedEx Button SmallFont";
     SpeedBonusExButton.innerText = `${speedBonusEx}%`;
     SpeedBonusExButton.style.textAlign = "right";
     SpeedBonusExButton.style.alignContent = "center";
@@ -1951,7 +1951,7 @@ function Stack() {
     })
 
     const MoveSpeedDebuffButton = document.createElement("div");
-    MoveSpeedDebuffButton.className = "Debuff Button BigFont";
+    MoveSpeedDebuffButton.className = "Debuff Button SmallFont";
     MoveSpeedDebuffButton.style.textAlign = "right";
     MoveSpeedDebuffButton.style.alignContent = "center";
     MoveSpeedDebuffButton.style.paddingRight = "0.25vw";
@@ -2021,7 +2021,7 @@ function Stack() {
 
 
     const MRegenButton = document.createElement("div");
-    MRegenButton.className = "MRegen Button BigFont";
+    MRegenButton.className = "MRegen Button SmallFont";
     MRegenButton.id = "MRegen";
     MRegenButton.innerText = `${manaRegen}`;
     MRegenButton.style.boxSizing = "border-box";
@@ -2061,7 +2061,7 @@ function Stack() {
     document.getElementsByClassName('Stack2')[0].appendChild(MRegen);
 
     const HRegenButton = document.createElement("div");
-    HRegenButton.className = "HRegen Button BigFont";
+    HRegenButton.className = "HRegen Button SmallFont";
     HRegenButton.id = "HRegen";
     HRegenButton.innerText = `${healthRegen}`;
     HRegenButton.style.boxSizing = "border-box";
@@ -2247,7 +2247,7 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
 
     if (unitCount == 0) {
         const newChild = document.createElement("div");
-        newChild.className = 'unitSort BigFont';
+        newChild.className = 'unitSort SmallFont';
         newChild.innerText = unitState[sortCount][unitCount][0];
         newChild.style.border = "0.001rem solid black";
         newChild.style.width = "100%";
