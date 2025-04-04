@@ -1026,7 +1026,7 @@ function openOverlay(sortCount, unitCount) {
             let cycle = item[4] / (t + unitManaRegen + Brave(koby) + ((item[0]==="미호크") ? 2 : 0));
             const round = 36.65;
             console.log((cycle * Math.ceil(round * 3 / cycle) - round*3 + 5));
-            let time = parseInt((cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3) >=round ? 0 : (cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3));
+            let time = parseInt((cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3) >=round ? (cycle * Math.ceil(round * 3 / cycle) - round*4 + 5).toFixed(3) : (cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3));
 
             Time.innerText = time + "초";
             Grid.appendChild(Time);
