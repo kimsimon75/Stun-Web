@@ -954,7 +954,7 @@ function openOverlay(sortCount, unitCount) {
                 switch(i)
                 {
                     case 0:
-                        Stun.innerText = `공격 속도 : ${t.toFixed(3)}`
+                        Stun.innerText = `공격 속도 : ${(1/t).toFixed(3)}`
                         break;
                     case 1:
                         Stun.innerText = `스턴 1 등급 : ${(Math.log(1-degree1) / Math.log(0.2)).toFixed(3)} 스턴`
@@ -1024,7 +1024,9 @@ function openOverlay(sortCount, unitCount) {
             t = parseFloat(t.toFixed(3));
 
             let cycle = item[4] / (t + unitManaRegen + Brave(koby) + ((item[0]==="미호크") ? 2 : 0));
-            let time = parseInt((cycle * Math.ceil(105 / cycle) - 100).toFixed(3) >=35 ? 0 : (cycle * Math.ceil(105 / cycle) - 100).toFixed(3));
+            const round = 36.65;
+            console.log((cycle * Math.ceil(round * 3 / cycle) - round*3 + 5));
+            let time = parseInt((cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3) >=round ? 0 : (cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3));
 
             Time.innerText = time + "초";
             Grid.appendChild(Time);
