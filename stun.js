@@ -1,3 +1,4 @@
+const { and } = require("three/tsl");
 
 
 const container = document.getElementsByClassName("container")[0];
@@ -2838,6 +2839,7 @@ function connectWebSocket(){
     socket.onmessage = (event) => {
     
         console.log(event);
+        if(event.isTrusted === true && event.data === "message")
         showUpdateNotification();
     };
     
