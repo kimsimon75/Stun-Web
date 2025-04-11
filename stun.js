@@ -1,5 +1,3 @@
-const { and } = require("three/tsl");
-
 
 const container = document.getElementsByClassName("container")[0];
 
