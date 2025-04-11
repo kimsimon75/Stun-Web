@@ -1,5 +1,3 @@
-const { json } = require("express");
-
 const container = document.getElementsByClassName("container")[0];
 
 const containerGrid = 20;
