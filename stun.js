@@ -2847,12 +2847,12 @@ function connectWebSocket(){
             const dateObj = new Date(updatedAt);
 
             // 2. 원하는 형식으로 추출
-             const year = dateObj.getFullYear();           // 2025
-             const month = dateObj.getMonth() + 1;         // 4 (주의: 0부터 시작)
-             const day = dateObj.getDate();                // 11
-             const hour = dateObj.getHours();              // 23
-             const minute = dateObj.getMinutes();          // 45
-            const second = dateObj.getSeconds(); 
+            const year = dateObj.getFullYear();                    // 2025
+            const month = String(dateObj.getMonth() + 1).padStart(2, "0"); // 04
+            const day = String(dateObj.getDate()).padStart(2, "0");        // 11
+            const hour = String(dateObj.getHours()).padStart(2, "0");      // 23
+            const minute = String(dateObj.getMinutes()).padStart(2, "0");  // 45
+            const second = String(dateObj.getSeconds()).padStart(2, "0");  
 
             const date = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
 
