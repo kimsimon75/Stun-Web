@@ -2841,7 +2841,7 @@ function connectWebSocket(){
     
         if(JSON.parse(event.data).id === "lastUpdate")
         {
-            console.log(JSON.parse(event.data).updateAt);
+            console.log(JSON.parse(event.data));
             showUpdateNotification();
         }
     };
