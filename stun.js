@@ -73,12 +73,12 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
 
     [['제한됨'],
     ['크로커다일', 2.85, 0.56, 0.05, 2.5, 0, 0, 0, 0, 0],
-        ['크로커다일(특강)', 2.85, 0.56, 0.05, 2.5, 0, 0, 80, 1.4, 0],],
+        ['크로커다일(특강)', 2.85, 0.56, 0.05, 2.5, 0, 0, 80, 1.05, 0],],
 
     [['신비함'],
     ['K', 3.3, 0.58, 0.03, 3, 0, 0, 0, 0, 0],
     ['고죠 사토루', 3.3, 1.01, 0.1, 2, 0, 0, 185, 5, 0],
-    ['나루토', 3.05, 0.5, 0.05, 2.85, 0, 0, 0, 0, 0],
+    ['나루토', 3.05, 0.5, 0.05, 3, 0.05, 2.85, 0, 0, 0],
     ['미나토', 3.42, 0.73, 0.0425, 3, 0.16, 2.75, 100, 2.75, 0],
     ['타츠마키', 3.3, 0.79, 0.1425, 1.75, 0, 0, 50, 1.75, 0],],
 ]
@@ -139,7 +139,7 @@ const stunRange = [
     [
         [460, 0, 0], //K
         [600, 0, NaN], // 고죠 사토루
-        [550, 0, 0], //나루토
+        [550, 600, 0], //나루토
         [600, 525, 525], //미나토
         [525, 0, 525] , //타츠마키
     ]
@@ -147,7 +147,7 @@ const stunRange = [
 
 const speedState = // 공속 보너스, 공속, 발이감 확률, 발이감 지속시간, 발이감 수치, 여진 확률, 여진 지속시간, 여진 수치
     [
-        ['나미', unitRates.전설적인, 2.95, 5.985, 0, 0, 0, 0.0915, 3.25, 42],
+        ['나미', unitRates.전설적인, 2.95, 5.985, 0, 0, 0, 0.088, 3.25, 42],
 
         ['흰수염', unitRates.전설적인, 2.95, 5.338, 0.11, 3, 25, 0.11, 3, 10],
 
@@ -312,6 +312,7 @@ const Mana = [
     ['프랑키', unitRates.초월함, 3.35, 0.75, 150],
     ['시라호시', unitRates.초월함, 3.35, 0.7, 120],
     ['타시기', unitRates.초월함, 3.35, 0.88, 135],  
+    ['반 더 데켄', unitRates.히든, 2.6, 0.66, 95],
 ]
 
 
@@ -349,6 +350,8 @@ var afterShockSort = 0;
 var koby = 0;
 var intel = 0;
 var dex = 0;
+
+const StunCalCulation = 0.2;
 
 
 function Brave(koby){
@@ -411,15 +414,15 @@ const UnitTotalStun = () => {
                 for (var k = 0; k < 6; k++) {
                     window['time' + k] = k * t;
                 }
-                stun = Math.log(1 - (((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + ((0.65 + time2 > 2.15) ? 2.15 : (0.65 + time2)) * 0.27 * Math.pow(1 - 0.27, 2) + ((0.65 + time3 > 2.15) ? 2.15 : (0.65 + time3)) * 0.27 * Math.pow(1 - 0.27, 3) + ((0.65 + time4 > 2.15) ? 2.15 : (0.65 + time4)) * 0.27 * Math.pow(1 - 0.27, 4) + ((0.65 + time5 > 2.15) ? 2.15 : (0.65 + time5)) * (1 - 0.27 - 0.27 * (1 - 0.27) - 0.27 * Math.pow(1 - 0.27, 2) - 0.27 * Math.pow(1 - 0.27, 3) - 0.27 * Math.pow(1 - 0.27, 4))) / ((0.65 + time0) * 0.27 + (0.65 + time1) * 0.27 * (1 - 0.27) + (0.65 + time2) * 0.27 * Math.pow(1 - 0.27, 2) + (0.65 + time3) * 0.27 * Math.pow(1 - 0.27, 3) + (0.65 + time4) * 0.27 * Math.pow(1 - 0.27, 4) + (0.65 + time5 ) * (1 - (0.27 + 0.27 * Math.pow(1 - 0.27, 1) + 0.27 * Math.pow(1 - 0.27, 2) + 0.27 * Math.pow(1 - 0.27, 3) + 0.27 * Math.pow(1 - 0.27, 4))))) / Math.log(0.2);
+                stun = Math.log(1 - (((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + ((0.65 + time2 > 2.15) ? 2.15 : (0.65 + time2)) * 0.27 * Math.pow(1 - 0.27, 2) + ((0.65 + time3 > 2.15) ? 2.15 : (0.65 + time3)) * 0.27 * Math.pow(1 - 0.27, 3) + ((0.65 + time4 > 2.15) ? 2.15 : (0.65 + time4)) * 0.27 * Math.pow(1 - 0.27, 4) + ((0.65 + time5 > 2.15) ? 2.15 : (0.65 + time5)) * (1 - 0.27 - 0.27 * (1 - 0.27) - 0.27 * Math.pow(1 - 0.27, 2) - 0.27 * Math.pow(1 - 0.27, 3) - 0.27 * Math.pow(1 - 0.27, 4))) / ((0.65 + time0) * 0.27 + (0.65 + time1) * 0.27 * (1 - 0.27) + (0.65 + time2) * 0.27 * Math.pow(1 - 0.27, 2) + (0.65 + time3) * 0.27 * Math.pow(1 - 0.27, 3) + (0.65 + time4) * 0.27 * Math.pow(1 - 0.27, 4) + (0.65 + time5 ) * (1 - (0.27 + 0.27 * Math.pow(1 - 0.27, 1) + 0.27 * Math.pow(1 - 0.27, 2) + 0.27 * Math.pow(1 - 0.27, 3) + 0.27 * Math.pow(1 - 0.27, 4))))) / Math.log(StunCalCulation);
             }
             else if(unitState[sortCount][unitCount][0] === "죠즈")
             {
-                stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.855)) / Math.log(0.2);
+                stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.855)) / Math.log(StunCalCulation);
             }
             else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "샹크스") // 샹크스
             {
-                stun = Math.log((1-StunCalCulator(t,x1,s1,t))* (1-StunCalCulator(t, x2, s2, t)) * (1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35)) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(t,x1,s1,t))* (1-StunCalCulator(t, x2, s2, t)) * (1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35)) / Math.log(StunCalCulation);
             }
             else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "루피")
                 {
@@ -427,44 +430,44 @@ const UnitTotalStun = () => {
                     let time = n3 * t;
                     let n4 = Math.floor((2.75 - time) / t);
                     if (mana)
-                        stun = Math.log((1 - ((time + t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + t / 0.0125)) * StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1/t + unitManaRegen)) : 0))) / Math.log(0.2);
+                        stun = Math.log((1 - ((time + t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + t / 0.0125)) * StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1/t + unitManaRegen)) : 0))) / Math.log(StunCalCulation);
                     else
-                        stun = Math.log(1 - ((time +t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + t / 0.0125)) * StunCalCulator(t, x1, s1, t)) / Math.log(0.2);
+                        stun = Math.log(1 - ((time +t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + t / 0.0125)) * StunCalCulator(t, x1, s1, t)) / Math.log(StunCalCulation);
                 }
             else if (unitState[sortCount][0][0] ==='초월함' &&  unitState[sortCount][unitCount][0] === "아오키지") // 아오키지
             {
-                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - 3 / (t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + t * unitManaRegen))) + 50 / (1 / t + unitManaRegen)))) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - 3 / (t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + t * unitManaRegen))) + 50 / (1 / t + unitManaRegen)))) / Math.log(StunCalCulation);
             }
             else if (unitState[sortCount][unitCount][0] === "흰수염") // 흰수염
             {
                 if(mana)
                     stun = Math.log((1 - StunCalCulator(t, x1, s1, 0.69)) *
-                        (1 - ( m_stun / (maxMana / (1 /t + unitHealthRegen + 0.5))))) / Math.log(0.2);
+                        (1 - ( m_stun / (maxMana / (1 /t + unitHealthRegen + 0.5))))) / Math.log(StunCalCulation);
                 else
-                    stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.69)) / Math.log(0.2);
+                    stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.69)) / Math.log(StunCalCulation);
             }
             else if(unitState[sortCount][unitCount][0] === "흰수염(약주)")
             {
                 if(mana)
                     stun = Math.log((1 - StunCalCulator(t, x1, s1, 0.49)) *
-                (1 - ( m_stun / (maxMana / (1 / t + unitHealthRegen + 0.5))))) / Math.log(0.2);
+                (1 - ( m_stun / (maxMana / (1 / t + unitHealthRegen + 0.5))))) / Math.log(StunCalCulation);
                 else
-                    stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.49)) / Math.log(0.2);
+                    stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.49)) / Math.log(StunCalCulation);
                 
             }
             else if (unitState[sortCount][unitCount][0]==="타츠마키") // 타츠마키
             {
                 if(mana)
-                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - (m_stun / (maxMana / (1 / t + unitHealthRegen))))) / Math.log(0.2);
+                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - (m_stun / (maxMana / (1 / t + unitHealthRegen))))) / Math.log(StunCalCulation);
                 else
-                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * Math.pow(1 - x2, n2)) / Math.log(0.2);
+                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * Math.pow(1 - x2, n2)) / Math.log(StunCalCulation);
             }
             else if (unitState[sortCount][unitCount][0] === "크로커다일(특강)")
             {
                 if (mana)
-                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1 / t + unitHealthRegen)) : 0))) / Math.log(0.2);
+                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1 / t + unitHealthRegen)) : 0))) / Math.log(StunCalCulation);
                 else
-                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)))/ Math.log(0.2);
+                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)))/ Math.log(StunCalCulation);
             }
             else if (unitState[sortCount][unitCount][0] === "니카")
             {
@@ -476,14 +479,14 @@ const UnitTotalStun = () => {
                 if (mana)
                     stun = Math.log(
                         (((1-StunCalCulator(t2, 0.18, s1, t2)) * 4.25 / time + (1-StunCalCulator(t, x1, s1, t)) * (time - 4.25) / time)) * (1 - m_stun / maxMana * ((4.25 * 1 / t2 + (time - 4.25) * 1/ t) / time + unitManaRegen)))
-                        / Math.log(0.2);
+                        / Math.log(StunCalCulation);
                 else
-                    stun = Math.log(((1-StunCalCulator(t2, 0.18, s1, t2)) * 4.25 / time ) + (1-StunCalCulator(t, x1, s1, t))* (time - 4.25) / time) / Math.log(0.2);
+                    stun = Math.log(((1-StunCalCulator(t2, 0.18, s1, t2)) * 4.25 / time ) + (1-StunCalCulator(t, x1, s1, t))* (time - 4.25) / time) / Math.log(StunCalCulation);
             }
             else if (mana)
-                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1 / t + unitManaRegen)) : 0))) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1 / t + unitManaRegen)) : 0))) / Math.log(StunCalCulation);
             else
-                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t))) / Math.log(0.2);
+                stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1-StunCalCulator(t, x2, s2, t))) / Math.log(StunCalCulation);
 
             unitRate[sortCount][unitCount] = stun;
         }
@@ -515,7 +518,7 @@ let CountOn = () => {
             rate.innerText = unitRate[sortCount][unitCount].toFixed(3) + "스턴";
 
             const percentage = document.getElementById(`per-${sortCount}-${unitCount}`);
-            percentage.innerText = ((1 - Math.pow(0.2, unitRate[sortCount][unitCount])) * 100).toFixed(2) + "%";
+            percentage.innerText = ((1 - Math.pow(StunCalCulation, unitRate[sortCount][unitCount])) * 100).toFixed(2) + "%";
 
             const Count = document.getElementById(`c-${sortCount}-${unitCount}`);
             Count.innerText = stunCount[sortCount][unitCount];
@@ -742,41 +745,41 @@ function openOverlay(sortCount, unitCount) {
             let result = 0;
             switch (i) {
                 case 1:
-                    item.textContent = `스턴 가동률 : ${((1 - Math.pow(0.2, totalStun)) * 100).toFixed(2)}%`;
+                    item.textContent = `스턴 가동률 : ${((1 - Math.pow(StunCalCulation, totalStun)) * 100).toFixed(2)}%`;
                     break;
                 case 2:
-                    item.textContent = `스턴 샐 확률 : ${(Math.pow(0.2, totalStun) * 100).toFixed(2)}%`;
+                    item.textContent = `스턴 샐 확률 : ${(Math.pow(StunCalCulation, totalStun) * 100).toFixed(2)}%`;
                     break;
                 case 3:
-                    result = m_god * Math.pow(0.2, totalStun)
+                    result = m_god * Math.pow(StunCalCulation, totalStun)
                     result = result % 1 === 0 ? result.toString() : result.toFixed(3);
 
                     item.textContent = `초당 몹 이동 거리(신 기준) : ${result}`;
                     break;
                 case 4:                    
-                    result = 35 * m_god * Math.pow(0.2, totalStun)
+                    result = 35 * m_god * Math.pow(StunCalCulation, totalStun)
                     result = result % 1 === 0 ? result.toString() : result.toFixed(3);
                     item.textContent = `35초 후 몹 이동 거리(신 기준) : ${result}`;
                     break;
                 case 5:
-                    result = 14 * m_god * Math.pow(0.2, totalStun)
+                    result = 14 * m_god * Math.pow(StunCalCulation, totalStun)
                     result = result % 1 === 0 ? result.toString() : result.toFixed(3);
                     item.textContent = `14초 후 몹 이동 거리(신 기준) : ${result}`;
                     break;
                 case 6:
                     break;
                 case 7:
-                    result = m_nightmare * Math.pow(0.2, totalStun)
+                    result = m_nightmare * Math.pow(StunCalCulation, totalStun)
                     result = result % 1 === 0 ? result.toString() : result.toFixed(3);
                     item.textContent = `초당 몹 이동 거리(악몽 기준) : ${result}`;
                     break;
                 case 8:
-                    result = 35 * m_nightmare * Math.pow(0.2, totalStun)
+                    result = 35 * m_nightmare * Math.pow(StunCalCulation, totalStun)
                     result = result % 1 === 0 ? result.toString() : result.toFixed(3);
                     item.textContent = `35초 후 몹 이동 거리(악몽 기준) : ${result}`;
                     break;
                 case 9:
-                    result = 14 * m_nightmare * Math.pow(0.2, totalStun)
+                    result = 14 * m_nightmare * Math.pow(StunCalCulation, totalStun)
                     result = result % 1 === 0 ? result.toString() : result.toFixed(3);
                     item.textContent = `14초 후 몹 이동 거리(악몽 기준) : ${result}`;
                     break;
@@ -957,13 +960,13 @@ function openOverlay(sortCount, unitCount) {
                         Stun.innerText = `공격 속도 : ${(1/t).toFixed(3)}`
                         break;
                     case 1:
-                        Stun.innerText = `스턴 1 등급 : ${(Math.log(1-degree1) / Math.log(0.2)).toFixed(3)} 스턴`
+                        Stun.innerText = `스턴 1 등급 : ${(Math.log(1-degree1) / Math.log(StunCalCulation)).toFixed(3)} 스턴`
                         break;
                     case 2:
                         Stun.innerText = `스턴 1 가동률 : ${(degree1*100).toFixed(3)} %`
                         break;                    
                     case 3:
-                        Stun.innerText = `스턴 2 등급 : ${(Math.log(1-degree2) / Math.log(0.2)).toFixed(3)} 스턴`
+                        Stun.innerText = `스턴 2 등급 : ${(Math.log(1-degree2) / Math.log(StunCalCulation)).toFixed(3)} 스턴`
                         break;
                     case 4:
                         Stun.innerText = `스턴 2 가동률 : ${(degree2*100).toFixed(3)} %`
@@ -1023,9 +1026,9 @@ function openOverlay(sortCount, unitCount) {
 
             t = parseFloat(t.toFixed(3));
 
+
             let cycle = item[4] / (t + unitManaRegen + Brave(koby) + ((item[0]==="미호크") ? 2 : 0));
             const round = 36.65;
-            console.log((cycle * Math.ceil(round * 3 / cycle) - round*3 + 5));
             let time = parseInt((cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3) >=round ? (cycle * Math.ceil(round * 3 / cycle) - round*4 + 5).toFixed(3) : (cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3));
 
             Time.innerText = time + "초";
@@ -1132,7 +1135,7 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `스턴 지수 : ${unitRate[sortCount][unitCount].toFixed(3)}스턴`
                     break;
                 case 1:
-                    item.textContent = `스턴 가동률 : ${((1 - Math.pow(0.2, unitRate[sortCount][unitCount])) * 100).toFixed(2)}%`
+                    item.textContent = `스턴 가동률 : ${((1 - Math.pow(StunCalCulation, unitRate[sortCount][unitCount])) * 100).toFixed(2)}%`
                     break;
                 case 2:
                     item.textContent = `일반 모드 공속 : 초당${t.toFixed(3)}`
@@ -1156,7 +1159,7 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = `일반 모드 스턴 확률 : ${(x1 * 100).toFixed(2)}%`
                     break;
                 case 9:
-                    item.innerText = `일반 모드 스턴 수치 : ${(Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1)) / Math.log(0.2)).toFixed(3)}스턴`;
+                    item.innerText = `일반 모드 스턴 수치 : ${(Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1)) / Math.log(StunCalCulation)).toFixed(3)}스턴`;
                     break;
                 case 10:
                     item.innerText = `일반 모드 스턴 가동률 : ${((1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1)) * 100).toFixed(2)}%`;
@@ -1168,7 +1171,7 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = `거인화 모드 스턴 가동률 : ${((1 + (0.18 * s1 * t2 - n2 * 0.18 - 1) * Math.pow(1 - 0.18, n2)) * 100).toFixed(2)}%`;
                     break;
                 case 13:
-                    item.innerText = `거인화 모드 스턴 수치 : ${(Math.log(-(0.18 * s1 * t2 - n2 * 0.18 - 1) * Math.pow(1 - 0.18, n2)) / Math.log(0.2)).toFixed(3)}스턴`;
+                    item.innerText = `거인화 모드 스턴 수치 : ${(Math.log(-(0.18 * s1 * t2 - n2 * 0.18 - 1) * Math.pow(1 - 0.18, n2)) / Math.log(StunCalCulation)).toFixed(3)}스턴`;
                     break;
                 case 14:
                     item.innerText = `거인화 모드 지속시간 : 4.25초`;
@@ -1192,7 +1195,7 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = `마나 스턴 가동률 : ${(m_stun / maxMana * ((4.25 * t2 + (time - 4.25) * t) / time + unitManaRegen) * 100).toFixed(2)}%`
                     break;
                 case 21:
-                    item.innerText = `마나 스턴 수치 : ${(Math.log(1 - (m_stun / maxMana * ((4.25 * t2 + (time - 4.25) * t) / time + unitManaRegen))) / Math.log(0.2)).toFixed(3)}스턴`
+                    item.innerText = `마나 스턴 수치 : ${(Math.log(1 - (m_stun / maxMana * ((4.25 * t2 + (time - 4.25) * t) / time + unitManaRegen))) / Math.log(StunCalCulation)).toFixed(3)}스턴`
                     break;
             }
             itemList.appendChild(item);
@@ -1232,7 +1235,7 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = "스턴 지수 : " + unitRate[sortCount][unitCount].toFixed(3) + "스턴";
                     break;
                 case 2:
-                    item.innerText = "스턴 가동률 : " + ((1 - Math.pow(0.2,unitRate[sortCount][unitCount]))*100).toFixed(2) + "%";
+                    item.innerText = "스턴 가동률 : " + ((1 - Math.pow(StunCalCulation,unitRate[sortCount][unitCount]))*100).toFixed(2) + "%";
                     break;
                 case 3:
                     item.innerText = `공속 : 초당${t.toFixed(3)}`;
@@ -1257,17 +1260,17 @@ function openOverlay(sortCount, unitCount) {
                         let n3 = Math.ceil(1.75 * t);
                         let time = n3 / t;
                         let n4 = Math.floor((2.75 - time) * t);
-                        item.innerText = `스턴 1 수치 : ${(Math.log(1 - ((time + 1 / t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + 1 / t / 0.0125)) * (1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1))) / Math.log(0.2)).toFixed(3)}스턴`;
+                        item.innerText = `스턴 1 수치 : ${(Math.log(1 - ((time + 1 / t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + 1 / t / 0.0125)) * (1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1))) / Math.log(StunCalCulation)).toFixed(3)}스턴`;
                     }
                     else if (unitState[sortCount][unitCount][0] == "라분") {
                         item.innerText = `스턴 1 수치 : ${unitRate[sortCount][unitCount].toFixed(3)}스턴`;
                     }
                     else
-                        item.innerText = `스턴 1 수치 : ${(Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1)) / Math.log(0.2)).toFixed(3)}스턴`;
+                        item.innerText = `스턴 1 수치 : ${(Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1)) / Math.log(StunCalCulation)).toFixed(3)}스턴`;
                     break;
                 case 10:
                     if (unitState[sortCount][unitCount][0] == "라분") {
-                        item.innerText = `스턴 1 샐 확률 : ${(Math.pow(0.2, unitRate[sortCount][unitCount])*100).toFixed(2)}%`;
+                        item.innerText = `스턴 1 샐 확률 : ${(Math.pow(StunCalCulation, unitRate[sortCount][unitCount])*100).toFixed(2)}%`;
                     }
                     else if (unitState[sortCount][unitCount][0] == "루피")
                     {
@@ -1335,7 +1338,7 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = `스턴 2 범위 : ${stunRange[sortCount][unitCount - 1][1]}`;
                     break;
                 case 15:
-                    item.innerText = `스턴 2 수치 : ${(Math.log(-(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2)) / Math.log(0.2)).toFixed(3)}스턴`;
+                    item.innerText = `스턴 2 수치 : ${(Math.log(-(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2)) / Math.log(StunCalCulation)).toFixed(3)}스턴`;
                     break;
                 case 16:
                     item.innerText = `스턴 2 샐 확률 : ${(-(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2) * 100).toFixed(2)}%`;
@@ -1355,19 +1358,19 @@ function openOverlay(sortCount, unitCount) {
                 case 21:
                     item.innerText = `마나(체력)스턴 수치 : `;
                     if (unitState[sortCount][unitCount][0] === "샹크스") {
-                        item.innerText += (Math.log((1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35)) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log((1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35)) / Math.log(StunCalCulation)).toFixed(3);
                     }
                     else if (unitState[sortCount][unitCount][0] === "아오키지") {
-                        item.innerText += (Math.log(1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, floor(25 / (1 + 1 / t * unitManaRegen))) + 50 / (t + unitManaRegen))) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log(1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, floor(25 / (1 + 1 / t * unitManaRegen))) + 50 / (t + unitManaRegen))) / Math.log(StunCalCulation)).toFixed(3);
                     }
                     else if (unitState[sortCount][unitCount][0] === "흰수염") {
-                        item.innerText += (Math.log(1 - m_stun / (maxMana / (t + unitHealthRegen + 0.5))) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log(1 - m_stun / (maxMana / (t + unitHealthRegen + 0.5))) / Math.log(StunCalCulation)).toFixed(3);
                     }
                     else if (unitState[sortCount][unitCount][0] === "타츠마키") {
-                        item.innerText += (Math.log((1 - m_stun / (maxMana / (t + unitHealthRegen)))) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log((1 - m_stun / (maxMana / (t + unitHealthRegen)))) / Math.log(StunCalCulation)).toFixed(3);
                     }
                     else if (maxMana)
-                        item.innerText += (Math.log(1 - m_stun / (maxMana / (unitManaRegen + t))) / Math.log(0.2)).toFixed(3);
+                        item.innerText += (Math.log(1 - m_stun / (maxMana / (unitManaRegen + t))) / Math.log(StunCalCulation)).toFixed(3);
                     else
                         item.innerText += 0;
                     item.innerText += '스턴';
@@ -2507,7 +2510,7 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         percentage.className = 'Rate SmallFont';
         percentage.id = `per-${sortCount}-${unitCount}`;
         percentage.style.boxSizing = 'border-box';
-        percentage.innerText = ((1 - Math.pow(0.2, unitRate[sortCount][unitCount])) * 100).toFixed(2) + "%";
+        percentage.innerText = ((1 - Math.pow(StunCalCulation, unitRate[sortCount][unitCount])) * 100).toFixed(2) + "%";
         percentage.style.justifyContent = "center";
 
         const count = document.createElement("div");
