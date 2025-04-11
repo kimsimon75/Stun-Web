@@ -2829,6 +2829,7 @@ function connectWebSocket(){
 
  
     socket.onopen = (event) => {
+        console.log(event);
         console.log("✅ WebSocket 연결 성공!");
         reconnectAttempts = 0;
     };
