@@ -7,6 +7,14 @@
     justify-content: center;
 }
 
+#Window{
+    display: flex;
+    flex-direction: column;
+}
+
+#Update{
+    padding: 2vw;
+}
 
 .container {
     position: relative;
