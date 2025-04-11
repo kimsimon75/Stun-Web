@@ -2834,7 +2834,7 @@ function connectWebSocket(){
     };
     
     socket.onmessage = (event) => {
-    
+     
         console.log(event);
         if(event.isTrusted === true && JSON.parse(event.data).message === "Update")
         showUpdateNotification();
