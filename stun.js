@@ -2833,6 +2833,7 @@ function connectWebSocket(){
         reconnectAttempts = 0;
     };
     
+    
     socket.onmessage = (event) => {
     
         console.log(event);
