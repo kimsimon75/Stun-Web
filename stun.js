@@ -2842,6 +2842,21 @@ function connectWebSocket(){
         if(JSON.parse(event.data).id === "lastUpdate")
         {
             console.log(JSON.parse(event.data).updatedAt);
+            const updatedAt = JSON.parse(event.data).updatedAt;
+
+            const dateObj = new Date(updatedAt);
+
+            // 2. 원하는 형식으로 추출
+             const year = dateObj.getFullYear();           // 2025
+             const month = dateObj.getMonth() + 1;         // 4 (주의: 0부터 시작)
+             const day = dateObj.getDate();                // 11
+             const hour = dateObj.getHours();              // 23
+             const minute = dateObj.getMinutes();          // 45
+            const second = dateObj.getSeconds(); 
+
+            const date = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+
+            document.getElementById("Update").innerHTML = "ver.ORDR.1310 / Updated." + date;
             showUpdateNotification();
         }
     };
