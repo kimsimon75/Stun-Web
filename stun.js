@@ -2839,9 +2839,11 @@ function connectWebSocket(){
     
     socket.onmessage = (event) => {
     
-        console.log(JSON.parse(event.data));
-        if(event.isTrusted === true && JSON.parse(event.data).message === "Update")
-        showUpdateNotification();
+        if(JSON.parse(event.data).id === "lastUpdate")
+        {
+            console.log(JSON.parse(event.data).updateAt);
+            showUpdateNotification();
+        }
     };
     
     socket.onerror = (error) => {
