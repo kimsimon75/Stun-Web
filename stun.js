@@ -1,3 +1,4 @@
+const { json } = require("express");
 
 const container = document.getElementsByClassName("container")[0];
 
@@ -2836,8 +2837,8 @@ function connectWebSocket(){
     
     socket.onmessage = (event) => {
     
-        console.log(event);
-        if(event.isTrusted === true && event.data === "message")
+        console.log(JSON.parse(event.data));
+        if(event.isTrusted === true && JSON.parse(event.data) === "message")
         showUpdateNotification();
     };
     
