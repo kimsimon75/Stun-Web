@@ -2824,7 +2824,7 @@ function showUpdateNotification() {
 let socket;
 let reconnectAttempts = 0;
 
-function connectWebSocket(){ 
+function connectWebSocket(){
     socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production");
 
  
