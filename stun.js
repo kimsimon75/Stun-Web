@@ -2857,6 +2857,9 @@ function connectWebSocket(){
             const date = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
 
             document.getElementById("Update").innerHTML = "ver.ORDR.1310 / Updated." + date;
+        }
+        else if(JSON.parse(event.data).message === "Update")
+        {
             showUpdateNotification();
         }
     };
