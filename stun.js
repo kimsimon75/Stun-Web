@@ -2840,7 +2840,7 @@ function connectWebSocket(){
     socket.onmessage = (event) => {
     
         if(JSON.parse(event.data).id === "lastUpdate")
-        { 
+        {
             const updatedAt = JSON.parse(event.data).updatedAt;
 
             const dateObj = new Date(updatedAt);
