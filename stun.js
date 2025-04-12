@@ -2839,7 +2839,7 @@ function connectWebSocket(){
     
     socket.onmessage = (event) => {
     
-        console.log(JSON.parse(event.data));
+        console.log(JSON.parse(event.data))
         if(JSON.parse(event.data).id === "lastUpdate")
         {
             console.log(JSON.parse(event.data).updatedAt);
