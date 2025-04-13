@@ -299,18 +299,18 @@ const Rate = [
     ['불사조의 깃털', '마르코', '마르코(특강)'],
 ]
 
-const Mana = [
-    ['미호크', unitRates.영원한,1.45, 0.93, 175],
-    ['에넬', unitRates.제한됨, 2.85, 0.75,  145],
-    ['핸콕', unitRates.영원한, 3.3, 0.74, 175],
-    ['에이스', unitRates.영원한, 3.14, 0.58, 185],
-    ['제트', unitRates.불멸의, 3.3, 0.66, 160],
-    ['쿠마', unitRates.전설적인, 2.95, 0.69, 115],
-    ['오뎅', unitRates.영원한, 3.15, 0.64, 145],
-    ['프랑키', unitRates.초월함, 3.35, 0.75, 150],
-    ['시라호시', unitRates.초월함, 3.35, 0.7, 120],
-    ['타시기', unitRates.초월함, 3.35, 0.88, 135],  
-    ['반 더 데켄', unitRates.히든, 2.6, 0.66, 95],
+const Mana = [// 이름, 등급, 공속보너스, 공격주기, 마나통, 딜레이시간
+    ['미호크', unitRates.영원한,1.45, 0.93, 175, 2.3], 
+    ['에넬', unitRates.제한됨, 2.85, 0.75,  145, 0],
+    ['핸콕', unitRates.영원한, 3.3, 0.74, 175, 1.48],
+    ['에이스', unitRates.영원한, 3.14, 0.58, 185, 0],
+    ['제트', unitRates.불멸의, 3.3, 0.66, 160, 1],
+    ['쿠마', unitRates.전설적인, 2.95, 0.69, 115, 0],
+    ['오뎅', unitRates.영원한, 3.15, 0.64, 145, 0],
+    ['프랑키', unitRates.초월함, 3.35, 0.75, 150, 0],
+    ['시라호시', unitRates.초월함, 3.35, 0.7, 120, 0],
+    ['타시기', unitRates.초월함, 3.35, 0.88, 135, 0],  
+    ['반 더 데켄', unitRates.히든, 2.6, 0.66, 95, 0],
 ]
 
 
@@ -1011,24 +1011,40 @@ function openOverlay(sortCount, unitCount) {
                 return (item[0] == items[0] && item[1][0] === items[1]);
             })
 
-            if(Buffindex !== -1 && BuffState[Buffindex][3] && !document.getElementsByClassName(`m${Buffindex}`)[0].checked)
+            t = parseFloat((t * 0.95).toFixed(3));
+            const plus = 5;
+            const round = 35;
+
+            function Cycle(int)
             {
-                if(item[0] !== "프랑키")
-                    t += BuffState[Buffindex][3];
-            }
-            if(Buffindex !== -1 && BuffState[Buffindex][3] && document.getElementsByClassName(`m${Buffindex}`)[0].checked)
+                if(item[0]==="미호크")
                 {
-                    if(item[0] === "프랑키")
-                        t -= BuffState[Buffindex][3];
+                    let cycle = (item[4] - item[5] * (unitManaRegen + Brave(koby) + 2) ) / (t + unitManaRegen + Brave(koby) + 2) + item[5];
+                    console.log(cycle);
+                    return cycle * Math.ceil(round * 3 / cycle) - round * int + plus;
+                }
+                else if(item[0] === "프랑키")
+                {
+                    const Franky = - (document.getElementsByClassName(`m${Buffindex}`)[0].checked ? BuffState[Buffindex][3] : 0);
+                    let cycle = (item[4] - item[5] * (unitManaRegen + Brave(koby) + Franky )) / (t + unitManaRegen + Brave(koby) + Franky) + item[5];
+                    console.log(cycle);
+                    return cycle * Math.ceil(round * 3 / cycle) - round * int + plus;
+                }
+                else if (item[0] === "에넬")
+                {
+                    const enel = - (document.getElementsByClassName(`m${Buffindex}`)[0].checked ? BuffState[Buffindex][3] : 0);
+                    let cycle = (item[4] - item[5] * (unitManaRegen + Brave(koby) + enel )) / (t + unitManaRegen + Brave(koby) + enel) + item[5];
+                    console.log(cycle);
+                    return cycle * Math.ceil(round * 3 / cycle) - round * int + plus;
                 }
 
-            t = parseFloat(t.toFixed(3));
+                let cycle = (item[4] - item[5] * (unitManaRegen + Brave(koby)) ) / (t + unitManaRegen + Brave(koby)) + item[5];
+                console.log(cycle);
+                return cycle * Math.ceil(round * 3 / cycle) - round * int + plus;
+            }
 
 
-            let cycle = item[4] / (t + unitManaRegen + Brave(koby) + ((item[0]==="미호크") ? 2 : 0));
-            const round = 36.65;
-            let time = parseInt((cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3) >=round ? (cycle * Math.ceil(round * 3 / cycle) - round*4 + 5).toFixed(3) : (cycle * Math.ceil(round * 3 / cycle) - round*3 + 5).toFixed(3));
-
+            let time = parseInt(Cycle(3).toFixed(3) >=round ? Cycle(4).toFixed(3) : Cycle(3).toFixed(3));
             Time.innerText = time + "초";
             Grid.appendChild(Time);
         })
