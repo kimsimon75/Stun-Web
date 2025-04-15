@@ -2887,14 +2887,25 @@ function connectWebSocket(){
         console.log("✅ WebSocket 연결됨");
     
         // 연결되자마자 서버에 초기 데이터 요청
-
+        if(first)
+        {
             socket.send(JSON.stringify({
                 action: ""
             }));
+            first = false;
+        }
+
     };
     
     socket.onmessage = (event) => {
-    
+        if(JSON.parse(event.data).message === "Update")
+        {
+            showUpdateNotification();
+        }
+        else 
+        {
+            console.log("알 수 없는 메세지");
+        }
     };
     
     socket.onerror = (error) => {
