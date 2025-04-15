@@ -2877,6 +2877,7 @@ function loadMarkdown(version) {
 
 let socket;
 let reconnectAttempts = 0;
+let first = true;
 
 function connectWebSocket(){
     socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production");
@@ -2884,6 +2885,12 @@ function connectWebSocket(){
  
     socket.onopen = () => {
         console.log("✅ WebSocket 연결됨");
+    
+        // 연결되자마자 서버에 초기 데이터 요청
+
+            socket.send(JSON.stringify({
+                action: ""
+            }));
     };
     
     socket.onmessage = (event) => {
