@@ -410,8 +410,9 @@ const UnitTotalStun = () => {
 
             if (unitState[sortCount][unitCount][0] === "라분") // 라분
             {
+                let delay = 0.39/ ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx))
                 for (var k = 0; k < 6; k++) {
-                    window['time' + k] = k * t;
+                    window['time' + k] = k * t + delay;
                 }
                 stun = Math.log(1 - (((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + ((0.65 + time2 > 2.15) ? 2.15 : (0.65 + time2)) * 0.27 * Math.pow(1 - 0.27, 2) + ((0.65 + time3 > 2.15) ? 2.15 : (0.65 + time3)) * 0.27 * Math.pow(1 - 0.27, 3) + ((0.65 + time4 > 2.15) ? 2.15 : (0.65 + time4)) * 0.27 * Math.pow(1 - 0.27, 4) + ((0.65 + time5 > 2.15) ? 2.15 : (0.65 + time5)) * (1 - 0.27 - 0.27 * (1 - 0.27) - 0.27 * Math.pow(1 - 0.27, 2) - 0.27 * Math.pow(1 - 0.27, 3) - 0.27 * Math.pow(1 - 0.27, 4))) / ((0.65 + time0) * 0.27 + (0.65 + time1) * 0.27 * (1 - 0.27) + (0.65 + time2) * 0.27 * Math.pow(1 - 0.27, 2) + (0.65 + time3) * 0.27 * Math.pow(1 - 0.27, 3) + (0.65 + time4) * 0.27 * Math.pow(1 - 0.27, 4) + (0.65 + time5 ) * (1 - (0.27 + 0.27 * Math.pow(1 - 0.27, 1) + 0.27 * Math.pow(1 - 0.27, 2) + 0.27 * Math.pow(1 - 0.27, 3) + 0.27 * Math.pow(1 - 0.27, 4))))) / Math.log(StunCalCulation);
             }
@@ -2907,3 +2908,40 @@ function connectWebSocket(){
 }
 
 connectWebSocket();
+
+import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+
+const selector = document.getElementById("versionSelector");
+const contentDiv = document.getElementById("content");
+
+// index.json 가져와서 버전 목록 표시
+fetch("https://patchnote.s3.ap-northeast-2.amazonaws.com/patchnotes/index.json")
+  .then(res => res.json())
+  .then(versions => {
+    versions.reverse().forEach(version => {
+      const option = document.createElement("option");
+      option.value = version;
+      option.textContent = version;
+      selector.appendChild(option);
+    });
+
+    // 첫 번째 자동 로딩
+    loadMarkdown(versions[0]);
+  });
+
+selector.addEventListener("change", () => {
+  const version = selector.value;
+  loadMarkdown(version);
+});
+
+function loadMarkdown(version) {
+  const url = `https://patchnote.s3.ap-northeast-2.amazonaws.com/patchnotes/${version}.md`;
+  fetch(url)
+    .then(res => res.text())
+    .then(md => {
+      contentDiv.innerHTML = marked.parse(md);
+    })
+    .catch(err => {
+      contentDiv.innerHTML = `<p style="color:red;">❌ 로딩 실패: ${err.message}</p>`;
+    });
+}
