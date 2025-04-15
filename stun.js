@@ -2856,7 +2856,9 @@ const selector = document.getElementById("versionSelector");
 const contentDiv = document.getElementById("content");
 
 // index.json 가져와서 버전 목록 표시
-fetch("https://patchnote.s3.ap-northeast-2.amazonaws.com/patchnotes/index.json")
+fetch("https://patchnote.s3.ap-northeast-2.amazonaws.com/patchnotes/index.json", {
+    cache: "no-store"
+  })
   .then(res => res.json())
   .then(versions => {
     versions.forEach(entry => {
