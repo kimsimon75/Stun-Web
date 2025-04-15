@@ -2847,12 +2847,12 @@ const contentDiv = document.getElementById("content");
 fetch("https://patchnote.s3.ap-northeast-2.amazonaws.com/patchnotes/index.json")
   .then(res => res.json())
   .then(versions => {
-    versions.reverse().forEach(version => {
-      const option = document.createElement("option");
-      option.value = version;
-      option.textContent = version;
-      selector.appendChild(option);
-    });
+    versions.forEach(entry => {
+        const option = document.createElement("option");
+        option.value = entry.version;
+        option.textContent = `${entry.version} (${entry.date})`;
+        selector.appendChild(option);
+      });
 
     // 첫 번째 자동 로딩
     loadMarkdown(versions[0]);
