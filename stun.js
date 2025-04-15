@@ -311,6 +311,7 @@ const Mana = [// 이름, 등급, 공속보너스, 공격주기, 마나통, 딜�
     ['시라호시', unitRates.초월함, 3.35, 0.7, 120, 0],
     ['타시기', unitRates.초월함, 3.35, 0.88, 135, 0],  
     ['반 더 데켄', unitRates.히든, 2.6, 0.66, 95, 0],
+    ['류마(400스텍 이상)', unitRates.영원한, 3.23, 0.71, 150, 0],
 ]
 
 
@@ -2839,6 +2840,7 @@ function showUpdateNotification() {
 
 let socket;
 let reconnectAttempts = 0;
+let first = true;
 
 function connectWebSocket(){
     socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production");
@@ -2848,9 +2850,14 @@ function connectWebSocket(){
         console.log("✅ WebSocket 연결됨");
     
         // 연결되자마자 서버에 초기 데이터 요청
-        socket.send(JSON.stringify({
-            action: ""
-        }));
+        if(first)
+        {
+            socket.send(JSON.stringify({
+                action: ""
+            }));
+            first = false;
+        }
+
     };
     
     socket.onmessage = (event) => {
