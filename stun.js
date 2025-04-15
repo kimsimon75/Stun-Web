@@ -2855,7 +2855,7 @@ fetch("https://patchnote.s3.ap-northeast-2.amazonaws.com/patchnotes/index.json")
       });
 
     // 첫 번째 자동 로딩
-    loadMarkdown(versions[0]);
+    loadMarkdown(versions[0].version);
   });
 
 selector.addEventListener("change", () => {
