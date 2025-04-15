@@ -2838,78 +2838,7 @@ function showUpdateNotification() {
     document.body.appendChild(notification);
   }
 
-
-let socket;
-let reconnectAttempts = 0;
-let first = true;
-
-function connectWebSocket(){
-    socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production");
-
- 
-    socket.onopen = () => {
-        console.log("✅ WebSocket 연결됨");
-    
-        // 연결되자마자 서버에 초기 데이터 요청
-        if(first)
-        {
-            socket.send(JSON.stringify({
-                action: ""
-            }));
-            first = false;
-        }
-
-    };
-    
-    socket.onmessage = (event) => {
-    
-        if(JSON.parse(event.data).id === "lastUpdate")
-        {
-            const updatedAt = JSON.parse(event.data).updatedAt;
-
-            const dateObj = new Date(updatedAt);
-
-            // 2. 원하는 형식으로 추출
-            const year = dateObj.getFullYear();                    // 2025
-            const month = String(dateObj.getMonth() + 1).padStart(2, "0"); // 04
-            const day = String(dateObj.getDate()).padStart(2, "0");        // 11
-            const hour = String(dateObj.getHours()).padStart(2, "0");      // 23
-            const minute = String(dateObj.getMinutes()).padStart(2, "0");  // 45
-            const second = String(dateObj.getSeconds()).padStart(2, "0");  
-
-            const date = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
-
-            document.getElementById("Update").innerHTML = "ver.ORDR.1310 / Updated." + date;
-        }
-        else if(JSON.parse(event.data).message === "Update")
-        {
-            showUpdateNotification();
-        }
-        else 
-        {
-            console.log("알 수 없는 메세지");
-        }
-    };
-    
-    socket.onerror = (error) => {
-        console.error("❌ WebSocket 오류 발생:", error);
-    };
-    
-    socket.onclose = (event) => {
-        console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
-
-        // 백오프 전략 적용 (최대 30초까지 증가)
-        let delay = Math.min(3000 * (2 ** reconnectAttempts), 30000);
-        console.log(`⏳ ${delay / 1000}초 후 재연결 시도...`);
-        setTimeout(connectWebSocket, delay);
-
-        reconnectAttempts++;
-    };
-}
-
-connectWebSocket();
-
-import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+  import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 
 const selector = document.getElementById("versionSelector");
 const contentDiv = document.getElementById("content");
@@ -2945,3 +2874,37 @@ function loadMarkdown(version) {
       contentDiv.innerHTML = `<p style="color:red;">❌ 로딩 실패: ${err.message}</p>`;
     });
 }
+
+let socket;
+let reconnectAttempts = 0;
+
+function connectWebSocket(){
+    socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production");
+
+ 
+    socket.onopen = () => {
+        console.log("✅ WebSocket 연결됨");
+    };
+    
+    socket.onmessage = (event) => {
+    
+    };
+    
+    socket.onerror = (error) => {
+        console.error("❌ WebSocket 오류 발생:", error);
+    };
+    
+    socket.onclose = (event) => {
+        console.warn("⚠️ WebSocket 연결 종료! 코드:", event.code, "이유:", event.reason);
+
+        // 백오프 전략 적용 (최대 30초까지 증가)
+        let delay = Math.min(3000 * (2 ** reconnectAttempts), 30000);
+        console.log(`⏳ ${delay / 1000}초 후 재연결 시도...`);
+        setTimeout(connectWebSocket, delay);
+
+        reconnectAttempts++;
+    };
+}
+
+connectWebSocket();
+
