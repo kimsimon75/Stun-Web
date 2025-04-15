@@ -1036,12 +1036,24 @@ function openOverlay(sortCount, unitCount) {
                 {
                     const enel = - (document.getElementsByClassName(`m${Buffindex}`)[0].checked ? BuffState[Buffindex][3] : 0);
                     let cycle = (item[4] - item[5] * (unitManaRegen + Brave(koby) + enel )) / (t + unitManaRegen + Brave(koby) + enel) + item[5];
-                    console.log(cycle);
+                    return cycle * Math.ceil(round * 3 / cycle) - round * int + plus;
+                }
+                else if (item[0] === "류마(400스텍 이상)")
+                {
+                    const toki = BuffState.findIndex(items => {
+                        return items[0] === "토키";
+                    })
+                    if(BuffState[toki][6] == true)
+                    {
+                        AttackSpeedBuff = parseFloat((1 + item[2] + 0.2 + parseFloat((speedBonusEx / 100).toFixed(3))).toFixed(3));
+                        t = parseFloat((1 / item[3] * (AttackSpeedBuff > 5 ? 5 : AttackSpeedBuff)).toFixed(3));
+                    }
+                    console.log(AttackSpeedBuff);
+                    let cycle = (item[4] - item[5] * (unitManaRegen + Brave(koby) )) / (t + unitManaRegen + Brave(koby)) + item[5];
                     return cycle * Math.ceil(round * 3 / cycle) - round * int + plus;
                 }
 
                 let cycle = (item[4] - item[5] * (unitManaRegen + Brave(koby)) ) / (t + unitManaRegen + Brave(koby)) + item[5];
-                console.log(cycle);
                 return cycle * Math.ceil(round * 3 / cycle) - round * int + plus;
             }
 
