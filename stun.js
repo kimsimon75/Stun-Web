@@ -1047,6 +1047,7 @@ function openOverlay(sortCount, unitCount) {
                     {
                         AttackSpeedBuff = parseFloat((1 + item[2] + 0.2 + parseFloat((speedBonusEx / 100).toFixed(3))).toFixed(3));
                         t = parseFloat((1 / item[3] * (AttackSpeedBuff > 5 ? 5 : AttackSpeedBuff)).toFixed(3));
+                        t = parseFloat((t * 0.95).toFixed(3));
                     }
                     console.log(AttackSpeedBuff);
                     let cycle = (item[4] - item[5] * (unitManaRegen + Brave(koby) )) / (t + unitManaRegen + Brave(koby)) + item[5];
