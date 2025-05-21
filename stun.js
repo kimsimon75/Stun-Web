@@ -339,8 +339,8 @@ var manaRegen = 0;
 var healthRegen = 0;
 var totalStun = 0;
 
-var m_nightmare = 0;
-var m_god = 0;
+var m_nightmare = 542.75;
+var m_god = 484.625;
 
 var nameSort = 1;
 var rateSort = 0;
@@ -352,7 +352,8 @@ var intel = 0;
 var dex = 0;
 
 const StunCalCulation = 0.2;
-
+const min_move = 70;
+const max_move = 490;
 
 function Brave(koby){
     let t = 1 / 0.57 * (parseFloat((1 + 2.95 + speedBonusEx/ 100).toFixed(3)) > 5 ? 5 :  parseFloat((1 +2.95 + speedBonusEx / 100).toFixed(3)));
@@ -506,8 +507,8 @@ function SetElemental(){
 
 let CountOn = () => {
 
-    m_god = parseFloat((484.625-3.875*speedDebuff).toFixed(3)) < 70 ? 70 : parseFloat((484.625-3.875*speedDebuff).toFixed(3)) > 490 ? 490 : parseFloat((484.625-3.875*speedDebuff).toFixed(3));
-    m_nightmare = parseFloat((542.75-3.875*speedDebuff).toFixed(3)) < 70 ? 70 : parseFloat((542.75-3.875*speedDebuff).toFixed(3)) > 490 ? 490 : parseFloat((542.75-3.875*speedDebuff).toFixed(3));
+    m_god = parseFloat((484.625-3.875*speedDebuff).toFixed(3)) < min_move ? min_move : parseFloat((484.625-3.875*speedDebuff).toFixed(3)) > max_move ? max_move : parseFloat((484.625-3.875*speedDebuff).toFixed(3));
+    m_nightmare = parseFloat((542.75-3.875*speedDebuff).toFixed(3)) < min_move ? min_move : parseFloat((542.75-3.875*speedDebuff).toFixed(3)) > max_move ? max_move : parseFloat((542.75-3.875*speedDebuff).toFixed(3));
 
 
     if (document.getElementById("container1") != null)
