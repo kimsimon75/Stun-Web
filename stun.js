@@ -351,7 +351,7 @@ var koby = 0;
 var intel = 0;
 var dex = 0;
 
-const StunCalCulation = 0.3;
+const StunCalCulation = 0.2;
 
 
 function Brave(koby){
