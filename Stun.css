@@ -25,7 +25,7 @@
     margin-bottom : 0;
     padding:0;
     padding-left : 0.5vw;
-    border:1px solid black;
+    border:0.001rem solid black;
 }
 
 .container {
@@ -40,6 +40,13 @@
     grid-auto-flow : column;
     margin-left : 2vw;
     margin-right : 2vw;
+}
+
+#bar {
+    margin : 0.5vw 2vw 0 2vw;
+    border  : 0.001rem solid black;
+    display : grid;
+    grid-template-columns : repeat(15,1fr);
 }
 
 .Button {
@@ -127,4 +134,47 @@
     display: flex;
     justify-content: space-between; /* �ؽ�Ʈ ����, üũ�ڽ� ������ */
     align-items: center;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 14px; width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switch-input:checked + .slider {
+  background-color: #4f46e5;
+}
+
+.switch-input:checked + .slider::before {
+  transform: translateX(20px);
 }
