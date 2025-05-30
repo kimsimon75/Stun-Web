@@ -312,7 +312,7 @@ const Mana = [// 이름, 등급, 공속보너스, 공격주기, 마나통, 딜�
     ['시라호시', unitRates.초월함, 3.35, 0.7, 120, 0],
     ['타시기', unitRates.초월함, 3.35, 0.88, 135, 0],  
     ['반 더 데켄', unitRates.히든, 2.6, 0.66, 95, 0],
-    ['류마(400스텍 이상)', unitRates.영원한, 3.23, 0.71, 150, 0],
+    ['류마(400스택 이상)', unitRates.영원한, 3.23, 0.71, 150, 0],
     ['코비(9스텍 + 도시락)', unitRates.초월함, 2.8, 0.71, 150, 0],
 ]
 
@@ -1065,7 +1065,7 @@ function openOverlay(sortCount, unitCount) {
                     let cycle = (item[4] - item[5] * (unitManaRegen + braveKoby + enel )) / (t + unitManaRegen + braveKoby + enel) + item[5];
                     return cycle * Math.ceil(round * 3 / cycle) - round * int + plus;
                 }
-                else if (item[0] === "류마(400스텍 이상)")
+                else if (item[0] === "류마(400스택 이상)")
                 {
                     const toki = BuffState.findIndex(items => {
                         return items[0] === "토키";
@@ -1245,7 +1245,7 @@ function openOverlay(sortCount, unitCount) {
         switch(i) {
             case 1:
                 input.id = "stack";
-                title.innerText = "류영 400스택:";
+                title.innerText = "류영 700스택:";
                 input.addEventListener("change", () => {
                     stack = input.checked;
                     updateArmorDisplay();
