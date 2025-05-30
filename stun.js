@@ -2577,9 +2577,15 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
         count.style.height = `${GridHeight}vw`;
         count.style.boxSizing = "border-box";
 
+        const preloadImages = ["plus.svg", "minus.svg"];
+        preloadImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+        });
+
         const plus = document.createElement("img");
         plus.className = 'IMG SmallFont';
-        plus.src = "plus.png";
+        plus.src = "plus.svg";
         plus.id = `p-${sortCount}-${unitCount}`;
         plus.style.height = `${GridHeight}vw`;
         plus.style.aspectRatio = "1";
@@ -2607,7 +2613,7 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
 
         const minus = document.createElement("IMG");
         minus.className = 'IMG SmallFont';
-        minus.src = "minus.png";
+        minus.src = "minus.svg";
         minus.id = `m-${sortCount}-${unitCount}`;
         minus.style.height = `${GridHeight}vw`;
         minus.style.aspectRatio = "1";
