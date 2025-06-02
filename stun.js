@@ -1239,6 +1239,7 @@ function openOverlay(sortCount, unitCount) {
             label.appendChild(slider);
 
             const title = document.createElement("div");
+            title.style.fontSize = "1vw";
             item.appendChild(title);
             item.appendChild(label);
 
@@ -1257,6 +1258,7 @@ function openOverlay(sortCount, unitCount) {
 
                 const modeLabel = document.createElement("span");
                 modeLabel.innerText = input.checked ? "악몽" : "신";
+                modeLabel.style.fontSize = "0.8vw";
                 modeLabel.style.marginLeft = "0.5vw"; // 간격 조정
 
                 const wrapper = document.createElement("div");
