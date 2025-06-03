@@ -1329,7 +1329,7 @@ function openOverlay(sortCount, unitCount) {
 
             switch (i) {
                 case 0:
-                    item.textContent = `이감 확률 : ${(x * 100).toFixed(0)}%`;
+                    item.textContent = `이감 확률 : ${(x * 100).toFixed(3)}%`;
                     break;
                 case 1:
                     item.textContent = `이감 지속시간 : ${s.toFixed(2)}초`;
