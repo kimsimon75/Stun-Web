@@ -528,7 +528,7 @@ function SetElemental(){
 let CountOn = () => {
 
     m_god = Math.max(Math.min(RoundX(484.625 - 3.875*speedDebuff, 3), max_move), min_move);
-    m_god = Math.max(Math.min(RoundX(542.75 - 3.875*speedDebuff, 3), max_move), min_move);
+    m_nightmare = Math.max(Math.min(RoundX(542.75 - 3.875*speedDebuff, 3), max_move), min_move);
 
 
     if (document.getElementById("container1") != null)
