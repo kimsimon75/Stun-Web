@@ -2,19 +2,16 @@ const { exec } = require('child_process');
 const iconv = require('iconv-lite');
 
 exec(
-  'git add . && git commit -m "Auto commit from Node.js" && git push origin main',
+  // ① 변경 사항이 있을 때만 commit
+  'git add -A && (git diff --cached --quiet || git commit -m "Auto commit from Node.js") && git push origin main',
   { encoding: 'buffer', shell: true },
   (err, stdout, stderr) => {
+    const dec = b => iconv.decode(b, 'cp949');
     if (err) {
-      // 한글 오류 메시지 디코딩
-      console.error(`❌ 에러 발생:\n${iconv.decode(stderr, 'cp949')}`);
+      console.error(`❌ 에러 발생:\n${dec(stderr)}\n${err.message}`);
       return;
     }
-
-    // 성공 출력
-    console.log(`✅ 완료\n${stdout}`);
-
-    // Git이 경고를 stderr로 내보내는 경우
-    if (stderr) console.error(`⚠️ stderr: ${iconv.decode(stderr, 'cp949')}`);
+    if (stderr.length) console.error(dec(stderr));
+    console.log(dec(stdout) || '✅ 아무 변경도 없어 푸시만 완료');
   }
 );
