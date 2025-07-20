@@ -47,7 +47,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
 
     [['초월함'],
     ['로빈', 3.35, 0.71, 0.1, 2.85, 0, 0, 0, 0, 0],
-    ['루피', 3.35, 0.38, 0.25, 1.5, 0, 0, 160, 2.15, 0],
+    ['루피', 3.35, 0.38, 0.025, 1.5, 0, 0, 160, 2.15, 0],
     ['시라호시', 3.35, 0.7, 0.12, 2.35, 0, 0, 120, 3, 0],
     ['샹크스', 3.55, 0.6, 0.1, 2, 0.1, 1.8, 35, 3, 0],
     ['아오키지', 3.35, 0.69, 0.1, 2.3, 0, 0, 0, 0, 0],
@@ -342,8 +342,8 @@ var manaRegen = 0;
 var healthRegen = 0;
 var totalStun = 0;
 
-var m_nightmare = 542.75;
-var m_god = 484.625;
+var m_nightmare = 542;
+var m_god = 484;
 
 var nameSort = 1;
 var rateSort = 0;
@@ -354,8 +354,8 @@ var koby = 0;
 var intel = 0;
 var dex = 0;
 
-const StunCalCulation = 0.2;
-const min_move = 70;
+const StunCalCulation = 0.15;
+const min_move = 89;
 const max_move = 490;
 
 function RoundX(x, n) {
@@ -456,7 +456,9 @@ const UnitTotalStun = () => {
                     if (mana)
                         stun = Math.log((1 - ((time + t / 0.025 * (1 - (n4 * 0.025 + 1) * Math.pow(1 - 0.025, n4))) / (time + t / 0.025)) * StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1/t + unitManaRegen)) : 0))) / Math.log(StunCalCulation);
                     else
-                        stun = Math.log(1 - ((time +t / 0.025 * (1 - (n4 * 0.025 + 1) * Math.pow(1 - 0.025, n4))) / (time + t / 0.025)) * StunCalCulator(t, x1, s1, t)) / Math.log(StunCalCulation);
+                        stun = StunCalCulator(t, x1, 3.5, time);
+                    console.log(n3, n4);
+                    console.log(t);
                 }
             else if (unitState[sortCount][0][0] ==='초월함' &&  unitState[sortCount][unitCount][0] === "아오키지") // 아오키지
             {
