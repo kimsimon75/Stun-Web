@@ -14,7 +14,8 @@ const unitRates = {
     불멸의: ["불멸의", 6],
     영원한: ["영원한",7],
     신비함: ["신비함", 8],
-    특수함: ["특수함", 9]
+    특수함: ["특수함", 9],
+    왜곡됨: ["왜곡됨", 10],
 }
 
 
@@ -42,8 +43,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     ['써니호', 2.6, 0.45, 0.1, 1.4, 0, 0, 0, 0, 0],
     ['아오키지', 2.6, 0.79, 0.1, 1.35, 0, 0, 0, 0, 0],
     ['이완코브', 2.6, 0.86, 0.12, 1.8, 0, 0, 0, 0, 0],
-    ['피셔타이거', 2.6, 0.49, 0.1, 2, 0, 0, 0, 0, 0],
-    ['퀸', 2.6, 0.92, 0.15, 0.95, 0, 0, 0, 0, 0]],
+    ['피셔타이거', 2.6, 0.49, 0.1, 2, 0, 0, 0, 0, 0],],
 
     [['초월함'],
     ['로빈', 3.35, 0.71, 0.1, 2.85, 0, 0, 0, 0, 0],
@@ -81,6 +81,9 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     ['나루토', 3.05, 0.5, 0.05, 2.85, 0, 0, 0, 0, 0],
     ['미나토', 3.42, 0.73, 0.0425, 3, 0.16, 2.75, 100, 2.75, 0],
     ['타츠마키', 3.3, 0.79, 0.1425, 1.75, 0, 0, 50, 1.75, 0],],
+
+    [['왜곡됨'],
+    ['퀸', 2.6, 0.92, 0.15, 0.95, 0, 0, 0, 0, 0],],
 ]
 
 const stunRange = [
@@ -242,7 +245,7 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 이감, 체크
     ['드래곤', '불멸의', 20, 0, 0, 0, 0],
     ['니카', '영원한', 25, 0, 0, 0, 0],
     ['우타', '영원한', 27, 0, 0, 0, 0],
-    ['퀸', '히든', 0, 1, 1, 0, 0],
+    ['퀸', '왜곡됨', 0, 1, 1, 0, 0],
     ['둔화의 지팡이', '아이템', 0, 0, 0, 12, 0],
     ['비구름생성기', '아이템', 0, 0, 0, 12, 0],
     ['기후 변화', '연구소', 0, 0, 0, 10, 0],
@@ -277,7 +280,7 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 이감, 체크
     ['에이스', '변화된', 0, 0, 0, 20, 0],
     ['사보', '히든', 0, 0, 0, 25, 0],
     ['아오키지', '히든', 0, 0, 0, 35, 0],
-    ['페로나', '히든', 0, 0, 0, 45, 0],
+    ['페로나', '왜곡됨', 0, 0, 0, 45, 0],
     ['모리아', '전설적인', 0, 0, 0, 30, 0],
     ['네코마무시', '전설적인', 0, 0, 0, 30, 0],
     ['마르코', '전설적인', 0, 0, 0, 30, 0],
@@ -323,12 +326,12 @@ let unitRate = [];
 let stunCount = [];
 let Sort = [];
 
-for (var sortCount = 0; sortCount < 8; sortCount++) {
+for (var sortCount = 0; sortCount < unitState.length; sortCount++) {
     unitRate[sortCount] = [];
     stunCount[sortCount] = [];
 }
 
-for (let sortCount = 0; sortCount < 8; sortCount++) {
+for (let sortCount = 0; sortCount < unitState.length; sortCount++) {
     for (let unitCount = 0; unitCount < 10; unitCount++) {
         unitRate[sortCount][unitCount] = 0;
         stunCount[sortCount][unitCount] = 0;
@@ -393,7 +396,7 @@ const UnitTotalStun = () => {
     healthRegen  = RoundX(healthRegen, 3);
     speedDebuff  = RoundX(speedDebuff, 3);
 
-    for (var sortCount = 0; sortCount < 8; sortCount++)
+    for (var sortCount = 0; sortCount < unitState.length; sortCount++)
     {
         for (var unitCount = 1; unitCount < unitState[sortCount].length; unitCount++)
         {
@@ -518,9 +521,11 @@ const UnitTotalStun = () => {
         }
     }
 }
-
-const Unit = unitState[0].length + unitState[1].length + unitState[2].length + unitState[3].length + unitState[4].length + unitState[5].length + unitState[6].length + unitState[7].length;
-
+let Unit = 0;
+for(let i=0;i<unitState.length;i++)
+{
+    Unit += unitState[i].length;
+}
 function SetElemental(){
     document.getElementsByClassName("TotalStun")[0].innerText = totalStun.toFixed(3) + "스턴";
     document.getElementsByClassName("MRegen")[0].innerText = manaRegen;
@@ -2535,6 +2540,8 @@ for (var i = 0, sortCount = 0, unitCount = 0; i < Unit; i++, unitCount++) {
                 break;
             case 7:
                 newChild.style.color = "rgb(091,151,213)";
+                break;
+            case 8:
                 break;
         }
         UnitBar.appendChild(newChild);
