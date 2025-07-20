@@ -885,10 +885,10 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `※이감 1%당 이속 3.875 감소`
                     break;
                 case 3:
-                    item.textContent = `신 최대 이감 : 107%`
+                    item.textContent = `신 최대 이감 : 102%`
                     break;
                 case 4:
-                    item.textContent = `악몽 최대 이감 : 122%`;
+                    item.textContent = `악몽 최대 이감 : 117%`;
                     break;
                 case 5:
                     item.textContent = `몹 이동속도(신) : ${m_god}`;
