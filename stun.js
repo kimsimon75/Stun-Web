@@ -1,6 +1,6 @@
 const container = document.getElementsByClassName("container")[0];
 
-const containerGrid = 20;
+const containerGrid = 25;
 const GridHeight = 40 / containerGrid;
 
 document.getElementsByClassName("container")[0].style.gridTemplateRows = `repeat(${containerGrid}, 1fr)`;
@@ -83,6 +83,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     ['타츠마키', 3.3, 0.79, 0.1425, 1.75, 0, 0, 50, 1.75, 0],],
 
     [['왜곡됨'],
+    ['블랙마리아', 0.8, 0.84, 5, 3.5, 0, 0, 0, 0, 0], // 블랙마리아는 확률 대신 쿨타임으로 표기
     ['퀸', 2.6, 0.92, 0.15, 0.95, 0, 0, 0, 0, 0],],
 ]
 
@@ -108,7 +109,6 @@ const stunRange = [
         [415, 0, 0], //아오키지
         [500, 0, 0], //이완코브
         [515, 0, 0], //피셔타이거
-        [500, 0, 0], // 퀸
     ],
     [
         [525, 0, 0], //로빈
@@ -146,6 +146,10 @@ const stunRange = [
         [600, 0, 0], //나루토
         [600, 525, 525], //미나토
         [525, 0, 525] , //타츠마키
+    ],
+    [
+        [900, 0, 0], // 블랙마리아
+        [500, 0, 0], // 퀸
     ]
 ]
 
@@ -446,6 +450,11 @@ const UnitTotalStun = () => {
             else if(unitState[sortCount][unitCount][0] === "죠즈")
             {
                 stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.855)) / Math.log(StunCalCulation);
+            }
+            else if(unitState[sortCount][0][0] === "왜곡됨" && unitState[sortCount][unitCount][0] === "블랙마리아")
+            {
+                stun = Math.log(1 -RoundX(s1 / 5)) / Math.log(StunCalCulation);
+                console.log(stun);
             }
             else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "샹크스") // 샹크스
             {
@@ -1542,7 +1551,8 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = `공속 버프 : ${unitState[sortCount][unitCount][9]}%`
                     break;
                 case 6:
-                    item.innerText = `스턴 1 확률 : ${(x1 * 100).toFixed(2)}%`
+                    if(unitState[sortCount][0][0] === "왜곡됨" &&unitState[sortCount][unitCount][0] === "블랙마리아") item.innerText = `스턴 1 쿨타임 : ${x1}초`;
+                    else item.innerText = `스턴 1 확률 : ${(x1 * 100).toFixed(2)}%`
                     break;
                 case 7:
                     item.innerText = `스턴 1 지속시간 : ${s1}초`;
@@ -1557,6 +1567,10 @@ function openOverlay(sortCount, unitCount) {
                         let n4 = Math.floor((2.75 - time) * t);
                         item.innerText = `스턴 1 수치 : ${(Math.log(1 - ((time + 1 / t / 0.0125 * (1 - (n4 * 0.0125 + 1) * Math.pow(1 - 0.0125, n4))) / (time + 1 / t / 0.0125)) * (1 + (x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1))) / Math.log(StunCalCulation)).toFixed(3)}스턴`;
                     }
+                    else if(unitState[sortCount][0][0] === "왜곡됨" &&unitState[sortCount][unitCount][0] === "블랙마리아")
+                    {
+                        item.innerText = `스턴 1 수치 : ${unitRate[sortCount][unitCount].toFixed(3)} 스턴`
+                    }
                     else if (unitState[sortCount][unitCount][0] == "라분") {
                         item.innerText = `스턴 1 수치 : ${unitRate[sortCount][unitCount].toFixed(3)}스턴`;
                     }
@@ -1564,7 +1578,7 @@ function openOverlay(sortCount, unitCount) {
                         item.innerText = `스턴 1 수치 : ${(Math.log(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1)) / Math.log(StunCalCulation)).toFixed(3)}스턴`;
                     break;
                 case 10:
-                    if (unitState[sortCount][unitCount][0] == "라분") {
+                    if (unitState[sortCount][unitCount][0] == "라분" || (unitState[sortCount][0][0] === "왜곡됨" && unitState[sortCount][unitCount][0] === "블랙마리아")) {
                         item.innerText = `스턴 1 샐 확률 : ${(Math.pow(StunCalCulation, unitRate[sortCount][unitCount])*100).toFixed(2)}%`;
                     }
                     else if (unitState[sortCount][unitCount][0] == "루피")
