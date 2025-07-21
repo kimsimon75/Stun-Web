@@ -349,7 +349,7 @@ var manaRegen = 0;
 var healthRegen = 0;
 var totalStun = 0;
 
-var m_nightmare = 542;
+var m_nightmare = 484;
 var m_god = 484;
 
 var nameSort = 1;
