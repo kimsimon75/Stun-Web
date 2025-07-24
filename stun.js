@@ -48,6 +48,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     [['초월함'],
     ['로빈', 3.35, 0.71, 0.1, 2.85, 0, 0, 0, 0, 0],
     ['루피', 3.35, 0.38, 0.025, 1.5, 0, 0, 160, 2.15, 0],
+    ['보니', 3.35, 0.89, 0.12, 1.5, 0, 0, 0, 0, 0],
     ['시라호시', 3.35, 0.7, 0.12, 2.35, 0, 0, 120, 3, 0],
     ['샹크스', 3.55, 0.6, 0.1, 2, 0.1, 1.8, 35, 3, 0],
     ['아오키지', 3.35, 0.69, 0.1, 2.3, 0, 0, 0, 0, 0],
@@ -113,6 +114,7 @@ const stunRange = [
     [
         [525, 0, 0], //로빈
         [500, 0, 600],//루피
+        [500, 0, 0], //보니
         [600, 0, 800], //시라호시
         [800, 800, 1100], //샹크스
         [550, 0, 700], //아오키지
@@ -365,6 +367,7 @@ const StunCalCulation = 0.15;
 const min_move = 89;
 const max_move = 490;
 
+const round = 32;
 function RoundX(x, n) {
     if (typeof n !== "number" || n <= 0 || !Number.isInteger(n)) {
         console.warn("❌ RoundX 경고: n이 잘못됐습니다. 기본값 3으로 처리합니다.");
@@ -468,10 +471,16 @@ const UnitTotalStun = () => {
                     if (mana)
                         stun = Math.log((1 - ((time + t / 0.025 * (1 - (n4 * 0.025 + 1) * Math.pow(1 - 0.025, n4))) / (time + t / 0.025)) * StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1/t + unitManaRegen)) : 0))) / Math.log(StunCalCulation);
                     else
-                        stun = StunCalCulator(t, x1, 3.5, time);
+                        stun = Math.log(StunCalCulator(t, x1, 3.5, time)) / Math.log(StunCalCulation);
                     console.log(n3, n4);
                     console.log(t);
                 }
+            else if(unitState[sortCount][unitCount][0] === "보니")
+            {
+                let n3 = Math.ceil(2 / t);
+                let time = n3 * t;
+                stun = Math.log(StunCalCulator(t, x1, s1, time)) / Math.log(0.2);
+            }
             else if (unitState[sortCount][0][0] ==='초월함' &&  unitState[sortCount][unitCount][0] === "아오키지") // 아오키지
             {
                 stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - 3 / (t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + t * unitManaRegen))) + 50 / (1 / t + unitManaRegen)))) / Math.log(StunCalCulation);
@@ -545,8 +554,8 @@ function SetElemental(){
 
 let CountOn = () => {
 
-    m_god = Math.max(Math.min(RoundX(484.625 - 3.875*speedDebuff, 3), max_move), min_move);
-    m_nightmare = Math.max(Math.min(RoundX(542.75 - 3.875*speedDebuff, 3), max_move), min_move);
+    m_god = Math.max(Math.min(RoundX(484 - 3.875*speedDebuff, 3), max_move), min_move);
+    m_nightmare = Math.max(Math.min(RoundX(484 - 3.875*speedDebuff, 3), max_move), min_move);
 
 
     if (document.getElementById("container1") != null)
@@ -802,9 +811,9 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `초당 몹 이동 거리(신 기준) : ${result}`;
                     break;
                 case 4:                    
-                    result = 35 * m_god * Math.pow(StunCalCulation, totalStun)
+                    result = round * m_god * Math.pow(StunCalCulation, totalStun)
                     result = result % 1 === 0 ? result.toString() : result.toFixed(3);
-                    item.textContent = `35초 후 몹 이동 거리(신 기준) : ${result}`;
+                    item.textContent = `${round}초 후 몹 이동 거리(신 기준) : ${result}`;
                     break;
                 case 5:
                     result = 14 * m_god * Math.pow(StunCalCulation, totalStun)
@@ -819,9 +828,9 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `초당 몹 이동 거리(악몽 기준) : ${result}`;
                     break;
                 case 8:
-                    result = 35 * m_nightmare * Math.pow(StunCalCulation, totalStun)
+                    result = round * m_nightmare * Math.pow(StunCalCulation, totalStun)
                     result = result % 1 === 0 ? result.toString() : result.toFixed(3);
-                    item.textContent = `35초 후 몹 이동 거리(악몽 기준) : ${result}`;
+                    item.textContent = `${round} 후 몹 이동 거리(악몽 기준) : ${result}`;
                     break;
                 case 9:
                     result = 14 * m_nightmare * Math.pow(StunCalCulation, totalStun)
@@ -902,7 +911,7 @@ function openOverlay(sortCount, unitCount) {
                     item.textContent = `신 최대 이감 : 102%`
                     break;
                 case 4:
-                    item.textContent = `악몽 최대 이감 : 117%`;
+                    item.textContent = `악몽 최대 이감 : 102%`;
                     break;
                 case 5:
                     item.textContent = `몹 이동속도(신) : ${m_god}`;
@@ -1061,7 +1070,6 @@ function openOverlay(sortCount, unitCount) {
 
             t = RoundX(t * 0.95,3);
             const plus = 5;
-            const round = 35;
             const braveKoby = Brave(koby);
 
             function Cycle(int)
