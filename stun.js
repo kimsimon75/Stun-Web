@@ -803,7 +803,7 @@ function openOverlay(sortCount, unitCount) {
     else if(sortCount == 400 && unitCount == 400)
         title.textContent = "스턴 계산기";
     else if(sortCount === 500 && unitCount === 500)
-        title.innerHTML = "마나뻥 (72라 기준)<br>(75라 5초 시전)";
+        title.innerHTML = "마나뻥 (62라 기준)<br>(65라 5초 시전)";
     else if(sortCount === 600 && unitCount === 600)
         title.innerHTML = "방어력에 따른 물리피해 계산";
     else if(sortCount === 700 && unitCount === 700)
