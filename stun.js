@@ -304,6 +304,9 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 이감, 체크
     ['키드', '특별함', 0, 0, 0, 5, 0],
     ['크로커다일', '특별함', 0, 0, 0, 5, 0],
     ['신속함(키자루)', '연구소', 4, 0, 0, 0, 0],
+    ['거인족의 술잔', '아이템', 0, 0.5, 0, 0, 0],
+    ['가죽장갑', '아이템', 4, 0, 0, 0, 0],
+    ['로얄로더', '항법', 25, 0, 0, 0, 0],
 ]
 
 const Rate = [
@@ -411,7 +414,8 @@ const UnitTotalStun = () => {
             var x1 = unitState[sortCount][unitCount][3];
             var x2 = (1 - unitState[sortCount][unitCount][3]) * unitState[sortCount][unitCount][5];
             var s1 = unitState[sortCount][unitCount][4];
-            var s2 = unitState[sortCount][unitCount][6];var unitSpeedBonusEx = RoundX(unitState[sortCount][unitCount][1] + RoundX((stunCount[sortCount][unitCount] ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100, 3), 3);
+            var s2 = unitState[sortCount][unitCount][6];
+            var unitSpeedBonusEx = RoundX(unitState[sortCount][unitCount][1] + RoundX((stunCount[sortCount][unitCount] ? speedBonusEx - unitState[sortCount][unitCount][9] : speedBonusEx) / 100, 3), 3);
 
             if(unitState[sortCount][unitCount][0]==="우타" && BuffState[BuffState.findIndex(items => items[0] === "우타의 헤드셋")][6])
                 {
@@ -433,6 +437,18 @@ const UnitTotalStun = () => {
             if(unitState[sortCount][0][0] === "초월함" || unitState[sortCount][unitCount][0] === "니카")
                 unitSpeedBonusEx = RoundX(unitSpeedBonusEx + dex / 100, 3);
             let t = unitState[sortCount][unitCount][2] / ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx));
+
+            if(unitState[sortCount][0][0] === "희귀함"
+                 || unitState[sortCount][0][0] == "전설적인" 
+                 || unitState[sortCount][0][0] == "히든" 
+                 || unitState[sortCount][0][0] === "왜곡됨")
+            {
+                if(BuffState[BuffState.findIndex(items => items[0] === "로얄로더")][6])
+                {
+                    const index = BuffState.findIndex((items) => {return items[0] === ("로얄로더")});
+                    t = unitState[sortCount][unitCount][2] / (Math.min(5, 1 + unitSpeedBonusEx - RoundX(BuffState[index][2] / 100, 3)));
+                }
+            }                
 
             let unitManaRegen = manaRegen + Brave(koby) + ((unitState[sortCount][0][0] === "초월함" || unitState[sortCount][unitCount][0] === "니카") ? intel * 0.08 : 0);
             let unitHealthRegen = healthRegen + Brave(koby) + ((unitState[sortCount][0][0] === "초월함" || unitState[sortCount][unitCount][0] === "니카") ? intel * 0.04 : 0);
@@ -456,7 +472,7 @@ const UnitTotalStun = () => {
             }
             else if(unitState[sortCount][0][0] === "왜곡됨" && unitState[sortCount][unitCount][0] === "블랙마리아")
             {
-                stun = Math.log(1 -RoundX(s1 / 5)) / Math.log(StunCalCulation);
+                stun = Math.log(1 -RoundX(s1 / 5, 3)) / Math.log(StunCalCulation);
                 console.log(stun);
             }
             else if (unitState[sortCount][0][0] === '초월함' && unitState[sortCount][unitCount][0] === "샹크스") // 샹크스
@@ -609,9 +625,23 @@ function lowSpeed(unitCount, AfterShock) {
     var t = 0;
 
     // 1. t 계산
+    
 
-    var t = speedState[unitCount][3] / (1 + speedState[unitCount][2]) * Math.min(RoundX(1 + speedState[unitCount][2] + speedBonusEx / 100,3), 5);
+    var t = speedState[unitCount][3] / (1 + speedState[unitCount][2]) * Math.min(RoundX(1 + speedState[unitCount][2] + (speedBonusEx + dex) / 100,3), 5);
 
+
+    if(speedState[unitCount][1][0] === "희귀함"
+        || speedState[unitCount][1][0] === "전설적인" 
+        || speedState[unitCount][1][0] === "히든" 
+        || speedState[unitCount][1][0] === "왜곡됨"
+        || speedState[unitCount][1][0] === "특별함")
+    {
+        if(BuffState[BuffState.findIndex(items => items[0] === "로얄로더")][6])
+        {
+            const index = BuffState.findIndex((items) => {return items[0] === ("로얄로더")});
+            t = speedState[unitCount][3] / (1 + speedState[unitCount][2]) * Math.min(RoundX(1 + speedState[unitCount][2] + (speedBonusEx + dex - BuffState[index][2]) / 100,3), 5);
+        }
+    }    
     // 2. AfterShock가 0일 때 계산
     if (AfterShock == 0) {
         x = speedState[unitCount][4]; // 발이감 확률
@@ -1226,6 +1256,7 @@ function openOverlay(sortCount, unitCount) {
     let stack = false;
     let level = false;
     let boss = false;
+    let royal = false;
     armorDisplay.className = "StunDocument BigFont";
     armorDisplay.style.marginTop = "1vw";
 
@@ -1238,10 +1269,9 @@ function openOverlay(sortCount, unitCount) {
         {
             damage = 1 - Math.pow(0.94, Math.min(armor_remover - armor,20));
         }
-        armorDisplay.innerText = `필요한 공격력 증가 계수: ${Math.ceil(( 120000 / 1.05 / damage / (234501 + (stack ? 100000 : 0)) - 1) * 100) }%`;
+        armorDisplay.innerText = `필요한 공격력 증가 계수: ${Math.ceil(( (120000 / 1.05 / damage - (royal ? 25000 : 0)) / (234501 + (stack ? 100000 : 0)) - 1) * 100) }%`;
     };
-
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         const item = document.createElement("div");
         item.style.display = "flex";
         item.style.flexDirection = "column";
@@ -1309,6 +1339,14 @@ function openOverlay(sortCount, unitCount) {
                 title.innerText = "보스 몬스터 여부:";
                 input.addEventListener("change", () => {
                     boss = input.checked;
+                    updateArmorDisplay();
+                });
+                break;
+            case 4:
+                input.id = "royal";
+                title.innerText = "로얄로더 여부:";
+                input.addEventListener("change", () => {
+                    royal = input.checked;
                     updateArmorDisplay();
                 });
                 break;
@@ -2464,7 +2502,7 @@ function Checked(target, sort, unit)
                         manaRegen -= 1;
                         healthRegen -= 1;
                     }
-                    let index = BuffState.findIndex((items => items.includes("퀸")&&items.includes("히든")));
+                    let index = BuffState.findIndex((items => items.includes("퀸")&&items.includes("왜곡됨")));
                     BuffState[index][6] = target.id.split(`-`)[0]==="p" ? true : false;
                     document.getElementsByClassName(`m${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                     document.getElementsByClassName(`h${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
