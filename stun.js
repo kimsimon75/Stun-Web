@@ -1086,11 +1086,24 @@ function openOverlay(sortCount, unitCount) {
             Time.style.padding = "1rem";
             if(index !== 0)
                 Time.style.borderTop = "none";
-            let AttackSpeedBuff = Math.round((1 + item[2] + speedBonusEx / 100) * 1000) / 1000;
+            let AttackSpeedBuff = RoundX((1 + item[2] + speedBonusEx / 100) , 4); 
 
             if(item[1][0] === "초월함")
                 AttackSpeedBuff += Math.round(dex / 100 * 1000)/1000;
             let t = RoundX(1 / item[3] * Math.min(AttackSpeedBuff, 5), 3);
+
+            if(item[1][0] === "희귀함"
+            || item[1][0] === "전설적인" 
+            || item[1][0] === "히든" 
+            || item[1][0] === "왜곡됨"
+            || item[1][0] === "특별함")
+            {
+                if(BuffState[BuffState.findIndex(items => items[0] === "로얄로더")][6])
+                {
+                    const index = BuffState.findIndex((items) => {return items[0] === ("로얄로더")});
+                    t = RoundX(1 / item[3] * Math.min(AttackSpeedBuff - BuffState[index][2] / 100, 5), 3);
+                }
+            }   
 
             let unitManaRegen = manaRegen + Brave(koby) + ((item[1][0] === "초월함") ? intel * 0.08 : 0 );
 
