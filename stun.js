@@ -9,13 +9,22 @@ const unitRates = {
     희귀함: ["희귀함", 1],
     전설적인: ["전설적인", 2],
     히든: ["히든", 3],
-    제한됨: ["제한됨", 4],
-    초월함: ["초월함", 5],  
-    불멸의: ["불멸의", 6],
-    영원한: ["영원한",7],
-    신비함: ["신비함", 8],
-    특수함: ["특수함", 9],
-    왜곡됨: ["왜곡됨", 10],
+    변이: ["변이", 4],
+    제한됨: ["제한됨", 5],
+    초월함: ["초월함", 6],  
+    불멸의: ["불멸의", 7],
+    영원한: ["영원한",8],
+    신비함: ["신비함", 9],
+    랜덤유닛: ["랜덤유닛", 10],
+    왜곡됨: ["왜곡됨", 11],
+}
+
+const Seige = {
+    패기: 1.05,
+    일반: 1,
+    관통: 0.9,
+    공성: 0.85,
+    히든: 0.8,
 }
 
 
@@ -327,6 +336,30 @@ const Mana = [// 이름, 등급, 공속보너스, 공격주기, 마나통, 딜�
     ['반 더 데켄', unitRates.히든, 2.6, 0.66, 95, 0],
     ['류마(400스택 이상)', unitRates.영원한, 3.23, 0.71, 150, 0],
     ['코비(9스텍 + 도시락)', unitRates.초월함, 2.8, 0.71, 150, 0],
+]
+
+const Mono = [
+    ['시류', unitRates.희귀함, 1.3, 0.69, 0.1, 0.15, 0, 0, Seige.관통],
+    ['류마', unitRates.희귀함, 1.3, 0.77, 0.1, 0.1, 0, 0, Seige.관통 ],
+    ['핸콕', unitRates.희귀함, 1.3, 0.68, 0.1, 0.1, 0, 0, Seige.패기],
+
+    ['루치', unitRates.전설적인, 2.95, 0.52, 0.11, 0.3, 0, 0, Seige.공성],
+    ['상디', unitRates.전설적인, 2.95, 0.45, 1, 0.029, 0, 0, Seige.공성],
+    ['레이쥬', unitRates.전설적인, 2.95, 0.88, 0.0525, 0.1956, 0.1, 0.1719, Seige.관통],
+    ['코비', unitRates.전설적인, 2.95, 0.57, 0.125, 0.25, 0, 0, Seige.일반],
+
+    ['류마', unitRates.히든, 2.6, 0.67, 0.125, 0.2, 0, 0, Seige.관통],
+    ['스튜시', unitRates.히든, 2.6, 0.6, 0.1425, 0.25, 0, 0, Seige.일반],
+
+    ['도플라밍고', unitRates.변이, 2.85, 0.61, 0.1, 0.2, 0, 0, Seige.관통],
+
+    ['상디', unitRates.초월함, 3.35, 0.46, 1, 0.032, 0, 0, Seige.공성],
+    ['상디(강화)', unitRates.초월함, 4, 0.46, 1, 0.032, 0, 0, Seige.공성],
+    ['루치', unitRates.초월함, 3.35, 0.54, 0.2, 0.25, 0.0525, 0.4, Seige.공성],
+    ['루치(300클)', unitRates.초월함, 3.35, 0.54, 0.2, 0.25, 0.06, 0.4, Seige.공성],
+
+    
+    ['마르코', unitRates.제한됨, 4, 0.64, 0.1, 0.2, 0.15, 0.3, Seige.관통],
 ]
 
 
@@ -807,6 +840,8 @@ function openOverlay(sortCount, unitCount) {
         title.innerHTML = "방어력에 따른 물리피해 계산";
     else if(sortCount === 700 && unitCount === 700)
         title.innerHTML = "류영 오니가르기 발동 조건";
+    else if(sortCount === 800 && unitCount === 800)
+        title.innerHTML = "단일 효율(막라 기준)";
     else if (sortCount < 0)
         title.textContent = `${speedState[unitCount][0]} (${(speedState[unitCount][1])[0]})`;
     else
@@ -1386,7 +1421,67 @@ function openOverlay(sortCount, unitCount) {
     // 🔽 최초 표시 초기화
     updateArmorDisplay();
     overlayContent.appendChild(armorDisplay);
-}
+    }
+    else if(sortCount == 800 && unitCount == 800)
+    {
+        Mono.forEach((item,index) =>{
+            var t = 1 / item[3] * Math.min(RoundX(1 + item[2] + (speedBonusEx + dex) / 100,3), 5);
+        console.log(t, item[4]);
+
+        var siege = false;
+
+        if(item[1][0] === "희귀함"
+        || item[0] === "전설적인" 
+        || item[0] === "히든" 
+        || item[0] === "왜곡됨"
+        || item[0] === "특별함")
+        {
+            if(BuffState[BuffState.findIndex(items => items[0] === "로얄로더")][6])
+            {
+                const index = BuffState.findIndex((items) => {return items[0] === ("로얄로더")});
+                t = item[3] / (1 + item[2]) * Math.min(RoundX(1 + item[2] + (speedBonusEx + dex - BuffState[index][2]) / 100,3), 5);
+            }
+        }    
+
+            const Grid = document.createElement("div");
+            Grid.style.display = "grid";
+            Grid.style.gridTemplateColumns = "1.5fr 1fr 1fr"
+
+            itemList.appendChild(Grid);
+
+            const UnitName = document.createElement("div");
+            UnitName.className = "Button BigFont";
+            UnitName.style.padding = "1rem";
+            UnitName.style.borderRight = "none";
+            if(index !== 0)
+                UnitName.style.borderTop = "none";
+            UnitName.innerText = item[0] + `(${item[1][0]})`;
+
+            Grid.appendChild(UnitName);
+
+            const first = document.createElement("div");
+            first.className = "Button BigFont";
+            first.style.padding = "1rem";
+            first.style.borderRight = "none";
+            if(index !== 0)
+                first.style.borderTop = "none";
+
+            first.innerText = RoundX(Math.log(1 - item[5] * item[8]) / Math.log(1 - 0.75) * item[4] * t * 10 / 1.7, 3);   
+
+            Grid.appendChild(first);
+
+            
+            const second = document.createElement("div");
+            second.className = "Button BigFont";
+            second.style.padding = "1rem";
+            if(index !== 0)
+                second.style.borderTop = "none";
+            second.innerText = RoundX(Math.log(1 - item[7] * item[8]) / Math.log(1 - 0.75) * item[6] * t * 10/ 1.7 , 3);
+
+            Grid.appendChild(second);
+
+        })
+    }
 
 
     else if (sortCount == -1) {
@@ -2980,7 +3075,20 @@ const bar = document.getElementById("bar");
     });
     
     ButtonColor(Ryuma);
-    bar.appendChild(Ryuma);
+    bar.appendChild(Ryuma);   
+    
+    const mono = document.createElement("div");
+    mono.className = "Button SmallFont";
+    mono.innerText = "단일\n효율";
+    mono.style.alignContent = "center";
+    mono.style.textAlign = "center";    
+    
+    mono.addEventListener('click', () => {
+        openOverlay(800, 800);
+    });
+    
+    ButtonColor(mono);
+    bar.appendChild(mono);
     
 
 const MoveSpeedPage = document.createElement("button");
