@@ -95,7 +95,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
 
     [['왜곡됨'],
     ['블랙마리아', 0.8, 0.84, 5, 3.5, 0, 0, 0, 0, 0], // 블랙마리아는 확률 대신 쿨타임으로 표기
-    ['퀸', 2.8, 0.92, 0.15, 0.95, 0, 0, 0, 0, 0],],
+    ['퀸', 2.8, 0.85, 0.15, 0.95, 0, 0, 0, 0, 0],],
 ]
 
 const stunRange = [
@@ -162,6 +162,12 @@ const stunRange = [
     [
         [900, 0, 0], // 블랙마리아
         [500, 0, 0], // 퀸
+    ],
+
+    [
+        [900, 0, 0],
+        [450, 0, 0],
+        [450, 450, 0],
     ]
 ]
 
@@ -220,8 +226,13 @@ const speedState = // 공속 보너스, 공속, 발이감 확률, 발이감 지�
         ['시키(3레벨)', unitRates.불멸의, 3.3, 8.776, 0, 0, 0, 0.04, 5, 35],
 
         ['시키(4레벨)', unitRates.불멸의, 3.3, 8.776, 0, 0, 0, 0.045, 5, 35],
-    ];
 
+        ['센고쿠', unitRates.전설적인, 2.95, 5.896, 0.1, 6, 0, 0, 0, 0],
+        
+        ['퀸',unitRates.왜곡됨, 2.8, 4.471, 0.14, 2, 0, 0, 0, 0],
+
+        ['킹',unitRates.전설적인, 2.95, 4.293, 0.1425, 2.7, 0, 0.1425, 2, 0], 
+    ];
 const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 이감, 체크
     ['아냐 포저', "신비함", 30, 1.75, 2, 40, 0],
     ['츠바사', "랜덤", 20, 0, 0, 0, 0],
@@ -529,7 +540,7 @@ const UnitTotalStun = () => {
             {
                 let n3 = Math.ceil(2 / t);
                 let time = n3 * t;
-                stun = Math.log(StunCalCulator(t, x1, s1, time)) / Math.log(0.2);
+                stun = Math.log(StunCalCulator(t, x1, s1, time)) / Math.log(StunCalCulation);
             }
             else if (unitState[sortCount][0][0] ==='초월함' &&  unitState[sortCount][unitCount][0] === "아오키지") // 아오키지
             {
@@ -1469,6 +1480,8 @@ function openOverlay(sortCount, unitCount) {
                 first.style.borderTop = "none";
 
             first.innerText = RoundX(Math.log(1 - item[5] * item[8]) / Math.log(1 - 0.75) * item[4] * t * 10 / 1.7, 3);   
+
+            console.log(item[0] ,item[5] * item[8], item[4], t)
 
             Grid.appendChild(first);
 
