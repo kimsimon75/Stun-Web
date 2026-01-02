@@ -507,10 +507,70 @@ const UnitTotalStun = () => {
             if (unitState[sortCount][unitCount][0] === "라분") // 라분
             {
                 let delay = 0.39/ ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx))
-                for (var k = 0; k < 6; k++) {
-                    window['time' + k] = k * t + delay;
-                }
-                stun = Math.log(1 - (((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + ((0.65 + time2 > 2.15) ? 2.15 : (0.65 + time2)) * 0.27 * Math.pow(1 - 0.27, 2) + ((0.65 + time3 > 2.15) ? 2.15 : (0.65 + time3)) * 0.27 * Math.pow(1 - 0.27, 3) + ((0.65 + time4 > 2.15) ? 2.15 : (0.65 + time4)) * 0.27 * Math.pow(1 - 0.27, 4) + ((0.65 + time5 > 2.15) ? 2.15 : (0.65 + time5)) * (1 - 0.27 - 0.27 * (1 - 0.27) - 0.27 * Math.pow(1 - 0.27, 2) - 0.27 * Math.pow(1 - 0.27, 3) - 0.27 * Math.pow(1 - 0.27, 4))) / ((0.65 + time0) * 0.27 + (0.65 + time1) * 0.27 * (1 - 0.27) + (0.65 + time2) * 0.27 * Math.pow(1 - 0.27, 2) + (0.65 + time3) * 0.27 * Math.pow(1 - 0.27, 3) + (0.65 + time4) * 0.27 * Math.pow(1 - 0.27, 4) + (0.65 + time5 ) * (1 - (0.27 + 0.27 * Math.pow(1 - 0.27, 1) + 0.27 * Math.pow(1 - 0.27, 2) + 0.27 * Math.pow(1 - 0.27, 3) + 0.27 * Math.pow(1 - 0.27, 4))))) / Math.log(StunCalCulation);
+                let count = 0;
+                        let time1 = 0.65 + 0 / t - 2.15;
+                        if (time1 > 0)
+                            count++;
+                        else
+                            time1 = 0;
+
+                        let time2 = 0.65 + 1 / t - 2.15;
+                        if (time2 > 0)
+                            count++;
+                        else
+                            time2 = 0;
+
+                        let time3 = 0.65 + 2 / t - 2.15;
+                        if (time3 > 0)
+                            count++;
+                        else
+                            time3 = 0;
+
+                        let time4 = 0.65 + 3 / t - 2.15;
+                        if (time4 > 0)
+                            count++;
+                        else
+                            time4 = 0;
+
+                        let time5 = 0.65 + 4 / t - 2.15;
+                        if (time5 > 0)
+                            count++;
+                        else
+                            time5 = 0;
+
+                        let time6 = 0.65 + 5 / t - 2.15;
+                        if (time6 > 0)
+                            count++;
+                        else
+                            time6 = 0;
+                stun = Math.log(1 - (
+                    ((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + 
+                    ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + 
+                    ((0.65 + time2 > 2.15) ? 2.15 : (0.65 + time2)) * 0.27 * Math.pow(1 - 0.27, 2) +
+                     ((0.65 + time3 > 2.15) ? 2.15 : (0.65 + time3)) * 0.27 * Math.pow(1 - 0.27, 3) +
+                      ((0.65 + time4 > 2.15) ? 2.15 : (0.65 + time4)) * 0.27 * Math.pow(1 - 0.27, 4) + 
+                      ((0.65 + time5 > 2.15) ? 2.15 : (0.65 + time5)) * 0.27 * Math.pow(1 - 0.27, 5) + 
+                      ((0.65 + time6 > 2.15) ? 2.15 : (0.65 + time6)) * (1 - 
+                        0.27 - 
+                        0.27 * (1 - 0.27) -
+                         0.27 * Math.pow(1 - 0.27, 2) - 
+                         0.27 * Math.pow(1 - 0.27, 3) - 
+                         0.27 * Math.pow(1 - 0.27, 4)- 
+                         0.27 * Math.pow(1 - 0.27, 5)))
+                          / ((0.65 + time0) * 0.27 +
+                           (0.65 + time1) * 0.27 * (1 - 0.27) +
+                            (0.65 + time2) * 0.27 * Math.pow(1 - 0.27, 2) + 
+                            (0.65 + time3) * 0.27 * Math.pow(1 - 0.27, 3) + 
+                            (0.65 + time4) * 0.27 * Math.pow(1 - 0.27, 4) + 
+                            (0.65 + time5) * 0.27 * Math.pow(1 - 0.27, 5) + 
+                            (0.65 + time6 ) *
+                             (1 - 
+                                (0.27 + 
+                                    0.27 * Math.pow(1 - 0.27, 1) +
+                                     0.27 * Math.pow(1 - 0.27, 2) + 
+                                     0.27 * Math.pow(1 - 0.27, 3) + 
+                                     0.27 * Math.pow(1 - 0.27, 4) + 
+                                     0.27 * Math.pow(1 - 0.27, 5))))) / Math.log(StunCalCulation);
             }
             else if(unitState[sortCount][unitCount][0] === "죠즈")
             {
