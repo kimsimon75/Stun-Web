@@ -542,7 +542,12 @@ const UnitTotalStun = () => {
                         if (time5 > 0)
                             count++;
                         else
-                            time5 = 0;
+                            time5 = 0;                        
+                        let time6 = 0.65 + 6 / t - 2.15;
+                        if (time6 > 0)
+                            count++;
+                        else
+                            time6 = 0;
                 stun = Math.log(1 - (
                     ((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + 
                     ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + 
