@@ -90,8 +90,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     ['K', 3.3, 0.58, 0.03, 3, 0, 0, 0, 0, 0],
     ['고죠 사토루', 3.3, 1.01, 0.1, 2, 0, 0, 185, 5, 0],
     ['나루토', 3.05, 0.5, 0.05, 2.85, 0, 0, 0, 0, 0],
-    ['미나토', 3.42, 0.73, 0.0425, 3, 0.16, 2.75, 100, 2.75, 0],
-    ['타츠마키', 3.3, 0.79, 0.1425, 1.75, 0, 0, 45, 1.75, 0],],
+    ['미나토', 3.42, 0.73, 0.0425, 3, 0.16, 2.75, 100, 2.75, 0]],
 
     [['왜곡됨'],
     ['블랙마리아', 0.8, 0.84, 5, 3.5, 0, 0, 0, 0, 0], // 블랙마리아는 확률 대신 쿨타임으로 표기
@@ -157,7 +156,6 @@ const stunRange = [
         [600, 0, NaN], // 고죠 사토루
         [600, 0, 0], //나루토
         [600, 525, 525], //미나토
-        [525, 0, 525] , //타츠마키
     ],
     [
         [900, 0, 0], // 블랙마리아
@@ -562,13 +560,6 @@ const UnitTotalStun = () => {
                 else
                     stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.49)) / Math.log(StunCalCulation);
                 
-            }
-            else if (unitState[sortCount][unitCount][0]==="타츠마키") // 타츠마키
-            {
-                if(mana)
-                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - (m_stun / (maxMana / (1 / t + unitHealthRegen))))) / Math.log(StunCalCulation);
-                else
-                    stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * Math.pow(1 - x2, n2)) / Math.log(StunCalCulation);
             }
             else if (unitState[sortCount][unitCount][0] === "크로커다일(특강)")
             {
@@ -1843,9 +1834,6 @@ function openOverlay(sortCount, unitCount) {
                     else if (unitState[sortCount][unitCount][0] === "흰수염") {
                         item.innerText += (Math.log(1 - m_stun / (maxMana / (t + unitHealthRegen + 0.5))) / Math.log(StunCalCulation)).toFixed(3);
                     }
-                    else if (unitState[sortCount][unitCount][0] === "타츠마키") {
-                        item.innerText += (Math.log((1 - m_stun / (maxMana / (t + unitHealthRegen)))) / Math.log(StunCalCulation)).toFixed(3);
-                    }
                     else if (maxMana)
                         item.innerText += (Math.log(1 - m_stun / (maxMana / (unitManaRegen + t))) / Math.log(StunCalCulation)).toFixed(3);
                     else
@@ -1862,9 +1850,6 @@ function openOverlay(sortCount, unitCount) {
                     }
                     else if (unitState[sortCount][unitCount][0] === "흰수염") {
                         item.innerText += ((1 - ((maxMana != 0) ? m_stun / (maxMana / (t + unitHealthRegen + 0.5)) : 0)) * 100).toFixed(2);
-                    }
-                    else if (unitState[sortCount][unitCount][0] === "타츠마키") {
-                        item.innerText += ((1 - ((maxMana != 0) ? m_stun / (maxMana / (t + unitHealthRegen)) : 0)) * 100).toFixed(2);
                     }
                     else if (maxMana)
                         item.innerText += ((1 - m_stun / (maxMana / (unitManaRegen + t))) * 100).toFixed(2);
