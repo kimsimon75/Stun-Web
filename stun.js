@@ -508,41 +508,41 @@ const UnitTotalStun = () => {
             {
                 let delay = 0.39/ ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx))
                 let count = 0;
-                        let time1 = 0.65 + 0 / t - 2.15;
+                        let time0 = 0.65 + 0 / t - 2.15;
+                        if (time0 > 0)
+                            count++;
+                        else
+                            time0 = 0;
+
+                        let time1 = 0.65 + 1 / t - 2.15;
                         if (time1 > 0)
                             count++;
                         else
                             time1 = 0;
 
-                        let time2 = 0.65 + 1 / t - 2.15;
+                        let time2 = 0.65 + 2 / t - 2.15;
                         if (time2 > 0)
                             count++;
                         else
                             time2 = 0;
 
-                        let time3 = 0.65 + 2 / t - 2.15;
+                        let time3 = 0.65 + 3 / t - 2.15;
                         if (time3 > 0)
-                            count++;
+                            coun++;
                         else
                             time3 = 0;
 
-                        let time4 = 0.65 + 3 / t - 2.15;
+                        let time4 = 0.65 + 4 / t - 2.15;
                         if (time4 > 0)
                             count++;
                         else
                             time4 = 0;
 
-                        let time5 = 0.65 + 4 / t - 2.15;
+                        let time5 = 0.65 + 5 / t - 2.15;
                         if (time5 > 0)
                             count++;
                         else
                             time5 = 0;
-
-                        let time6 = 0.65 + 5 / t - 2.15;
-                        if (time6 > 0)
-                            count++;
-                        else
-                            time6 = 0;
                 stun = Math.log(1 - (
                     ((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + 
                     ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + 
