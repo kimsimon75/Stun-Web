@@ -562,8 +562,8 @@ const UnitTotalStun = () => {
                          0.27 * Math.pow(1 - 0.27, 3) - 
                          0.27 * Math.pow(1 - 0.27, 4)- 
                          0.27 * Math.pow(1 - 0.27, 5)))
-                          / ((0.65 + time0) * 0.27 +
-                           (0.65 + time1) * 0.27 * (1 - 0.27) +
+                          /((0.65 + time0) * 0.27 +
+                            (0.65 + time1) * 0.27 * Math.pow(1 - 0.27, 1) +
                             (0.65 + time2) * 0.27 * Math.pow(1 - 0.27, 2) + 
                             (0.65 + time3) * 0.27 * Math.pow(1 - 0.27, 3) + 
                             (0.65 + time4) * 0.27 * Math.pow(1 - 0.27, 4) + 
@@ -575,7 +575,11 @@ const UnitTotalStun = () => {
                                      0.27 * Math.pow(1 - 0.27, 2) + 
                                      0.27 * Math.pow(1 - 0.27, 3) + 
                                      0.27 * Math.pow(1 - 0.27, 4) + 
-                                     0.27 * Math.pow(1 - 0.27, 5))))) / Math.log(StunCalCulation);
+                                     0.27 * Math.pow(1 - 0.27, 5)
+                                )
+                            )
+                        )
+                    ) / Math.log(StunCalCulation);
             }
             else if(unitState[sortCount][unitCount][0] === "죠즈")
             {
