@@ -412,7 +412,7 @@ var koby = 0;
 var intel = 0;
 var dex = 0;
 
-const StunCalCulation = 0.15;
+const StunCalCulation = 0.2;
 const min_move = 89;
 const max_move = 490;
 
