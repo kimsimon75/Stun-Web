@@ -528,7 +528,7 @@ const UnitTotalStun = () => {
 
                         let time3 = 0.65 + 3 / t - 2.15;
                         if (time3 > 0)
-                            coun++;
+                            count++;
                         else
                             time3 = 0;
 
