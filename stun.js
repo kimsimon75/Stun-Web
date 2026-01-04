@@ -63,6 +63,7 @@ const unitState = [ // 이름, 공속보너스, 공격주기, 스턴1 확률, �
     ['샹크스', 3.55, 0.6, 0.1, 2, 0.1, 1.8, 35, 3, 0],
     ['아오키지', 3.35, 0.69, 0.1, 2.3, 0, 0, 0, 0, 0],
     ['조로', 3.35, 0.67, 0.03, 2.5, 0, 0, 145, 3, 0],
+    ['키드', 3.35, 0.99, 0, 0, 0, 0, 50, 2.25, 0],
     ['키자루', 3.35, 0.64, 0.0825, 2.75, 0, 0, 0, 0, 0],
     ['후지토라', 2.16, 0.94, 0.15, 2.6, 0.0415, 2.5, 0, 0, 0],],
 
@@ -130,6 +131,7 @@ const stunRange = [
         [800, 800, 1100], //샹크스
         [550, 0, 700], //아오키지
         [500, 0, 525], //조로
+        [500, 500, 525], //키드
         [500, 0, 0], //키자루
         [475, 475, 0], //후지토라
     ],
@@ -267,7 +269,6 @@ const BuffState = [ // 이름, 등급, 공속, 마나, 체력, 이감, 체크
     ['마르코(특강)', '제한됨', 0, 0, 4, 60, 0],
     ['카타쿠리', '제한됨', 0, 0, 2.85, 0, 0],
     ['모비딕 호', '히든', 0, 0, 1.25, 40, 0],
-    ['히루루크', '전설적인', 0, 0, 1.6, 0, 0],
     ['드래곤', '전설적인', 5, 0, 0, 10, 0],
     ['라분', '전설적인', 10, 0, 0, 0, 0],
     ['드래곤', '불멸의', 20, 0, 0, 0, 0],
@@ -389,7 +390,7 @@ for (var sortCount = 0; sortCount < unitState.length; sortCount++) {
 }
 
 for (let sortCount = 0; sortCount < unitState.length; sortCount++) {
-    for (let unitCount = 0; unitCount < 10; unitCount++) {
+    for (let unitCount = 0; unitCount < 50; unitCount++) {
         unitRate[sortCount][unitCount] = 0;
         stunCount[sortCount][unitCount] = 0;
     }
@@ -453,6 +454,7 @@ const UnitTotalStun = () => {
     manaRegen    = RoundX(manaRegen, 3);
     healthRegen  = RoundX(healthRegen, 3);
     speedDebuff  = RoundX(speedDebuff, 3);
+
 
     for (var sortCount = 0; sortCount < unitState.length; sortCount++)
     {
@@ -575,6 +577,10 @@ const UnitTotalStun = () => {
             else if (unitState[sortCount][0][0] ==='초월함' &&  unitState[sortCount][unitCount][0] === "아오키지") // 아오키지
             {
                 stun = Math.log((1-StunCalCulator(t, x1, s1, t)) * (1 - 3 / (t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + t * unitManaRegen))) + 50 / (1 / t + unitManaRegen)))) / Math.log(StunCalCulation);
+            }
+            else if(unitState[sortCount][0][0] === "초월함" && unitState[sortCount][unitCount][0] === "키드")
+            {
+                stun = Math.log(1 - (m_stun / (maxMana / (1/ t + unitHealthRegen + 0.2)))) / Math.log(StunCalCulation);
             }
             else if (unitState[sortCount][unitCount][0] === "흰수염") // 흰수염
             {
@@ -1857,14 +1863,17 @@ function openOverlay(sortCount, unitCount) {
                     break;
                 case 21:
                     item.innerText = `마나(체력)스턴 수치 : `;
-                    if (unitState[sortCount][unitCount][0] === "샹크스") {
+                    if (unitState[sortCount][unitCount][0] === "샹크스" && unitState[sortCount][0][0] == '초월함') {
                         item.innerText += (Math.log((1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35)) / Math.log(StunCalCulation)).toFixed(3);
                     }
-                    else if (unitState[sortCount][unitCount][0] === "아오키지") {
+                    else if (unitState[sortCount][unitCount][0] === "아오키지" && unitState[sortCount][0][0] == '초월함') {
                         item.innerText += (Math.log(1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, floor(25 / (1 + 1 / t * unitManaRegen))) + 50 / (t + unitManaRegen))) / Math.log(StunCalCulation)).toFixed(3);
                     }
                     else if (unitState[sortCount][unitCount][0] === "흰수염") {
                         item.innerText += (Math.log(1 - m_stun / (maxMana / (t + unitHealthRegen + 0.5))) / Math.log(StunCalCulation)).toFixed(3);
+                    }                    
+                    else if (unitState[sortCount][unitCount][0] === "키드" && unitState[sortCount][0][0] == '초월함') {
+                        item.innerText += (Math.log(1 - m_stun / (maxMana / (t + unitHealthRegen + 0.2))) / Math.log(StunCalCulation)).toFixed(3);
                     }
                     else if (maxMana)
                         item.innerText += (Math.log(1 - m_stun / (maxMana / (unitManaRegen + t))) / Math.log(StunCalCulation)).toFixed(3);
@@ -1874,14 +1883,17 @@ function openOverlay(sortCount, unitCount) {
                     break;
                 case 22:
                     item.innerText = `마나(체력)스턴 공백 :`;
-                    if (unitState[sortCount][unitCount][0] === "샹크스") {
+                    if (unitState[sortCount][unitCount][0] === "샹크스" && unitState[sortCount][0][0] == '초월함') {
                         item.innerText += ((1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35) * 100).toFixed(2);
                     }
-                    else if (unitState[sortCount][unitCount][0] === "아오키지") {
+                    else if (unitState[sortCount][unitCount][0] === "아오키지" && unitState[sortCount][0][0] == '초월함') {
                         item.innerText += ((1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + 1 / t * unitManaRegen))) + 50 / (t + unitManaRegen))) * 100).toFixed(2);
                     }
                     else if (unitState[sortCount][unitCount][0] === "흰수염") {
                         item.innerText += ((1 - ((maxMana != 0) ? m_stun / (maxMana / (t + unitHealthRegen + 0.5)) : 0)) * 100).toFixed(2);
+                    }                    
+                    else if (unitState[sortCount][unitCount][0] === "키드" && unitState[sortCount][0][0] == '초월함') {
+                        item.innerText += (( 1 - m_stun / (maxMana / (t + unitHealthRegen + 0.2))) * 100).toFixed(2);
                     }
                     else if (maxMana)
                         item.innerText += ((1 - m_stun / (maxMana / (unitManaRegen + t))) * 100).toFixed(2);
