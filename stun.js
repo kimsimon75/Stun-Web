@@ -2224,7 +2224,7 @@ function BuffAdd(checked, item) //이중 계산 방지 speedBonusEx는 제외
     manaRegen += checked ? item.manaRegen : -item.manaRegen;
     healthRegen += checked ? item.healthRegen : -item.healthRegen;
     speedDebuff += checked ? item.slow : -item.slow;
-    item.Check = checked ? item.Check++ : 0;
+    item.Check = checked ? (item.Check + 1) : 0;
 }
 
 
@@ -2896,19 +2896,20 @@ function Checked(target, sort, unit)
                         healthRegen -= 1;
                     }
                     const index = allUnits.findIndex(items => items.rank == "왜곡됨" && items.name == "퀸");
-                    allUnits[index].Check = target.id.split(`-`)[0]==="p" ? allUnits[index].Check++ : 0;
+                    allUnits[index].Check = target.id.split(`-`)[0]==="p" ? (allUnits[index].Check + 1) : 0;
                     document.getElementsByClassName(`m${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                     document.getElementsByClassName(`h${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                 }
             else if(getUnit(sort, unit).name === '우타')
             {
                 let index = allUnits.findIndex(items => items.name == "우타의 헤드셋" && items.rank == "아이템");
+                console.log(allUnits[index].Check);
 
                 if(target.id.split(`-`)[0] === "p")
                 {
                     if(allUnits[index].Check == 0)
                     {
-                        allUnits[index].Check = allUnits[index].Check++ ;
+                        allUnits[index].Check = (allUnits[index].Check + 1);
                         document.getElementsByClassName(`s${index}`)[0].checked = true;
                     }
                     else
@@ -2929,7 +2930,7 @@ function Checked(target, sort, unit)
                 const slowU = allUnits[index];
                 if(slowU !== null)
                 {
-                    slowU.Check = target.id.split(`-`)[0] === "p" ? slowU.Check++ : 0;    
+                    slowU.Check = target.id.split(`-`)[0] === "p" ? (slowU.Check + 1) : 0;    
                     manaRegen += slowU.Check ? slowU.manaRegen : -slowU.manaRegen;
                     healthRegen +=  slowU.Check ? slowU.healthRegen : -slowU.healthRegen;
                     speedDebuff +=  slowU.Check ? slowU.atkSpeedBuff : -slowU.atkSpeedBuff;
