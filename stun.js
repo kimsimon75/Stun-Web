@@ -478,6 +478,7 @@ const Mana = [// 이름, 등급, 공속보너스, 공격주기, 마나통, 딜�
     ['핸콕', unitRates.영원한, 3.3, 0.74, 175, 1.48],
     ['에이스', unitRates.영원한, 3.14, 0.58, 185, 0],
     ['제트', unitRates.불멸의, 3.3, 0.66, 160, 1],
+    ['제트(특강)', unitRates.불멸의, 2, 0.46, 160, 1],
     ['쿠마', unitRates.전설적인, 2.95, 0.69, 115, 0],
     ['오뎅', unitRates.영원한, 3.15, 0.64, 145, 0],
     ['프랑키', unitRates.초월함, 3.35, 0.75, 150, 0],
@@ -2223,7 +2224,7 @@ function BuffAdd(checked, item) //이중 계산 방지 speedBonusEx는 제외
     manaRegen += checked ? item.manaRegen : -item.manaRegen;
     healthRegen += checked ? item.healthRegen : -item.healthRegen;
     speedDebuff += checked ? item.slow : -item.slow;
-    item.Check = checked ? ++item.Check : 0;
+    item.Check = checked ? item.Check++ : 0;
 }
 
 
@@ -2895,7 +2896,7 @@ function Checked(target, sort, unit)
                         healthRegen -= 1;
                     }
                     const index = allUnits.findIndex(items => items.rank == "왜곡됨" && items.name == "퀸");
-                    allUnits[index].Check = target.id.split(`-`)[0]==="p" ? ++allUnits[index].Check : 0;
+                    allUnits[index].Check = target.id.split(`-`)[0]==="p" ? allUnits[index].Check++ : 0;
                     document.getElementsByClassName(`m${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                     document.getElementsByClassName(`h${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                 }
@@ -2907,7 +2908,7 @@ function Checked(target, sort, unit)
                 {
                     if(allUnits[index].Check == 0)
                     {
-                        allUnits[index].Check = ++allUnits[index].Check ;
+                        allUnits[index].Check = allUnits[index].Check++ ;
                         document.getElementsByClassName(`s${index}`)[0].checked = true;
                     }
                     else
@@ -2919,8 +2920,6 @@ function Checked(target, sort, unit)
                 {
                     speedBonusEx += allUnits[index].atkSpeedBuff;
                     index = allUnits.findIndex((items => items.name === '우타'));
-                    allUnits[index].Check = 0;
-                    Collect(allUnits[index], index);
                 }
 
             }
@@ -2930,7 +2929,7 @@ function Checked(target, sort, unit)
                 const slowU = allUnits[index];
                 if(slowU !== null)
                 {
-                    slowU.Check = target.id.split(`-`)[0] === "p" ? ++slowU.Check : 0;    
+                    slowU.Check = target.id.split(`-`)[0] === "p" ? slowU.Check++ : 0;    
                     manaRegen += slowU.Check ? slowU.manaRegen : -slowU.manaRegen;
                     healthRegen +=  slowU.Check ? slowU.healthRegen : -slowU.healthRegen;
                     speedDebuff +=  slowU.Check ? slowU.atkSpeedBuff : -slowU.atkSpeedBuff;
@@ -3069,7 +3068,7 @@ for(let sortCount = 0; sortCount < Object.keys(unitStat).length; sortCount++){
             const unit = id[2];
             const u = getUnit(sortCount, unitCount)
             const CheckU = allUnits.find(items => items.name == u.name && items.rank == u.rank);
-            ++CheckU.Check;
+            CheckU.Check++;
             if (CheckU.Check == 1) {
                 speedBonusEx += getUnit(sortCount,unitCount).atkSpeedBuff;
 
