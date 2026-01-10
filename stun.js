@@ -2224,7 +2224,7 @@ function BuffAdd(checked, item) //이중 계산 방지 speedBonusEx는 제외
     manaRegen += checked ? item.manaRegen : -item.manaRegen;
     healthRegen += checked ? item.healthRegen : -item.healthRegen;
     speedDebuff += checked ? item.slow : -item.slow;
-    item.Check = checked ? (item.Check + 1) : 0;
+    item.Check = checked ? item.Check + 1: 0;
 }
 
 
@@ -2246,6 +2246,7 @@ function Collect(item, index)
                 document.getElementsByClassName(ClassN[i])[1].checked = item.Check;    
             }
 
+            console.log(i);
             document.getElementsByClassName(ClassN[i])[0].checked = item.Check;
         }
     }        
@@ -2896,21 +2897,24 @@ function Checked(target, sort, unit)
                         healthRegen -= 1;
                     }
                     const index = allUnits.findIndex(items => items.rank == "왜곡됨" && items.name == "퀸");
-                    allUnits[index].Check = target.id.split(`-`)[0]==="p" ? (allUnits[index].Check + 1) : 0;
+                    allUnits[index].Check = target.id.split(`-`)[0]==="p" ? 1 : 0;
                     document.getElementsByClassName(`m${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                     document.getElementsByClassName(`h${index}`)[0].checked = target.id.split(`-`)[0]==="p" ? true : false;
                 }
             else if(getUnit(sort, unit).name === '우타')
             {
                 let index = allUnits.findIndex(items => items.name == "우타의 헤드셋" && items.rank == "아이템");
-                console.log(allUnits[index].Check);
 
+                const uta = getUnit(sort, unit)
+                const utaIndex = allUnits.findIndex((items => items.name === '우타'));
                 if(target.id.split(`-`)[0] === "p")
                 {
                     if(allUnits[index].Check == 0)
                     {
-                        allUnits[index].Check = (allUnits[index].Check + 1);
+                        allUnits[index].Check = allUnits[index].Check + 1 ;
                         document.getElementsByClassName(`s${index}`)[0].checked = true;
+                        document.getElementsByClassName(`s${utaIndex}`)[0].checked = true;
+                        document.getElementsByClassName(`d${utaIndex}`)[0].checked = true;
                     }
                     else
                     {
@@ -2920,8 +2924,13 @@ function Checked(target, sort, unit)
                 else
                 {
                     speedBonusEx += allUnits[index].atkSpeedBuff;
-                    index = allUnits.findIndex((items => items.name === '우타'));
+                    allUnits[utaIndex].Check = 0;
+                    Collect(allUnits[utaIndex], utaIndex);
                 }
+
+                const CheckUta = allUnits.find(items => items.rank == uta.rank && items.name == uta.name).Check;
+            
+                speedDebuff += CheckUta > 0 ? uta.slow : -uta.slow;
 
             }
             else{
