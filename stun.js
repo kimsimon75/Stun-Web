@@ -2930,7 +2930,7 @@ function Checked(target, sort, unit)
                 const slowU = allUnits[index];
                 if(slowU !== null)
                 {
-                    slowU.Check = target.id.split(`-`)[0] === "p" ? (slowU.Check + 1) : 0;    
+                    slowU.Check = target.id.split(`-`)[0] === "p" ? 1 : 0;    
                     manaRegen += slowU.Check ? slowU.manaRegen : -slowU.manaRegen;
                     healthRegen +=  slowU.Check ? slowU.healthRegen : -slowU.healthRegen;
                     speedDebuff +=  slowU.Check ? slowU.atkSpeedBuff : -slowU.atkSpeedBuff;
