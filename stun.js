@@ -204,7 +204,7 @@ export const unitStat = {
     }),
 
     unit("초월함", "루피", { atkSpeedBonus: 3.35, attackCycle: 0.38,
-      stun1: STUN.chance(0.025, 1.5, 500),
+      stun1: STUN.chance(0.025, 3.5, 500),
       mana: 160, manaDuration: 2.15, manaRange: 600,
       slow1: SLOW.chance(0.175, 2, 33)
     }),
@@ -391,81 +391,6 @@ function findUnitPos(rank, name) {
   return { sortCount, unitCount };
 }
 
-const stunRange = [
-    [[500, 0, 0], //바제스
-        [405, 0, 0],  // 아오키지
-        [500, 0, 0],  // 이완코브
-        [485, 0, 0],
-    [600,0,0]],  // 우솝
-    [
-        [500, 0, 0], //드래곤
-        [575, 0, 0], //라분
-        [550, 0, 0], //바르톨로메오
-        [600, 0, 0], //샹크스
-        [525, 0, 0], //시키
-        [500, 0, 0], //쿠마
-        [450, 0, 0], //후지토라
-    ],
-
-    [
-        [500, 0, 0], //봉쿠레
-        [600, 0, 0], //써니호
-        [415, 0, 0], //아오키지
-        [500, 0, 0], //이완코브
-        [515, 0, 0], //피셔타이거
-    ],
-    [
-        [525, 0, 0], //로빈
-        [500, 0, 600],//루피
-        [500, 0, 0], //보니
-        [600, 0, 800], //시라호시
-        [800, 800, 1100], //샹크스
-        [550, 0, 700], //아오키지
-        [500, 0, 525], //조로
-        [500, 500, 525], //키드
-        [500, 0, 0], //키자루
-        [475, 475, 0], //후지토라
-    ],
-    [
-        [500, 0, 0], //거프
-        [525, 0, 0], //드래곤
-        [525, 0, 0], //센고쿠
-        [525, 500, 0], //센고쿠(특강)
-        [600, 0, 600], //시키
-        [625, 0, 0], //흰수염
-        [625, 0, 0], //흰수염(약주)
-    ],
-    [
-        [500, 0, 750], // 니카
-        [500, 0, 0], //우타
-        [550, 0, 0], //카벤딧슈
-        [650, 0, 750], //핸콕
-        [650, 0, 750], //핸콕(특강)
-        [625, 0, 625],
-    ],
-    [
-        [550, 0, 0], //크로커다일
-        [550, 0, 500] //크로커다일(특강)
-    ],
-    [
-        [460, 0, 0], //K
-        [600, 0, NaN], // 고죠 사토루
-        [600, 0, 0], //나루토
-        [600, 525, 525], //미나토
-        [525, 0, 0] , //타츠마키
-    ],
-    [
-        [900, 0, 0], // 블랙마리아
-        [500, 0, 0], // 퀸
-    ],
-
-    [
-        [900, 0, 0],
-        [450, 0, 0],
-        [450, 450, 0],
-    ]
-]
-
 const Rate = [
   [['우타의 헤드셋', '아이템'], ['우타', '영원한']],
   [['불사조의 깃털', '아이템'], ['마르코', '제한됨'], ['마르코(특강)', '제한됨']],
@@ -495,7 +420,7 @@ const Mono = [
     ['핸콕', unitRates.희귀함, 1.3, 0.68, 0.1, 0.1, 0, 0, Seige.패기],
 
     ['루치', unitRates.전설적인, 2.95, 0.52, 0.11, 0.3, 0, 0, Seige.공성],
-    ['상디', unitRates.전설적인, 2.95, 0.45, 1, 0.029, 0, 0, Seige.공성],
+    ['상디', unitRates.전설적인, 2.95, 0.45, 1, 0.0285, 0, 0, Seige.공성],
     ['레이쥬', unitRates.전설적인, 2.95, 0.88, 0.0525, 0.1956, 0.1, 0.1719, Seige.관통],
     ['코비', unitRates.전설적인, 2.95, 0.57, 0.125, 0.25, 0, 0, Seige.일반],
 
@@ -688,15 +613,32 @@ function Brave(koby){
         return (koby * 5 / core);
 }
 
-function StunCalCulator(T,X,S,L)
+function StunCalCulator(T,X,S,L,luffy = 0)
     {
         if(T==0 || X==0 || S==0 || L==0)
             return 0;
+
+        if(luffy == 0)
+        {
         const n = Math.floor((S - L)/T) + 1;
         const stun_duration = (L-T) * X * ( 1 - Math.pow(1 - X, n) ) + T / X * (1 - (n * X + 1) * Math.pow(1 - X, n)) + S *  Math.pow(1-X,n);
         const total_duration = L-T + T / X;
     
         return stun_duration / total_duration;
+        }
+        else
+        {
+            const n = Math.floor(S / T);
+            const delay_n = Math.ceil(luffy / T);
+            const delay_T = T * delay_n;
+            const realN = n - delay_n;
+
+            console.log(n, delay_n, realN);
+
+            const stun_duration = T / X * (1 - (realN * X + 1) * Math.pow(1 - X, realN)) + (S - delay_T) *  Math.pow(1-X,realN) + delay_T;
+            const total_duration = T / X + delay_T;
+            return stun_duration / total_duration;
+        }
     }
 
 function UnitTotalStun() {
@@ -830,19 +772,19 @@ function UnitTotalStun() {
             }
             else if (idxToRank(sortCount)  === '초월함' && u.name === "루피")
                 {
-                    let n3 = Math.ceil(1.75 / t);
-                    let time = n3 * t;
-                    let n4 = Math.floor((3.5 - time) / t);
+                    x2 = 0.125;
+                    s2 = 1.5;
                     if (mana)
-                        stun = Math.log((1 - ((time + t / 0.025 * (1 - (n4 * 0.025 + 1) * Math.pow(1 - 0.025, n4))) / (time + t / 0.025)) * StunCalCulator(t, x1, s1, t)) * (1 - ((maxMana != 0) ? m_stun / (maxMana / (1/t + unitManaRegen)) : 0))) / Math.log(StunCalCulation);
+                        stun = Math.log(1 - StunCalCulator(t, x2, s2, t) * (StunCalCulator(t, x1, s1, t, 1.75)))  / Math.log(StunCalCulation);
                     else
-                        stun = Math.log(StunCalCulator(t, x1, 3.5, time)) / Math.log(StunCalCulation);
+                        stun = Math.log(StunCalCulator(t, x1, 3.5, t)) / Math.log(StunCalCulation);
+                    console.log(StunCalCulator(t, x1, s1, t, 1.75));
                 }
             else if(u.name === "보니")
             {
                 let n3 = Math.ceil(2 / t);
                 let time = n3 * t;
-                stun = Math.log(StunCalCulator(t, x1, s1, time)) / Math.log(StunCalCulation);
+                stun = Math.log(StunCalCulator(t, x1, s1, t, time)) / Math.log(StunCalCulation);
             }
             else if (idxToRank(sortCount)  ==='초월함' &&  u.name === "아오키지") // 아오키지
             {
@@ -1704,8 +1646,6 @@ function openOverlay(sortCount, unitCount) {
         Mono.forEach((item,index) =>{
             var t = 1 / item[3] * Math.min(RoundX(1 + item[2] + (speedBonusEx + dex) / 100,3), 5);
 
-        var siege = false;
-
         if(item[1][0] === "희귀함"
         || item[0] === "전설적인" 
         || item[0] === "히든" 
@@ -1731,7 +1671,7 @@ function openOverlay(sortCount, unitCount) {
             UnitName.style.borderRight = "none";
             if(index !== 0)
                 UnitName.style.borderTop = "none";
-            UnitName.innerText = item[0] + `(${item[1][0]})`;
+            UnitName.innerText = item[0] + `(${idxToRank(item[1])})`;
 
             Grid.appendChild(UnitName);
 
@@ -2224,7 +2164,7 @@ function BuffAdd(checked, item) //이중 계산 방지 speedBonusEx는 제외
     manaRegen += checked ? item.manaRegen : -item.manaRegen;
     healthRegen += checked ? item.healthRegen : -item.healthRegen;
     speedDebuff += checked ? item.slow : -item.slow;
-    item.Check = checked ? item.Check + 1: 0;
+    item.Check = checked ? 1 : 0;
 }
 
 
@@ -2911,7 +2851,7 @@ function Checked(target, sort, unit)
                 {
                     if(allUnits[index].Check == 0)
                     {
-                        allUnits[index].Check = allUnits[index].Check + 1 ;
+                        allUnits[index].Check = 1 ;
                         document.getElementsByClassName(`s${index}`)[0].checked = true;
                         document.getElementsByClassName(`s${utaIndex}`)[0].checked = true;
                         document.getElementsByClassName(`d${utaIndex}`)[0].checked = true;
