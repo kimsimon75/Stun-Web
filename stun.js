@@ -1911,9 +1911,9 @@ function openOverlay(sortCount, unitCount) {
             item.style.borderBottom = "0.1rem solid #ddd";
 
             if(u.stun1.type == "none" && i>= 6 && i <=10 )
-                i = 11;
+                i = 12;
 
-            if (u.stun2.type == "none" && i >= 11 && i <= 16)
+            if (u.stun2.type == "none" && i >= 12 && i <= 16)
                 i = 18;
             if (maxMana == 0 && i >= 18 && i <= 22)
             {
@@ -2017,13 +2017,33 @@ function openOverlay(sortCount, unitCount) {
                             count++;
                         else
                             time6 = 0;
-                        item.innerText = `스턴 1 편차 : ${((time1 * x1 * Math.pow(1 - x1, count - 6) + time2 * x1 * Math.pow(1 - x1, count - 5) + time3 * x1 * Math.pow(1 - x1, count - 4) + time4 * x1 * Math.pow(1 - x1, count - 3) + time5 * x1 * Math.pow(1 - x1, count - 2) + time6 * (1 - x1 - x1 * (1 - x1) - x1 * Math.pow(1 - x1, 2) - x1 * Math.pow(1 - x1, 3) - x1 * Math.pow(1 - x1, 4)))).toFixed(3)}초`;
+
+                        let time7 = 0.65 + 5 / t - 2.15;
+                        if (time7 > 0)
+                            count++;
+                        else
+                            time7 = 0;
+                        item.innerText = `스턴 1 편차 : ${((
+                            time1 * x1 * Math.pow(1 - x1, count - 7) + 
+                            time2 * x1 * Math.pow(1 - x1, count - 6) + 
+                            time3 * x1 * Math.pow(1 - x1, count - 5) + 
+                            time4 * x1 * Math.pow(1 - x1, count - 4) + 
+                            time5 * x1 * Math.pow(1 - x1, count - 3) + 
+                            time6 * x1 * Math.pow(1 - x1, count - 2) + 
+                            time7 * (
+                                1 - 
+                                x1 - 
+                                x1 * (1 - x1) - 
+                                x1 * Math.pow(1 - x1, 2) - 
+                                x1 * Math.pow(1 - x1, 3) - 
+                                x1 * Math.pow(1 - x1, 4) - 
+                                x1 * Math.pow(1 - x1, 5)))).toFixed(3)}초`;
                     }
                     else if (u.UnitName == "루피") {
-                        item.innerText = `스턴 1 편차 : ${(1 / x1 / t).toFixed(3)}초`;
+                        item.innerText = `스턴 1 편차 : ${((n1 + 1 + 1 / x1) / t - s1).toFixed(3)}초`;
                     }
                     else
-                        item.innerText = `스턴 1 편차 : ${(1 / x1 / t).toFixed(3)}초`;
+                        item.innerText = `스턴 1 편차 : ${((n1 + 1 + 1 / x1) / t - s1).toFixed(3)}초`;
                     break;
                 case 12:
                     item.innerText = `스턴 2 확률 : ${(u.stun2.p * 100).toFixed(2)}%`
@@ -2041,7 +2061,7 @@ function openOverlay(sortCount, unitCount) {
                     item.innerText = `스턴 2 샐 확률 : ${(-(x2 * s2 * t - n2 * x2 - 1) * Math.pow(1 - x2, n2) * 100).toFixed(2)}%`;
                     break;
                 case 17:
-                    item.innerText = `스턴 2 편차 : ${(1 / x2 / t).toFixed(3)}초`;
+                    item.innerText = `스턴 2 편차 : ${((n2 + 1 + 1 / x2) / t - s2).toFixed(3)}초`;
                     break;
                 case 18:
                     item.innerText = `마나(체력) 통 : ${maxMana}`;
