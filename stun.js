@@ -1391,6 +1391,13 @@ function openOverlay(sortCount, unitCount) {
                     case 4:
                         Stun.innerText = `스턴 2 가동률 : ${(degree2*100).toFixed(3)} %`
                         break;
+                    case 5:
+                        Stun.innerText = `총 스턴 : ${(Math.log((1 - degree1) * (1 - degree2)) / Math.log(StunCalCulation)).toFixed(3)} 스턴`
+                        break;
+                    case 6:
+                        const doublePercentage = RoundX(1 - (1 - x1) * (1 - x2), 10);
+                        Stun.innerText = `총 편차 : ${(t / doublePercentage).toFixed(3)}초`
+                        break;
                 }
                 overlayContent.appendChild(Stun);
             }
