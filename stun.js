@@ -873,12 +873,16 @@ let CountOn = () => {
                 {
                     const u = getUnit(sortCount, unitCount);
                     
-                    if(u.stun1.type == "none" || u.stun2.type != "none"){
+                    if(u.stun1.type == "none"){
                         rate.innerText = "측정 불가";
                         continue;
                     }
+                
                     var x1 = u.stun1.p;
                     var s1 = u.stun1.dur;
+                    if(u.stun2.type != "none"){
+                        x1 = RoundX(1 - (1- x1) * (1 - u.stun2.p),10);
+                    }
                     const rawBonus = (getUnit(sortCount, unitCount).Check)
                     const bonus = RoundX(1 + u.atkSpeedBonus + rawBonus / 100, 3);
                     let t = 1 / u.attackCycle * Math.min(bonus, 5);
