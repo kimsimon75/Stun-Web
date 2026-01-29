@@ -511,6 +511,8 @@ const max_move = 490;
 
 const round = 32;
 
+var deviationToggle = false;
+
 // unitStat(객체) -> 모든 유닛을 1차원 배열로 합치면서 rank 붙이기
 const allUnits = Object.entries(unitStat).flatMap(([rank, arr]) =>
   arr.map(u => ({ ...u, rank }))   // rank가 원래 없으니까 붙임
@@ -865,7 +867,87 @@ let CountOn = () => {
         for (let unitCount = 0; unitCount < unitStat[idxToRank(sortCount)].length; unitCount++) {
             if(getUnit(sortCount, unitCount).stun1.type == "none" && getUnit(sortCount, unitCount).manaRange == 0) continue;
             const rate = document.getElementById(`r-${sortCount}-${unitCount}`);
-            rate.innerText = getUnit(sortCount, unitCount).StunCalCulate.toFixed(3) + "스턴";
+            if(deviationToggle == false)
+                rate.innerText = getUnit(sortCount, unitCount).StunCalCulate.toFixed(3) + "스턴";
+            else
+                {
+                    const u = getUnit(sortCount, unitCount);
+                    
+                    if(u.stun1.type == "none" || u.stun2.type != "none"){
+                        rate.innerText = "측정 불가";
+                        continue;
+                    }
+                    var x1 = u.stun1.p;
+                    var s1 = u.stun1.dur;
+                    const rawBonus = (getUnit(sortCount, unitCount).Check)
+                    const bonus = RoundX(1 + u.atkSpeedBonus + rawBonus / 100, 3);
+                    let t = 1 / u.attackCycle * Math.min(bonus, 5);
+                    var n1 = Math.floor(s1 * t);
+                    if (u.name == "라분") {
+                        let count = 0;
+                        let time1 = 0.65 + 0 / t - 2.15;
+                        if (time1 > 0)
+                            count++;
+                        else
+                            time1 = 0;
+
+                        let time2 = 0.65 + 1 / t - 2.15;
+                        if (time2 > 0)
+                            count++;
+                        else
+                            time2 = 0;
+
+                        let time3 = 0.65 + 2 / t - 2.15;
+                        if (time3 > 0)
+                            count++;
+                        else
+                            time3 = 0;
+
+                        let time4 = 0.65 + 3 / t - 2.15;
+                        if (time4 > 0)
+                            count++;
+                        else
+                            time4 = 0;
+
+                        let time5 = 0.65 + 4 / t - 2.15;
+                        if (time5 > 0)
+                            count++;
+                        else
+                            time5 = 0;
+
+                        let time6 = 0.65 + 5 / t - 2.15;
+                        if (time6 > 0)
+                            count++;
+                        else
+                            time6 = 0;
+
+                        let time7 = 0.65 + 5 / t - 2.15;
+                        if (time7 > 0)
+                            count++;
+                        else
+                            time7 = 0;
+                        rate.innerText = `${((
+                            time1 * x1 * Math.pow(1 - x1, count - 7) + 
+                            time2 * x1 * Math.pow(1 - x1, count - 6) + 
+                            time3 * x1 * Math.pow(1 - x1, count - 5) + 
+                            time4 * x1 * Math.pow(1 - x1, count - 4) + 
+                            time5 * x1 * Math.pow(1 - x1, count - 3) + 
+                            time6 * x1 * Math.pow(1 - x1, count - 2) + 
+                            time7 * (
+                                1 - 
+                                x1 - 
+                                x1 * (1 - x1) - 
+                                x1 * Math.pow(1 - x1, 2) - 
+                                x1 * Math.pow(1 - x1, 3) - 
+                                x1 * Math.pow(1 - x1, 4) - 
+                                x1 * Math.pow(1 - x1, 5)))).toFixed(3)}초`;
+                    }
+                    else if (u.UnitName == "루피") {
+                        rate.innerText = `${((n1 + 1 + 1 / x1) / t - s1).toFixed(3)}초`;
+                    }
+                    else
+                        rate.innerText = `${((n1 + 1 + 1 / x1) / t - s1).toFixed(3)}초`;
+                } 
 
             const percentage = document.getElementById(`per-${sortCount}-${unitCount}`);
             percentage.innerText = ((1 - Math.pow(StunCalCulation, getUnit(sortCount, unitCount).StunCalCulate)) * 100).toFixed(2) + "%";
@@ -2909,7 +2991,7 @@ function Checked(target, sort, unit)
         }
 
 
-
+//스턴 지수
 for(let sortCount = 0; sortCount < Object.keys(unitStat).length; sortCount++){
     let check = false;
    for(let unitCount =0; unitCount < unitStat[idxToRank(sortCount)].length; unitCount++)
@@ -3595,6 +3677,19 @@ MoveSpeedPage.addEventListener('click', () => {
     document.getElementsByClassName(`Stack4`)[0].appendChild(StunPage);
 
 })
+
+const deviation = document.createElement("button");
+    deviation.className = "Button Stun SmallFont";
+    deviation.innerText = "스턴 편차";
+    deviation.style.gridArea = "1/3/2/4";
+
+    deviation.addEventListener('click', () => {
+        deviationToggle = !deviationToggle;
+        CountOn();
+    })
+
+    ButtonColor(deviation);
+    document.getElementsByClassName(`Stack4`)[0].appendChild(deviation);
 
 ButtonColor(MoveSpeedPage);
 document.getElementsByClassName(`Stack4`)[0].appendChild(MoveSpeedPage);
