@@ -877,14 +877,12 @@ let CountOn = () => {
                         rate.innerText = "측정 불가";
                         continue;
                     }
-                
-                    var x1 = u.stun1.p;
-                    var s1 = u.stun1.dur;
+                    let x1 = u.stun1.p;
                     if(u.stun2.type != "none"){
                         x1 = RoundX(1 - (1- x1) * (1 - u.stun2.p),10);
                     }
-                    const rawBonus = (getUnit(sortCount, unitCount).Check)
-                    const bonus = RoundX(1 + u.atkSpeedBonus + rawBonus / 100, 3);
+                    let s1 = u.stun1.dur;
+                    const bonus = RoundX(1 + u.atkSpeedBonus + (getUnit(sortCount, unitCount).Check ? 0 : speedBonusEx / 100), 3);
                     let t = 1 / u.attackCycle * Math.min(bonus, 5);
                     var n1 = Math.floor(s1 * t);
                     if (u.name == "라분") {
