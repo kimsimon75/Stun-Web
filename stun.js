@@ -173,10 +173,10 @@ export const unitStat = {
   "히든": [
     // 기존
     unit("히든", "방주맥심", { atkSpeedBonus: 2.6, attackCycle: 0.64, slow2: SLOW.chance(0.14, 3, 30) }),
-    unit("히든", "봉쿠레",     { atkSpeedBonus: 2.6, attackCycle: 0.94, stun1: STUN.chance(0.09, 1.55, 500) }),
+    unit("히든", "봉쿠레",     { atkSpeedBonus: 2.6, attackCycle: 0.94, stun1: STUN.chance(0.12, 1.65, 500) }),
     unit("히든", "써니호",     { atkSpeedBonus: 2.6, attackCycle: 0.45, stun1: STUN.chance(0.1, 1.4, 600) }),
     unit("히든", "아오키지",   { atkSpeedBonus: 2.6, attackCycle: 0.79, stun1: STUN.chance(0.1, 1.7, 415), slow: 35 }),
-    unit("히든", "이완코브",   { atkSpeedBonus: 2.6, attackCycle: 0.86, stun1: STUN.chance(0.12, 1.8, 500) }),
+    unit("히든", "이완코브",   { atkSpeedBonus: 2.6, attackCycle: 0.86, stun1: STUN.chance(0.11, 1.65, 500) }),
     unit("히든", "피셔타이거", { atkSpeedBonus: 2.6, attackCycle: 0.49, stun1: STUN.chance(0.1, 2.0, 515) }),
 
     unit("히든", "아카이누", { atkSpeedBonus: 2.6, attackCycle: 0.75, slow2: SLOW.chance(0.16, 2, 10) }),
@@ -197,7 +197,7 @@ export const unitStat = {
       slow2: SLOW.chance(0.1, 2, 15)
     }),
 
-    unit("초월함", "로빈",   { atkSpeedBonus: 3.35, attackCycle: 0.71, stun1: STUN.chance(0.1, 2.85, 525) }),
+    unit("초월함", "로빈",   { atkSpeedBonus: 3.35, attackCycle: 0.71, stun1: STUN.chance(0.1, 2.85, 525), mana: 40, manaDuration: 1.15, manaRange: 600 }),
     unit("초월함", "료쿠규", { atkSpeedBonus: 3.35, attackCycle: 0.84,
       slow1: SLOW.chance(0.12, 3, 25),
       slow2: SLOW.chance(0.164, 3, 20)
@@ -262,9 +262,9 @@ export const unitStat = {
     unit("불멸의", "흰수염(약주)", { atkSpeedBonus: 3.3, attackCycle: 0.73, stun1: STUN.chance(0.05, 3.0, 625), mana: 115, manaDuration: 3 }),
 
     unit("불멸의", "시키(1레벨)", { atkSpeedBonus: 3.3, attackCycle: 0.49, slow2: SLOW.chance(0.03,  5, 35) }),
-    unit("불멸의", "시키(2레벨)", { atkSpeedBonus: 3.3, attackCycle: 0.49, slow2: SLOW.chance(0.035, 5, 35) }),
-    unit("불멸의", "시키(3레벨)", { atkSpeedBonus: 3.3, attackCycle: 0.49, slow2: SLOW.chance(0.04,  5, 35) }),
-    unit("불멸의", "시키(4레벨)", { atkSpeedBonus: 3.3, attackCycle: 0.49, slow2: SLOW.chance(0.045, 5, 35) }),
+    unit("불멸의", "시키(2레벨)", { atkSpeedBonus: 3.3, attackCycle: 0.49, slow2: SLOW.chance(0.032, 5, 35) }),
+    unit("불멸의", "시키(3레벨)", { atkSpeedBonus: 3.3, attackCycle: 0.49, slow2: SLOW.chance(0.034,  5, 35) }),
+    unit("불멸의", "시키(4레벨)", { atkSpeedBonus: 3.3, attackCycle: 0.49, slow2: SLOW.chance(0.036, 5, 35) }),
 
     // BuffState(불멸의)
     unit("불멸의", "레일리", { atkSpeedBuff: 45 }),
@@ -288,7 +288,7 @@ export const unitStat = {
     }),
 
     unit("영원한", "핸콕(특강)", { atkSpeedBonus: 3.3, attackCycle: 0.74, stun1: STUN.chance(0.1, 2.75, 650), mana: 175, manaDuration: 4, manaRange: 750 }),
-    unit("영원한", "테조로",   { atkSpeedBonus: 3.61, attackCycle: 0.70, stun1: STUN.chance(0.12, 2.4, 625), mana: 90, manaDuration: 2.4, atkSpeedBuff: 25, manaRange: 625 }),
+    unit("영원한", "테조로",   { atkSpeedBonus: 3.41, attackCycle: 0.70, stun1: STUN.chance(0.12, 2.4, 625), mana: 90, manaDuration: 2.4, atkSpeedBuff: 25, manaRange: 625 }),
 
     // BuffState(영원한)
     unit("영원한", "버기", { atkSpeedBuff: 65, slow: 25 }),
@@ -316,7 +316,7 @@ export const unitStat = {
     unit("신비함", "K",         { atkSpeedBonus: 3.3,  attackCycle: 0.58, stun1: STUN.chance(0.03, 3.0, 460) }),
     unit("신비함", "고죠 사토루", { atkSpeedBonus: 3.3,  attackCycle: 1.01, stun1: STUN.chance(0.1, 2.0, 600), mana: 185, manaDuration: 5, manaRange: NaN, slow2: SLOW.chance(0.1, 2, 20) }),
     unit("신비함", "나루토",     { atkSpeedBonus: 3.05, attackCycle: 0.50, stun1: STUN.chance(0.05, 2.85, 600) }),
-    unit("신비함", "미나토",     { atkSpeedBonus: 3.42, attackCycle: 0.73, stun1: STUN.chance(0.0425, 3.0, 600), stun2: STUN.chance(0.16, 2.75, 525)}),
+    unit("신비함", "미나토",     { atkSpeedBonus: 3.42, attackCycle: 0.73, stun1: STUN.chance(0.05, 3.0, 600), stun2: STUN.chance(0.15, 2.75, 525)}),
     unit("신비함", "타츠마키",   { atkSpeedBonus: 3.3,  attackCycle: 0.79, stun1: STUN.chance(0.1425, 1.75, 525), slow: 50 }),
 
     unit("신비함", "요우무", { atkSpeedBonus: 3.3, attackCycle: 0.71, slow2: SLOW.chance(0.1, 3, 50) }),
@@ -421,7 +421,7 @@ const Mono = [
 
     ['루치', unitRates.전설적인, 2.95, 0.52, 0.11, 0.3, 0, 0, Seige.공성],
     ['상디', unitRates.전설적인, 2.95, 0.45, 1, 0.0285, 0, 0, Seige.공성],
-    ['레이쥬', unitRates.전설적인, 2.95, 0.88, 0.0525, 0.1956, 0.1, 0.1719, Seige.관통],
+    ['레이쥬', unitRates.전설적인, 2.95, 0.88, 0.055, 0.1956, 0.1, 0.1719, Seige.관통],
     ['코비', unitRates.전설적인, 2.95, 0.57, 0.125, 0.25, 0, 0, Seige.일반],
 
     ['류마', unitRates.히든, 2.6, 0.67, 0.125, 0.2, 0, 0, Seige.관통],
