@@ -206,7 +206,7 @@ export const unitStat = {
     unit("초월함", "루피", { atkSpeedBonus: 3.35, attackCycle: 0.38,
       stun1: STUN.chance(0.025, 3.5, 500),
       mana: 160, manaDuration: 2.15, manaRange: 600,
-      slow1: SLOW.chance(0.175, 2, 33)
+      slow2: SLOW.chance(0.175, 2, 33)
     }),
 
     unit("초월함", "보니",     { atkSpeedBonus: 3.35, attackCycle: 0.89, stun1: STUN.chance(0.12, 1.5, 500) }),
@@ -278,7 +278,7 @@ export const unitStat = {
     // 기존
     unit("영원한", "니카",     { atkSpeedBonus: 3.35, attackCycle: 0.57, stun1: STUN.chance(0.1, 2.0, 500), mana: 150, manaDuration: 3, atkSpeedBuff: 25, manaRange: 750 }),
     unit("영원한", "우타",     { atkSpeedBonus: 3.37, attackCycle: 0.67, stun1: STUN.chance(0.1, 1.5, 500), atkSpeedBuff: 27, slow: 45 }),
-    unit("영원한", "카벤딧슈", { atkSpeedBonus: 3.15, attackCycle: 0.71, stun1: STUN.chance(0.1, 2.3, 550) }),
+    unit("영원한", "카벤딧슈", { atkSpeedBonus: 3.15, attackCycle: 0.71, stun1: STUN.chance(0.1, 2.3, 550), mana: 100, manaDuration: 3, manaRange: 500 }),
 
     unit("영원한", "핸콕", {
       atkSpeedBonus: 3.3, attackCycle: 0.74,
