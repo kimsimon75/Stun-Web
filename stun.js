@@ -1628,7 +1628,7 @@ function openOverlay(sortCount, unitCount) {
         {
             damage = 1 - Math.pow(0.94, Math.min(armor_remover - armor,20));
         }
-        armorDisplay.innerText = `필요한 공격력 증가 계수: ${Math.ceil(( (120000 / 1.05 / damage - (royal ? 25000 : 0)) / (234501 + (stack ? 100000 : 0)) - 1) * 100) }%`;
+        armorDisplay.innerText = `필요한 공격력 증가 계수: ${Math.ceil(( (180000 / 1.05 / damage - (royal ? 25000 : 0)) / (234501 + (stack ? 100000 : 0)) - 1) * 100) }%`;
     };
     for (let i = 0; i < 5; i++) {
         const item = document.createElement("div");
