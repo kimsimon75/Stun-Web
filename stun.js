@@ -288,7 +288,7 @@ export const unitStat = {
     }),
 
     unit("영원한", "핸콕(특강)", { atkSpeedBonus: 3.3, attackCycle: 0.74, stun1: STUN.chance(0.1, 2.75, 650), mana: 175, manaDuration: 4, manaRange: 750 }),
-    unit("영원한", "테조로",   { atkSpeedBonus: 3.41, attackCycle: 0.70, stun1: STUN.chance(0.12, 2.4, 625), mana: 90, manaDuration: 2.4, atkSpeedBuff: 25, manaRange: 625 }),
+    unit("영원한", "테조로",   { atkSpeedBonus: 3.40, attackCycle: 0.70, stun1: STUN.chance(0.12, 2.4, 625), mana: 90, manaDuration: 2.4, atkSpeedBuff: 25, manaRange: 625 }),
 
     // BuffState(영원한)
     unit("영원한", "버기", { atkSpeedBuff: 65, slow: 25 }),
