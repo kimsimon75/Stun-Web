@@ -343,8 +343,8 @@ export function openOverlay(sortCount, unitCount) {
             x1 = bigOne ? x1 : (x1 - x1 * x2);
             x2 = !bigOne ? x2 : (x2 - x1 * x2);
             
-            const degree1 = StunCalCulator(t, x1, s1, t);
-            const degree2 = StunCalCulator(t, x2, s2, t);
+            const degree1 = Func.StunCalCulator(t, x1, s1, t);
+            const degree2 = Func.StunCalCulator(t, x2, s2, t);
             if(attack_speed===0 || attack_speed_bonus === 0 || x1 === 0 || s1 === 0)
                 alert("잘못된 정보입니다.");
             else
