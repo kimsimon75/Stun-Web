@@ -130,7 +130,7 @@ export const unitStat = {
   "전설적인": [
     // 기존
     unit("전설적인", "나미",   { atkSpeedBonus: 2.95, attackCycle: 0.66, slow2: SLOW.chance(0.088, 3, 42) }),
-    unit("전설적인", "드래곤",       { atkSpeedBonus: 3.00, attackCycle: 0.77, stun1: STUN.chance(0.1, 2.85, 500), atkSpeedBuff: 5, slow: 10 }),
+    unit("전설적인", "드래곤",       { atkSpeedBonus: 3.00, attackCycle: 0.77, stun1: STUN.chance(0.1, 2.75, 500), atkSpeedBuff: 5, slow: 10 }),
     unit("전설적인", "라분",         { atkSpeedBonus: 1.25, attackCycle: 1.33, stun1: STUN.chance(0.27, 2.15, 575), atkSpeedBuff: 10 }),
     unit("전설적인", "바르톨로메오", { atkSpeedBonus: 2.95, attackCycle: 0.71, stun1: STUN.chance(0.1, 2.75, 550) }),
     unit("전설적인", "샹크스",       { atkSpeedBonus: 2.95, attackCycle: 0.66, stun1: STUN.chance(0.1, 2.0, 600) }),
