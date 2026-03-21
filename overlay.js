@@ -348,7 +348,7 @@ export function openOverlay(sortCount, unitCount) {
             if(attack_speed===0 || attack_speed_bonus === 0 || x1 === 0 || s1 === 0)
                 alert("잘못된 정보입니다.");
             else
-            for(let i=0;i<=5;i++)
+            for(let i=0;i<=6;i++)
             {   
                 const Stun = document.createElement("div");
                 Stun.className = "StunDocument SmallFont"
