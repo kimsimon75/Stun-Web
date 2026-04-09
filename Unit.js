@@ -130,8 +130,8 @@ export const unitStat = {
   "전설적인": [
     // 기존
     unit("전설적인", "나미",   { atkSpeedBonus: 2.95, attackCycle: 0.66, slow2: SLOW.chance(0.088, 3, 42) }),
-    unit("전설적인", "드래곤",       { atkSpeedBonus: 3.00, attackCycle: 0.77, stun1: STUN.chance(0.1, 2.75, 500), atkSpeedBuff: 5, slow: 10 }),
-    unit("전설적인", "라분",         { atkSpeedBonus: 1.25, attackCycle: 1.33, stun1: STUN.chance(0.27, 2.15, 575), atkSpeedBuff: 17 }),
+    unit("전설적인", "드래곤",       { atkSpeedBonus: 2.95, attackCycle: 0.77, stun1: STUN.chance(0.1, 2.75, 500), atkSpeedBuff: 5, slow: 10 }),
+    unit("전설적인", "라분",         { atkSpeedBonus: 1.15, attackCycle: 1.33, stun1: STUN.chance(0.27, 2.15, 575), atkSpeedBuff: 17 }),
     unit("전설적인", "바르톨로메오", { atkSpeedBonus: 2.95, attackCycle: 0.71, stun1: STUN.chance(0.1, 2.75, 550) }),
     unit("전설적인", "샹크스",       { atkSpeedBonus: 2.95, attackCycle: 0.66, stun1: STUN.chance(0.11, 2.2, 600) }),
     unit("전설적인", "시키",         { atkSpeedBonus: 2.95, attackCycle: 0.75, stun1: STUN.chance(0.1, 3.0, 525) }),
@@ -205,6 +205,7 @@ export const unitStat = {
     }),
 
     unit("초월함", "보니",     { atkSpeedBonus: 3.35, attackCycle: 0.89, stun1: STUN.chance(0.12, 1.5, 500) }),
+    unit("초월함", "사보", { atkSpeedBonus: 2.57, attackCycle: 0.79, stun1: STUN.cooldown(12.5, 2.5, 475), slow1: SLOW.chance(0.1, 2, 30), atkSpeedBuff: 20, slow: 35 }),
     unit("초월함", "시라호시", { atkSpeedBonus: 3.35, attackCycle: 0.70, stun1: STUN.chance(0.12, 2.35, 600), mana: 120, manaDuration: 3, manaRange: 800 }),
     unit("초월함", "샹크스",   { atkSpeedBonus: 3.55, attackCycle: 0.60, stun1: STUN.chance(0.1, 2.0, 800), stun2: STUN.chance(0.1, 1.8, 800), mana: 35, manaDuration: 3, manaRange: 1100 }),
     unit("초월함", "아오키지", { atkSpeedBonus: 3.35, attackCycle: 0.69, stun1: STUN.chance(0.1, 2.3, 550), manaRange: 700, slow: 80 }),
@@ -217,10 +218,9 @@ export const unitStat = {
     unit("초월함", "나미",   { atkSpeedBonus: 3.55, attackCycle: 0.65, slow2: SLOW.chance(0.0415, 5, 45) }),
     unit("초월함", "로우",   { atkSpeedBonus: 3.35, attackCycle: 0.64, slow1: SLOW.chance(0.125, 3, 40) }),
 
-    unit("초월함", "사보",   { atkSpeedBonus: 2.57, attackCycle: 0.79, slow1: SLOW.chance(0.1, 2, 30), atkSpeedBuff: 20, slow: 35 }),
     unit("초월함", "상디",   { atkSpeedBonus: 3.35, attackCycle: 0.46, slow1: SLOW.chance(0.05, 3.5, 50) }),
     unit("초월함", "아카이누", { atkSpeedBonus: 3.35, attackCycle: 0.73, slow2: SLOW.chance(0.1675, 2, 12) }),
-    unit("초월함", "징베",   { atkSpeedBonus: 2.90, attackCycle: 0.89, slow1: SLOW.chance(0.0625, 3, 50), atkSpeedBuff: 20, manaRegen: 3 }),
+    unit("초월함", "징베",   { atkSpeedBonus: 2.70, attackCycle: 0.89, slow1: SLOW.chance(0.0625, 3, 50), atkSpeedBuff: 20, manaRegen: 3 }),
     unit("초월함", "도플라밍고", { atkSpeedBonus: 3.35, attackCycle: 0.62,
       slow1: SLOW.chance(0.2, 4, 250),
       slow2: SLOW.chance(0.2, 3, 45)
@@ -242,7 +242,7 @@ export const unitStat = {
   "불멸의": [
     // 기존
     unit("불멸의", "거프",         { atkSpeedBonus: 3.3, attackCycle: 0.63, stun1: STUN.chance(0.1, 2.5, 500) }),
-    unit("불멸의", "드래곤",       { atkSpeedBonus: 3.5, attackCycle: 0.61, stun1: STUN.chance(0.1, 3.0, 525), atkSpeedBuff: 20 }),
+    unit("불멸의", "드래곤",       { atkSpeedBonus: 3.3, attackCycle: 0.61, stun1: STUN.chance(0.1, 3.0, 525), atkSpeedBuff: 20 }),
     unit("불멸의", "센고쿠",       { atkSpeedBonus: 3.3, attackCycle: 0.70, stun1: STUN.chance(0.1, 2.85, 525) }),
     unit("불멸의", "센고쿠(특강)", { atkSpeedBonus: 3.3, attackCycle: 0.70, stun1: STUN.chance(0.1, 2.85, 525), stun2: STUN.chance(0.08, 2.5, 500) }),
     unit("불멸의", "시키",         { atkSpeedBonus: 3.3, attackCycle: 0.49, stun1: STUN.chance(0.1, 3.0, 600), mana: 125, manaDuration: 3, manaRange: 600 }),
@@ -272,8 +272,8 @@ export const unitStat = {
 
   "영원한": [
     // 기존
-    unit("영원한", "니카",     { atkSpeedBonus: 3.35, attackCycle: 0.57, stun1: STUN.chance(0.1, 2.0, 500), mana: 150, manaDuration: 3, atkSpeedBuff: 25, manaRange: 750 }),
-    unit("영원한", "우타",     { atkSpeedBonus: 3.37, attackCycle: 0.67, stun1: STUN.chance(0.1, 1.5, 500), atkSpeedBuff: 27, slow: 45 }),
+    unit("영원한", "니카",     { atkSpeedBonus: 3.10, attackCycle: 0.57, stun1: STUN.chance(0.1, 2.0, 500), mana: 150, manaDuration: 3, atkSpeedBuff: 25, manaRange: 750 }),
+    unit("영원한", "우타",     { atkSpeedBonus: 3.10, attackCycle: 0.67, stun1: STUN.chance(0.1, 1.5, 500), atkSpeedBuff: 27, slow: 45 }),
     unit("영원한", "카벤딧슈", { atkSpeedBonus: 3.15, attackCycle: 0.71, stun1: STUN.chance(0.1, 2.3, 550), mana: 100, manaDuration: 3, manaRange: 500 }),
 
     unit("영원한", "핸콕", {
@@ -284,7 +284,7 @@ export const unitStat = {
     }),
 
     unit("영원한", "핸콕(특강)", { atkSpeedBonus: 3.3, attackCycle: 0.74, stun1: STUN.chance(0.1, 2.75, 650), mana: 175, manaDuration: 4, manaRange: 750 }),
-    unit("영원한", "테조로",   { atkSpeedBonus: 3.40, attackCycle: 0.70, stun1: STUN.chance(0.12, 2.4, 625), mana: 90, manaDuration: 2.4, atkSpeedBuff: 25, manaRange: 625 }),
+    unit("영원한", "테조로",   { atkSpeedBonus: 3.15, attackCycle: 0.70, stun1: STUN.chance(0.12, 2.4, 625), mana: 90, manaDuration: 2.4, atkSpeedBuff: 25, manaRange: 625 }),
 
     // BuffState(영원한)
     unit("영원한", "버기", { atkSpeedBuff: 65, slow: 25 }),

@@ -1,3 +1,4 @@
+import { RoundX } from "./function.js";
 import {Var, Unit, Func} from "./import.js";
 
 export function openOverlay(sortCount, unitCount) {
@@ -898,7 +899,7 @@ export function openOverlay(sortCount, unitCount) {
                     item.textContent = `거인화 모드 공속 : 초당${t2.toFixed(3)}`
                     break;
                 case 4:
-                    item.textContent = `공속 보너스(자체 버프 포함) : ${(u.atkSpeedBonus + parseFloat(((Var.speedBonusEx + Var.dex) / 100).toFixed(3)) - ((Unit.getUnit(sortCount, unitCount).Check) ? parseFloat((u.atkSpeedBuff / 100).toFixed(3)) : 0)) * 100}%`;
+                    item.textContent = `공속 보너스(자체 버프 포함) : ${RoundX(u.atkSpeedBonus * 100, 3) + (u.Check ? 0 : u.atkSpeedBuff)}%`;
                     break;
                 case 5:
                     item.innerText = `공속 버프 : ${u.atkSpeedBuff}%`
@@ -999,8 +1000,7 @@ export function openOverlay(sortCount, unitCount) {
                     item.innerText = `공속 : 초당${t.toFixed(3)}`;
                     break;
                 case 4:
-                    const bonus = Func.RoundX(u.atkSpeedBonus + Var.speedBonusEx / 100 - (Unit.getUnit(sortCount, unitCount).Check ? u.atkSpeedBuff / 100 : 0), 3);
-                    item.innerText = `공속 보너스(자체 버프 포함) : ${(bonus * 100).toFixed(2)}%`;
+                    item.innerText = `공속 보너스(자체 버프 포함) : ${RoundX(u.atkSpeedBonus * 100, 3) + (u.Check ? 0 : u.atkSpeedBuff)}%`;
 
                     break;
                 case 5:

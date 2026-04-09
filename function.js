@@ -163,7 +163,7 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 let s2 = u.stun2.type != "none" ? u.stun2.dur : 0;
                 let CheckU = Unit.allUnits.find(items => items.rank === u.rank && items.name === u.name);
     
-                let unitSpeedBonusEx = RoundX(u.atkSpeedBonus + RoundX((CheckU.Check ? (Var.speedBonusEx - u.atkSpeedBuff) : Var.speedBonusEx) / 100, 3), 3);
+                let unitSpeedBonusEx = RoundX(u.atkSpeedBonus + RoundX((CheckU.Check ? (Var.speedBonusEx ) : Var.speedBonusEx + u.atkSpeedBuff) / 100, 3), 3);
     
                 const uta = Unit.allUnits.find(items => items.name == "우타의 헤드셋" && items.rank == "아이템");
                 
@@ -247,7 +247,7 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 {
                     stun = Math.log(1 - StunCalCulator(t, x1, s1, 0.855)) / Math.log(Var.StunCalCulation);
                 }
-                else if(Unit.idxToRank(sortCount)  == "왜곡됨" && u.name == "블랙마리아")
+                else if(u.stun1.type == "cooldown")
                 {
                     stun = Math.log(1 -RoundX(s1 / cooldown, 3)) / Math.log(Var.StunCalCulation);
                 }
