@@ -14,19 +14,35 @@
 </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=2">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>스턴 가동률 표</title>
     <link rel="stylesheet" href="Stun.css">
 </head>
 <body>
     <div class="Main">
 
-        <div id="Window">
+        <main id="Window">
+            <header class="app-header">
+                <a class="brand" href="./" aria-label="스턴 랩 홈"><span class="brand-mark" aria-hidden="true">S</span> STUN<span class="brand-light">LAB</span></a>
+                <span class="header-caption">ONE PIECE RANDOM DEFENSE</span>
+            </header>
+            <section class="intro">
+                <div><p class="eyebrow">BUILD YOUR LINEUP</p><h1>빈틈없는 스턴, 완벽한 조합.</h1><p class="intro-copy">유닛과 버프를 조합하고, 스턴 가동률을 한눈에 확인하세요.</p></div>
+                <a class="notes-link" href="#patch-notes">업데이트 노트 <span aria-hidden="true">↗</span></a>
+            </section>
+            <section class="workspace" aria-labelledby="lineup-title">
+                <div class="section-heading"><div><span class="section-index">01</span><h2 id="lineup-title">유닛 조합</h2></div><p><span class="keycap">+</span> <span class="keycap">−</span> 수량 조절 <span class="heading-divider">/</span> 유닛명 클릭으로 상세 보기</p></div>
+                <div class="table-scroll" tabindex="0" aria-label="유닛 표, 작은 화면에서는 좌우로 스크롤하세요">
         <div id="container1" class="container"></div>
-        <div id="bar"></div>
-        <select id="versionSelector"></select>
-        <div id="content">버전을 선택해주세요.</div>
         </div>
+                <div class="table-footnote"><span class="status-dot"></span> 수량과 버프를 변경하면 자동으로 계산됩니다.<span>유닛 · 스턴 지수 · 가동률 · 수량</span></div>
+            </section>
+            <section class="tools-section" aria-labelledby="tools-title"><div class="section-heading"><div><span class="section-index">02</span><h2 id="tools-title">능력치 & 계산 도구</h2></div><p>숫자를 눌러 능력치를 입력하세요.</p></div><div id="bar"></div></section>
+            <section class="patch-section" id="patch-notes" aria-labelledby="patch-title"><div class="section-heading"><div><span class="section-index">03</span><h2 id="patch-title">업데이트 노트</h2></div><label class="sr-only" for="versionSelector">패치 버전 선택</label>
+        <select id="versionSelector"></select>
+        </div><div id="content">버전을 선택해주세요.</div></section>
+        <footer class="app-footer">STUN LAB <span>더 나은 조합을 위한 작은 차이.</span></footer>
+        </main>
 
         <script type="module" src="main.js"></script>
     </div>

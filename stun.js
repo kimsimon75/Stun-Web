@@ -87,7 +87,8 @@ export function StunView(){
             container.appendChild(UnitBar);
     
             const newChild = document.createElement("div");
-            newChild.className = 'unitSort SmallFont';
+            newChild.className = 'unitSort SmallFont rank-heading';
+            newChild.dataset.rank = Unit.idxToRank(sortCount);
             newChild.innerText = Unit.idxToRank(sortCount);
             newChild.style.border = "0.001rem solid black";
             newChild.style.width = "100%";
