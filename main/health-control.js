@@ -26,7 +26,7 @@ export function createHealthControl(HRegenOverlay, HRegenScroll, MRegenOverlay) 
         }
         else {
             HRegenScroll.style.visibility = "hidden";
-            MRegenOverlay.style.visibility = "hidden";
+            HRegenOverlay.style.visibility = "hidden";
         }
 
     });

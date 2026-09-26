@@ -1,16 +1,9 @@
+import { getSlowUnits } from "../main/slow-units.js";
 import { Var, Unit } from "../import.js";
 
 export function renderAftershock({ itemList, unitCount }) {
 
-    let unitNumber = 0;
-    for(let count = -1; count < unitCount; unitNumber++)
-    {
-        if(Unit.allUnits[unitNumber].slow1.type != "none" || Unit.allUnits[unitNumber].slow2.type != "none"){
-            count++;}
-    }
-    unitNumber--;
-
-    const u = Unit.allUnits[unitNumber];
+    const u = getSlowUnits()[unitCount];
     let t = 1 / u.attackCycle * (((1 + u.atkSpeedBonus +
             parseFloat((Var.speedBonusEx / 100).toFixed(3))) > 5) ? 5 :
             (1 + u.atkSpeedBonus +

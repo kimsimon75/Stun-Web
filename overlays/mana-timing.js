@@ -25,15 +25,15 @@ export function renderManaTiming({ itemList }) {
             Time.style.borderTop = "none";
         let AttackSpeedBuff = Func.RoundX((1 + item[2] + Var.speedBonusEx / 100) , 4);
 
-        if(item[1][0] === "초월함")
+        if(Unit.idxToRank(item[1]) === "초월함")
             AttackSpeedBuff += Math.round(Var.dex / 100 * 1000)/1000;
         let t = Func.RoundX(1 / item[3] * Math.min(AttackSpeedBuff, 5), 3);
 
-        if(item[1][0] === "희귀함"
-        || item[1][0] === "전설적인"
-        || item[1][0] === "히든"
-        || item[1][0] === "왜곡됨"
-        || item[1][0] === "특별함")
+        if(Unit.idxToRank(item[1]) === "희귀함"
+        || Unit.idxToRank(item[1]) === "전설적인"
+        || Unit.idxToRank(item[1]) === "히든"
+        || Unit.idxToRank(item[1]) === "왜곡됨"
+        || Unit.idxToRank(item[1]) === "특별함")
         {
             const findIndex = Unit.allUnits.findIndex(items => items.name === "로얄로더")
             if(Unit.allUnits[findIndex].Check > 0)
@@ -42,7 +42,7 @@ export function renderManaTiming({ itemList }) {
             }
         }
 
-        let unitManaRegen = Var.manaRegen + Func.Brave(Var.koby) + ((item[1][0] === "초월함") ? Var.intel * 0.08 : 0 );
+        let unitManaRegen = Var.manaRegen + Func.Brave(Var.koby) + ((Unit.idxToRank(item[1]) === "초월함") ? Var.intel * 0.08 : 0 );
 
         let Buffindex = Unit.allUnits.findIndex(items => {
             return (item[0] == items.name && Unit.idxToRank(item[1]) === items.rank);
@@ -61,13 +61,13 @@ export function renderManaTiming({ itemList }) {
             }
             else if(item[0] === "프랑키")
             {
-                const Franky = - (document.getElementsByClassName(`m${Buffindex}`)[0].checked ? Unit.allUnits[Buffindex].Var.manaRegen : 0);
+                const Franky = - (Unit.allUnits[Buffindex].Check > 0 ? Unit.allUnits[Buffindex].manaRegen : 0);
                 let cycle = (item[4] - item[5] * (unitManaRegen + braveKoby + Franky )) / (t + unitManaRegen + braveKoby + Franky) + item[5];
                 return cycle * Math.ceil(Var.round * 3 / cycle) - Var.round * int + plus;
             }
             else if (item[0] === "에넬")
             {
-                const enel = - (document.getElementsByClassName(`m${Buffindex}`)[0].checked ? Unit.allUnits[Buffindex].Var.manaRegen : 0);
+                const enel = - (Unit.allUnits[Buffindex].Check > 0 ? Unit.allUnits[Buffindex].manaRegen : 0);
                 let cycle = (item[4] - item[5] * (unitManaRegen + braveKoby + enel )) / (t + unitManaRegen + braveKoby + enel) + item[5];
                 return cycle * Math.ceil(Var.round * 3 / cycle) - Var.round * int + plus;
             }

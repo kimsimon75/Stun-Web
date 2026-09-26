@@ -79,6 +79,12 @@ export function CheckEvent(CheckEl, item, fallbackIndex) {
             }
         }
 
+        group.forEach(([name, rank], i) => {
+            const unit = Unit.allUnits.find(u => u.name === name && u.rank === rank);
+            if (!unit) return;
+            unit.Check = checked ? Number(i <= row) : Number(i < row);
+            Collect(unit, Unit.allUnits.indexOf(unit));
+        });
         Func.UnitTotalStun();
         CountOn();
     });

@@ -6,6 +6,7 @@
 | 수정할 기능 | 파일 |
 | --- | --- |
 | 전체 수치 갱신 | `refresh.js` |
+| 유닛 선택·버프 초기화 (`ClearAll`) | `clear-all.js` |
 | 스턴 표 / 이감 표 갱신 | `stun-table.js`, `slow-table.js` |
 | 버프 수치 적용 / 체크박스 동기화 / 변경 이벤트 | `buff-state.js`, `buff-sync.js`, `buff-events.js` |
 | 하단 영역 구성 순서 / 배치 및 합계 | `stack.js`, `stack-layout.js` |

@@ -5,6 +5,17 @@ export function refreshStunTable() {
     for (let sortCount = 0; sortCount < Object.keys(Unit.unitStat).length; sortCount++) {
         for (let unitCount = 0; unitCount < Unit.unitStat[Unit.idxToRank(sortCount)].length; unitCount++) {
             if(Unit.getUnit(sortCount, unitCount).stun1.type == "none" && Unit.getUnit(sortCount, unitCount).manaRange == 0) continue;
+            const percentage = document.getElementById(`per-${sortCount}-${unitCount}`);
+            percentage.innerText = ((1 - Math.pow(Var.StunCalCulation, Unit.getUnit(sortCount, unitCount).StunCalCulate)) * 100).toFixed(2) + "%";
+
+            const Count = document.getElementById(`c-${sortCount}-${unitCount}`);
+            const u = Unit.getUnit(sortCount, unitCount);
+            const CheckU = Unit.allUnits.find(items => items.name == u.name && items.rank == u.rank);
+            Count.innerText = CheckU.Check;
+            Count.parentElement.classList.toggle("unit-selected", CheckU.Check > 0);
+
+            Var.totalStun += (CheckU.Check > 0) ? Unit.getUnit(sortCount, unitCount).StunCalCulate * CheckU.Check : 0;
+
             const rate = document.getElementById(`r-${sortCount}-${unitCount}`);
             if(Var.deviationToggle == false)
                 rate.innerText = Unit.getUnit(sortCount, unitCount).StunCalCulate.toFixed(3) + "스턴";
@@ -12,6 +23,10 @@ export function refreshStunTable() {
             {
                 const u = Unit.getUnit(sortCount, unitCount);
 
+                if(u.stun1.type === "cooldown") {
+                    rate.innerText = `${u.stun1.cd}초`;
+                    continue;
+                }
                 if(u.stun1.type == "none"){
                     rate.innerText = "측정 불가";
                     continue;
@@ -92,16 +107,7 @@ export function refreshStunTable() {
                     rate.innerText = `${((n1 + 1 + 1 / x1) / t - s1).toFixed(3)}초`;
             }
 
-            const percentage = document.getElementById(`per-${sortCount}-${unitCount}`);
-            percentage.innerText = ((1 - Math.pow(Var.StunCalCulation, Unit.getUnit(sortCount, unitCount).StunCalCulate)) * 100).toFixed(2) + "%";
 
-            const Count = document.getElementById(`c-${sortCount}-${unitCount}`);
-            const u = Unit.getUnit(sortCount, unitCount);
-            const CheckU = Unit.allUnits.find(items => items.name == u.name && items.rank == u.rank);
-            Count.innerText = CheckU.Check;
-            Count.parentElement.classList.toggle("unit-selected", CheckU.Check > 0);
-
-            Var.totalStun += (CheckU.Check > 0) ? Unit.getUnit(sortCount, unitCount).StunCalCulate * CheckU.Check : 0;
         }
     }
 }

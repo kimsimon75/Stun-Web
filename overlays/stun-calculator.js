@@ -8,6 +8,8 @@ export function renderStunCalculator({ overlayContent }) {
 
         const input = document.createElement("input");
         input.type = "number";
+        input.min = "0";
+        input.step = "any";
         input.style.fontSize = "0.65vw";
         input.style.width = "90%";
         input.style.padding = "0.4vw";
@@ -40,6 +42,7 @@ export function renderStunCalculator({ overlayContent }) {
                     input.id = "stun2_duration";
                     break;
         }
+        input.setAttribute("aria-label", item.textContent.trim());
         item.appendChild(input);
         overlayContent.appendChild(item);
 
@@ -56,29 +59,27 @@ export function renderStunCalculator({ overlayContent }) {
 
 
     StunButton.addEventListener("click", ()=>{
-        document.querySelectorAll(".StunDocument").forEach(el => overlayContent.removeChild(el));
+        overlayContent.querySelectorAll(".StunDocument").forEach(el => el.remove());
 
 
-        const attack_speed = parseFloat(document.getElementById("attack_speed").value);
-        const attack_speed_bonus = parseFloat(document.getElementById("attack_speed_bonus").value);
+        const read = id => Number(document.getElementById(id).value);
+        const attack_speed = read("attack_speed");
+        const attack_speed_bonus = read("attack_speed_bonus");
+        const p1 = read("stun1_prob") / 100;
+        const p2 = read("stun2_prob") / 100;
+        const s1 = read("stun1_duration");
+        const s2 = read("stun2_duration");
+        if (![attack_speed, attack_speed_bonus, p1, p2, s1, s2].every(Number.isFinite)
+            || attack_speed <= 0 || attack_speed_bonus < 0 || p1 < 0 || p1 > 1 || p2 < 0 || p2 > 1 || s1 < 0 || s2 < 0) {
+            alert("공격 주기는 0보다 크게, 확률은 0~100%, 나머지는 0 이상으로 입력해주세요.");
+            return;
+        }
         const t = attack_speed / Math.min(1 + Func.RoundX(attack_speed_bonus / 100, 3), 5);
-
-        const bigOne = document.getElementById("stun1_duration").value > document.getElementById("stun2_duration").value ? true : false;
-
-        let x1 = Func.RoundX(document.getElementById("stun1_prob").value / 100,3);
-        const s1 = document.getElementById("stun1_duration").value;
-
-        let x2 = Func.RoundX(document.getElementById("stun2_prob").value / 100,3);
-        const s2 = document.getElementById("stun2_duration").value;
-
-        x1 = bigOne ? x1 : (x1 - x1 * x2);
-        x2 = !bigOne ? x2 : (x2 - x1 * x2);
-
+        const bigOne = s1 > s2;
+        const x1 = bigOne ? p1 : p1 * (1 - p2);
+        const x2 = bigOne ? p2 * (1 - p1) : p2;
         const degree1 = Func.StunCalCulator(t, x1, s1, t);
         const degree2 = Func.StunCalCulator(t, x2, s2, t);
-        if(attack_speed===0 || attack_speed_bonus === 0 || x1 === 0 || s1 === 0)
-            alert("잘못된 정보입니다.");
-        else
         for(let i=0;i<=6;i++)
         {
             const Stun = document.createElement("div");

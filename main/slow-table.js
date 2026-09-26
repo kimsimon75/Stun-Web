@@ -1,16 +1,8 @@
+import { getSlowUnits } from "./slow-units.js";
 import { Var, Unit, Func } from "../import.js";
 
 export function refreshSlowTable() {
-    let field = 0;
-    for (let unitCount = 0; unitCount < Unit.allUnits.length;field++, unitCount++) {
-        const u = Unit.allUnits[unitCount];
-
-        if(u.EarthCalculate == 0 && u.SlowCalculate == 0)
-        {
-            field--;
-            continue;
-        }
-
+    for (const [field, u] of getSlowUnits().entries()) {
         const AfterShockRate = document.getElementById(`a-${field}`);
         AfterShockRate.innerText = (u.EarthCalculate * 100).toFixed(2) + "%";
 

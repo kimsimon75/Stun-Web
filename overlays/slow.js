@@ -1,17 +1,9 @@
+import { getSlowUnits } from "../main/slow-units.js";
 import { Var, Unit, Func } from "../import.js";
 
 export function renderSlow({ itemList, unitCount }) {
 
-    let unitNumber = 0;
-    for(let count = -1; count < unitCount; unitNumber++)
-    {
-        if(Unit.allUnits[unitNumber].slow1.type != "none" || Unit.allUnits[unitNumber].slow2.type != "none"){
-            count++;}
-    }
-    unitNumber--;
-
-
-    const u = Unit.allUnits[unitNumber];
+    const u = getSlowUnits()[unitCount];
     const totalBonus = Func.RoundX(1 + u.atkSpeedBonus + Var.speedBonusEx / 100, 3);
     const t = 1 / u.attackCycle * Math.min(totalBonus, 5);
 

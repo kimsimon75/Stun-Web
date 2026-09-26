@@ -1,5 +1,6 @@
 import { Var, Overlay } from "../import.js";
 import { ButtonColor } from "./button-style.js";
+import { ClearAll } from "./clear-all.js";
 
 export function createStackLayout() {
     for (let i = 0; i <= 5; i++) {
@@ -30,7 +31,7 @@ export function createStackLayout() {
     clear.className = "Button clear SmallFont";
     clear.innerText = '초기화';
     clear.addEventListener("click", ()=>{
-        location.reload();
+        ClearAll();
     });
     ButtonColor(clear);
 

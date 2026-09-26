@@ -189,7 +189,7 @@ export function renderUnitDetail({ itemList, sortCount, unitCount, u }) {
                     item.innerText += (Math.log((1 - 3 / 14.25) * (1 - 3 * (1.35 + unitManaRegen) / 35)) / Math.log(Var.StunCalCulation)).toFixed(3);
                 }
                 else if (u.name === "아오키지" && Unit.idxToRank(sortCount) == '초월함') {
-                    item.innerText += (Math.log(1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, floor(25 / (1 + 1 / t * unitManaRegen))) + 50 / (t + unitManaRegen))) / Math.log(Var.StunCalCulation)).toFixed(3);
+                    item.innerText += (Math.log(1 - 3 / (1 / t / 0.125 * Math.pow(1 - 0.125, Math.floor(25 / (1 + 1 / t * unitManaRegen))) + 50 / (t + unitManaRegen))) / Math.log(Var.StunCalCulation)).toFixed(3);
                 }
                 else if (u.name === "흰수염") {
                     item.innerText += (Math.log(1 - m_stun / (maxMana / (t + unitHealthRegen + 0.5))) / Math.log(Var.StunCalCulation)).toFixed(3);

@@ -61,7 +61,7 @@ function Checked(target, sort, unit)
                     slowU.Check = target.id.split(`-`)[0] === "p" ? 1 : 0;    
                     Var.manaRegen += slowU.Check ? slowU.manaRegen : -slowU.manaRegen;
                     Var.healthRegen +=  slowU.Check ? slowU.healthRegen : -slowU.healthRegen;
-                    Var.speedDebuff +=  slowU.Check ? slowU.atkSpeedBuff : -slowU.atkSpeedBuff;
+                    Var.speedDebuff += slowU.Check ? slowU.slow : -slowU.slow;
                     window.Collect(slowU, index);
                 }
             }

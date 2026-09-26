@@ -4,16 +4,16 @@ export function renderSingleTarget({ itemList }) {
     Unit.Mono.forEach((item,index) =>{
         var t = 1 / item[3] * Math.min(Func.RoundX(1 + item[2] + (Var.speedBonusEx + Var.dex) / 100,3), 5);
 
-    if(item[1][0] === "희귀함"
-    || item[0] === "전설적인"
-    || item[0] === "히든"
-    || item[0] === "왜곡됨"
-    || item[0] === "특별함")
+    if(Unit.idxToRank(item[1]) === "희귀함"
+    || Unit.idxToRank(item[1]) === "전설적인"
+    || Unit.idxToRank(item[1]) === "히든"
+    || Unit.idxToRank(item[1]) === "왜곡됨"
+    || Unit.idxToRank(item[1]) === "특별함")
     {
         const findIndex = Unit.allUnits.findIndex(items => items.name === "로얄로더")
         if(Unit.allUnits[findIndex].Check > 0)
         {
-            t = item[3] / (1 + item[2]) * Math.min(Func.RoundX(1 + item[2] + (Var.speedBonusEx + Var.dex - Unit.allUnits[findIndex].atkSpeedBuff) / 100,3), 5);
+            t = 1 / item[3] * Math.min(Func.RoundX(1 + item[2] + (Var.speedBonusEx + Var.dex - Unit.allUnits[findIndex].atkSpeedBuff) / 100,3), 5);
         }
     }
 

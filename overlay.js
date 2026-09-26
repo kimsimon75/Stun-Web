@@ -1,3 +1,4 @@
+import { getSlowUnits } from "./main/slow-units.js";
 import { Var, Unit } from "./import.js";
 import { renderStunSummary } from "./overlays/stun-summary.js";
 import { renderUptimeFormula } from "./overlays/uptime-formula.js";
@@ -19,6 +20,9 @@ export function openOverlay(sortCount, unitCount) {
     unitCount = Number(unitCount);
 
     const u = Unit.getUnit(sortCount, unitCount);
+    const isTool = sortCount === unitCount && [100, 200, 300, 400, 500, 600, 700, 800].includes(sortCount);
+    const isSlow = [-1, -2].includes(sortCount) && getSlowUnits()[unitCount];
+    if (!u && !isTool && !isSlow) return;
 
     // 🔥 오버레이 생성
     const overlay = document.createElement("div");
@@ -76,7 +80,7 @@ export function openOverlay(sortCount, unitCount) {
                     inputs[currentIndex + 1].focus();
                 } else {
                     // 마지막 input이면 "입력" 버튼 클릭
-                    document.getElementsByClassName("StunButton")[0].click();
+                    overlayContent.querySelector(".StunButton")?.click();
                 }
             }
         }
@@ -133,14 +137,8 @@ export function openOverlay(sortCount, unitCount) {
         title.innerHTML = "단일 효율(막라 기준)";
     else if (sortCount < 0){
         
-        let unitNumber = 0;
-        for(let count = -1; count < unitCount; unitNumber++)
-        {
-            if(Unit.allUnits[unitNumber].slow1.type != "none" || Unit.allUnits[unitNumber].slow2.type != "none"){
-                count++;}
-        }
-        unitNumber--;
-        title.textContent = `${Unit.allUnits[unitNumber].name} (${(Unit.allUnits[unitNumber].rank)})`;
+        const slowUnit = getSlowUnits()[unitCount];
+        title.textContent = slowUnit.name + " (" + slowUnit.rank + ")";
     }
     else
         title.textContent = `${u.name} (${Unit.idxToRank(sortCount)})`;

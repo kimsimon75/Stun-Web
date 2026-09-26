@@ -145,10 +145,7 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 if (!u) {
                 console.error("u가 null/undefined임", u);
                 return;
-                }
-    
-                const stun1 = u.stun1 ?? STUN.none(); 
-                if(u.stun1.type == "none" && u.manaRange == 0){
+                }                if(u.stun1.type == "none" && u.manaRange == 0){
                     continue;
                 }
                 let x1 = 0;
@@ -158,8 +155,8 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 else if(u.stun1.type == "cooldown")
                     cooldown = u.stun1.cd;
     
-                let x2 = (1 - u.stun1.p) * (u.stun2.type != "none" ? u.stun2.p : 0);
-                let s1 = u.stun1.dur;
+                let x2 = (1 - x1) * (u.stun2.type != "none" ? u.stun2.p : 0);
+                let s1 = u.stun1.dur ?? 0;
                 let s2 = u.stun2.type != "none" ? u.stun2.dur : 0;
                 let CheckU = Unit.allUnits.find(items => items.rank === u.rank && items.name === u.name);
     
@@ -211,17 +208,15 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 if (u.name === "라분") // 라분
                 {
                     let delay = 0.39/ ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx))
-                    for (let k = 0; k < 7; k++) {
-                        window['time' + k] = k * t + delay;
-                    }
+                    const times = Array.from({ length: 7 }, (_, k) => k * t + delay);
                     stun = Math.log(1 - (
-                    ((0.65 + time0 > 2.15) ? 2.15 : (0.65 + time0)) * 0.27 + 
-                    ((0.65 + time1 > 2.15) ? 2.15 : (0.65 + time1)) * 0.27 * (1 - 0.27) + 
-                    ((0.65 + time2 > 2.15) ? 2.15 : (0.65 + time2)) * 0.27 * Math.pow(1 - 0.27, 2) + 
-                    ((0.65 + time3 > 2.15) ? 2.15 : (0.65 + time3)) * 0.27 * Math.pow(1 - 0.27, 3) + 
-                    ((0.65 + time4 > 2.15) ? 2.15 : (0.65 + time4)) * 0.27 * Math.pow(1 - 0.27, 4) + 
-                    ((0.65 + time5 > 2.15) ? 2.15 : (0.65 + time5)) * 0.27 * Math.pow(1 - 0.27, 5) + 
-                    ((0.65 + time6 > 2.15) ? 2.15 : (0.65 + time6)) * 
+                    ((0.65 + times[0] > 2.15) ? 2.15 : (0.65 + times[0])) * 0.27 +
+                    ((0.65 + times[1] > 2.15) ? 2.15 : (0.65 + times[1])) * 0.27 * (1 - 0.27) +
+                    ((0.65 + times[2] > 2.15) ? 2.15 : (0.65 + times[2])) * 0.27 * Math.pow(1 - 0.27, 2) +
+                    ((0.65 + times[3] > 2.15) ? 2.15 : (0.65 + times[3])) * 0.27 * Math.pow(1 - 0.27, 3) +
+                    ((0.65 + times[4] > 2.15) ? 2.15 : (0.65 + times[4])) * 0.27 * Math.pow(1 - 0.27, 4) +
+                    ((0.65 + times[5] > 2.15) ? 2.15 : (0.65 + times[5])) * 0.27 * Math.pow(1 - 0.27, 5) +
+                    ((0.65 + times[6] > 2.15) ? 2.15 : (0.65 + times[6])) *
                     (1 - 
                         0.27 - 
                         0.27 * (1 - 0.27) - 
@@ -229,13 +224,13 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                         0.27 * Math.pow(1 - 0.27, 3) - 
                         0.27 * Math.pow(1 - 0.27, 4)- 
                         0.27 * Math.pow(1 - 0.27, 5))) / 
-                        ((0.65 + time0) * 0.27 +
-                        (0.65 + time1) * 0.27 * (1 - 0.27) + 
-                        (0.65 + time2) * 0.27 * Math.pow(1 - 0.27, 2) + 
-                        (0.65 + time3) * 0.27 * Math.pow(1 - 0.27, 3) + 
-                        (0.65 + time4) * 0.27 * Math.pow(1 - 0.27, 4) + 
-                        (0.65 + time5) * 0.27 * Math.pow(1 - 0.27, 5) + 
-                        (0.65 + time6 ) * 
+                        ((0.65 + times[0]) * 0.27 +
+                        (0.65 + times[1]) * 0.27 * (1 - 0.27) +
+                        (0.65 + times[2]) * 0.27 * Math.pow(1 - 0.27, 2) +
+                        (0.65 + times[3]) * 0.27 * Math.pow(1 - 0.27, 3) +
+                        (0.65 + times[4]) * 0.27 * Math.pow(1 - 0.27, 4) +
+                        (0.65 + times[5]) * 0.27 * Math.pow(1 - 0.27, 5) +
+                        (0.65 + times[6] ) *
                         (1 - 
                             (0.27 + 0.27 * Math.pow(1 - 0.27, 1) + 
                         0.27 * Math.pow(1 - 0.27, 2) + 

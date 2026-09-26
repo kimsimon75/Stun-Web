@@ -8,6 +8,8 @@ export function renderPhysicalDamage({ overlayContent }) {
 
         const input = document.createElement("input");
         input.type = "number";
+        input.min = "0";
+        input.step = "any";
         input.style.fontSize = "0.65vw";
         input.style.width = "90%";
         input.style.padding = "0.4vw";
@@ -28,6 +30,7 @@ export function renderPhysicalDamage({ overlayContent }) {
                     input.id = "next_armor_remover";
                     break;
         }
+        input.setAttribute("aria-label", item.textContent.trim());
         item.appendChild(input);
         overlayContent.appendChild(item);
 
@@ -44,13 +47,18 @@ export function renderPhysicalDamage({ overlayContent }) {
 
 
     armorButton.addEventListener("click", ()=>{
-        document.querySelectorAll(".StunDocument").forEach(el => overlayContent.removeChild(el));
+        overlayContent.querySelectorAll(".StunDocument").forEach(el => el.remove());
 
 
-        const unit_armor = parseInt(document.getElementById("unit_armor").value);
-        const current_armor_remover = parseInt(document.getElementById("current_armor_remover").value);
+        const unit_armor = Number(document.getElementById("unit_armor").value);
+        const current_armor_remover = Number(document.getElementById("current_armor_remover").value);
 
-        const next_armor_remover = parseInt(document.getElementById("next_armor_remover").value);
+        const next_armor_remover = Number(document.getElementById("next_armor_remover").value);
+
+        if (![unit_armor, current_armor_remover, next_armor_remover].every(value => Number.isFinite(value) && value >= 0)) {
+            alert("방어력과 방어력 감소량은 0 이상의 숫자로 입력해주세요.");
+            return;
+        }
 
         for(let i=0;i<7;i++)
         {

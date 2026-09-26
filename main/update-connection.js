@@ -9,6 +9,7 @@ export function connectUpdates() {
         socket = new WebSocket("wss://4ixs2roym1.execute-api.ap-northeast-2.amazonaws.com/production");
 
         socket.onopen = () => {
+            reconnectAttempts = 0;
             console.log("✅ WebSocket 연결됨");
 
             // 연결되자마자 서버에 초기 데이터 요청
@@ -23,7 +24,10 @@ export function connectUpdates() {
         };
 
         socket.onmessage = (event) => {
-            if(JSON.parse(event.data).message === "Update")
+            let message;
+            try { message = JSON.parse(event.data); }
+            catch { return; }
+            if(message?.message === "Update")
             {
                 showUpdateNotification();
             }
