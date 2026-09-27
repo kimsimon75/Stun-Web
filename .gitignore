@@ -1,0 +1,5 @@
+# Local map extraction data and downloaded analysis tools.
+.map-analysis/
+.env
+.env.*
+!.env.example

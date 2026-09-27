@@ -43,43 +43,43 @@ export function refreshStunTable() {
                 var n1 = Math.floor(s1 * t);
                 if (u.name == "라분") {
                     let count = 0;
-                    let time1 = 0.65 + 0 / t - 2.15;
+                    let time1 = 0.65 + 0 / t - u.stun1.dur;
                     if (time1 > 0)
                         count++;
                     else
                         time1 = 0;
 
-                    let time2 = 0.65 + 1 / t - 2.15;
+                    let time2 = 0.65 + 1 / t - u.stun1.dur;
                     if (time2 > 0)
                         count++;
                     else
                         time2 = 0;
 
-                    let time3 = 0.65 + 2 / t - 2.15;
+                    let time3 = 0.65 + 2 / t - u.stun1.dur;
                     if (time3 > 0)
                         count++;
                     else
                         time3 = 0;
 
-                    let time4 = 0.65 + 3 / t - 2.15;
+                    let time4 = 0.65 + 3 / t - u.stun1.dur;
                     if (time4 > 0)
                         count++;
                     else
                         time4 = 0;
 
-                    let time5 = 0.65 + 4 / t - 2.15;
+                    let time5 = 0.65 + 4 / t - u.stun1.dur;
                     if (time5 > 0)
                         count++;
                     else
                         time5 = 0;
 
-                    let time6 = 0.65 + 5 / t - 2.15;
+                    let time6 = 0.65 + 5 / t - u.stun1.dur;
                     if (time6 > 0)
                         count++;
                     else
                         time6 = 0;
 
-                    let time7 = 0.65 + 5 / t - 2.15;
+                    let time7 = 0.65 + 6 / t - u.stun1.dur;
                     if (time7 > 0)
                         count++;
                     else

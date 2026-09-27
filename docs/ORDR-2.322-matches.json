@@ -1,0 +1,1557 @@
+{
+  "warning": "이름 기반 후보이며 동일 유닛 또는 수치 검증 완료를 뜻하지 않습니다.",
+  "units": [
+    {
+      "rank": "특별함",
+      "name": "나미",
+      "candidates": [
+        {
+          "id": "h00P",
+          "label": "나미 크리마텍트 - 특별",
+          "cycle": 1.0
+        }
+      ]
+    },
+    {
+      "rank": "특별함",
+      "name": "스모커",
+      "candidates": [
+        {
+          "id": "h01F",
+          "label": "스모커 - 특별",
+          "cycle": 0.9
+        }
+      ]
+    },
+    {
+      "rank": "특별함",
+      "name": "키드",
+      "candidates": [
+        {
+          "id": "h00Y",
+          "label": "유스타스 키드 - 특별",
+          "cycle": 0.8
+        }
+      ]
+    },
+    {
+      "rank": "특별함",
+      "name": "크로커다일",
+      "candidates": [
+        {
+          "id": "h01A",
+          "label": "크로커다일 - 특별",
+          "cycle": 0.76
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "바제스",
+      "candidates": [
+        {
+          "id": "h01V",
+          "label": "바제스 - 희귀",
+          "cycle": 0.85
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "아오키지",
+      "candidates": [
+        {
+          "id": "h02B",
+          "label": "아오키지 - 희귀",
+          "cycle": 0.94
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "이완코브",
+      "candidates": [
+        {
+          "id": "h02A",
+          "label": "엠포리오 이완코브 - 희귀",
+          "cycle": 0.95
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "우솝",
+      "candidates": [
+        {
+          "id": "h02C",
+          "label": "우솝 보잉열도 - 희귀",
+          "cycle": 1.0
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "죠즈",
+      "candidates": [
+        {
+          "id": "h02E",
+          "label": "다이아몬드 죠즈 - 희귀",
+          "cycle": 0.97
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "브룩",
+      "candidates": [
+        {
+          "id": "h01N",
+          "label": "브룩 음악가 - 희귀",
+          "cycle": 0.56
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "슈가",
+      "candidates": [
+        {
+          "id": "h027",
+          "label": "슈가 - 희귀",
+          "cycle": 0.7
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "키드",
+      "candidates": [
+        {
+          "id": "h02D",
+          "label": "유스타스 키드 - 희귀",
+          "cycle": 0.85
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "크로커다일",
+      "candidates": [
+        {
+          "id": "h02H",
+          "label": "크로커다일 Mr.0 - 희귀",
+          "cycle": 0.61
+        }
+      ]
+    },
+    {
+      "rank": "희귀함",
+      "name": "페로나",
+      "candidates": [
+        {
+          "id": "h05K",
+          "label": "페로나 - 희귀",
+          "cycle": 0.4
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "나미",
+      "candidates": [
+        {
+          "id": "h02P",
+          "label": "나미 도둑고양이 - 전설",
+          "cycle": 0.66
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "드래곤",
+      "candidates": [
+        {
+          "id": "h02W",
+          "label": "몽키.D.드래곤 - 전설",
+          "cycle": 0.77
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "라분",
+      "candidates": [
+        {
+          "id": "h02Q",
+          "label": "라분 - 전설",
+          "cycle": 1.33
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "바르톨로메오",
+      "candidates": [
+        {
+          "id": "h02Z",
+          "label": "바르토로메오 - 전설",
+          "cycle": 0.71
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "샹크스",
+      "candidates": [
+        {
+          "id": "h035",
+          "label": "샹크스 - 전설",
+          "cycle": 0.66
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "시키",
+      "candidates": [
+        {
+          "id": "h039",
+          "label": "금사자 시키 - 전설",
+          "cycle": 0.75
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "쿠마",
+      "candidates": [
+        {
+          "id": "h030",
+          "label": "바솔로뮤 쿠마 - 전설",
+          "cycle": 0.69
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "후지토라",
+      "candidates": [
+        {
+          "id": "h031",
+          "label": "후지토라 잇쇼우 - 전설",
+          "cycle": 0.95
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "흰수염",
+      "candidates": [
+        {
+          "id": "h03B",
+          "label": "흰수염 - 전설",
+          "cycle": 0.74
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "센고쿠",
+      "candidates": [
+        {
+          "id": "h036",
+          "label": "센고쿠 - 전설",
+          "cycle": 0.67
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "킹",
+      "candidates": [
+        {
+          "id": "h0AH",
+          "label": "킹 - 전설",
+          "cycle": 0.92
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "크래커",
+      "candidates": [
+        {
+          "id": "h03H",
+          "label": "샬롯 크래커 - 전설",
+          "cycle": 0.6
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "토키",
+      "candidates": [
+        {
+          "id": "h087",
+          "label": "아마츠키 토키 - 전설",
+          "cycle": 0.91
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "슈가",
+      "candidates": [
+        {
+          "id": "h037",
+          "label": "슈가 - 전설",
+          "cycle": 0.73
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "징베",
+      "candidates": [
+        {
+          "id": "h03G",
+          "label": "징베 - 전설",
+          "cycle": 0.85
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "모리아",
+      "candidates": [
+        {
+          "id": "h02N",
+          "label": "겟코 모리아 - 전설",
+          "cycle": 1.25
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "네코마무시",
+      "candidates": [
+        {
+          "id": "h09Z",
+          "label": "네코마무시 - 전설",
+          "cycle": 0.92
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "마르코",
+      "candidates": [
+        {
+          "id": "h02T",
+          "label": "마르코 환수종 - 전설",
+          "cycle": 0.64
+        },
+        {
+          "id": "h0BQ",
+          "label": "펄스건 마르코 - 전설",
+          "cycle": 0.64
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "레이쥬",
+      "candidates": [
+        {
+          "id": "h033",
+          "label": "빈스모크 레이쥬 - 전설",
+          "cycle": 0.88
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "스모커",
+      "candidates": [
+        {
+          "id": "h02V",
+          "label": "스모커 - 전설",
+          "cycle": 0.84
+        }
+      ]
+    },
+    {
+      "rank": "전설적인",
+      "name": "X-드레이크",
+      "candidates": []
+    },
+    {
+      "rank": "히든",
+      "name": "방주맥심",
+      "candidates": [
+        {
+          "id": "h03X",
+          "label": "방주맥심 - 히든",
+          "cycle": 0.64
+        }
+      ]
+    },
+    {
+      "rank": "히든",
+      "name": "봉쿠레",
+      "candidates": [
+        {
+          "id": "h03O",
+          "label": "봉쿠레 - 히든",
+          "cycle": 0.94
+        }
+      ]
+    },
+    {
+      "rank": "히든",
+      "name": "써니호",
+      "candidates": [
+        {
+          "id": "h03L",
+          "label": "사우전드 써니호 - 히든",
+          "cycle": 0.45
+        }
+      ]
+    },
+    {
+      "rank": "히든",
+      "name": "아오키지",
+      "candidates": [
+        {
+          "id": "h041",
+          "label": "아오키지 - 히든",
+          "cycle": 0.79
+        }
+      ]
+    },
+    {
+      "rank": "히든",
+      "name": "이완코브",
+      "candidates": [
+        {
+          "id": "h076",
+          "label": "엠포리오 이완코브 - 히든",
+          "cycle": 0.87
+        },
+        {
+          "id": "h03Y",
+          "label": "엠포리오 이완코브 - 히든",
+          "cycle": 0.86
+        }
+      ]
+    },
+    {
+      "rank": "히든",
+      "name": "피셔타이거",
+      "candidates": []
+    },
+    {
+      "rank": "히든",
+      "name": "아카이누",
+      "candidates": [
+        {
+          "id": "h03Z",
+          "label": "아카이누 - 히든",
+          "cycle": 0.75
+        }
+      ]
+    },
+    {
+      "rank": "히든",
+      "name": "료쿠규",
+      "candidates": [
+        {
+          "id": "h03N",
+          "label": "료쿠규 - 히든",
+          "cycle": 0.95
+        }
+      ]
+    },
+    {
+      "rank": "히든",
+      "name": "발라티에",
+      "candidates": [
+        {
+          "id": "h03P",
+          "label": "발라티에 - 히든",
+          "cycle": 0.28
+        }
+      ]
+    },
+    {
+      "rank": "히든",
+      "name": "코알라",
+      "candidates": []
+    },
+    {
+      "rank": "히든",
+      "name": "모비딕 호",
+      "candidates": []
+    },
+    {
+      "rank": "히든",
+      "name": "사보",
+      "candidates": [
+        {
+          "id": "h03M",
+          "label": "사보 용조권 - 히든",
+          "cycle": 0.83
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "검은수염",
+      "candidates": [
+        {
+          "id": "H090",
+          "label": "검은수염 - 초월",
+          "cycle": 0.61
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "로빈",
+      "candidates": [
+        {
+          "id": "H098",
+          "label": "니코 로빈 - 초월",
+          "cycle": 0.71
+        },
+        {
+          "id": "H08E",
+          "label": "니코 로빈 - 초월",
+          "cycle": 0.71
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "료쿠규",
+      "candidates": [
+        {
+          "id": "H0BO",
+          "label": "료쿠규 - 초월",
+          "cycle": 0.77
+        },
+        {
+          "id": "H0BL",
+          "label": "료쿠규 - 초월",
+          "cycle": 0.84
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "루피",
+      "candidates": [
+        {
+          "id": "H0B3",
+          "label": "루피-블랙맘바 - 초월",
+          "cycle": 0.45
+        },
+        {
+          "id": "H099",
+          "label": "몽키.D.루피 - 초월",
+          "cycle": 0.38
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "보니",
+      "candidates": [
+        {
+          "id": "H0BY",
+          "label": "주얼리 보니 - 초월",
+          "cycle": 0.85
+        },
+        {
+          "id": "H0BX",
+          "label": "주얼리 보니 - 초월",
+          "cycle": 0.9
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "사보",
+      "candidates": [
+        {
+          "id": "H092",
+          "label": "사보 - 초월",
+          "cycle": 0.79
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "시라호시",
+      "candidates": [
+        {
+          "id": "H08U",
+          "label": "시라호시 - 초월",
+          "cycle": 0.7
+        },
+        {
+          "id": "H0C1",
+          "label": "시라호시 - 초월",
+          "cycle": 0.7
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "샹크스",
+      "candidates": [
+        {
+          "id": "H08Z",
+          "label": "샹크스 - 초월",
+          "cycle": 0.6
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "아오키지",
+      "candidates": [
+        {
+          "id": "H0B1",
+          "label": "아오키지 - 초월",
+          "cycle": 0.69
+        },
+        {
+          "id": "H097",
+          "label": "아오키지 - 초월",
+          "cycle": 0.69
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "우초 식물",
+      "candidates": []
+    },
+    {
+      "rank": "초월함",
+      "name": "요크(베가펑크)",
+      "candidates": [
+        {
+          "id": "H0AM",
+          "label": "요크 - 초월",
+          "cycle": 0.75
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "조로",
+      "candidates": [
+        {
+          "id": "H0BT",
+          "label": "롤로노아 조로 - 초월",
+          "cycle": 0.67
+        },
+        {
+          "id": "H09F",
+          "label": "롤로노아 조로 - 초월",
+          "cycle": 0.67
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "키드",
+      "candidates": [
+        {
+          "id": "H0B4",
+          "label": "유스타스 키드 - 초월",
+          "cycle": 0.99
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "키자루",
+      "candidates": [
+        {
+          "id": "H0B5",
+          "label": "키자루 - 초월",
+          "cycle": 0.64
+        },
+        {
+          "id": "H08J",
+          "label": "키자루 - 초월",
+          "cycle": 0.64
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "후지토라",
+      "candidates": [
+        {
+          "id": "H08X",
+          "label": "후지토라 잇쇼우 - 초월",
+          "cycle": 0.94
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "나미",
+      "candidates": [
+        {
+          "id": "h08D",
+          "label": "나미 미라쥬템포 분신 - 초월",
+          "cycle": 0.65
+        },
+        {
+          "id": "h068",
+          "label": "나미 미라쥬템포 분신 - 초월",
+          "cycle": 0.65
+        },
+        {
+          "id": "H08V",
+          "label": "나미 - 초월",
+          "cycle": 0.63
+        },
+        {
+          "id": "H08B",
+          "label": "나미 - 초월",
+          "cycle": 0.63
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "로우",
+      "candidates": [
+        {
+          "id": "h04T",
+          "label": "f로우 감마나이프 분신 - 초월",
+          "cycle": 0.64
+        },
+        {
+          "id": "H096",
+          "label": "트라팔가 로우 - 초월",
+          "cycle": 0.64
+        },
+        {
+          "id": "H0BN",
+          "label": "트라팔가 로우 - 초월",
+          "cycle": 0.64
+        },
+        {
+          "id": "h0BP",
+          "label": "f로우 감마나이프 분신 - 초월",
+          "cycle": 0.64
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "상디",
+      "candidates": [
+        {
+          "id": "H09H",
+          "label": "상디 - 초월",
+          "cycle": 0.46
+        },
+        {
+          "id": "H09G",
+          "label": "상디 - 초월",
+          "cycle": 0.44
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "아카이누",
+      "candidates": [
+        {
+          "id": "H095",
+          "label": "아카이누 - 초월",
+          "cycle": 0.73
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "징베",
+      "candidates": [
+        {
+          "id": "H09A",
+          "label": "징베 - 초월",
+          "cycle": 0.89
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "도플라밍고",
+      "candidates": [
+        {
+          "id": "H09E",
+          "label": "돈키호테 도플라밍고 - 초월",
+          "cycle": 0.62
+        },
+        {
+          "id": "H09D",
+          "label": "각성 도플라밍고 - 초월",
+          "cycle": 0.59
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "상디(강화)",
+      "candidates": []
+    },
+    {
+      "rank": "초월함",
+      "name": "쵸파",
+      "candidates": [
+        {
+          "id": "H0B6",
+          "label": "토니토니 쵸파 - 초월",
+          "cycle": 1.2
+        },
+        {
+          "id": "H093",
+          "label": "토니토니 쵸파 - 초월",
+          "cycle": 1.2
+        },
+        {
+          "id": "H091",
+          "label": "토니토니 쵸파 - 초월",
+          "cycle": 0.62
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "코비",
+      "candidates": [
+        {
+          "id": "H0CO",
+          "label": "코비 - 초월",
+          "cycle": 0.71
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "프랑키",
+      "candidates": [
+        {
+          "id": "H0BV",
+          "label": "프랑키 - 초월",
+          "cycle": 0.75
+        },
+        {
+          "id": "H08Y",
+          "label": "프랑키 - 초월",
+          "cycle": 0.75
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "조로(강화)",
+      "candidates": []
+    },
+    {
+      "rank": "초월함",
+      "name": "조로(염왕)",
+      "candidates": []
+    },
+    {
+      "rank": "초월함",
+      "name": "바질 호킨스",
+      "candidates": [
+        {
+          "id": "H094",
+          "label": "바질 호킨스 - 초월",
+          "cycle": 0.71
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "브룩",
+      "candidates": [
+        {
+          "id": "H09I",
+          "label": "브룩 - 초월",
+          "cycle": 0.61
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "야마토",
+      "candidates": [
+        {
+          "id": "H0BE",
+          "label": "야마토 - 초월",
+          "cycle": 0.92
+        },
+        {
+          "id": "H0BD",
+          "label": "야마토 - 초월",
+          "cycle": 0.99
+        },
+        {
+          "id": "H0BZ",
+          "label": "야마토 - 초월",
+          "cycle": 0.99
+        },
+        {
+          "id": "H0C0",
+          "label": "야마토 - 초월",
+          "cycle": 0.92
+        }
+      ]
+    },
+    {
+      "rank": "초월함",
+      "name": "아기 라분",
+      "candidates": [
+        {
+          "id": "h04I",
+          "label": "아기 라분 - 초월",
+          "cycle": 5.0
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "거프",
+      "candidates": [
+        {
+          "id": "h04C",
+          "label": "몽키.D.거프 - 불멸 ",
+          "cycle": 0.63
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "드래곤",
+      "candidates": [
+        {
+          "id": "h04D",
+          "label": "몽키.D.드래곤 - 불멸 ",
+          "cycle": 0.61
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "센고쿠",
+      "candidates": [
+        {
+          "id": "h0BM",
+          "label": "센고쿠 - 불멸 ",
+          "cycle": 0.7
+        },
+        {
+          "id": "h04E",
+          "label": "센고쿠 - 불멸 ",
+          "cycle": 0.7
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "센고쿠(특강)",
+      "candidates": []
+    },
+    {
+      "rank": "불멸의",
+      "name": "시키",
+      "candidates": [
+        {
+          "id": "h04B",
+          "label": "금사자 시키 - 불멸 ",
+          "cycle": 0.49
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "흰수염",
+      "candidates": [
+        {
+          "id": "h04A",
+          "label": "흰수염 - 불멸 ",
+          "cycle": 0.73
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "흰수염(약주)",
+      "candidates": []
+    },
+    {
+      "rank": "불멸의",
+      "name": "시키(1레벨)",
+      "candidates": []
+    },
+    {
+      "rank": "불멸의",
+      "name": "시키(2레벨)",
+      "candidates": []
+    },
+    {
+      "rank": "불멸의",
+      "name": "시키(3레벨)",
+      "candidates": []
+    },
+    {
+      "rank": "불멸의",
+      "name": "시키(4레벨)",
+      "candidates": []
+    },
+    {
+      "rank": "불멸의",
+      "name": "레일리",
+      "candidates": [
+        {
+          "id": "h049",
+          "label": "실버즈 레일리 - 불멸 ",
+          "cycle": 0.58
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "로져",
+      "candidates": [
+        {
+          "id": "h04J",
+          "label": "골.D.로져 - 불멸 ",
+          "cycle": 0.49
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "빅맘",
+      "candidates": []
+    },
+    {
+      "rank": "불멸의",
+      "name": "제트",
+      "candidates": [
+        {
+          "id": "h04G",
+          "label": "제트 - 불멸 ",
+          "cycle": 0.66
+        }
+      ]
+    },
+    {
+      "rank": "불멸의",
+      "name": "카이도",
+      "candidates": [
+        {
+          "id": "h0AD",
+          "label": "카이도 - 불멸 ",
+          "cycle": 1.25
+        },
+        {
+          "id": "h07O",
+          "label": "카이도 사황'백수의 왕' - 불멸",
+          "cycle": 2.25
+        },
+        {
+          "id": "h07M",
+          "label": "카이도 - 불멸 ",
+          "cycle": 1.41
+        },
+        {
+          "id": "h0BW",
+          "label": "카이도 - 불멸 ",
+          "cycle": 1.41
+        }
+      ]
+    },
+    {
+      "rank": "영원한",
+      "name": "니카",
+      "candidates": [
+        {
+          "id": "H0BK",
+          "label": "니카 - 영원",
+          "cycle": 0.57
+        }
+      ]
+    },
+    {
+      "rank": "영원한",
+      "name": "우타",
+      "candidates": [
+        {
+          "id": "h0AF",
+          "label": "우타 - 영원",
+          "cycle": 0.67
+        },
+        {
+          "id": "h067",
+          "label": "우타 - 영원",
+          "cycle": 0.67
+        }
+      ]
+    },
+    {
+      "rank": "영원한",
+      "name": "카벤딧슈",
+      "candidates": [
+        {
+          "id": "h06H",
+          "label": "카벤딧슈 하쿠바 - 영원",
+          "cycle": 0.11
+        },
+        {
+          "id": "h05B",
+          "label": "카벤딧슈 - 영원",
+          "cycle": 0.71
+        }
+      ]
+    },
+    {
+      "rank": "영원한",
+      "name": "핸콕",
+      "candidates": [
+        {
+          "id": "h05C",
+          "label": "보아 핸콕 - 영원",
+          "cycle": 0.74
+        }
+      ]
+    },
+    {
+      "rank": "영원한",
+      "name": "핸콕(특강)",
+      "candidates": []
+    },
+    {
+      "rank": "영원한",
+      "name": "테조로",
+      "candidates": [
+        {
+          "id": "h06A",
+          "label": "길드 테조로 - 영원",
+          "cycle": 0.7
+        }
+      ]
+    },
+    {
+      "rank": "영원한",
+      "name": "버기",
+      "candidates": [
+        {
+          "id": "h05A",
+          "label": "버기 - 영원",
+          "cycle": 0.82
+        }
+      ]
+    },
+    {
+      "rank": "영원한",
+      "name": "미호크",
+      "candidates": [
+        {
+          "id": "h058",
+          "label": "쥬라클 미호크 - 영원",
+          "cycle": 0.93
+        }
+      ]
+    },
+    {
+      "rank": "영원한",
+      "name": "에이스",
+      "candidates": [
+        {
+          "id": "h059",
+          "label": "포트거스.D.에이스 - 영원",
+          "cycle": 0.58
+        }
+      ]
+    },
+    {
+      "rank": "제한됨",
+      "name": "크로커다일",
+      "candidates": [
+        {
+          "id": "h05F",
+          "label": "크로커다일 - 제한",
+          "cycle": 0.56
+        }
+      ]
+    },
+    {
+      "rank": "제한됨",
+      "name": "크로커다일(특강)",
+      "candidates": []
+    },
+    {
+      "rank": "제한됨",
+      "name": "에넬",
+      "candidates": [
+        {
+          "id": "h05E",
+          "label": "갓 에넬 - 제한",
+          "cycle": 0.75
+        }
+      ]
+    },
+    {
+      "rank": "제한됨",
+      "name": "레베카",
+      "candidates": [
+        {
+          "id": "h05I",
+          "label": "레베카 - 제한",
+          "cycle": 0.88
+        }
+      ]
+    },
+    {
+      "rank": "제한됨",
+      "name": "마르코",
+      "candidates": [
+        {
+          "id": "h09Q",
+          "label": "마르코 - 제한",
+          "cycle": 0.93
+        },
+        {
+          "id": "h08O",
+          "label": "마르코 - 제한",
+          "cycle": 0.64
+        }
+      ]
+    },
+    {
+      "rank": "제한됨",
+      "name": "마르코(특강)",
+      "candidates": []
+    },
+    {
+      "rank": "제한됨",
+      "name": "카타쿠리",
+      "candidates": [
+        {
+          "id": "h07I",
+          "label": "샬롯 카타쿠리 - 제한",
+          "cycle": 0.61
+        }
+      ]
+    },
+    {
+      "rank": "제한됨",
+      "name": "시노부",
+      "candidates": [
+        {
+          "id": "h084",
+          "label": "시노부 - 제한",
+          "cycle": 0.67
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "K",
+      "candidates": []
+    },
+    {
+      "rank": "신비함",
+      "name": "고죠 사토루",
+      "candidates": [
+        {
+          "id": "h0CE",
+          "label": "고죠 사토루[무량공처] - 신비",
+          "cycle": 1.01
+        },
+        {
+          "id": "h09M",
+          "label": "고죠 사토루 - 신비",
+          "cycle": 1.01
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "나루토",
+      "candidates": []
+    },
+    {
+      "rank": "신비함",
+      "name": "미나토",
+      "candidates": [
+        {
+          "id": "h09W",
+          "label": "나미카제 미나토 - 신비",
+          "cycle": 0.73
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "타츠마키",
+      "candidates": [
+        {
+          "id": "h0BC",
+          "label": "타츠마키 - 신비",
+          "cycle": 0.79
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "요우무",
+      "candidates": [
+        {
+          "id": "h0CD",
+          "label": "콘파쿠 요우무 - 신비 분신",
+          "cycle": 0.71
+        },
+        {
+          "id": "h0CC",
+          "label": "콘파쿠 요우무 - 신비",
+          "cycle": 0.71
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "아냐 포저",
+      "candidates": [
+        {
+          "id": "h08M",
+          "label": "아냐 포저 - 신비",
+          "cycle": 0.7
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "키쿄우",
+      "candidates": []
+    },
+    {
+      "rank": "신비함",
+      "name": "사토루",
+      "candidates": [
+        {
+          "id": "h0CE",
+          "label": "고죠 사토루[무량공처] - 신비",
+          "cycle": 1.01
+        },
+        {
+          "id": "h09M",
+          "label": "고죠 사토루 - 신비",
+          "cycle": 1.01
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "히그마",
+      "candidates": [
+        {
+          "id": "h0AC",
+          "label": "히그마 - 신비",
+          "cycle": 0.76
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "쿠치키 뱌쿠야",
+      "candidates": [
+        {
+          "id": "h08I",
+          "label": "쿠치키 뱌쿠야 - 신비",
+          "cycle": 0.94
+        }
+      ]
+    },
+    {
+      "rank": "신비함",
+      "name": "엘리자베스",
+      "candidates": []
+    },
+    {
+      "rank": "왜곡됨",
+      "name": "블랙마리아",
+      "candidates": [
+        {
+          "id": "h04U",
+          "label": "블랙마리아 - 왜곡 ",
+          "cycle": 0.84
+        }
+      ]
+    },
+    {
+      "rank": "왜곡됨",
+      "name": "에이스",
+      "candidates": [
+        {
+          "id": "h05V",
+          "label": "포트거스.D.에이스 - 왜곡 ",
+          "cycle": 0.6
+        }
+      ]
+    },
+    {
+      "rank": "왜곡됨",
+      "name": "퀸",
+      "candidates": [
+        {
+          "id": "h0CI",
+          "label": "퀸 - 왜곡 ",
+          "cycle": 0.85
+        }
+      ]
+    },
+    {
+      "rank": "왜곡됨",
+      "name": "페로나",
+      "candidates": [
+        {
+          "id": "h08F",
+          "label": "바니걸 페로나 - 왜곡 ",
+          "cycle": 0.82
+        },
+        {
+          "id": "h048",
+          "label": "페로나 - 왜곡 ",
+          "cycle": 0.82
+        },
+        {
+          "id": "h000",
+          "label": "페로나 - 왜곡 ",
+          "cycle": 0.05
+        }
+      ]
+    },
+    {
+      "rank": "랜덤유닛",
+      "name": "츠바사",
+      "candidates": [
+        {
+          "id": "h072",
+          "label": "하네카와 츠바사 - 랜덤전용",
+          "cycle": 0.52
+        }
+      ]
+    },
+    {
+      "rank": "랜덤유닛",
+      "name": "카이조 토우마",
+      "candidates": []
+    },
+    {
+      "rank": "랜덤유닛",
+      "name": "요츠바",
+      "candidates": [
+        {
+          "id": "h06W",
+          "label": "요츠바! - 랜덤전용",
+          "cycle": 0.65
+        }
+      ]
+    },
+    {
+      "rank": "변이",
+      "name": "비비",
+      "candidates": []
+    },
+    {
+      "rank": "아이템",
+      "name": "그린블러드",
+      "candidates": []
+    },
+    {
+      "rank": "아이템",
+      "name": "우타의 헤드셋",
+      "candidates": []
+    },
+    {
+      "rank": "아이템",
+      "name": "불사조의 깃털",
+      "candidates": []
+    },
+    {
+      "rank": "아이템",
+      "name": "둔화의 지팡이",
+      "candidates": []
+    },
+    {
+      "rank": "아이템",
+      "name": "비구름생성기",
+      "candidates": []
+    },
+    {
+      "rank": "아이템",
+      "name": "거인족의 술잔",
+      "candidates": []
+    },
+    {
+      "rank": "아이템",
+      "name": "가죽장갑",
+      "candidates": []
+    },
+    {
+      "rank": "연구소",
+      "name": "식량 보급",
+      "candidates": []
+    },
+    {
+      "rank": "연구소",
+      "name": "해상 디너",
+      "candidates": []
+    },
+    {
+      "rank": "연구소",
+      "name": "기후 변화",
+      "candidates": []
+    },
+    {
+      "rank": "연구소",
+      "name": "냉철함(아오키지)",
+      "candidates": []
+    },
+    {
+      "rank": "연구소",
+      "name": "신속함(키자루)",
+      "candidates": []
+    },
+    {
+      "rank": "항법",
+      "name": "패왕의 길",
+      "candidates": []
+    },
+    {
+      "rank": "항법",
+      "name": "로얄로더",
+      "candidates": []
+    },
+    {
+      "rank": "특수함",
+      "name": "베티",
+      "candidates": []
+    }
+  ]
+}

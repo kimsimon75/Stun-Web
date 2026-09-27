@@ -35,7 +35,8 @@ export function StunCalCulator(T,X,S,L,luffy = 0)
         if(luffy == 0)
         {
         const n = Math.floor((S - L)/T) + 1;
-        const stun_duration = (L-T) * X * ( 1 - Math.pow(1 - X, n) ) + T / X * (1 - (n * X + 1) * Math.pow(1 - X, n)) + S *  Math.pow(1-X,n);
+        // 1 - (1-X)^n에 발동 확률이 이미 포함되므로 X를 다시 곱하지 않습니다.
+        const stun_duration = (L-T) * ( 1 - Math.pow(1 - X, n) ) + T / X * (1 - (n * X + 1) * Math.pow(1 - X, n)) + S *  Math.pow(1-X,n);
         const total_duration = L-T + T / X;
     
         return stun_duration / total_duration;
@@ -145,7 +146,8 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 if (!u) {
                 console.error("u가 null/undefined임", u);
                 return;
-                }                if(u.stun1.type == "none" && u.manaRange == 0){
+                }
+                if(u.stun1.type == "none" && u.manaRange == 0){
                     continue;
                 }
                 let x1 = 0;
@@ -210,13 +212,13 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                     let delay = 0.39/ ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx))
                     const times = Array.from({ length: 7 }, (_, k) => k * t + delay);
                     stun = Math.log(1 - (
-                    ((0.65 + times[0] > 2.15) ? 2.15 : (0.65 + times[0])) * 0.27 +
-                    ((0.65 + times[1] > 2.15) ? 2.15 : (0.65 + times[1])) * 0.27 * (1 - 0.27) +
-                    ((0.65 + times[2] > 2.15) ? 2.15 : (0.65 + times[2])) * 0.27 * Math.pow(1 - 0.27, 2) +
-                    ((0.65 + times[3] > 2.15) ? 2.15 : (0.65 + times[3])) * 0.27 * Math.pow(1 - 0.27, 3) +
-                    ((0.65 + times[4] > 2.15) ? 2.15 : (0.65 + times[4])) * 0.27 * Math.pow(1 - 0.27, 4) +
-                    ((0.65 + times[5] > 2.15) ? 2.15 : (0.65 + times[5])) * 0.27 * Math.pow(1 - 0.27, 5) +
-                    ((0.65 + times[6] > 2.15) ? 2.15 : (0.65 + times[6])) *
+                    ((0.65 + times[0] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[0])) * 0.27 +
+                    ((0.65 + times[1] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[1])) * 0.27 * (1 - 0.27) +
+                    ((0.65 + times[2] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[2])) * 0.27 * Math.pow(1 - 0.27, 2) +
+                    ((0.65 + times[3] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[3])) * 0.27 * Math.pow(1 - 0.27, 3) +
+                    ((0.65 + times[4] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[4])) * 0.27 * Math.pow(1 - 0.27, 4) +
+                    ((0.65 + times[5] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[5])) * 0.27 * Math.pow(1 - 0.27, 5) +
+                    ((0.65 + times[6] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[6])) *
                     (1 - 
                         0.27 - 
                         0.27 * (1 - 0.27) - 
@@ -297,6 +299,39 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                     else
                         stun = Math.log((1-StunCalCulator(t, x1, s1, t)))/ Math.log(Var.StunCalCulation);
                 }
+ 
+                else if (
+                    Unit.idxToRank(sortCount) === "영원한" &&
+                    u.name === "버기"
+                ) {
+                    // 이완코브의 실제 공격 주기
+                    const ivankovT = 0.87 / (1 + 2.60 + 0.65);
+
+                    // 이완코브의 스턴 확률 및 지속 시간
+                    const x = 0.11;
+                    const s = 1.65;
+                    const n = Math.floor(s / ivankovT);
+
+                    // 이완코브 한 마리의 스턴 비중
+                    const p = 1 + (
+                        x * s / ivankovT - n * x - 1
+                    ) * Math.pow(RoundX(1 - x, 4), n);
+
+                    // 버기가 4초 동안 공격하는 횟수
+                    // t는 기존 코드에서 계산한 버기의 공격 주기
+                    const attacks = 4 / t;
+                    const count = Math.floor(attacks);
+                    const fraction = attacks - count;
+
+                    // 소환 확률 4.25% 적용
+                    const noStun =
+                        Math.pow(1 - 0.0425 * p, count) *
+                        (1 - fraction * 0.0425 * p);
+
+                    stun = Math.log(noStun) /
+                        Math.log(Var.StunCalCulation);
+                }
+
                 else if (u.name === "니카")
                 {
                     const nikkaBuff = RoundX(unitSpeedBonusEx - 2.25 , 3);

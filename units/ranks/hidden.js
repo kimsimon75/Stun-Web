@@ -7,7 +7,7 @@ export const hiddenUnits = [
     unit("히든", "봉쿠레",     { atkSpeedBonus: 2.6, attackCycle: 0.94, stun1: STUN.chance(0.12, 1.65, 500) }),
     unit("히든", "써니호",     { atkSpeedBonus: 2.6, attackCycle: 0.45, stun1: STUN.chance(0.1, 1.4, 600) }),
     unit("히든", "아오키지",   { atkSpeedBonus: 2.6, attackCycle: 0.79, stun1: STUN.chance(0.1, 1.7, 415), slow: 35 }),
-    unit("히든", "이완코브",   { atkSpeedBonus: 2.6, attackCycle: 0.86, stun1: STUN.chance(0.11, 1.65, 500) }),
+    unit("히든", "이완코브",   { atkSpeedBonus: 2.6, attackCycle: 0.87, stun1: STUN.chance(0.11, 1.65, 500) }),
     unit("히든", "피셔타이거", { atkSpeedBonus: 2.6, attackCycle: 0.49, stun1: STUN.chance(0.1, 2.0, 515) }),
 
     unit("히든", "아카이누", { atkSpeedBonus: 2.6, attackCycle: 0.75, slow2: SLOW.chance(0.16, 2, 10) }),

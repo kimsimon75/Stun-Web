@@ -71,7 +71,7 @@ function Checked(target, sort, unit)
 export function StunView(){
     for(let sortCount = 0; sortCount < Object.keys(Unit.unitStat).length; sortCount++){
         let check = false;
-       for(let unitCount =0; unitCount < Unit.unitStat[Unit.idxToRank(sortCount)].length; unitCount++)
+       for(let unitCount = 0; unitCount < Unit.unitStat[Unit.idxToRank(sortCount)].length; unitCount++)
      {
     
             if(Unit.getUnit(sortCount, unitCount).stun1.type == "none" && Unit.getUnit(sortCount, unitCount).manaRange == 0) 

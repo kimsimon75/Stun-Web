@@ -2,7 +2,7 @@ import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { Var } from '../Various.js';
 import * as Unit from '../Unit.js';
-import { UnitTotalStun } from '../function.js';
+import { UnitTotalStun, StunCalCulator } from '../function.js';
 import { getSlowUnits } from '../main/slow-units.js';
 import { refreshStunTable } from '../main/stun-table.js';
 import { CheckEvent } from '../main/buff-events.js';
@@ -11,6 +11,7 @@ import { ClearAll } from '../main/clear-all.js';
 import { parseStatValue } from '../main/stat-control.js';
 import { renderManaTiming } from '../overlays/mana-timing.js';
 import { renderStunCalculator } from '../overlays/stun-calculator.js';
+import { renderUnitDetail } from '../overlays/unit-detail.js';
 
 class Element {
     constructor() { this.style = {}; this.children = []; this.events = {}; this.value = ''; this.innerText = ''; this.parentElement = { classList: { toggle() {} } }; }
@@ -36,9 +37,81 @@ beforeEach(() => {
     UnitTotalStun();
 });
 
+test('stun uptime matches a direct sum of geometric attack intervals', () => {
+    for (const [interval, chance, duration, recovery] of [
+        [0.97 / 2.3, 0.11, 0.9, 0.855], // 죠즈 기본 공속
+        [0.97 / 5, 0.11, 0.9, 0.855], // 죠즈 공속 상한
+        [0.2, 0.3, 1.4, 0.5], // 여러 공격에 걸쳐 기절이 겹치는 경우
+        [0.3, 0.1, 0.9, 0.3], // 정지 시간이 없는 일반 확률형
+    ]) {
+        let probability = chance;
+        let stunnedTime = 0;
+        let elapsedTime = 0;
+        for (let misses = 0; misses < 1000; misses++) {
+            const gap = recovery + misses * interval;
+            stunnedTime += probability * Math.min(duration, gap);
+            elapsedTime += probability * gap;
+            probability *= 1 - chance;
+        }
+        const actual = StunCalCulator(interval, chance, duration, recovery);
+        assert(Math.abs(actual - stunnedTime / elapsedTime) < 1e-12);
+    }
+});
+
 test('all unit calculations are numeric without browser globals', () => {
     for (const u of Object.values(Unit.unitStat).flat()) assert(Number.isFinite(u.StunCalCulate), u.rank + u.name);
     assert.equal(globalThis.time0, undefined);
+});
+
+test('York totals combine shotgun and rocket only when mana is enabled', () => {
+    const u = Unit.unitStat['초월함'].find(u => u.name === '요크(베가펑크)');
+    Var.mana = false;
+    UnitTotalStun();
+    const shotgun = u.StunCalCulate;
+    assert(shotgun > 0 && Number.isFinite(shotgun));
+    Var.mana = true;
+    Var.intel = 10;
+    UnitTotalStun();
+    const combined = u.StunCalCulate;
+    assert(Number.isFinite(combined) && combined > shotgun);
+    Var.mana = false;
+    UnitTotalStun();
+    assert.equal(u.StunCalCulate, shotgun);
+    Var.mana = true;
+    const original = u.manaDuration;
+    try {
+        u.manaDuration = 0;
+        UnitTotalStun();
+        assert.equal(u.StunCalCulate, shotgun);
+    } finally {
+        u.manaDuration = original;
+        UnitTotalStun();
+    }
+    assert.equal(u.StunCalCulate, combined);
+    const itemList = new Element();
+    renderUnitDetail({ itemList, ...Unit.findUnitPos('초월함', u.name), u });
+    const text = itemList.children.map(item => item.innerText).join('\n');
+    assert.match(text, /샷건 발동 확률 : 10.00%/);
+    assert.match(text, /로켓 필요 마나 : 100/);
+    assert.match(text, /로켓 마나 스턴 수치 \(별도\) : \d/);
+    assert(!text.includes('NaN'));
+});
+
+test('Laboon calculation follows the catalog stun duration', () => {
+    const unit = Unit.unitStat['전설적인'].find(u => u.name === '라분');
+    const original = unit.stun1.dur;
+    try {
+        unit.stun1.dur = 1;
+        UnitTotalStun();
+        const shortStun = unit.StunCalCulate;
+        unit.stun1.dur = 2.25;
+        UnitTotalStun();
+        assert(unit.StunCalCulate > shortStun);
+        assert(Number.isFinite(unit.StunCalCulate));
+    } finally {
+        unit.stun1.dur = original;
+        UnitTotalStun();
+    }
 });
 
 test('slow sorting never mutates buff indexes and keeps zero-rate effects', () => {
