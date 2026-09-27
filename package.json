@@ -11,6 +11,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1141.0",
     "@aws-sdk/credential-provider-node": "^3.972.84",
+    "@netlify/blobs": "^11.1.1",
     "@smithy/hash-node": "^4.5.2",
     "@smithy/protocol-http": "^5.6.2",
     "@smithy/signature-v4": "^5.7.4",

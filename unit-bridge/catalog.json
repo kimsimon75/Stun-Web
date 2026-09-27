@@ -1,0 +1,6074 @@
+{
+  "hpea": {
+    "heroName": "",
+    "name": ""
+  },
+  "u00D": {
+    "heroName": "",
+    "name": "기상천외한 기능 추가"
+  },
+  "u00C": {
+    "heroName": "",
+    "name": "이세계 유닛 활성화"
+  },
+  "u00B": {
+    "heroName": "",
+    "name": "UI"
+  },
+  "u00A": {
+    "heroName": "",
+    "name": "UI"
+  },
+  "u009": {
+    "heroName": "",
+    "name": "UI"
+  },
+  "u008": {
+    "heroName": "",
+    "name": "단축된 라운드속도"
+  },
+  "u007": {
+    "heroName": "",
+    "name": "상위유닛 30% 잠금"
+  },
+  "u006": {
+    "heroName": "",
+    "name": "게임스타트"
+  },
+  "u005": {
+    "heroName": "",
+    "name": "난이도 - 악몽"
+  },
+  "u004": {
+    "heroName": "",
+    "name": "난이도 - 신"
+  },
+  "u003": {
+    "heroName": "",
+    "name": "난이도 - 지옥"
+  },
+  "u002": {
+    "heroName": "",
+    "name": "난이도 - 어려움"
+  },
+  "u001": {
+    "heroName": "",
+    "name": "난이도 - 보통"
+  },
+  "u000": {
+    "heroName": "",
+    "name": "난이도 - 쉬움"
+  },
+  "o032": {
+    "heroName": "",
+    "name": "에단바론 V. 나스쥬로 - 오로성"
+  },
+  "o031": {
+    "heroName": "",
+    "name": "제이가르시아 새턴 - 오로성"
+  },
+  "o02S": {
+    "heroName": "",
+    "name": "[퀘스트]거프"
+  },
+  "o02R": {
+    "heroName": "",
+    "name": "[퀘스트]푸른꿩"
+  },
+  "o02Q": {
+    "heroName": "",
+    "name": "[퀘스트]노란원숭이"
+  },
+  "o02O": {
+    "heroName": "",
+    "name": "고런트-일반잡몹"
+  },
+  "o02N": {
+    "heroName": "",
+    "name": "[퀘스트]후샤.D.뉴에이지"
+  },
+  "o02M": {
+    "heroName": "",
+    "name": "[퀘스트]붉은개"
+  },
+  "o02L": {
+    "heroName": "",
+    "name": "[퀘스트]모리아"
+  },
+  "o02K": {
+    "heroName": "",
+    "name": "[퀘스트]클리크"
+  },
+  "o02J": {
+    "heroName": "",
+    "name": "[퀘스트]와포루"
+  },
+  "o02I": {
+    "heroName": "",
+    "name": "레벨 80 잡몹"
+  },
+  "o02H": {
+    "heroName": "",
+    "name": "레벨 65 오로치"
+  },
+  "o02G": {
+    "heroName": "",
+    "name": "레벨 60 제우스"
+  },
+  "o02F": {
+    "heroName": "",
+    "name": "[퀘스트]피카"
+  },
+  "o02E": {
+    "heroName": "",
+    "name": "토프먼 워큐리 - 오로성"
+  },
+  "o02D": {
+    "heroName": "",
+    "name": "[퀘스트]깅"
+  },
+  "o02C": {
+    "heroName": "",
+    "name": "레벨 60 [보스]빅 맘"
+  },
+  "o02B": {
+    "heroName": "",
+    "name": "레벨 65 [보스]카이도"
+  },
+  "o028": {
+    "heroName": "",
+    "name": "레벨 56 호미즈"
+  },
+  "o027": {
+    "heroName": "",
+    "name": "레벨 63 퀸"
+  },
+  "o026": {
+    "heroName": "",
+    "name": "레벨 61 바질 호킨스"
+  },
+  "o025": {
+    "heroName": "",
+    "name": "레벨 62 잭"
+  },
+  "o024": {
+    "heroName": "",
+    "name": "레벨 79 잡몹"
+  },
+  "o023": {
+    "heroName": "",
+    "name": "레벨 77 잡몹"
+  },
+  "o022": {
+    "heroName": "",
+    "name": "레벨 76 잡몹"
+  },
+  "o021": {
+    "heroName": "",
+    "name": "레벨 59 샬롯 카타쿠리"
+  },
+  "o020": {
+    "heroName": "",
+    "name": "레벨 58 샬롯 스무디"
+  },
+  "o01Z": {
+    "heroName": "",
+    "name": "레벨 50 [보스]센고쿠"
+  },
+  "o01Y": {
+    "heroName": "",
+    "name": "레벨 40 [보스]루치"
+  },
+  "o01X": {
+    "heroName": "",
+    "name": "레벨 30 [보스]에넬"
+  },
+  "o01W": {
+    "heroName": "",
+    "name": "레벨 20 [보스]크로커다일"
+  },
+  "o01V": {
+    "heroName": "",
+    "name": "레벨 10 [보스]아론"
+  },
+  "o01U": {
+    "heroName": "",
+    "name": "레벨 51 호디존스"
+  },
+  "o01T": {
+    "heroName": "",
+    "name": "레벨 49 아카이누"
+  },
+  "o01S": {
+    "heroName": "",
+    "name": "레벨 55 트레볼"
+  },
+  "o01R": {
+    "heroName": "",
+    "name": "레벨 54 피카"
+  },
+  "o01Q": {
+    "heroName": "",
+    "name": "레벨 53 시저"
+  },
+  "o01O": {
+    "heroName": "",
+    "name": "레벨 45 키자루"
+  },
+  "o01N": {
+    "heroName": "",
+    "name": "레벨 52 베르고"
+  },
+  "o01M": {
+    "heroName": "",
+    "name": "레벨 48 미호크"
+  },
+  "o01L": {
+    "heroName": "",
+    "name": "레벨 47 마젤란"
+  },
+  "o01H": {
+    "heroName": "",
+    "name": "레벨 46 마리골드"
+  },
+  "o01G": {
+    "heroName": "",
+    "name": "레벨 31 폭시"
+  },
+  "o01F": {
+    "heroName": "",
+    "name": "레벨 42 오즈"
+  },
+  "o01E": {
+    "heroName": "",
+    "name": "레벨 43 모리아"
+  },
+  "o01D": {
+    "heroName": "",
+    "name": "레벨 44 쿠마"
+  },
+  "o01B": {
+    "heroName": "",
+    "name": "레벨 41 압살롬"
+  },
+  "o01A": {
+    "heroName": "",
+    "name": "레벨 38 루치"
+  },
+  "o019": {
+    "heroName": "",
+    "name": "레벨 37 카쿠"
+  },
+  "o018": {
+    "heroName": "",
+    "name": "레벨 36 재브라"
+  },
+  "o017": {
+    "heroName": "",
+    "name": "레벨 35 블루노"
+  },
+  "o015": {
+    "heroName": "",
+    "name": "레벨 39 찌질이 스팬담"
+  },
+  "o012": {
+    "heroName": "",
+    "name": "레벨 34 쿠마도리"
+  },
+  "o011": {
+    "heroName": "",
+    "name": "레벨 33 후쿠로"
+  },
+  "o010": {
+    "heroName": "",
+    "name": "레벨 32 칼리파"
+  },
+  "o00Z": {
+    "heroName": "",
+    "name": "레벨 57 샬롯 크래커"
+  },
+  "o00Y": {
+    "heroName": "",
+    "name": "실험용"
+  },
+  "o00X": {
+    "heroName": "",
+    "name": "레벨 29 슈라"
+  },
+  "o00V": {
+    "heroName": "",
+    "name": "레벨 28 오움"
+  },
+  "o00U": {
+    "heroName": "",
+    "name": "레벨 27 게다츠"
+  },
+  "o00T": {
+    "heroName": "",
+    "name": "레벨 25 베라미"
+  },
+  "o00S": {
+    "heroName": "",
+    "name": "레벨 24 와포루"
+  },
+  "o00R": {
+    "heroName": "",
+    "name": "레벨 23 도르돈"
+  },
+  "o00Q": {
+    "heroName": "",
+    "name": "레벨 22 마리모"
+  },
+  "o00P": {
+    "heroName": "",
+    "name": "레벨 21 체스"
+  },
+  "o00O": {
+    "heroName": "",
+    "name": "레벨 19 Mr.1"
+  },
+  "o00N": {
+    "heroName": "",
+    "name": "레벨 17 Mr.3"
+  },
+  "o00M": {
+    "heroName": "",
+    "name": "레벨 14 Mr.6"
+  },
+  "o00L": {
+    "heroName": "",
+    "name": "레벨 81 잡몹2"
+  },
+  "o00K": {
+    "heroName": "",
+    "name": "레벨 64 킹"
+  },
+  "o00J": {
+    "heroName": "",
+    "name": "[퀘스트]바제스"
+  },
+  "o00I": {
+    "heroName": "",
+    "name": "레벨 01 알비다"
+  },
+  "o00H": {
+    "heroName": "",
+    "name": "레벨 15 Mr.5"
+  },
+  "o00G": {
+    "heroName": "",
+    "name": "레벨 16 Mr.4"
+  },
+  "o00F": {
+    "heroName": "",
+    "name": "레벨 13 Mr.9"
+  },
+  "o00E": {
+    "heroName": "",
+    "name": "레벨 18 Mr.2"
+  },
+  "o00D": {
+    "heroName": "",
+    "name": "레벨 06 캡틴 크로"
+  },
+  "o00C": {
+    "heroName": "",
+    "name": "레벨 12 스모커"
+  },
+  "o00B": {
+    "heroName": "",
+    "name": "레벨 09 하찌"
+  },
+  "o00A": {
+    "heroName": "",
+    "name": "레벨 03 해적사냥꾼조로"
+  },
+  "o009": {
+    "heroName": "",
+    "name": "레벨 04 모건"
+  },
+  "o008": {
+    "heroName": "",
+    "name": "레벨 05 캡틴 버기"
+  },
+  "o007": {
+    "heroName": "",
+    "name": "레벨 26 사토리"
+  },
+  "o006": {
+    "heroName": "",
+    "name": "레벨 07 깅"
+  },
+  "o005": {
+    "heroName": "",
+    "name": "레벨 08 클리크"
+  },
+  "o004": {
+    "heroName": "",
+    "name": "레벨 02 찌질한 해왕류"
+  },
+  "o003": {
+    "heroName": "",
+    "name": "레벨 11 타시기"
+  },
+  "o002": {
+    "heroName": "",
+    "name": "고런트-체력2000만"
+  },
+  "o001": {
+    "heroName": "",
+    "name": "레벨 55 [보스]도플라밍고"
+  },
+  "o000": {
+    "heroName": "",
+    "name": "고런트-보스"
+  },
+  "n00K": {
+    "heroName": "",
+    "name": "이동포탈"
+  },
+  "n00G": {
+    "heroName": "",
+    "name": "3단계 크립 슈슈"
+  },
+  "n00F": {
+    "heroName": "",
+    "name": "2단계 크립 파파구"
+  },
+  "n00E": {
+    "heroName": "",
+    "name": "1단계 크립 듀공"
+  },
+  "n00D": {
+    "heroName": "",
+    "name": "12. 홀케이크섬"
+  },
+  "n00C": {
+    "heroName": "",
+    "name": "11. 드레스로자"
+  },
+  "n00B": {
+    "heroName": "",
+    "name": "13. 와노쿠니"
+  },
+  "n00A": {
+    "heroName": "",
+    "name": "9. 어인섬"
+  },
+  "n009": {
+    "heroName": "",
+    "name": "14. 에그헤드"
+  },
+  "n008": {
+    "heroName": "",
+    "name": "8. 마린포드"
+  },
+  "n007": {
+    "heroName": "",
+    "name": "7. 임펠다운"
+  },
+  "n006": {
+    "heroName": "",
+    "name": "6. 샤봉디제도"
+  },
+  "n005": {
+    "heroName": "",
+    "name": "5. 스릴러바크"
+  },
+  "n004": {
+    "heroName": "",
+    "name": "4. 워터세븐"
+  },
+  "n003": {
+    "heroName": "",
+    "name": "3. 하늘섬"
+  },
+  "n002": {
+    "heroName": "",
+    "name": "2. 알라바스타"
+  },
+  "n001": {
+    "heroName": "",
+    "name": "10. 펑크해저드"
+  },
+  "n000": {
+    "heroName": "",
+    "name": "1. 로그타운"
+  },
+  "h0F5": {
+    "heroName": "",
+    "name": "!!!!!오브젝트스킬더미"
+  },
+  "h0D5": {
+    "heroName": "",
+    "name": "!!!!!만능더미"
+  },
+  "h0CP": {
+    "heroName": "",
+    "name": "코비 콤비네이션 - 전설"
+  },
+  "h0CN": {
+    "heroName": "",
+    "name": "사랑의 도시락 - 전설"
+  },
+  "h0CM": {
+    "heroName": "",
+    "name": "히바리 - 전설"
+  },
+  "h0CK": {
+    "heroName": "",
+    "name": "카쿠 - 변화"
+  },
+  "h0CJ": {
+    "heroName": "",
+    "name": "시모츠키 류마 - 영원"
+  },
+  "h0CI": {
+    "heroName": "",
+    "name": "퀸 - 왜곡 "
+  },
+  "h0CG": {
+    "heroName": "",
+    "name": "선물상자 - 신비"
+  },
+  "h0CF": {
+    "heroName": "",
+    "name": "!0707_히간테플루르"
+  },
+  "h0CE": {
+    "heroName": "",
+    "name": "고죠 사토루[무량공처] - 신비"
+  },
+  "h0CD": {
+    "heroName": "",
+    "name": "콘파쿠 요우무 - 신비 분신"
+  },
+  "h0CC": {
+    "heroName": "",
+    "name": "콘파쿠 요우무 - 신비"
+  },
+  "h0CA": {
+    "heroName": "",
+    "name": "킨에몬 - 전설"
+  },
+  "h0C7": {
+    "heroName": "",
+    "name": "류마 - 영원"
+  },
+  "h0C5": {
+    "heroName": "",
+    "name": "!!!!!만능더미"
+  },
+  "h0C3": {
+    "heroName": "",
+    "name": "특성포인트"
+  },
+  "h0BR": {
+    "heroName": "",
+    "name": "꾸러미 상자 - 초월"
+  },
+  "h0BM": {
+    "heroName": "",
+    "name": "센고쿠 - 불멸 "
+  },
+  "h0BJ": {
+    "heroName": "",
+    "name": "부유물3불멸"
+  },
+  "h0BI": {
+    "heroName": "",
+    "name": "부유물1불멸"
+  },
+  "h0BH": {
+    "heroName": "",
+    "name": "부유물2불멸"
+  },
+  "h0BG": {
+    "heroName": "",
+    "name": "가이몬 - 특수"
+  },
+  "h0BF": {
+    "heroName": "",
+    "name": "카마도 네즈코 - 신비"
+  },
+  "h0BC": {
+    "heroName": "",
+    "name": "타츠마키 - 신비"
+  },
+  "h0BB": {
+    "heroName": "",
+    "name": "옥졸수 미노리노케로스 - 불멸 "
+  },
+  "h0BA": {
+    "heroName": "",
+    "name": "옥졸수 미노코알라 - 불멸 "
+  },
+  "h0B9": {
+    "heroName": "",
+    "name": "옥졸수 미노지브라 - 불멸 "
+  },
+  "h0B8": {
+    "heroName": "",
+    "name": "옥졸수 미노타우로스 - 불멸 "
+  },
+  "h0AX": {
+    "heroName": "",
+    "name": "물품 지원"
+  },
+  "h0AV": {
+    "heroName": "",
+    "name": "펄스건 뉴게이트 - 불멸 "
+  },
+  "h0AN": {
+    "heroName": "",
+    "name": "세라핌 등급 유닛"
+  },
+  "h0AL": {
+    "heroName": "",
+    "name": "특성 포인트 구매"
+  },
+  "h0AK": {
+    "heroName": "",
+    "name": "목재 구입"
+  },
+  "h0AJ": {
+    "heroName": "",
+    "name": "제우스 탈취한 번개 - 초월"
+  },
+  "h0AI": {
+    "heroName": "",
+    "name": "킹 - 제한"
+  },
+  "h0AH": {
+    "heroName": "",
+    "name": "킹 - 전설"
+  },
+  "h0AG": {
+    "heroName": "",
+    "name": "공격시 10% 확률로 발동"
+  },
+  "h0AF": {
+    "heroName": "",
+    "name": "우타 - 영원"
+  },
+  "h0AD": {
+    "heroName": "",
+    "name": "카이도 - 불멸 "
+  },
+  "h0AC": {
+    "heroName": "",
+    "name": "히그마 - 신비"
+  },
+  "h0A9": {
+    "heroName": "",
+    "name": "시노부 쿠노이치 - 전설-소환됨"
+  },
+  "h0A8": {
+    "heroName": "",
+    "name": "진짜 시노부 - 전설"
+  },
+  "h0A7": {
+    "heroName": "",
+    "name": "환락가의 여왕 - 히든"
+  },
+  "h0A6": {
+    "heroName": "",
+    "name": "야쿠모 유카리 - 신비"
+  },
+  "h0A4": {
+    "heroName": "",
+    "name": "그린블러드 - 유닛에게 사용시 변신"
+  },
+  "h0A3": {
+    "heroName": "",
+    "name": "S-호크 - 세라핌"
+  },
+  "h0A2": {
+    "heroName": "",
+    "name": "료우기 시키 - 신비"
+  },
+  "h0A1": {
+    "heroName": "",
+    "name": "S-베어 - 세라핌"
+  },
+  "h0A0": {
+    "heroName": "",
+    "name": "S-샤크 - 세라핌"
+  },
+  "h09Z": {
+    "heroName": "",
+    "name": "네코마무시 - 전설"
+  },
+  "h09Y": {
+    "heroName": "",
+    "name": "S-스네이크 - 세라핌"
+  },
+  "h09X": {
+    "heroName": "",
+    "name": "X-드레이크 - 희귀"
+  },
+  "h09W": {
+    "heroName": "",
+    "name": "나미카제 미나토 - 신비"
+  },
+  "h09V": {
+    "heroName": "",
+    "name": "바제스 - 왜곡 "
+  },
+  "h09U": {
+    "heroName": "",
+    "name": "순백의 여제 - 영원"
+  },
+  "h09T": {
+    "heroName": "",
+    "name": "폭시 - 특수"
+  },
+  "h09S": {
+    "heroName": "",
+    "name": "!1203_Star Platinum"
+  },
+  "h09R": {
+    "heroName": "",
+    "name": "쿠죠 죠타로 - 신비"
+  },
+  "h09Q": {
+    "heroName": "",
+    "name": "마르코 - 제한"
+  },
+  "h09P": {
+    "heroName": "",
+    "name": "해바라기 - 초월"
+  },
+  "h09O": {
+    "heroName": "",
+    "name": "먹깨비 - 초월"
+  },
+  "h09N": {
+    "heroName": "",
+    "name": "부릉냐 - 신비"
+  },
+  "h09M": {
+    "heroName": "",
+    "name": "고죠 사토루 - 신비"
+  },
+  "h09L": {
+    "heroName": "",
+    "name": "이치의 율자 - 랜덤전용"
+  },
+  "h09K": {
+    "heroName": "",
+    "name": "옌 - 랜덤전용"
+  },
+  "h09J": {
+    "heroName": "",
+    "name": "백설콩 - 초월"
+  },
+  "h08S": {
+    "heroName": "",
+    "name": "샬롯 브륄레 - 전설"
+  },
+  "h08R": {
+    "heroName": "",
+    "name": "코즈키 오뎅 - 영원"
+  },
+  "h08Q": {
+    "heroName": "",
+    "name": "알비다 - 제한"
+  },
+  "h08P": {
+    "heroName": "",
+    "name": "완두콩 - 초월"
+  },
+  "h08O": {
+    "heroName": "",
+    "name": "마르코 - 제한"
+  },
+  "h08N": {
+    "heroName": "",
+    "name": "베티 - 특수"
+  },
+  "h08M": {
+    "heroName": "",
+    "name": "아냐 포저 - 신비"
+  },
+  "h08L": {
+    "heroName": "",
+    "name": "저주의 인형 - 초월"
+  },
+  "h08K": {
+    "heroName": "",
+    "name": "후샤 - 초월"
+  },
+  "h08I": {
+    "heroName": "",
+    "name": "쿠치키 뱌쿠야 - 신비"
+  },
+  "h08H": {
+    "heroName": "",
+    "name": "삭풍불멸"
+  },
+  "h08G": {
+    "heroName": "",
+    "name": "실버즈 레일리 명왕 - 불멸 소환됨"
+  },
+  "h08F": {
+    "heroName": "",
+    "name": "바니걸 페로나 - 왜곡 "
+  },
+  "h08D": {
+    "heroName": "",
+    "name": "나미 미라쥬템포 분신 - 초월"
+  },
+  "h08C": {
+    "heroName": "",
+    "name": "도박소 2"
+  },
+  "h08A": {
+    "heroName": "",
+    "name": "도움소"
+  },
+  "h089": {
+    "heroName": "",
+    "name": "군함"
+  },
+  "h088": {
+    "heroName": "",
+    "name": "!0808_UtaTotmuzika"
+  },
+  "h087": {
+    "heroName": "",
+    "name": "아마츠키 토키 - 전설"
+  },
+  "h086": {
+    "heroName": "",
+    "name": "시노부 - 제한 (소환됨)"
+  },
+  "h085": {
+    "heroName": "",
+    "name": "시노부 쿠노이치 - 전설-소환됨"
+  },
+  "h084": {
+    "heroName": "",
+    "name": "시노부 - 제한"
+  },
+  "h083": {
+    "heroName": "",
+    "name": "샌즈 - 신비"
+  },
+  "h082": {
+    "heroName": "",
+    "name": "로얄로더이펙트"
+  },
+  "h081": {
+    "heroName": "",
+    "name": "더글라스 불릿 - 불멸 "
+  },
+  "h080": {
+    "heroName": "",
+    "name": "!1205_Effect Dustwind Smoke"
+  },
+  "h07Z": {
+    "heroName": "",
+    "name": "고성의 백작 - 영원"
+  },
+  "h07Y": {
+    "heroName": "",
+    "name": "!1202,!1205_Effect Blue--Zhendi"
+  },
+  "h07X": {
+    "heroName": "",
+    "name": "!1205_Effect New Daoguang Blue"
+  },
+  "h07W": {
+    "heroName": "",
+    "name": "!1205_Effect BY_Wood_Effect_Order_DanGe_LiangYiShi_ZhiSiZhiMoYanZhanJi Blue"
+  },
+  "h07V": {
+    "heroName": "",
+    "name": "!1205_Effect AZ_Dust Rush 01"
+  },
+  "h07U": {
+    "heroName": "",
+    "name": "!1205_Effect Rapid Cut"
+  },
+  "h07T": {
+    "heroName": "",
+    "name": "!1203_Effect AZ-Slash-White"
+  },
+  "h07S": {
+    "heroName": "",
+    "name": "!1205_Effect Dustwind TX012A"
+  },
+  "h07R": {
+    "heroName": "",
+    "name": "시키의 함대"
+  },
+  "h07Q": {
+    "heroName": "",
+    "name": "!1205_Effect Shock Wave Blue"
+  },
+  "h07P": {
+    "heroName": "",
+    "name": "!0907_MarineShip"
+  },
+  "h07O": {
+    "heroName": "",
+    "name": "카이도 사황'백수의 왕' - 불멸"
+  },
+  "h07N": {
+    "heroName": "",
+    "name": "베이비5 - 변화"
+  },
+  "h07M": {
+    "heroName": "",
+    "name": "카이도 - 불멸 "
+  },
+  "h07L": {
+    "heroName": "",
+    "name": "캐럿 - 히든"
+  },
+  "h07K": {
+    "heroName": "",
+    "name": "골드"
+  },
+  "h07J": {
+    "heroName": "",
+    "name": "캐럿 스론 - 변화"
+  },
+  "h07I": {
+    "heroName": "",
+    "name": "샬롯 카타쿠리 - 제한"
+  },
+  "h07H": {
+    "heroName": "",
+    "name": "망가진 장난감 - 전설"
+  },
+  "h07G": {
+    "heroName": "",
+    "name": "삼천세계공격더미 검호의 제자 - 초월"
+  },
+  "h07F": {
+    "heroName": "",
+    "name": "바위 낙하 - 변화"
+  },
+  "h07E": {
+    "heroName": "",
+    "name": "!1205_Effect Dust Wave Ice"
+  },
+  "h07D": {
+    "heroName": "",
+    "name": "!1205_Effect AZ_KingLeoric(SDWZ)_E"
+  },
+  "h07C": {
+    "heroName": "",
+    "name": "!1205_Effect [DZ.Spell]006_Blue"
+  },
+  "h07B": {
+    "heroName": "",
+    "name": "!1203_Effect Ora Ora Font"
+  },
+  "h07A": {
+    "heroName": "",
+    "name": "미션"
+  },
+  "h079": {
+    "heroName": "",
+    "name": "거인족 - 초월"
+  },
+  "h078": {
+    "heroName": "",
+    "name": "해적 총병 - 전설"
+  },
+  "h077": {
+    "heroName": "",
+    "name": "광대 해적 - 변화"
+  },
+  "h076": {
+    "heroName": "",
+    "name": "엠포리오 이완코브 - 히든"
+  },
+  "h075": {
+    "heroName": "",
+    "name": "보물상자 - 바운티헌터"
+  },
+  "h074": {
+    "heroName": "",
+    "name": "!1205_Effect AZ_Slash Splash Sky_birth"
+  },
+  "h073": {
+    "heroName": "",
+    "name": "야가미 라이토 - 랜덤전용"
+  },
+  "h072": {
+    "heroName": "",
+    "name": "하네카와 츠바사 - 랜덤전용"
+  },
+  "h071": {
+    "heroName": "",
+    "name": "쿠로사키 이치고 - 랜덤전용"
+  },
+  "h070": {
+    "heroName": "",
+    "name": "이사야마 요미 - 랜덤전용"
+  },
+  "h06Z": {
+    "heroName": "",
+    "name": "엘리자베스 - 랜덤전용"
+  },
+  "h06Y": {
+    "heroName": "",
+    "name": "카미조 토우마 - 랜덤전용"
+  },
+  "h06X": {
+    "heroName": "",
+    "name": "센토 이스즈 - 랜덤전용"
+  },
+  "h06W": {
+    "heroName": "",
+    "name": "요츠바! - 랜덤전용"
+  },
+  "h06V": {
+    "heroName": "",
+    "name": "우즈마키 나루토 - 랜덤전용"
+  },
+  "h06U": {
+    "heroName": "",
+    "name": "K - 랜덤전용"
+  },
+  "h06T": {
+    "heroName": "",
+    "name": "페이몬 - 랜덤전용"
+  },
+  "h06S": {
+    "heroName": "",
+    "name": "연구소"
+  },
+  "h06R": {
+    "heroName": "",
+    "name": "강화소 2"
+  },
+  "h06Q": {
+    "heroName": "",
+    "name": "강화소 1"
+  },
+  "h06P": {
+    "heroName": "",
+    "name": "장난감 - 전설"
+  },
+  "h06O": {
+    "heroName": "",
+    "name": "장난감 - 희귀"
+  },
+  "h06N": {
+    "heroName": "",
+    "name": "No.31 - 전설"
+  },
+  "h06M": {
+    "heroName": "",
+    "name": "!1204_Effect TX_Shanguang5z"
+  },
+  "h06L": {
+    "heroName": "",
+    "name": "랜덤전용유닛"
+  },
+  "h06K": {
+    "heroName": "",
+    "name": "아이템"
+  },
+  "h06J": {
+    "heroName": "",
+    "name": "!모델출력확인용"
+  },
+  "h06I": {
+    "heroName": "",
+    "name": "라운드 제한"
+  },
+  "h06H": {
+    "heroName": "",
+    "name": "카벤딧슈 하쿠바 - 영원"
+  },
+  "h06G": {
+    "heroName": "",
+    "name": "행운의 토큰"
+  },
+  "h06F": {
+    "heroName": "",
+    "name": "돈도박 하급"
+  },
+  "h06E": {
+    "heroName": "",
+    "name": "!0528_toki"
+  },
+  "h06D": {
+    "heroName": "",
+    "name": "유닛도박"
+  },
+  "h06C": {
+    "heroName": "",
+    "name": "유닛도박"
+  },
+  "h06B": {
+    "heroName": "",
+    "name": "유닛도박"
+  },
+  "h06A": {
+    "heroName": "",
+    "name": "길드 테조로 - 영원"
+  },
+  "h069": {
+    "heroName": "",
+    "name": "유닛도박"
+  },
+  "h068": {
+    "heroName": "",
+    "name": "나미 미라쥬템포 분신 - 초월"
+  },
+  "h067": {
+    "heroName": "",
+    "name": "우타 - 영원"
+  },
+  "h066": {
+    "heroName": "",
+    "name": "!1204_Effect Yellow Flash 2"
+  },
+  "h065": {
+    "heroName": "",
+    "name": "메구밍 - 랜덤전용"
+  },
+  "h064": {
+    "heroName": "",
+    "name": "!1204_az_jugg_e3"
+  },
+  "h063": {
+    "heroName": "",
+    "name": "공격시 7.5% 확률로 발동"
+  },
+  "h062": {
+    "heroName": "",
+    "name": "도박소 1"
+  },
+  "h061": {
+    "heroName": "",
+    "name": "목재"
+  },
+  "h060": {
+    "heroName": "",
+    "name": "해적선"
+  },
+  "h05Z": {
+    "heroName": "",
+    "name": "체력 95 필요"
+  },
+  "h05Y": {
+    "heroName": "",
+    "name": "고대의 배 - 희귀"
+  },
+  "h05X": {
+    "heroName": "",
+    "name": "실버즈 레일리 - 희귀"
+  },
+  "h05W": {
+    "heroName": "",
+    "name": "네펠타리 비비 - 변화"
+  },
+  "h05V": {
+    "heroName": "",
+    "name": "포트거스.D.에이스 - 왜곡 "
+  },
+  "h05U": {
+    "heroName": "",
+    "name": "!#연구소 효과"
+  },
+  "h05T": {
+    "heroName": "",
+    "name": "!1203,!1204_Effect Fuzzy Stomp"
+  },
+  "h05S": {
+    "heroName": "",
+    "name": "돈키호테 도플라밍고 - 변화"
+  },
+  "h05R": {
+    "heroName": "",
+    "name": "페루 - 특수"
+  },
+  "h05Q": {
+    "heroName": "",
+    "name": "블고리 - 특수"
+  },
+  "h05P": {
+    "heroName": "",
+    "name": "오타마 - 특수"
+  },
+  "h05O": {
+    "heroName": "",
+    "name": "아이스버그 - 특수"
+  },
+  "h05L": {
+    "heroName": "",
+    "name": "사보 - 희귀"
+  },
+  "h05K": {
+    "heroName": "",
+    "name": "페로나 - 희귀"
+  },
+  "h05J": {
+    "heroName": "",
+    "name": "실버즈 레일리 명왕 - 불멸 소환됨"
+  },
+  "h05I": {
+    "heroName": "",
+    "name": "레베카 - 제한"
+  },
+  "h05H": {
+    "heroName": "",
+    "name": "모건 - 특수"
+  },
+  "h05G": {
+    "heroName": "",
+    "name": "패트릭 레드필드 - 제한"
+  },
+  "h05F": {
+    "heroName": "",
+    "name": "크로커다일 - 제한"
+  },
+  "h05E": {
+    "heroName": "",
+    "name": "갓 에넬 - 제한"
+  },
+  "h05D": {
+    "heroName": "",
+    "name": "장군좀비 그림자 - 전설"
+  },
+  "h05C": {
+    "heroName": "",
+    "name": "보아 핸콕 - 영원"
+  },
+  "h05B": {
+    "heroName": "",
+    "name": "카벤딧슈 - 영원"
+  },
+  "h05A": {
+    "heroName": "",
+    "name": "버기 - 영원"
+  },
+  "h059": {
+    "heroName": "",
+    "name": "포트거스.D.에이스 - 영원"
+  },
+  "h058": {
+    "heroName": "",
+    "name": "쥬라클 미호크 - 영원"
+  },
+  "h057": {
+    "heroName": "",
+    "name": "네펠타리 비비 - 영원"
+  },
+  "h056": {
+    "heroName": "",
+    "name": "노획물품"
+  },
+  "h055": {
+    "heroName": "",
+    "name": "스튜시 - 히든"
+  },
+  "h054": {
+    "heroName": "",
+    "name": "!0411,!0727_tree_oak_lv1"
+  },
+  "h053": {
+    "heroName": "",
+    "name": "!1202,1204_Effect LB_hdg"
+  },
+  "h052": {
+    "heroName": "",
+    "name": "!1204_Effect Rasengan Whirl"
+  },
+  "h051": {
+    "heroName": "",
+    "name": "변화가능횟수"
+  },
+  "h050": {
+    "heroName": "",
+    "name": "!1204_Effect NECancelDeath"
+  },
+  "h04Z": {
+    "heroName": "",
+    "name": "!1203,!1204_Effect CharmTarget"
+  },
+  "h04Y": {
+    "heroName": "",
+    "name": "미저리 강철 풍선 - 불멸"
+  },
+  "h04X": {
+    "heroName": "",
+    "name": "!1204_Effect Dead Spirit by Deckai2"
+  },
+  "h04W": {
+    "heroName": "",
+    "name": "!1204_Effect Almagest"
+  },
+  "h04V": {
+    "heroName": "",
+    "name": "!동동주식만능더미"
+  },
+  "h04U": {
+    "heroName": "",
+    "name": "블랙마리아 - 왜곡 "
+  },
+  "h04T": {
+    "heroName": "",
+    "name": "f로우 감마나이프 분신 - 초월"
+  },
+  "h04S": {
+    "heroName": "",
+    "name": "바솔로뮤 쿠마 - 초월"
+  },
+  "h04R": {
+    "heroName": "",
+    "name": "마나 150 필요"
+  },
+  "h04Q": {
+    "heroName": "",
+    "name": "빅 맘 - 불멸 "
+  },
+  "h04P": {
+    "heroName": "",
+    "name": "!1204_Minato_rasengan3"
+  },
+  "h04O": {
+    "heroName": "",
+    "name": "!0808_UtaSoldier"
+  },
+  "h04N": {
+    "heroName": "",
+    "name": "!1205_Effect BY_Wood_DanGe_ZhanJi_DaoGuang_6_12_birth"
+  },
+  "h04M": {
+    "heroName": "",
+    "name": "!0902_레일리"
+  },
+  "h04L": {
+    "heroName": "",
+    "name": "!1204_Effect Canying Yellow"
+  },
+  "h04K": {
+    "heroName": "",
+    "name": "!1204_Effect AZ_Slash Splash Yellow"
+  },
+  "h04J": {
+    "heroName": "",
+    "name": "골.D.로져 - 불멸 "
+  },
+  "h04I": {
+    "heroName": "",
+    "name": "아기 라분 - 초월"
+  },
+  "h04H": {
+    "heroName": "",
+    "name": "쥬라클 미호크 - 희귀"
+  },
+  "h04G": {
+    "heroName": "",
+    "name": "제트 - 불멸 "
+  },
+  "h04F": {
+    "heroName": "",
+    "name": "스코퍼 가반 - 불멸 "
+  },
+  "h04E": {
+    "heroName": "",
+    "name": "센고쿠 - 불멸 "
+  },
+  "h04D": {
+    "heroName": "",
+    "name": "몽키.D.드래곤 - 불멸 "
+  },
+  "h04C": {
+    "heroName": "",
+    "name": "몽키.D.거프 - 불멸 "
+  },
+  "h04B": {
+    "heroName": "",
+    "name": "금사자 시키 - 불멸 "
+  },
+  "h04A": {
+    "heroName": "",
+    "name": "흰수염 - 불멸 "
+  },
+  "h049": {
+    "heroName": "",
+    "name": "실버즈 레일리 - 불멸 "
+  },
+  "h048": {
+    "heroName": "",
+    "name": "페로나 - 왜곡 "
+  },
+  "h047": {
+    "heroName": "",
+    "name": "피셔 타이거 - 히든"
+  },
+  "h046": {
+    "heroName": "",
+    "name": "키쿠노죠 - 히든"
+  },
+  "h045": {
+    "heroName": "",
+    "name": "킬러 - 히든"
+  },
+  "h044": {
+    "heroName": "",
+    "name": "류마 - 히든"
+  },
+  "h043": {
+    "heroName": "",
+    "name": "쥬라클 미호크 - 히든"
+  },
+  "h042": {
+    "heroName": "",
+    "name": "시노부 - 전설"
+  },
+  "h041": {
+    "heroName": "",
+    "name": "아오키지 - 히든"
+  },
+  "h040": {
+    "heroName": "",
+    "name": "아인 - 제한"
+  },
+  "h03Z": {
+    "heroName": "",
+    "name": "아카이누 - 히든"
+  },
+  "h03Y": {
+    "heroName": "",
+    "name": "엠포리오 이완코브 - 히든"
+  },
+  "h03X": {
+    "heroName": "",
+    "name": "방주맥심 - 히든"
+  },
+  "h03W": {
+    "heroName": "",
+    "name": "베르고 - 히든"
+  },
+  "h03V": {
+    "heroName": "",
+    "name": "코알라 - 왜곡 "
+  },
+  "h03U": {
+    "heroName": "",
+    "name": "레드포스호 - 히든"
+  },
+  "h03T": {
+    "heroName": "",
+    "name": "레베카 - 히든"
+  },
+  "h03S": {
+    "heroName": "",
+    "name": "울티 - 전설"
+  },
+  "h03R": {
+    "heroName": "",
+    "name": "반 더 데켄 - 히든"
+  },
+  "h03Q": {
+    "heroName": "",
+    "name": "모비딕호 - 히든"
+  },
+  "h03P": {
+    "heroName": "",
+    "name": "발라티에 - 히든"
+  },
+  "h03O": {
+    "heroName": "",
+    "name": "봉쿠레 - 히든"
+  },
+  "h03N": {
+    "heroName": "",
+    "name": "료쿠규 - 히든"
+  },
+  "h03M": {
+    "heroName": "",
+    "name": "사보 용조권 - 히든"
+  },
+  "h03L": {
+    "heroName": "",
+    "name": "사우전드 써니호 - 히든"
+  },
+  "h03K": {
+    "heroName": "",
+    "name": "쵸파 유력강화 - 전설"
+  },
+  "h03J": {
+    "heroName": "",
+    "name": "비의 시류 - 히든"
+  },
+  "h03I": {
+    "heroName": "",
+    "name": "제파 - 전설"
+  },
+  "h03H": {
+    "heroName": "",
+    "name": "샬롯 크래커 - 전설"
+  },
+  "h03G": {
+    "heroName": "",
+    "name": "징베 - 전설"
+  },
+  "h03F": {
+    "heroName": "",
+    "name": "카르가라 - 전설"
+  },
+  "h03E": {
+    "heroName": "",
+    "name": "코비 - 전설"
+  },
+  "h03D": {
+    "heroName": "",
+    "name": "마나 130 필요"
+  },
+  "h03C": {
+    "heroName": "",
+    "name": "트라팔가 로우 - 전설"
+  },
+  "h03B": {
+    "heroName": "",
+    "name": "흰수염 - 전설"
+  },
+  "h03A": {
+    "heroName": "",
+    "name": "실버즈 레일리 - 전설"
+  },
+  "h039": {
+    "heroName": "",
+    "name": "금사자 시키 - 전설"
+  },
+  "h038": {
+    "heroName": "",
+    "name": "시저 크라운 - 전설"
+  },
+  "h037": {
+    "heroName": "",
+    "name": "슈가 - 전설"
+  },
+  "h036": {
+    "heroName": "",
+    "name": "센고쿠 - 전설"
+  },
+  "h035": {
+    "heroName": "",
+    "name": "샹크스 - 전설"
+  },
+  "h034": {
+    "heroName": "",
+    "name": "상디 슈트코스 - 전설"
+  },
+  "h033": {
+    "heroName": "",
+    "name": "빈스모크 레이쥬 - 전설"
+  },
+  "h032": {
+    "heroName": "",
+    "name": "보아 핸콕 - 전설"
+  },
+  "h031": {
+    "heroName": "",
+    "name": "후지토라 잇쇼우 - 전설"
+  },
+  "h030": {
+    "heroName": "",
+    "name": "바솔로뮤 쿠마 - 전설"
+  },
+  "h02Z": {
+    "heroName": "",
+    "name": "바르토로메오 - 전설"
+  },
+  "h02Y": {
+    "heroName": "",
+    "name": "루피 나이트메어 - 전설"
+  },
+  "h02X": {
+    "heroName": "",
+    "name": "블랙마리아 - 전설"
+  },
+  "h02W": {
+    "heroName": "",
+    "name": "몽키.D.드래곤 - 전설"
+  },
+  "h02V": {
+    "heroName": "",
+    "name": "스모커 - 전설"
+  },
+  "h02U": {
+    "heroName": "",
+    "name": "검은수염 - 전설"
+  },
+  "h02T": {
+    "heroName": "",
+    "name": "마르코 환수종 - 전설"
+  },
+  "h02S": {
+    "heroName": "",
+    "name": "조로 죽음의경지 - 전설"
+  },
+  "h02R": {
+    "heroName": "",
+    "name": "로브 루치 - 전설"
+  },
+  "h02Q": {
+    "heroName": "",
+    "name": "라분 - 전설"
+  },
+  "h02P": {
+    "heroName": "",
+    "name": "나미 도둑고양이 - 전설"
+  },
+  "h02O": {
+    "heroName": "",
+    "name": "포트거스.D.에이스 - 전설"
+  },
+  "h02N": {
+    "heroName": "",
+    "name": "겟코 모리아 - 전설"
+  },
+  "h02M": {
+    "heroName": "",
+    "name": "베이비5 - 희귀"
+  },
+  "h02L": {
+    "heroName": "",
+    "name": "트라팔가 로우 - 희귀"
+  },
+  "h02K": {
+    "heroName": "",
+    "name": "쵸파 혼포인트 - 희귀"
+  },
+  "h02J": {
+    "heroName": "",
+    "name": "킨에몬 - 희귀"
+  },
+  "h02I": {
+    "heroName": "",
+    "name": "상디 디아블잠브 - 희귀"
+  },
+  "h02H": {
+    "heroName": "",
+    "name": "크로커다일 Mr.0 - 희귀"
+  },
+  "h02G": {
+    "heroName": "",
+    "name": "제프 - 희귀"
+  },
+  "h02F": {
+    "heroName": "",
+    "name": "조로 현상금사냥꾼 - 희귀"
+  },
+  "h02E": {
+    "heroName": "",
+    "name": "다이아몬드 죠즈 - 희귀"
+  },
+  "h02D": {
+    "heroName": "",
+    "name": "유스타스 키드 - 희귀"
+  },
+  "h02C": {
+    "heroName": "",
+    "name": "우솝 보잉열도 - 희귀"
+  },
+  "h02B": {
+    "heroName": "",
+    "name": "아오키지 - 희귀"
+  },
+  "h02A": {
+    "heroName": "",
+    "name": "엠포리오 이완코브 - 희귀"
+  },
+  "h029": {
+    "heroName": "",
+    "name": "샹크스 - 희귀"
+  },
+  "h028": {
+    "heroName": "",
+    "name": "센토마루 - 희귀"
+  },
+  "h027": {
+    "heroName": "",
+    "name": "슈가 - 희귀"
+  },
+  "h026": {
+    "heroName": "",
+    "name": "시류 - 희귀"
+  },
+  "h025": {
+    "heroName": "",
+    "name": "류마 - 희귀"
+  },
+  "h024": {
+    "heroName": "",
+    "name": "와이퍼 - 희귀"
+  },
+  "h023": {
+    "heroName": "",
+    "name": "카쿠 - 희귀"
+  },
+  "h022": {
+    "heroName": "",
+    "name": "마르코 불사조 - 희귀"
+  },
+  "h021": {
+    "heroName": "",
+    "name": "검은수염 - 희귀"
+  },
+  "h020": {
+    "heroName": "",
+    "name": "마인 오즈 - 희귀"
+  },
+  "h01Z": {
+    "heroName": "",
+    "name": "마젤란 - 희귀"
+  },
+  "h01Y": {
+    "heroName": "",
+    "name": "모몬가 - 희귀"
+  },
+  "h01X": {
+    "heroName": "",
+    "name": "루피 기어서드 - 희귀"
+  },
+  "h01W": {
+    "heroName": "",
+    "name": "바르토로메오 - 희귀"
+  },
+  "h01V": {
+    "heroName": "",
+    "name": "바제스 - 희귀"
+  },
+  "h01U": {
+    "heroName": "",
+    "name": "바질 호킨스 - 희귀"
+  },
+  "h01T": {
+    "heroName": "",
+    "name": "반 더 데켄 - 희귀"
+  },
+  "h01S": {
+    "heroName": "",
+    "name": "벤 베크만 - 희귀"
+  },
+  "h01R": {
+    "heroName": "",
+    "name": "키자루 - 희귀"
+  },
+  "h01Q": {
+    "heroName": "",
+    "name": "몽키.D.거프 - 희귀"
+  },
+  "h01P": {
+    "heroName": "",
+    "name": "아카이누 - 희귀"
+  },
+  "h01O": {
+    "heroName": "",
+    "name": "네펠타리 비비 - 희귀"
+  },
+  "h01N": {
+    "heroName": "",
+    "name": "브룩 음악가 - 희귀"
+  },
+  "h01M": {
+    "heroName": "",
+    "name": "보아 핸콕 - 희귀"
+  },
+  "h01L": {
+    "heroName": "",
+    "name": "돈키호테 도플라밍고 - 희귀"
+  },
+  "h01K": {
+    "heroName": "",
+    "name": "X-드레이크 - 특별"
+  },
+  "h01J": {
+    "heroName": "",
+    "name": "포트거스.D.에이스 - 특별"
+  },
+  "h01I": {
+    "heroName": "",
+    "name": "헤르메포 - 특별"
+  },
+  "h01H": {
+    "heroName": "",
+    "name": "트라팔가 로우 - 특별"
+  },
+  "h01G": {
+    "heroName": "",
+    "name": "파이러츠 도킹5 - 특별"
+  },
+  "h01F": {
+    "heroName": "",
+    "name": "스모커 - 특별"
+  },
+  "h01E": {
+    "heroName": "",
+    "name": "쵸파 두뇌강화 - 특별"
+  },
+  "h01D": {
+    "heroName": "",
+    "name": "쵸파 가드포인트 - 특별"
+  },
+  "h01C": {
+    "heroName": "",
+    "name": "카포네 갱 벳지 - 특별"
+  },
+  "h01B": {
+    "heroName": "",
+    "name": "킬러 - 특별"
+  },
+  "h01A": {
+    "heroName": "",
+    "name": "크로커다일 - 특별"
+  },
+  "h019": {
+    "heroName": "",
+    "name": "챠카 - 특별"
+  },
+  "h018": {
+    "heroName": "",
+    "name": "징베 - 특별"
+  },
+  "h017": {
+    "heroName": "",
+    "name": "바솔로뮤 쿠마 - 특별"
+  },
+  "h016": {
+    "heroName": "",
+    "name": "바질 호킨스 - 특별"
+  },
+  "h015": {
+    "heroName": "",
+    "name": "버기 마기탄 - 특별"
+  },
+  "h014": {
+    "heroName": "",
+    "name": "봉쿠레 - 특별"
+  },
+  "h013": {
+    "heroName": "",
+    "name": "상디 검은다리 - 특별"
+  },
+  "h012": {
+    "heroName": "",
+    "name": "스쿼드 - 특별"
+  },
+  "h011": {
+    "heroName": "",
+    "name": "아론 - 특별"
+  },
+  "h010": {
+    "heroName": "",
+    "name": "압살롬 - 특별"
+  },
+  "h00Z": {
+    "heroName": "",
+    "name": "우솝 화염탄 - 특별"
+  },
+  "h00Y": {
+    "heroName": "",
+    "name": "유스타스 키드 - 특별"
+  },
+  "h00X": {
+    "heroName": "",
+    "name": "이나즈마 혁명군 - 특별"
+  },
+  "h00W": {
+    "heroName": "",
+    "name": "조로 귀기 - 특별"
+  },
+  "h00V": {
+    "heroName": "",
+    "name": "캡틴 크로 - 특별"
+  },
+  "h00U": {
+    "heroName": "",
+    "name": "루피 기어세컨드 - 특별"
+  },
+  "h00T": {
+    "heroName": "",
+    "name": "마르코 - 특별"
+  },
+  "h00S": {
+    "heroName": "",
+    "name": "로빈 오하라 - 특별"
+  },
+  "h00R": {
+    "heroName": "",
+    "name": "로브 루치 - 특별"
+  },
+  "h00Q": {
+    "heroName": "",
+    "name": "에넬 - 특별"
+  },
+  "h00P": {
+    "heroName": "",
+    "name": "나미 크리마텍트 - 특별"
+  },
+  "h00O": {
+    "heroName": "",
+    "name": "니코 로빈 - 안흔함"
+  },
+  "h00N": {
+    "heroName": "",
+    "name": "우솝 저격왕 - 안흔함"
+  },
+  "h00M": {
+    "heroName": "",
+    "name": "블루노 - 안흔함"
+  },
+  "h00L": {
+    "heroName": "",
+    "name": "프랑키 - 안흔함"
+  },
+  "h00K": {
+    "heroName": "",
+    "name": "포트거스.D.에이스 - 안흔함"
+  },
+  "h00J": {
+    "heroName": "",
+    "name": "페로나 - 안흔함"
+  },
+  "h00I": {
+    "heroName": "",
+    "name": "이나즈마 - 안흔함"
+  },
+  "h00H": {
+    "heroName": "",
+    "name": "좀비 - 안흔함"
+  },
+  "h00G": {
+    "heroName": "",
+    "name": "쵸파 럼블볼강화 - 안흔함"
+  },
+  "h00F": {
+    "heroName": "",
+    "name": "하찌 - 안흔함"
+  },
+  "h00E": {
+    "heroName": "",
+    "name": "타시기 - 안흔함"
+  },
+  "h00D": {
+    "heroName": "",
+    "name": "브룩 - 안흔함"
+  },
+  "h00C": {
+    "heroName": "",
+    "name": "베포 - 안흔함"
+  },
+  "h00B": {
+    "heroName": "",
+    "name": "겟코 모리아 - 특별"
+  },
+  "h00A": {
+    "heroName": "",
+    "name": "후쿠로 - 안흔함"
+  },
+  "h009": {
+    "heroName": "",
+    "name": "해군 총병 - 흔함"
+  },
+  "h008": {
+    "heroName": "",
+    "name": "토니토니 쵸파 - 흔함"
+  },
+  "h007": {
+    "heroName": "",
+    "name": "우솝 - 흔함"
+  },
+  "h006": {
+    "heroName": "",
+    "name": "해군 칼병 - 흔함"
+  },
+  "h005": {
+    "heroName": "",
+    "name": "버기 - 흔함"
+  },
+  "h004": {
+    "heroName": "",
+    "name": "상디 - 흔함"
+  },
+  "h003": {
+    "heroName": "",
+    "name": "몽키.D.루피 - 흔함"
+  },
+  "h002": {
+    "heroName": "",
+    "name": "롤로노아 조로 - 흔함"
+  },
+  "h001": {
+    "heroName": "",
+    "name": "나미 - 흔함"
+  },
+  "h000": {
+    "heroName": "",
+    "name": "페로나 - 왜곡 "
+  },
+  "eBS3": {
+    "heroName": "",
+    "name": "!0901_Roger"
+  },
+  "eBS2": {
+    "heroName": "",
+    "name": "!0710_Shanks"
+  },
+  "e0SG": {
+    "heroName": "",
+    "name": "!0810_qx_ahnl"
+  },
+  "e0SF": {
+    "heroName": "",
+    "name": "!0810_lightplat"
+  },
+  "e0RQ": {
+    "heroName": "",
+    "name": "!0725_Kid_DamdFunk"
+  },
+  "e0RF": {
+    "heroName": "",
+    "name": "!0808_UtaWorldEff"
+  },
+  "e0RE": {
+    "heroName": "",
+    "name": "!0808_uta_eff_g1"
+  },
+  "e0OT": {
+    "heroName": "",
+    "name": "!1207_Effect Tatsumaki Meteror"
+  },
+  "e0OH": {
+    "heroName": "",
+    "name": "!0725_Effect Captain Kid Component"
+  },
+  "e0O0": {
+    "heroName": "",
+    "name": "!1206_AZ_Sakuraattack4"
+  },
+  "e0NZ": {
+    "heroName": "",
+    "name": "!1206_Effect Blink New Pink"
+  },
+  "e0N6": {
+    "heroName": "",
+    "name": "!0725_arm4_lumber"
+  },
+  "e0N0": {
+    "heroName": "",
+    "name": "!0725_arm4"
+  },
+  "e0MZ": {
+    "heroName": "",
+    "name": "!0725_az_gpqg3-700"
+  },
+  "e0MV": {
+    "heroName": "",
+    "name": "!0725_Effect tx8"
+  },
+  "e0MU": {
+    "heroName": "",
+    "name": "!0725_arm4_alt"
+  },
+  "e0MQ": {
+    "heroName": "",
+    "name": "!0723_Shark"
+  },
+  "e0MP": {
+    "heroName": "",
+    "name": "!0730_AquaSpikeVersion2__90"
+  },
+  "e0MO": {
+    "heroName": "",
+    "name": "!0808_UTA_amor"
+  },
+  "e0MN": {
+    "heroName": "",
+    "name": "!0720_Tashigi_premium"
+  },
+  "e0MM": {
+    "heroName": "",
+    "name": "!0603_kyros"
+  },
+  "e0ML": {
+    "heroName": "",
+    "name": "!1404_az_gpqg3-7002"
+  },
+  "e0MK": {
+    "heroName": "",
+    "name": "!0802,!1401_SlaveArrow"
+  },
+  "e0MJ": {
+    "heroName": "",
+    "name": "!0726_bam"
+  },
+  "e0MI": {
+    "heroName": "",
+    "name": "!0605_Katakuri_Skill_1"
+  },
+  "e0MH": {
+    "heroName": "",
+    "name": "!0605_Katakuri_Skill_1__50"
+  },
+  "e0MG": {
+    "heroName": "",
+    "name": "!0802_Hancock"
+  },
+  "e0MF": {
+    "heroName": "",
+    "name": "!0803_caven"
+  },
+  "e0ME": {
+    "heroName": "",
+    "name": "!0719_ysq15"
+  },
+  "e0MD": {
+    "heroName": "",
+    "name": "!0709_brockmis"
+  },
+  "e0MC": {
+    "heroName": "",
+    "name": "!0807_odeng_fire"
+  },
+  "e0MB": {
+    "heroName": "",
+    "name": "!0811_GoldSphere"
+  },
+  "e0MA": {
+    "heroName": "",
+    "name": "!0807_Zukokku"
+  },
+  "e0M9": {
+    "heroName": "",
+    "name": "!0811_Tesoro_gold.mdl"
+  },
+  "e0M8": {
+    "heroName": "",
+    "name": "!0909_SingularityIBlue"
+  },
+  "e0M7": {
+    "heroName": "",
+    "name": "!0811_GoldSpike"
+  },
+  "e0M6": {
+    "heroName": "",
+    "name": "!0000_복사용"
+  },
+  "e0M5": {
+    "heroName": "",
+    "name": "!1201_네즈코"
+  },
+  "e0M4": {
+    "heroName": "",
+    "name": "!1212_요르"
+  },
+  "e0M3": {
+    "heroName": "",
+    "name": "!1212_로이드"
+  },
+  "e0M2": {
+    "heroName": "",
+    "name": "!0912_RimuruPurpleBomb"
+  },
+  "e0M1": {
+    "heroName": "",
+    "name": "!0912_ranshaoping_fire_big"
+  },
+  "e0M0": {
+    "heroName": "",
+    "name": "!0912_AZ_Doomdragon_T"
+  },
+  "e0LZ": {
+    "heroName": "",
+    "name": "!1113_##AZ_Goods_Lvlup"
+  },
+  "e0LY": {
+    "heroName": "",
+    "name": "!1113_skill_zhicai"
+  },
+  "e0LX": {
+    "heroName": "",
+    "name": "!1114_firecut"
+  },
+  "e0LW": {
+    "heroName": "",
+    "name": "!1112_blackwave"
+  },
+  "e0LV": {
+    "heroName": "",
+    "name": "!1112_redsweep2"
+  },
+  "e0LU": {
+    "heroName": "",
+    "name": "!1112_BY_Wood_Effect_Order_Integration_Slash_1"
+  },
+  "e0LT": {
+    "heroName": "",
+    "name": "!1111_Effect Hit-Juhuang-LIZI"
+  },
+  "e0LS": {
+    "heroName": "",
+    "name": "!1111_Effect AZ-Hit"
+  },
+  "e0LR": {
+    "heroName": "",
+    "name": "!1206_Effect BY_Wood_Eff_Ord_NiYa_Bh3_XuanFeng Pink"
+  },
+  "e0LQ": {
+    "heroName": "",
+    "name": "!1111,!1202_Effect Flash blue"
+  },
+  "e0LP": {
+    "heroName": "",
+    "name": "!1206_chunbon6"
+  },
+  "e0LO": {
+    "heroName": "",
+    "name": "!1206_senbonzakurapart"
+  },
+  "e0LN": {
+    "heroName": "",
+    "name": "!1206_AkihaClawsakura_bakuya"
+  },
+  "e0LM": {
+    "heroName": "",
+    "name": "!1206_bankaisword"
+  },
+  "e0LL": {
+    "heroName": "",
+    "name": "!1111_Effect Power Charge Blue"
+  },
+  "e0LK": {
+    "heroName": "",
+    "name": "!1108_BLUEshotingR1c"
+  },
+  "e0LJ": {
+    "heroName": "",
+    "name": "!1108_DustWindFaster3"
+  },
+  "e0LI": {
+    "heroName": "",
+    "name": "!1108_az-slash-red-40"
+  },
+  "e0LH": {
+    "heroName": "",
+    "name": "!1108_en_weapon-315"
+  },
+  "e0LG": {
+    "heroName": "",
+    "name": "!0724_AZ_Slash_Red-54__270"
+  },
+  "e0LF": {
+    "heroName": "",
+    "name": "!0724_AZ_Slash_Red-54"
+  },
+  "e0LE": {
+    "heroName": "",
+    "name": "!1104_bd"
+  },
+  "e0LD": {
+    "heroName": "",
+    "name": "!1104_ph"
+  },
+  "e0LC": {
+    "heroName": "",
+    "name": "!1103_DoomDeath"
+  },
+  "e0LB": {
+    "heroName": "",
+    "name": "!1103_E_FlameGroundEX"
+  },
+  "e0LA": {
+    "heroName": "",
+    "name": "!1103_E_WaveExplosion"
+  },
+  "e0L9": {
+    "heroName": "",
+    "name": "!1103_blinknew4"
+  },
+  "e0L8": {
+    "heroName": "",
+    "name": "!1102_newrasengan32"
+  },
+  "e0L7": {
+    "heroName": "",
+    "name": "!1102_rasenshuriken2"
+  },
+  "e0L6": {
+    "heroName": "",
+    "name": "마나 185 필요"
+  },
+  "e0L4": {
+    "heroName": "",
+    "name": "!!_A0H9(깍)"
+  },
+  "e0L3": {
+    "heroName": "",
+    "name": "!1303_#AZ_ESFrost_C1_Caster.mdl"
+  },
+  "e0L2": {
+    "heroName": "",
+    "name": "!1303_#IceMeteor_fix"
+  },
+  "e0L1": {
+    "heroName": "",
+    "name": "!!_A14O(절대쿨),A14P(블러드)"
+  },
+  "e0L0": {
+    "heroName": "",
+    "name": "!!_A0KI(절대쿨),A0T2(스텀프)"
+  },
+  "e0KZ": {
+    "heroName": "",
+    "name": "!!_A06P(이감)"
+  },
+  "e0KY": {
+    "heroName": "",
+    "name": "!!_A0JC(절대쿨),A0QV(블러드)"
+  },
+  "e0KX": {
+    "heroName": "",
+    "name": "!!_A1BG(절대쿨),A0SX(블러드)"
+  },
+  "e0KW": {
+    "heroName": "",
+    "name": "!!_A0LH(절대쿨),A0LG(블러드),A0SW(볼트),A17C(스턴)"
+  },
+  "e0KV": {
+    "heroName": "",
+    "name": "!!_A0CA(슬립),A0MU(하울),A0U7(블러드)"
+  },
+  "e0KU": {
+    "heroName": "",
+    "name": "!!_A14Z(이감)"
+  },
+  "e0KT": {
+    "heroName": "",
+    "name": "!!_A0SZ(깍)"
+  },
+  "e0KS": {
+    "heroName": "",
+    "name": "!!_A0MM(이감),A0ML(공속)"
+  },
+  "e0KR": {
+    "heroName": "",
+    "name": "!0718_A0MJ"
+  },
+  "e0KQ": {
+    "heroName": "",
+    "name": "!!_A0BN(이감)"
+  },
+  "e0KP": {
+    "heroName": "",
+    "name": "!!_삭제용"
+  },
+  "e0KO": {
+    "heroName": "",
+    "name": "!0703_tornado33"
+  },
+  "e0KM": {
+    "heroName": "",
+    "name": "!!_A0A6(팬오나),A15H(스턴),A0OP(블러드),A0MS(절대쿨)"
+  },
+  "e0KL": {
+    "heroName": "",
+    "name": "!!_A0GN(깍)"
+  },
+  "e0KK": {
+    "heroName": "",
+    "name": "!!_A0GL(이감)"
+  },
+  "e0KJ": {
+    "heroName": "",
+    "name": "!!_A0GE(볼트),A0GF(이감)"
+  },
+  "e0KI": {
+    "heroName": "",
+    "name": "!!_A0DT(볼트),A068(절대쿨),A069(스탬피드),A0HQ(블러드),A0P0(클랩)"
+  },
+  "e0KH": {
+    "heroName": "",
+    "name": "!!_A07K(스웜),A0I8(절대쿨),A0L3(스탬),A1CF(블러드),A0IB(볼트),A16L(스턴)"
+  },
+  "e0KG": {
+    "heroName": "",
+    "name": "!!_A0ES(스웜),A054(체라),A15S(스턴),A0S9(블러드),A176(팬오나),A0V5(절대쿨)"
+  },
+  "e0KF": {
+    "heroName": "",
+    "name": "!!_A125(슬립)"
+  },
+  "e0KE": {
+    "heroName": "",
+    "name": "!!_A08D(스웜),A03N(블리),A03O(포크),A0F1(블러드),A04G(절대쿨),A0SL(배틀로어)"
+  },
+  "e0KD": {
+    "heroName": "",
+    "name": "!!_A0VS(스웜),A086(포크),A08I(블러드),A08L(팬오나),A15O(스턴),A0HX(절대쿨)"
+  },
+  "e0KC": {
+    "heroName": "",
+    "name": "!1210_79.mdx"
+  },
+  "e0KB": {
+    "heroName": "",
+    "name": "!1209_Effect ZM2P_JX"
+  },
+  "e0KA": {
+    "heroName": "",
+    "name": "!1209_ManaStorm2Birth"
+  },
+  "e0K9": {
+    "heroName": "",
+    "name": "!0712,!0723_AZ_xiaonajia01_G"
+  },
+  "e0K8": {
+    "heroName": "",
+    "name": "!1101_NewDirtEXNofire4_1"
+  },
+  "e0K7": {
+    "heroName": "",
+    "name": "!1101_이펙트용 K유닛"
+  },
+  "e0K6": {
+    "heroName": "",
+    "name": "!1101_Phoenix"
+  },
+  "e0K5": {
+    "heroName": "",
+    "name": "!1101_kdumy"
+  },
+  "e0K4": {
+    "heroName": "",
+    "name": "!1208_보물이펙트"
+  },
+  "e0K3": {
+    "heroName": "",
+    "name": "!0702_NewDirtEXNofire__90"
+  },
+  "e0K2": {
+    "heroName": "",
+    "name": "!1213_GaterBlater_laser"
+  },
+  "e0K1": {
+    "heroName": "",
+    "name": "!1213_gasterblaster"
+  },
+  "e0K0": {
+    "heroName": "",
+    "name": "!1203_Effect AZ_MFZ01"
+  },
+  "e0JZ": {
+    "heroName": "",
+    "name": "!1201_ZK_YC_danmu"
+  },
+  "e0JY": {
+    "heroName": "",
+    "name": "!1201_claw slash pInk2"
+  },
+  "e0JX": {
+    "heroName": "",
+    "name": "!1201_claw slash pInk1"
+  },
+  "e0JW": {
+    "heroName": "",
+    "name": "!1207_Effect Chibakurock Psychokinesis"
+  },
+  "e0JV": {
+    "heroName": "",
+    "name": "!1207_Effect Mr.War3_Tornado Wide"
+  },
+  "e0JU": {
+    "heroName": "",
+    "name": "!1207_Effect Dota2 War Stomp Caster Green"
+  },
+  "e0JT": {
+    "heroName": "",
+    "name": "!1207_Effect Starfall Target Green"
+  },
+  "e0JS": {
+    "heroName": "",
+    "name": "!1207_Effect RDZ Explosion Green"
+  },
+  "e0JR": {
+    "heroName": "",
+    "name": "!1207_Effect Blight Silence Green"
+  },
+  "e0JQ": {
+    "heroName": "",
+    "name": "!0702_zoro_eff5"
+  },
+  "e0JP": {
+    "heroName": "",
+    "name": "!1207_Effect AZ_Hit Green"
+  },
+  "e0JO": {
+    "heroName": "",
+    "name": "!0912_#gaban_ora4"
+  },
+  "e0JN": {
+    "heroName": "",
+    "name": "!0912_BigPunch_Katakuri"
+  },
+  "e0JM": {
+    "heroName": "",
+    "name": "!0912_Shadow"
+  },
+  "e0JL": {
+    "heroName": "",
+    "name": "!0912_fire-boom-new"
+  },
+  "e0JK": {
+    "heroName": "",
+    "name": "!0912_0912_Bullet_Level2"
+  },
+  "e0JJ": {
+    "heroName": "",
+    "name": "!0912_AZ_KQZF"
+  },
+  "e0JI": {
+    "heroName": "",
+    "name": "!0912_Bullet_Gatling"
+  },
+  "e0JH": {
+    "heroName": "",
+    "name": "!0702,!0907_TigerLoa8"
+  },
+  "e0JG": {
+    "heroName": "",
+    "name": "!0912_Bullet_Pistol"
+  },
+  "e0JF": {
+    "heroName": "",
+    "name": "!0912_RoarCaster"
+  },
+  "e0JE": {
+    "heroName": "",
+    "name": "!0702_Zoro"
+  },
+  "e0JD": {
+    "heroName": "",
+    "name": "!0912_Bullet_Pegi"
+  },
+  "e0JC": {
+    "heroName": "",
+    "name": "!0912_Bullet"
+  },
+  "e0JB": {
+    "heroName": "",
+    "name": "!1206_Effect Senbonzakura Senke 2"
+  },
+  "e0JA": {
+    "heroName": "",
+    "name": "!0702_DustWave_Long_zoro"
+  },
+  "e0J9": {
+    "heroName": "",
+    "name": "!0912_Bullet_Level3"
+  },
+  "e0J8": {
+    "heroName": "",
+    "name": "!0702_Effect_Dead_Spirit_by_Deckai_03"
+  },
+  "e0J7": {
+    "heroName": "",
+    "name": "!1206_Effect Mythic_Flamestrike Pink"
+  },
+  "e0J6": {
+    "heroName": "",
+    "name": "!1206_Effect DustWind Pink"
+  },
+  "e0J5": {
+    "heroName": "",
+    "name": "!1206_Effect Warstomp Energy Pink"
+  },
+  "e0J4": {
+    "heroName": "",
+    "name": "!1206_Effect Senbonzakura Senkei"
+  },
+  "e0J3": {
+    "heroName": "",
+    "name": "!1206_Effect White Shoot Gun"
+  },
+  "e0J2": {
+    "heroName": "",
+    "name": "!1206_Effect Thrust White"
+  },
+  "e0J1": {
+    "heroName": "",
+    "name": "!1206_Effect Antimagic Zone Sky"
+  },
+  "e0J0": {
+    "heroName": "",
+    "name": "!0538_Flower_Air"
+  },
+  "e0IZ": {
+    "heroName": "",
+    "name": "!0911_chushou_by_wood_effect_fire_flamecrack"
+  },
+  "e0IY": {
+    "heroName": "",
+    "name": "!0911_Cherry Blossom Impact"
+  },
+  "e0IX": {
+    "heroName": "",
+    "name": "랜덤위습"
+  },
+  "e0IW": {
+    "heroName": "",
+    "name": "!0911_E_RockUp"
+  },
+  "e0IV": {
+    "heroName": "",
+    "name": "!0911_WindWeak2__90"
+  },
+  "e0IU": {
+    "heroName": "",
+    "name": "!0911_E_Howling_sfx"
+  },
+  "e0IT": {
+    "heroName": "",
+    "name": "!0911_skill_dilie4"
+  },
+  "e0IS": {
+    "heroName": "",
+    "name": "!0908_BY_Wood_Eff_Wid_XuanFeng"
+  },
+  "e0IR": {
+    "heroName": "",
+    "name": "!0910,!0911_ZK_thunderbolt_xiao"
+  },
+  "e0IQ": {
+    "heroName": "",
+    "name": "!0910_als-tx (7)"
+  },
+  "e0IP": {
+    "heroName": "",
+    "name": "!0910_kaido_eff5.mdl"
+  },
+  "e0IO": {
+    "heroName": "",
+    "name": "!0910_kaido_kamai2"
+  },
+  "e0IN": {
+    "heroName": "",
+    "name": "!0712,!0723,!0910_Wind Blast33"
+  },
+  "e0IM": {
+    "heroName": "",
+    "name": "!0910_fuzzystomp2__55"
+  },
+  "e0IL": {
+    "heroName": "",
+    "name": "!0910_kaido_eff3"
+  },
+  "e0IK": {
+    "heroName": "",
+    "name": "!0910_Bmisaka light"
+  },
+  "e0IJ": {
+    "heroName": "",
+    "name": "!0910_[DZ_Spell]001__55"
+  },
+  "e0II": {
+    "heroName": "",
+    "name": "!0910_Effect_AZ_laser3"
+  },
+  "e0IH": {
+    "heroName": "",
+    "name": "!0910_Effect_AZ_JuLi01"
+  },
+  "e0IG": {
+    "heroName": "",
+    "name": "!0909_E_SlamB"
+  },
+  "e0IF": {
+    "heroName": "",
+    "name": "!0909_PillarofFlameBlue__80"
+  },
+  "e0IE": {
+    "heroName": "",
+    "name": "!0909_BY_Storm2__90"
+  },
+  "e0ID": {
+    "heroName": "",
+    "name": "!0909_E_MSL"
+  },
+  "e0IC": {
+    "heroName": "",
+    "name": "!0909_IceNova__90"
+  },
+  "e0IB": {
+    "heroName": "",
+    "name": "!0909_!flare8"
+  },
+  "e0IA": {
+    "heroName": "",
+    "name": "!0909_bijuuexplosion"
+  },
+  "e0I9": {
+    "heroName": "",
+    "name": "!0909_FarseerMissile__90"
+  },
+  "e0I8": {
+    "heroName": "",
+    "name": "!0908_az_piercing-250"
+  },
+  "e0I7": {
+    "heroName": "",
+    "name": "!0908_T-dustwave"
+  },
+  "e0I6": {
+    "heroName": "",
+    "name": "!0907_rb7__330"
+  },
+  "e0I5": {
+    "heroName": "",
+    "name": "!0907_rb7__30"
+  },
+  "e0I4": {
+    "heroName": "",
+    "name": "!0907_NEDeath"
+  },
+  "e0I3": {
+    "heroName": "",
+    "name": "!0906_JN_HS_rulaibaozha1"
+  },
+  "e0I2": {
+    "heroName": "",
+    "name": "!0906_Enlightenment2"
+  },
+  "e0I1": {
+    "heroName": "",
+    "name": "!0906_effect_shengguang3"
+  },
+  "e0I0": {
+    "heroName": "",
+    "name": "!0906,!0911_AZ"
+  },
+  "e0HZ": {
+    "heroName": "",
+    "name": "!0905_E_FastStrike"
+  },
+  "e0HY": {
+    "heroName": "",
+    "name": "!0905_garp_impact2"
+  },
+  "e0HX": {
+    "heroName": "",
+    "name": "!0905_kaido_eff3_90"
+  },
+  "e0HW": {
+    "heroName": "",
+    "name": "!0905_garp_stun"
+  },
+  "e0HV": {
+    "heroName": "",
+    "name": "!0811,!0905_kaido_kamai2_garp2"
+  },
+  "e0HU": {
+    "heroName": "",
+    "name": "!0904_arcdirve03BLUEPUP__90"
+  },
+  "e0HT": {
+    "heroName": "",
+    "name": "!0904_BY_Wood_Sand_YueKongJi7_90real__320"
+  },
+  "e0HS": {
+    "heroName": "",
+    "name": "!0904_by_kid4d__32"
+  },
+  "e0HR": {
+    "heroName": "",
+    "name": "!0904_BY_Wood_Sand_YueKongJi7_90real"
+  },
+  "e0HQ": {
+    "heroName": "",
+    "name": "!0903_Gaban"
+  },
+  "e0HP": {
+    "heroName": "",
+    "name": "진화체위습"
+  },
+  "e0HO": {
+    "heroName": "",
+    "name": "!0903_Gaban_Pegi"
+  },
+  "e0HN": {
+    "heroName": "",
+    "name": "!0903_tianwulianxun1"
+  },
+  "e0HM": {
+    "heroName": "",
+    "name": "!0903_Gaban_Shock"
+  },
+  "e0HL": {
+    "heroName": "",
+    "name": "!0903_#gabanslash2_new"
+  },
+  "e0HK": {
+    "heroName": "",
+    "name": "!0903_#gabanslash3_new"
+  },
+  "e0HJ": {
+    "heroName": "",
+    "name": "!0903_#gabanmon0"
+  },
+  "e0HI": {
+    "heroName": "",
+    "name": "!0902_lightningnova4"
+  },
+  "e0HH": {
+    "heroName": "",
+    "name": "!0902_E_BlueLightBurst"
+  },
+  "e0HG": {
+    "heroName": "",
+    "name": "!0902_VFX_HITcritverylowBlue8"
+  },
+  "e0HF": {
+    "heroName": "",
+    "name": "!0902_az_spake7"
+  },
+  "e0HE": {
+    "heroName": "",
+    "name": "!0902_BY_smoke"
+  },
+  "e0HD": {
+    "heroName": "",
+    "name": "!0902_rl_flare"
+  },
+  "e0HC": {
+    "heroName": "",
+    "name": "!0715_Kizaru"
+  },
+  "e0HB": {
+    "heroName": "",
+    "name": "!0715_bearibon3"
+  },
+  "e0HA": {
+    "heroName": "",
+    "name": "!0902_WindWeak2"
+  },
+  "e0H9": {
+    "heroName": "",
+    "name": "!0719_kaizokusfxbyvalk3"
+  },
+  "e0H8": {
+    "heroName": "",
+    "name": "!0901_arua6"
+  },
+  "e0H7": {
+    "heroName": "",
+    "name": "!0901_Effect Hit Wave__30"
+  },
+  "e0H6": {
+    "heroName": "",
+    "name": "!0901_fire-boom"
+  },
+  "e0H5": {
+    "heroName": "",
+    "name": "!0901_rogers3"
+  },
+  "e0H4": {
+    "heroName": "",
+    "name": "!0901_BY_Wood_GongChengSiPai_33"
+  },
+  "e0H3": {
+    "heroName": "",
+    "name": "!0901_Heavens Gate2"
+  },
+  "e0H2": {
+    "heroName": "",
+    "name": "!0901_ioncannon3"
+  },
+  "e0H1": {
+    "heroName": "",
+    "name": "!0809_Penance-Classic_nika"
+  },
+  "e0H0": {
+    "heroName": "",
+    "name": "!0809_BY_Storm2__35"
+  },
+  "e0GZ": {
+    "heroName": "",
+    "name": "!0809_Thunder_nami4__90"
+  },
+  "e0GY": {
+    "heroName": "",
+    "name": "!0809_Thunder_nami4__35"
+  },
+  "e0GX": {
+    "heroName": "",
+    "name": "!0809_eff_nika__50"
+  },
+  "e0GW": {
+    "heroName": "",
+    "name": "!0809_luffy_wano01_s_nika_ba"
+  },
+  "e0GV": {
+    "heroName": "",
+    "name": "!0809_E_BlueLightBurst2__35"
+  },
+  "e0GU": {
+    "heroName": "",
+    "name": "!0808_Effect Sky Ring Black__90"
+  },
+  "e0GT": {
+    "heroName": "",
+    "name": "!0808_Effect Earth Wave Purple3"
+  },
+  "e0GS": {
+    "heroName": "",
+    "name": "!0808_Effect Malmter Exshexian-Black2"
+  },
+  "e0GR": {
+    "heroName": "",
+    "name": "!0808_Effect BY_Wood_Effect_Order_DanGe_DaoGuang_BaoZha_1_2_23333__90"
+  },
+  "e0GQ": {
+    "heroName": "",
+    "name": "!0808_BlackEnergyCharge__90"
+  },
+  "e0GP": {
+    "heroName": "",
+    "name": "!0808_uta_hit_h31_90"
+  },
+  "e0GO": {
+    "heroName": "",
+    "name": "!0808_u_flash2"
+  },
+  "e0GN": {
+    "heroName": "",
+    "name": "!0808_16PF_3__50"
+  },
+  "e0GM": {
+    "heroName": "",
+    "name": "!0808_WarStompCaster NoneColor_35"
+  },
+  "e0GL": {
+    "heroName": "",
+    "name": "!0808_music slam"
+  },
+  "e0GK": {
+    "heroName": "",
+    "name": "!0808_by_wind"
+  },
+  "e0GJ": {
+    "heroName": "",
+    "name": "!0808_WarStompCaster NoneColor"
+  },
+  "e0GI": {
+    "heroName": "",
+    "name": "!0808_uta_hit_h3"
+  },
+  "e0GH": {
+    "heroName": "",
+    "name": "!0808_az_gangtiex12_f2"
+  },
+  "e0GG": {
+    "heroName": "",
+    "name": "!0808_Effect AZ_DK_T2"
+  },
+  "e0GF": {
+    "heroName": "",
+    "name": "!0808_Blackakiha_uta"
+  },
+  "e0GE": {
+    "heroName": "",
+    "name": "!0808_AZ_Jugg_E1_uta"
+  },
+  "e0GD": {
+    "heroName": "",
+    "name": "!0808_slash-uta"
+  },
+  "e0GC": {
+    "heroName": "",
+    "name": "!0808_AZ_Uta_R2"
+  },
+  "e0GB": {
+    "heroName": "",
+    "name": "!0808,!1210_Effect AZ_Dust Rush 02"
+  },
+  "e0GA": {
+    "heroName": "",
+    "name": "!0810_Puple_Slash__315"
+  },
+  "e0G9": {
+    "heroName": "",
+    "name": "!0810_Puple_Slash__45"
+  },
+  "e0G8": {
+    "heroName": "",
+    "name": "!0810_Puple_Slash"
+  },
+  "e0G7": {
+    "heroName": "",
+    "name": "!0810_VFX_DarkSlash"
+  },
+  "e0G6": {
+    "heroName": "",
+    "name": "!0810_CrescentSlashBLACK_SzUp"
+  },
+  "e0G5": {
+    "heroName": "",
+    "name": "!0810_VGHE_(20)"
+  },
+  "e0G4": {
+    "heroName": "",
+    "name": "!0810_Ryuma132"
+  },
+  "e0G3": {
+    "heroName": "",
+    "name": "!0810_Ryuma_SwordBlack"
+  },
+  "e0G2": {
+    "heroName": "",
+    "name": "!0810_CrescentSlashBLACK_SzUp__330"
+  },
+  "e0G1": {
+    "heroName": "",
+    "name": "!0810_VFX_BloodBath2+S"
+  },
+  "e0G0": {
+    "heroName": "",
+    "name": "!0810_BlooFireBlack"
+  },
+  "e0FZ": {
+    "heroName": "",
+    "name": "!0810_CrescentSlashBLACK_x2_xSzUp__270"
+  },
+  "e0FY": {
+    "heroName": "",
+    "name": "!0807_!kick_type3"
+  },
+  "e0FX": {
+    "heroName": "",
+    "name": "!0807_sunstrikeimpact3"
+  },
+  "e0FW": {
+    "heroName": "",
+    "name": "!0807_AZ_S"
+  },
+  "e0FV": {
+    "heroName": "",
+    "name": "!0807_AZ_M"
+  },
+  "e0FU": {
+    "heroName": "",
+    "name": "!0807_flamecrack"
+  },
+  "e0FT": {
+    "heroName": "",
+    "name": "!0807_Effect_modeEF2_93"
+  },
+  "e0FS": {
+    "heroName": "",
+    "name": "!0806_nituzuo3_6"
+  },
+  "e0FR": {
+    "heroName": "",
+    "name": "!0806_t_effect-03__25"
+  },
+  "e0FQ": {
+    "heroName": "",
+    "name": "!0806_rb7__315"
+  },
+  "e0FP": {
+    "heroName": "",
+    "name": "!0805_NewDirtEXNofire4_2"
+  },
+  "e0FO": {
+    "heroName": "",
+    "name": "!0805_Effect Hit Wave__90"
+  },
+  "e0FN": {
+    "heroName": "",
+    "name": "!0805_BloodEX-Special-3"
+  },
+  "e0FM": {
+    "heroName": "",
+    "name": "!0805_Effect Mythic_Reapers Claws Orange"
+  },
+  "e0FL": {
+    "heroName": "",
+    "name": "!0805_Effect Gun Shot Red"
+  },
+  "e0FK": {
+    "heroName": "",
+    "name": "!0805_Effect BY_Wood_GongChengSiPai_5 Orange"
+  },
+  "e0FJ": {
+    "heroName": "",
+    "name": "흔함-자동꺼내기"
+  },
+  "e0FI": {
+    "heroName": "",
+    "name": "!0805,!0808_Effect BY_Wood_Effect_Naruto_MingRen_WeiShouYu_2"
+  },
+  "e0FH": {
+    "heroName": "",
+    "name": "!0805_randomshot3"
+  },
+  "e0FG": {
+    "heroName": "",
+    "name": "!0803_LevelupCaster__90"
+  },
+  "e0FF": {
+    "heroName": "",
+    "name": "!0803_AZ_Z047_0Real"
+  },
+  "e0FE": {
+    "heroName": "",
+    "name": "!0803_skybomb"
+  },
+  "e0FD": {
+    "heroName": "",
+    "name": "!0803,!0912,!1203,!1205,!1212_Effect Black Blink"
+  },
+  "e0FC": {
+    "heroName": "",
+    "name": "!0803_FrostNova__60"
+  },
+  "e0FB": {
+    "heroName": "",
+    "name": "!0803_ice2__45"
+  },
+  "e0FA": {
+    "heroName": "",
+    "name": "!0803_DevilSlams2"
+  },
+  "e0F9": {
+    "heroName": "",
+    "name": "!0803_basicstrike"
+  },
+  "e0F8": {
+    "heroName": "",
+    "name": "!0802_han2"
+  },
+  "e0F7": {
+    "heroName": "",
+    "name": "!0802_@TX - 1"
+  },
+  "e0F6": {
+    "heroName": "",
+    "name": "!0802_kaizokusfxbyvalk3__90"
+  },
+  "e0F5": {
+    "heroName": "",
+    "name": "!0802_MoonSpear2"
+  },
+  "e0F4": {
+    "heroName": "",
+    "name": "!0802_!flare-pink"
+  },
+  "e0F3": {
+    "heroName": "",
+    "name": "!0801_SuperBigExplosion__90"
+  },
+  "e0F2": {
+    "heroName": "",
+    "name": "!0801_katongoukamekkyaku__270"
+  },
+  "e0F1": {
+    "heroName": "",
+    "name": "!0801_cenarionfury2"
+  },
+  "e0F0": {
+    "heroName": "",
+    "name": "!0801_AZ7"
+  },
+  "e0EZ": {
+    "heroName": "",
+    "name": "!0801_flames&smoke"
+  },
+  "e0EY": {
+    "heroName": "",
+    "name": "!0729_BY_Wood_GongChengSiPai_1"
+  },
+  "e0EX": {
+    "heroName": "",
+    "name": "!0729_Koby"
+  },
+  "e0EW": {
+    "heroName": "",
+    "name": "!0729_blackbla"
+  },
+  "e0EV": {
+    "heroName": "",
+    "name": "!0729_Kobi_Hp_Skill"
+  },
+  "e0EU": {
+    "heroName": "",
+    "name": "!0729_tx012a"
+  },
+  "e0ET": {
+    "heroName": "",
+    "name": "!0729_BlueExplorion"
+  },
+  "e0ES": {
+    "heroName": "",
+    "name": "!0729_AZ_KobiForce"
+  },
+  "e0ER": {
+    "heroName": "",
+    "name": "!0728_Bonney_deathM_2"
+  },
+  "e0EQ": {
+    "heroName": "",
+    "name": "!0728_Bonney_deathB"
+  },
+  "e0EP": {
+    "heroName": "",
+    "name": "!0728,!0802_AncientExplode(Blue)"
+  },
+  "e0EO": {
+    "heroName": "",
+    "name": "!0728_Bonney_PierceB"
+  },
+  "e0EN": {
+    "heroName": "",
+    "name": "!0728_AZ_JUGG_E1"
+  },
+  "e0EM": {
+    "heroName": "",
+    "name": "!0728_AZ_CGClown_E2_misslie"
+  },
+  "e0EL": {
+    "heroName": "",
+    "name": "!0728_Bonney_paciB"
+  },
+  "e0EK": {
+    "heroName": "",
+    "name": "!0728_Effect_M_B"
+  },
+  "e0EJ": {
+    "heroName": "",
+    "name": "!0728,!0809_effect_shengguang3__58"
+  },
+  "e0EI": {
+    "heroName": "",
+    "name": "!0728,!0809_WARRR2111__58"
+  },
+  "e0EH": {
+    "heroName": "",
+    "name": "!0728,!0809_E_BlueLightBurst5__58"
+  },
+  "e0EG": {
+    "heroName": "",
+    "name": "!0728,!0809_Thunder_nami1__55"
+  },
+  "e0EF": {
+    "heroName": "",
+    "name": "!0727_ThornSlam3"
+  },
+  "e0EE": {
+    "heroName": "",
+    "name": "!0727_Flamestrike_remake3"
+  },
+  "e0ED": {
+    "heroName": "",
+    "name": "!0727_Tree_1"
+  },
+  "e0EC": {
+    "heroName": "",
+    "name": "!0715_shockyellow3"
+  },
+  "e0EB": {
+    "heroName": "",
+    "name": "!0715_!lightkill5"
+  },
+  "e0EA": {
+    "heroName": "",
+    "name": "!0727_mokton"
+  },
+  "e0E9": {
+    "heroName": "",
+    "name": "!0726_BY_Wood_ArcLightning_big"
+  },
+  "e0E8": {
+    "heroName": "",
+    "name": "!0726_az_leiji01"
+  },
+  "e0E7": {
+    "heroName": "",
+    "name": "!0726_AZ_Zeusking_Impact-yamato"
+  },
+  "e0E6": {
+    "heroName": "",
+    "name": "!0726_eff_yamato5a"
+  },
+  "e0E5": {
+    "heroName": "",
+    "name": "!0726_eff_yamato1"
+  },
+  "e0E4": {
+    "heroName": "",
+    "name": "!0726,!0910_az_axe"
+  },
+  "e0E3": {
+    "heroName": "",
+    "name": "!0726_EffectAncientExplode(Blue)Light2"
+  },
+  "e0E2": {
+    "heroName": "",
+    "name": "!0726_EffectFuzzystompBlue"
+  },
+  "e0E1": {
+    "heroName": "",
+    "name": "!0726_beam_yamato"
+  },
+  "e0E0": {
+    "heroName": "",
+    "name": "!0726,!0905_tx-11"
+  },
+  "e0DZ": {
+    "heroName": "",
+    "name": "!0304,!0801_!@FS"
+  },
+  "e0DY": {
+    "heroName": "",
+    "name": "!0726_shockblastblue"
+  },
+  "e0DX": {
+    "heroName": "",
+    "name": "!0725_BY_Fire_type3__16"
+  },
+  "e0DW": {
+    "heroName": "",
+    "name": "!0725_VFX_Burn_DBluePup"
+  },
+  "e0DV": {
+    "heroName": "",
+    "name": "!0725_by17__90"
+  },
+  "e0DU": {
+    "heroName": "",
+    "name": "!0725_BY_Wood_ArcLightning_big"
+  },
+  "e0DT": {
+    "heroName": "",
+    "name": "!0725_BY_Wood_Effect_Dash__90"
+  },
+  "e0DS": {
+    "heroName": "",
+    "name": "!0725_BY_Wood_Effect_Dash"
+  },
+  "e0DR": {
+    "heroName": "",
+    "name": "!0725_AZ_Flash Release Pink"
+  },
+  "e0DQ": {
+    "heroName": "",
+    "name": "!0725_BY_Wood_Effect_Order_MoBai_Dev_DiLieQuan"
+  },
+  "e0DP": {
+    "heroName": "",
+    "name": "!0725_BY_Wood_Thundergodwrath_2_2"
+  },
+  "e0DO": {
+    "heroName": "",
+    "name": "!0725_Effect Blessing of Elun"
+  },
+  "e0DN": {
+    "heroName": "",
+    "name": "!0725,!0726_BY_Wood_Effect_Order_DanGe_DaoGuang_BaoZha_1_2_2"
+  },
+  "e0DM": {
+    "heroName": "",
+    "name": "!0725_BY_Wood_BaShenAn_JuQi_5 Pink2"
+  },
+  "e0DL": {
+    "heroName": "",
+    "name": "!0725_Effect Dota2 Impale Target Ground LordsRock"
+  },
+  "e0DK": {
+    "heroName": "",
+    "name": "!0725,!0901_by_kid5d"
+  },
+  "e0DJ": {
+    "heroName": "",
+    "name": "!0725_usop_fire2"
+  },
+  "e0DI": {
+    "heroName": "",
+    "name": "!0725_JN_HS_rulaibaozhakid"
+  },
+  "e0DH": {
+    "heroName": "",
+    "name": "!0725_Effect Ground_Scape2"
+  },
+  "e0DG": {
+    "heroName": "",
+    "name": "!0724_Effect Snake_casterart"
+  },
+  "e0DF": {
+    "heroName": "",
+    "name": "!0724_Effect Interceptor Shell Explosion"
+  },
+  "e0DE": {
+    "heroName": "",
+    "name": "!0724,!0809_AZ_Yin_Qsnake"
+  },
+  "e0DD": {
+    "heroName": "",
+    "name": "!0724_slam"
+  },
+  "e0DC": {
+    "heroName": "",
+    "name": "!0724_Effect az_snake_boom"
+  },
+  "e0DB": {
+    "heroName": "",
+    "name": "!0724,!0910,!0911_Effect Warstomp Red"
+  },
+  "e0DA": {
+    "heroName": "",
+    "name": "!0724_BY_Wood_GongChengSiPai_45"
+  },
+  "e0D9": {
+    "heroName": "",
+    "name": "!0724_EffectCobra2"
+  },
+  "e0D8": {
+    "heroName": "",
+    "name": "!0723_dummy"
+  },
+  "e0D7": {
+    "heroName": "",
+    "name": "!0723_Z_Ora_relily"
+  },
+  "e0D6": {
+    "heroName": "",
+    "name": "!0723_AZ_XuanFeng02B2_jim"
+  },
+  "e0D5": {
+    "heroName": "",
+    "name": "!0723,!0907_water_jinbe3"
+  },
+  "e0D4": {
+    "heroName": "",
+    "name": "!0723_T-dustwave2"
+  },
+  "e0D3": {
+    "heroName": "",
+    "name": "!0723_SerpentScrew"
+  },
+  "e0D2": {
+    "heroName": "",
+    "name": "!0723_AquaSpikeVersion2"
+  },
+  "e0D1": {
+    "heroName": "",
+    "name": "!0723_az_piercing2"
+  },
+  "e0D0": {
+    "heroName": "",
+    "name": "!0723_NagaDeath"
+  },
+  "e0CZ": {
+    "heroName": "",
+    "name": "!0722_vx15"
+  },
+  "e0CY": {
+    "heroName": "",
+    "name": "!0722_card-slash8"
+  },
+  "e0CX": {
+    "heroName": "",
+    "name": "!0722_Mr_War3_XZ4_zoro"
+  },
+  "e0CW": {
+    "heroName": "",
+    "name": "!0722_az3__75"
+  },
+  "e0CV": {
+    "heroName": "",
+    "name": "!0722_Hokins_doll"
+  },
+  "e0CU": {
+    "heroName": "",
+    "name": "!0722_Strawman"
+  },
+  "e0CT": {
+    "heroName": "",
+    "name": "!0722_card4__22"
+  },
+  "e0CS": {
+    "heroName": "",
+    "name": "!0722_Mr.War3_XZ4__22"
+  },
+  "e0CR": {
+    "heroName": "",
+    "name": "!0721_BlSkill01A__341"
+  },
+  "e0CQ": {
+    "heroName": "",
+    "name": "!0721_BlSkill04A__341"
+  },
+  "e0CP": {
+    "heroName": "",
+    "name": "!0721_Gikura_A__345"
+  },
+  "e0CO": {
+    "heroName": "",
+    "name": "!0607_ImperialFlamingWings_base"
+  },
+  "e0CN": {
+    "heroName": "",
+    "name": "!0721,!0809_AZ_Earthshaker_C2__90"
+  },
+  "e0CM": {
+    "heroName": "",
+    "name": "!0721_LucciAwk_kingun"
+  },
+  "e0CL": {
+    "heroName": "",
+    "name": "!0711_by_kid4d_black"
+  },
+  "e0CK": {
+    "heroName": "",
+    "name": "!0721_LucciAwk_e0FC"
+  },
+  "e0CJ": {
+    "heroName": "",
+    "name": "!0721_LucciAwk_e0FDe0FH"
+  },
+  "e0CI": {
+    "heroName": "",
+    "name": "!0720_AZ_Yin_Q4"
+  },
+  "e0CH": {
+    "heroName": "",
+    "name": "!0721_AZ_XuanFeng02B2"
+  },
+  "e0CG": {
+    "heroName": "",
+    "name": "!0720_SakuraRelease"
+  },
+  "e0CF": {
+    "heroName": "",
+    "name": "!0720_pink_flare3"
+  },
+  "e0CE": {
+    "heroName": "",
+    "name": "!0720_Mr.War3_XZ4"
+  },
+  "e0CD": {
+    "heroName": "",
+    "name": "!0720,!0729_MirrorImageCaster"
+  },
+  "e0CC": {
+    "heroName": "",
+    "name": "!0720_MCut_new"
+  },
+  "e0CB": {
+    "heroName": "",
+    "name": "!0720_mcut_slash1"
+  },
+  "e0CA": {
+    "heroName": "",
+    "name": "!0720_MoonSpear14"
+  },
+  "e0C9": {
+    "heroName": "",
+    "name": "!0719_valorblast2"
+  },
+  "e0C8": {
+    "heroName": "",
+    "name": "!0719_E_ShockWaveRed"
+  },
+  "e0C7": {
+    "heroName": "",
+    "name": "!0719_H_blackhole1"
+  },
+  "e0C6": {
+    "heroName": "",
+    "name": "!0719_Dash_Sfx__90"
+  },
+  "e0C5": {
+    "heroName": "",
+    "name": "!0719_E_Nitu"
+  },
+  "e0C4": {
+    "heroName": "",
+    "name": "!0719_E_DTRing100"
+  },
+  "e0C3": {
+    "heroName": "",
+    "name": "!0719_E_GlowlinePurple"
+  },
+  "e0C2": {
+    "heroName": "",
+    "name": "!0719,!1210_E_RoundSlashblue"
+  },
+  "e0C1": {
+    "heroName": "",
+    "name": "!0719_E_SuperShinyThingyPurple"
+  },
+  "e0C0": {
+    "heroName": "",
+    "name": "!0718_VolcanoDeath__90"
+  },
+  "e0BZ": {
+    "heroName": "",
+    "name": "!0718_DoomDeath__90"
+  },
+  "e0BY": {
+    "heroName": "",
+    "name": "!0718_Zukokku"
+  },
+  "e0BX": {
+    "heroName": "",
+    "name": "!0718,!0910_!FireFist22"
+  },
+  "e0BW": {
+    "heroName": "",
+    "name": "!0718_slam__90"
+  },
+  "e0BV": {
+    "heroName": "",
+    "name": "!0718,!0901_shadowassault(lightblue)2"
+  },
+  "e0BU": {
+    "heroName": "",
+    "name": "!0718_!tenpajyousai+sfx+by+deckai"
+  },
+  "e0BT": {
+    "heroName": "",
+    "name": "!0718_%56"
+  },
+  "e0BS": {
+    "heroName": "",
+    "name": "!0717_AZ22"
+  },
+  "e0BR": {
+    "heroName": "",
+    "name": "!0717_Stomp-large"
+  },
+  "e0BQ": {
+    "heroName": "",
+    "name": "!0717_MoonWrath8"
+  },
+  "e0BP": {
+    "heroName": "",
+    "name": "!0717,!1210_Dimension SlashOriginal"
+  },
+  "e0BO": {
+    "heroName": "",
+    "name": "!0716_[Spell]TownPortal2"
+  },
+  "e0BN": {
+    "heroName": "",
+    "name": "!0716_LawGamma"
+  },
+  "e0BM": {
+    "heroName": "",
+    "name": "!0716,!0907_Slash_FlareAdditive0453"
+  },
+  "e0BL": {
+    "heroName": "",
+    "name": "!0716_guangci_5743"
+  },
+  "e0BK": {
+    "heroName": "",
+    "name": "!0716_DimensionSlashOriginal2"
+  },
+  "e0BJ": {
+    "heroName": "",
+    "name": "!0715,!0811_AZ"
+  },
+  "e0BI": {
+    "heroName": "",
+    "name": "!0715_!lightfilar4"
+  },
+  "e0BH": {
+    "heroName": "",
+    "name": "!0715,!0728_!beam5"
+  },
+  "e0BG": {
+    "heroName": "",
+    "name": "!0715_wind_dust11"
+  },
+  "e0BF": {
+    "heroName": "",
+    "name": "!1204_Effect BY_Wood_Eff_Ord_Bh3_Int_Imp"
+  },
+  "e0BE": {
+    "heroName": "",
+    "name": "!0715,!0725_BY_Wood_GongChengSiPai_46"
+  },
+  "e0BD": {
+    "heroName": "",
+    "name": "!0715_Penance-Classic"
+  },
+  "e0BC": {
+    "heroName": "",
+    "name": "!0715,!0728,!1204_Effect Yellow Flash 1"
+  },
+  "e0BB": {
+    "heroName": "",
+    "name": "!0712_turtle"
+  },
+  "e0BA": {
+    "heroName": "",
+    "name": "!0714_lava crack"
+  },
+  "e0B9": {
+    "heroName": "",
+    "name": "!0714_Gatekeepers_Pact"
+  },
+  "e0B8": {
+    "heroName": "",
+    "name": "!0714,!0724_013"
+  },
+  "e0B7": {
+    "heroName": "",
+    "name": "!0714_E_FireEX"
+  },
+  "e0B6": {
+    "heroName": "",
+    "name": "!0713_icestomp2"
+  },
+  "e0B5": {
+    "heroName": "",
+    "name": "!0713_FrozenDT"
+  },
+  "e0B4": {
+    "heroName": "",
+    "name": "!0713_iceage_ice"
+  },
+  "e0B3": {
+    "heroName": "",
+    "name": "!0713_freezingsplinter3"
+  },
+  "e0B2": {
+    "heroName": "",
+    "name": "!0713_ice_bird"
+  },
+  "e0B1": {
+    "heroName": "",
+    "name": "!0713_iceice6"
+  },
+  "e0B0": {
+    "heroName": "",
+    "name": "!0713_A_Ice_niddile"
+  },
+  "e0AZ": {
+    "heroName": "",
+    "name": "!0712,!0723_Shiva'sWrath"
+  },
+  "e0AY": {
+    "heroName": "",
+    "name": "!0712_000F5"
+  },
+  "e0AX": {
+    "heroName": "",
+    "name": "!0712_SupremeGeiser"
+  },
+  "e0AW": {
+    "heroName": "",
+    "name": "!0712_GreaterGeiser"
+  },
+  "e0AV": {
+    "heroName": "",
+    "name": "!0711_impact_wave2"
+  },
+  "e0AU": {
+    "heroName": "",
+    "name": "!0711_dtbluenoringblend"
+  },
+  "e0AT": {
+    "heroName": "",
+    "name": "!0711_Valkhellgate7"
+  },
+  "e0AS": {
+    "heroName": "",
+    "name": "!0711_cosmic field2"
+  },
+  "e0AR": {
+    "heroName": "",
+    "name": "!0711_ThunderclapCasterBlack"
+  },
+  "e0AQ": {
+    "heroName": "",
+    "name": "!0711,!0811,!0904,!0909_by_kid4d"
+  },
+  "e0AP": {
+    "heroName": "",
+    "name": "!0711_BY_Wood_Sand_YueKongJi_nocrack_black"
+  },
+  "e0AO": {
+    "heroName": "",
+    "name": "!0711,!0911_zise-smoke1"
+  },
+  "e0AN": {
+    "heroName": "",
+    "name": "!0711_zise-smoke_tr3"
+  },
+  "e0AM": {
+    "heroName": "",
+    "name": "!0801_sun4"
+  },
+  "e0AL": {
+    "heroName": "",
+    "name": "!0710_Lightningbolt"
+  },
+  "e0AK": {
+    "heroName": "",
+    "name": "!0710_Shanks_Kamu_CastHaki"
+  },
+  "e0AJ": {
+    "heroName": "",
+    "name": "!0710_BY_Lightning01"
+  },
+  "e0AI": {
+    "heroName": "",
+    "name": "!0710_Effect_Garpu"
+  },
+  "e0AH": {
+    "heroName": "",
+    "name": "!0802_ubercloud5"
+  },
+  "e0AG": {
+    "heroName": "",
+    "name": "!0710_Shanks_Kamu_Slash"
+  },
+  "e0AF": {
+    "heroName": "",
+    "name": "!0710_orgia mode red"
+  },
+  "e0AE": {
+    "heroName": "",
+    "name": "!0709_MusicTarget"
+  },
+  "e0AD": {
+    "heroName": "",
+    "name": "!0709_az-slash-blue"
+  },
+  "e0AC": {
+    "heroName": "",
+    "name": "!0709_arua6__270"
+  },
+  "e0AB": {
+    "heroName": "",
+    "name": "!0801_kongukan"
+  },
+  "e0AA": {
+    "heroName": "",
+    "name": "!0802_Hancock"
+  },
+  "e0A9": {
+    "heroName": "",
+    "name": "!0708_exshexian"
+  },
+  "e0A8": {
+    "heroName": "",
+    "name": "!0708_EffectYellowLight"
+  },
+  "e0A7": {
+    "heroName": "",
+    "name": "!0708_EffectSkyRing"
+  },
+  "e0A6": {
+    "heroName": "",
+    "name": "!0708_mirrorzi_model_effects_jinsechongjipao"
+  },
+  "e0A5": {
+    "heroName": "",
+    "name": "!0708_frakny_beamwave"
+  },
+  "e0A4": {
+    "heroName": "",
+    "name": "!0708_EffectReviveHuman"
+  },
+  "e0A3": {
+    "heroName": "",
+    "name": "!0708,!0719,!0907,!0910_@fire6"
+  },
+  "e0A2": {
+    "heroName": "",
+    "name": "!0707_robinhand"
+  },
+  "e0A1": {
+    "heroName": "",
+    "name": "!0708_Effect_Artillery_Franky"
+  },
+  "e0A0": {
+    "heroName": "",
+    "name": "!0708_MoonWrath"
+  },
+  "e09Z": {
+    "heroName": "",
+    "name": "!0707_frozenshell"
+  },
+  "e09Y": {
+    "heroName": "",
+    "name": "!0707_Robin_dres9"
+  },
+  "e09X": {
+    "heroName": "",
+    "name": "!0707,!0911_BlinkPinkCaster"
+  },
+  "e09W": {
+    "heroName": "",
+    "name": "!0707_cf2"
+  },
+  "e09V": {
+    "heroName": "",
+    "name": "!0707_higante_base_attack"
+  },
+  "e09U": {
+    "heroName": "",
+    "name": "!0707,!0728,!1212_hit-white-guangxiao"
+  },
+  "e09T": {
+    "heroName": "",
+    "name": "!0707,!0911_moon_shin_WarStompCaster"
+  },
+  "e09S": {
+    "heroName": "",
+    "name": "!0707_21"
+  },
+  "e09R": {
+    "heroName": "",
+    "name": "!0707_#robintrskillnew_thin"
+  },
+  "e09Q": {
+    "heroName": "",
+    "name": "!0707,!1210_AZ_27hd1"
+  },
+  "e09P": {
+    "heroName": "",
+    "name": "!0707_#BY_Wood_Effect_Order_Integration_Flow_1"
+  },
+  "e09O": {
+    "heroName": "",
+    "name": "!1305_missile"
+  },
+  "e09N": {
+    "heroName": "",
+    "name": "!0705_t_effect-03"
+  },
+  "e09M": {
+    "heroName": "",
+    "name": "!0705_slash-gold10"
+  },
+  "e09L": {
+    "heroName": "",
+    "name": "!0705_NewDirtEXNofire_90"
+  },
+  "e09K": {
+    "heroName": "",
+    "name": "!0705_NewDirtEXNofire3"
+  },
+  "e09J": {
+    "heroName": "",
+    "name": "!0705_luffy_wano01_s1"
+  },
+  "e09I": {
+    "heroName": "",
+    "name": "!0705_LW10"
+  },
+  "e09H": {
+    "heroName": "",
+    "name": "!0705_Effect Interceptor Shell Explosion"
+  },
+  "e09G": {
+    "heroName": "",
+    "name": "!0704,!0718_Explorer_BOOM"
+  },
+  "e09F": {
+    "heroName": "",
+    "name": "!0704,!1212_!shot09"
+  },
+  "e09E": {
+    "heroName": "",
+    "name": "!0704,!0717_1gun55_dp"
+  },
+  "e09D": {
+    "heroName": "",
+    "name": "!0716_Shiva'sEnchantment"
+  },
+  "e09C": {
+    "heroName": "",
+    "name": "!0704,!0705_SuperBigExplosion"
+  },
+  "e09B": {
+    "heroName": "",
+    "name": "!0704_phoenix"
+  },
+  "e09A": {
+    "heroName": "",
+    "name": "!0703_MarkOfChaosTarget"
+  },
+  "e099": {
+    "heroName": "",
+    "name": "!0703_namifire3"
+  },
+  "e098": {
+    "heroName": "",
+    "name": "!0703_Mdx_Effect_Railgun"
+  },
+  "e097": {
+    "heroName": "",
+    "name": "!0703_Mdx_Effect_Laser_Blue"
+  },
+  "e096": {
+    "heroName": "",
+    "name": "!0703_BoltImpact"
+  },
+  "e095": {
+    "heroName": "",
+    "name": "!0703_Stormfall"
+  },
+  "e094": {
+    "heroName": "",
+    "name": "!0703_Thunder_nami7"
+  },
+  "e093": {
+    "heroName": "",
+    "name": "!0702,!0907_MCut2"
+  },
+  "e092": {
+    "heroName": "",
+    "name": "!0702_Gikura_A"
+  },
+  "e091": {
+    "heroName": "",
+    "name": "!0702,!0807_rb7"
+  },
+  "e090": {
+    "heroName": "",
+    "name": "!0702,!1210_White SlashB"
+  },
+  "e08Z": {
+    "heroName": "",
+    "name": "!0702,!0721_zoro_eff6_purple"
+  },
+  "e08Y": {
+    "heroName": "",
+    "name": "!0702,!1205_az_qiliu2"
+  },
+  "e08X": {
+    "heroName": "",
+    "name": "!0702,!0710,!0720,!0906,!0911_az_firering1a"
+  },
+  "e08W": {
+    "heroName": "",
+    "name": "!0702,!0724,!0807_az3"
+  },
+  "e08V": {
+    "heroName": "",
+    "name": "!0539,!0702_EnergyBurst3sinobu"
+  },
+  "e08U": {
+    "heroName": "",
+    "name": "!0806_cfdtz_n2__90"
+  },
+  "e08T": {
+    "heroName": "",
+    "name": "!0806_az_yishan"
+  },
+  "e08S": {
+    "heroName": "",
+    "name": "!0806_mihawkslash"
+  },
+  "e08R": {
+    "heroName": "",
+    "name": "!0806_sw_zhaoyun3__352"
+  },
+  "e08Q": {
+    "heroName": "",
+    "name": "!0702,!0911_saitamawave3"
+  },
+  "e08P": {
+    "heroName": "",
+    "name": "!1203_Effect Devil Slam__90"
+  },
+  "e08O": {
+    "heroName": "",
+    "name": "!0702,!0723,!0807_SkillW"
+  },
+  "e08N": {
+    "heroName": "",
+    "name": "!0702_t_k_quick_effect"
+  },
+  "e08M": {
+    "heroName": "",
+    "name": "!0701_REDshotingR1c"
+  },
+  "e08L": {
+    "heroName": "",
+    "name": "!0701,!0719,!0720_E_WhiteWaveS"
+  },
+  "e08K": {
+    "heroName": "",
+    "name": "!0701_ioncannon2_sandi"
+  },
+  "e08J": {
+    "heroName": "",
+    "name": "!0701,!0718_!FireFist2"
+  },
+  "e08I": {
+    "heroName": "",
+    "name": "!0701_!kick_type2"
+  },
+  "e08H": {
+    "heroName": "",
+    "name": "!0610,!0902_rl_kick_hit__90"
+  },
+  "e08G": {
+    "heroName": "",
+    "name": "!0610,!0723_animburst"
+  },
+  "e08F": {
+    "heroName": "",
+    "name": "!0610,!0908_Atsugai1"
+  },
+  "e08E": {
+    "heroName": "",
+    "name": "!0610,!0910_WindCirclefaster"
+  },
+  "e08D": {
+    "heroName": "",
+    "name": "!0610_purple-shoot"
+  },
+  "e08C": {
+    "heroName": "",
+    "name": "!0610_Tidal Burst"
+  },
+  "e08B": {
+    "heroName": "",
+    "name": "!0607_ImperialFlamingWings_boom"
+  },
+  "e08A": {
+    "heroName": "",
+    "name": "!0607_Effect Mythic_Heal Orange"
+  },
+  "e089": {
+    "heroName": "",
+    "name": "!0607_ImperialFlamingWings_slash"
+  },
+  "e088": {
+    "heroName": "",
+    "name": "!0607,!0910_BY_Wood_Sand_YueKongJi_nocrack"
+  },
+  "e087": {
+    "heroName": "",
+    "name": "!0607_By_Feather2"
+  },
+  "e086": {
+    "heroName": "",
+    "name": "!0607_BY_Fire_type4"
+  },
+  "e085": {
+    "heroName": "",
+    "name": "!0606,!0910_Effect_AZ_dust"
+  },
+  "e084": {
+    "heroName": "",
+    "name": "!0539,!0606,!1203_Effect White-Qiquan-Special"
+  },
+  "e083": {
+    "heroName": "",
+    "name": "!0606_Mdx_Effect_06 Okita Dekan_Flash2"
+  },
+  "e082": {
+    "heroName": "",
+    "name": "!0606_Mdx_Effect_06 Okita Dekan_Flash"
+  },
+  "e081": {
+    "heroName": "",
+    "name": "!0606,!0806_AZ_Z047"
+  },
+  "e080": {
+    "heroName": "",
+    "name": "!0606,!1201,!1205_az_yishan"
+  },
+  "e07Z": {
+    "heroName": "",
+    "name": "!0606_AZ_Yin_Q1pink"
+  },
+  "e07Y": {
+    "heroName": "",
+    "name": "!0605,!0716,!0726,!0911_AZ_Zeusking_Impact-black"
+  },
+  "e07X": {
+    "heroName": "",
+    "name": "!0605_az_gangtiex12_f4"
+  },
+  "e07W": {
+    "heroName": "",
+    "name": "!0605,!0710,!0725_[DZ_Spell]001"
+  },
+  "e07V": {
+    "heroName": "",
+    "name": "!0605_az_tormentedsoul_t1"
+  },
+  "e07U": {
+    "heroName": "",
+    "name": "!0605_!cftx2"
+  },
+  "e07T": {
+    "heroName": "",
+    "name": "!0605_E_WarStompCaster_kata_45"
+  },
+  "e07S": {
+    "heroName": "",
+    "name": "!0605,!0609_Sgod_Slash_no99"
+  },
+  "e07R": {
+    "heroName": "",
+    "name": "!1401_S-Snake"
+  },
+  "e07Q": {
+    "heroName": "",
+    "name": "!0604_randomshot3_ain"
+  },
+  "e07P": {
+    "heroName": "",
+    "name": "!0604_ShootGB2_ain"
+  },
+  "e07O": {
+    "heroName": "",
+    "name": "!0601_shadow ball"
+  },
+  "e07N": {
+    "heroName": "",
+    "name": "!0604,!0606,!0702,!0727_fuzzystomp2"
+  },
+  "e07M": {
+    "heroName": "",
+    "name": "!0604,!0802_ShootGB2"
+  },
+  "e07L": {
+    "heroName": "",
+    "name": "!0604,!0701,!0705,!0708,!0719,!0909_k3"
+  },
+  "e07K": {
+    "heroName": "",
+    "name": "!0603_[DZ.Spell]006"
+  },
+  "e07J": {
+    "heroName": "",
+    "name": "!0603_lb_hdg2"
+  },
+  "e07I": {
+    "heroName": "",
+    "name": "!0603_MCut"
+  },
+  "e07H": {
+    "heroName": "",
+    "name": "!0603_BlossomsMissile3"
+  },
+  "e07G": {
+    "heroName": "",
+    "name": "!0603,!1108_SAL1"
+  },
+  "e07F": {
+    "heroName": "",
+    "name": "!0603_[kata]PinkSatelliteShelling"
+  },
+  "e07E": {
+    "heroName": "",
+    "name": "!0603_Wind_Rebecca"
+  },
+  "e07D": {
+    "heroName": "",
+    "name": "!0603_Rebecca"
+  },
+  "e07C": {
+    "heroName": "",
+    "name": "!0602_sandpoff"
+  },
+  "e07B": {
+    "heroName": "",
+    "name": "!0602_sandsword"
+  },
+  "e07A": {
+    "heroName": "",
+    "name": "!0602_AFBsand"
+  },
+  "e079": {
+    "heroName": "",
+    "name": "!0418_Effect_Round_Qucik_Slash_Black"
+  },
+  "e078": {
+    "heroName": "",
+    "name": "!0418_MasiSlash2L"
+  },
+  "e077": {
+    "heroName": "",
+    "name": "!0418_az_pa_c-black"
+  },
+  "e076": {
+    "heroName": "",
+    "name": "!0418_AZ_PA_C"
+  },
+  "e075": {
+    "heroName": "",
+    "name": "!0418_AZ_PA_B23"
+  },
+  "e074": {
+    "heroName": "",
+    "name": "!0602_spreading_air_Szdw"
+  },
+  "e073": {
+    "heroName": "",
+    "name": "공격시 4.2% 확률로 발동"
+  },
+  "e072": {
+    "heroName": "",
+    "name": "!0602_SandTrap_Szup"
+  },
+  "e071": {
+    "heroName": "",
+    "name": "!0602_AZ_Crixalis(1)_R"
+  },
+  "e070": {
+    "heroName": "",
+    "name": "!0703_cumulonimbus"
+  },
+  "e06Z": {
+    "heroName": "",
+    "name": "!0601_Enel_1B"
+  },
+  "e06Y": {
+    "heroName": "",
+    "name": "!0703_BY_Wood_Effect_Texture_Density_Integration_5"
+  },
+  "e06X": {
+    "heroName": "",
+    "name": "!0601_Enel_20M"
+  },
+  "e06W": {
+    "heroName": "",
+    "name": "!0601_Enel_1m"
+  },
+  "e06V": {
+    "heroName": "",
+    "name": "!0709_mahou_no_uta_by_deckai"
+  },
+  "e06U": {
+    "heroName": "",
+    "name": "!0601_ethereallightning3"
+  },
+  "e06T": {
+    "heroName": "",
+    "name": "!0709,!0808_rin_missile"
+  },
+  "e06S": {
+    "heroName": "",
+    "name": "!0601_ethereallightning5"
+  },
+  "e06R": {
+    "heroName": "",
+    "name": "!0601_lightning ball"
+  },
+  "e06Q": {
+    "heroName": "",
+    "name": "!0601_lightning strike"
+  },
+  "e06P": {
+    "heroName": "",
+    "name": "!0601_supershinythingy"
+  },
+  "e06O": {
+    "heroName": "",
+    "name": "!0601,!0710_lb_hg2"
+  },
+  "e06N": {
+    "heroName": "",
+    "name": "!0601,!0703_Thunder_nami4"
+  },
+  "e06M": {
+    "heroName": "",
+    "name": "!0601,!0911_misaka light"
+  },
+  "e06L": {
+    "heroName": "",
+    "name": "!1304_BlackMaria_Impact"
+  },
+  "e06K": {
+    "heroName": "",
+    "name": "!1304_NERYUCHIGI"
+  },
+  "e06J": {
+    "heroName": "",
+    "name": "!1304_AZ_powershot"
+  },
+  "e06I": {
+    "heroName": "",
+    "name": "!0717,!1304_mr_war3_zhizhuwang"
+  },
+  "e06H": {
+    "heroName": "",
+    "name": "!1303,!1304_Queen_Plague"
+  },
+  "e06G": {
+    "heroName": "",
+    "name": "!0811,!1303_#queen_mana_mob4"
+  },
+  "e06F": {
+    "heroName": "",
+    "name": "!1303_#skill_dilie"
+  },
+  "e06E": {
+    "heroName": "",
+    "name": "!0908_Tranquility"
+  },
+  "e06D": {
+    "heroName": "",
+    "name": "!0908_ubercloud2"
+  },
+  "e06C": {
+    "heroName": "",
+    "name": "!0908_roarthunder"
+  },
+  "e06B": {
+    "heroName": "",
+    "name": "!0811,!1303_#AZ_TinyLava_T"
+  },
+  "e06A": {
+    "heroName": "",
+    "name": "!0811,!1303_#AZ_HeroMonkeyking_W1"
+  },
+  "e069": {
+    "heroName": "",
+    "name": "!1302_dead"
+  },
+  "e068": {
+    "heroName": "",
+    "name": "!0905,!0909,!1302_fortress3"
+  },
+  "e067": {
+    "heroName": "",
+    "name": "!0806,!1302_StarfallTarget2"
+  },
+  "e066": {
+    "heroName": "",
+    "name": "!1302_horo_explosion979"
+  },
+  "e065": {
+    "heroName": "",
+    "name": "!1302_lb_horohoroghost2"
+  },
+  "e064": {
+    "heroName": "",
+    "name": "!0707,!0713,!1301_IceNova"
+  },
+  "e063": {
+    "heroName": "",
+    "name": "!1301_!flare8__340"
+  },
+  "e062": {
+    "heroName": "",
+    "name": "!1301_ShootGB1a"
+  },
+  "e061": {
+    "heroName": "",
+    "name": "!1301_dustwave3"
+  },
+  "e060": {
+    "heroName": "",
+    "name": "!0538_Hibari_Bullet"
+  },
+  "e05Z": {
+    "heroName": "",
+    "name": "!0538,!0710,!0724,!0729_AZ_KQZF"
+  },
+  "e05Y": {
+    "heroName": "",
+    "name": "!0538,!0603,!0720,!0721,!0729_BY_Wood_Effect_Dash2"
+  },
+  "e05X": {
+    "heroName": "",
+    "name": "!0537,!0725_BY_Storm2"
+  },
+  "e05W": {
+    "heroName": "",
+    "name": "!0537,!0702,!0719_AZ_DG001_1"
+  },
+  "e05V": {
+    "heroName": "",
+    "name": "!0537,!0708,!0719_Ephemeral Slash Purple2"
+  },
+  "e05U": {
+    "heroName": "",
+    "name": "!0536,!0716,!0720_injection"
+  },
+  "e05T": {
+    "heroName": "",
+    "name": "!0536,!0607,!0810_@SlashCRIT23"
+  },
+  "e05S": {
+    "heroName": "",
+    "name": "!0536,!0716_EnergyBurst2-law"
+  },
+  "e05R": {
+    "heroName": "",
+    "name": "!0536_slash5"
+  },
+  "e05Q": {
+    "heroName": "",
+    "name": "!0535,!0607_AZ_Lordgarithospf_W11"
+  },
+  "e05P": {
+    "heroName": "",
+    "name": "!0535,!0910_by_fire4"
+  },
+  "e05O": {
+    "heroName": "",
+    "name": "!0535,!0607,!0702_BY_Wood_Eff_Ord_YeYe_Wid_KuoSan_1"
+  },
+  "e05N": {
+    "heroName": "",
+    "name": "!0534_SlowCaster"
+  },
+  "e05M": {
+    "heroName": "",
+    "name": "!0720_Tashigi"
+  },
+  "e05L": {
+    "heroName": "",
+    "name": "!0532_suijinha"
+  },
+  "e05K": {
+    "heroName": "",
+    "name": "!0609_BY_Wood_Effect_Dash_M"
+  },
+  "e05J": {
+    "heroName": "",
+    "name": "!0531,!0811,!0909_AZ_Yin_Q12"
+  },
+  "e05I": {
+    "heroName": "",
+    "name": "!0531,!0802_EnergyBurst2"
+  },
+  "e05H": {
+    "heroName": "",
+    "name": "!0530,!0910_windball"
+  },
+  "e05G": {
+    "heroName": "",
+    "name": "!0530,!0716,!0725_AZ_Zeusking_Impact-blue"
+  },
+  "e05F": {
+    "heroName": "",
+    "name": "!0530,!0909_ulti_Effect"
+  },
+  "e05E": {
+    "heroName": "",
+    "name": "데미지텍스트용"
+  },
+  "e05D": {
+    "heroName": "",
+    "name": "!0609_AZ_Rush_m0_350"
+  },
+  "e05C": {
+    "heroName": "",
+    "name": "!0529,!0904_tx-ed"
+  },
+  "e05B": {
+    "heroName": "",
+    "name": "!0529,!0904_Cleave__90"
+  },
+  "e05A": {
+    "heroName": "",
+    "name": "!0528_Effect_MirrorImage"
+  },
+  "e059": {
+    "heroName": "",
+    "name": "!0527,!0902_s_PowerCharge_Effect_Portrait"
+  },
+  "e058": {
+    "heroName": "",
+    "name": "!0526_PsychicTarget"
+  },
+  "e057": {
+    "heroName": "",
+    "name": "!0524_mihawkslashhit2"
+  },
+  "e056": {
+    "heroName": "",
+    "name": "!0524_ShadowAssault90"
+  },
+  "e055": {
+    "heroName": "",
+    "name": "!0524,!0606,!1108_!piercing5"
+  },
+  "e054": {
+    "heroName": "",
+    "name": "!0524_slash-gold11"
+  },
+  "e053": {
+    "heroName": "",
+    "name": "!0523_boom_white"
+  },
+  "e052": {
+    "heroName": "",
+    "name": "!0523,!0910_kaido_shock"
+  },
+  "e051": {
+    "heroName": "",
+    "name": "!0523_yadospell"
+  },
+  "e050": {
+    "heroName": "",
+    "name": "!0521_RoarCaster"
+  },
+  "e04Z": {
+    "heroName": "",
+    "name": "!0521_HolyBoltSpecialArt"
+  },
+  "e04Y": {
+    "heroName": "",
+    "name": "!0609_Effect AZ_S_blue"
+  },
+  "e04X": {
+    "heroName": "",
+    "name": "!0519,!0606_az-slash-pink4"
+  },
+  "e04W": {
+    "heroName": "",
+    "name": "!0517_horo_explosion979_pink"
+  },
+  "e04V": {
+    "heroName": "",
+    "name": "!0517_PoisonBall3"
+  },
+  "e04U": {
+    "heroName": "",
+    "name": "!0609_AZ_Punch_blue"
+  },
+  "e04T": {
+    "heroName": "",
+    "name": "!0516,!0701,!0802_[Spell]ElementalEffectHoly5"
+  },
+  "e04S": {
+    "heroName": "",
+    "name": "!0516,!0802_[DZ_Spell]001_pink"
+  },
+  "e04R": {
+    "heroName": "",
+    "name": "!0516_Hancock"
+  },
+  "e04Q": {
+    "heroName": "",
+    "name": "!0516_EnergyBurst4sinobu"
+  },
+  "e04P": {
+    "heroName": "",
+    "name": "!0515_hero_kuma_pawaura"
+  },
+  "e04O": {
+    "heroName": "",
+    "name": "!0515_ShockStompCaster1"
+  },
+  "e04N": {
+    "heroName": "",
+    "name": "!0515_SpiritoftheEarth5"
+  },
+  "e04M": {
+    "heroName": "",
+    "name": "!0515_KumaPad3"
+  },
+  "e04L": {
+    "heroName": "",
+    "name": "!0515,!0521_FJB"
+  },
+  "e04K": {
+    "heroName": "",
+    "name": "!0514_bar_shield"
+  },
+  "e04J": {
+    "heroName": "",
+    "name": "!0514_Compression2"
+  },
+  "e04I": {
+    "heroName": "",
+    "name": "!0513,!0701,!0908_NewDirtEXNofire00"
+  },
+  "e04H": {
+    "heroName": "",
+    "name": "!0513,!0605,!0606,!0702,!0902_windfaster"
+  },
+  "e04G": {
+    "heroName": "",
+    "name": "!0512,!0515,!1304,!0603,!0701,!0722,!0811,!0911_E_WarStompCaster"
+  },
+  "e04F": {
+    "heroName": "",
+    "name": "!0512_WarStomp_90Degree_WhiteColor"
+  },
+  "e04E": {
+    "heroName": "",
+    "name": "!0512_AZ_ChongFeng"
+  },
+  "e04D": {
+    "heroName": "",
+    "name": "!0714_magmahandBig"
+  },
+  "e04C": {
+    "heroName": "",
+    "name": "!0511_BlackEnergyCharge"
+  },
+  "e04B": {
+    "heroName": "",
+    "name": "!0714_magmahand"
+  },
+  "e04A": {
+    "heroName": "",
+    "name": "!0511_ShadowAssault"
+  },
+  "e049": {
+    "heroName": "",
+    "name": "!0510_uberdarkwave"
+  },
+  "e048": {
+    "heroName": "",
+    "name": "!0509,!0609_EffectInvisibleAirCharge2"
+  },
+  "e047": {
+    "heroName": "",
+    "name": "!0509,!0609_featheraura135"
+  },
+  "e046": {
+    "heroName": "",
+    "name": "!0508,!0901_re3"
+  },
+  "e045": {
+    "heroName": "",
+    "name": "!0508,!0528,!0803,!0807_!sslash3"
+  },
+  "e044": {
+    "heroName": "",
+    "name": "!0508,!0702_Akiha Claw Whi"
+  },
+  "e043": {
+    "heroName": "",
+    "name": "!0507_AbominationExplosion"
+  },
+  "e042": {
+    "heroName": "",
+    "name": "!0507,!0711,!0904_ThunderClapCaster22"
+  },
+  "e041": {
+    "heroName": "",
+    "name": "!0506,!0712,!0907_ancientexplode"
+  },
+  "e040": {
+    "heroName": "",
+    "name": "!0505_AZ-Ice-Zhendi3"
+  },
+  "e03Z": {
+    "heroName": "",
+    "name": "!0504_Thunder_nami1"
+  },
+  "e03Y": {
+    "heroName": "",
+    "name": "!0504_[Spell]TownPortal3"
+  },
+  "e03X": {
+    "heroName": "",
+    "name": "!0503_kdumy"
+  },
+  "e03W": {
+    "heroName": "",
+    "name": "!0503_Firewall"
+  },
+  "e03V": {
+    "heroName": "",
+    "name": "!0503,!0704,!0805_bulletexplosion2"
+  },
+  "e03U": {
+    "heroName": "",
+    "name": "!0716_dustwave2"
+  },
+  "e03T": {
+    "heroName": "",
+    "name": "!0502_az_bat"
+  },
+  "e03S": {
+    "heroName": "",
+    "name": "!0501,!0714_WarStomp"
+  },
+  "e03R": {
+    "heroName": "",
+    "name": "!0425,!0710,!1203_Effect Devil Slam"
+  },
+  "e03Q": {
+    "heroName": "",
+    "name": "!0424_ThunderAura"
+  },
+  "e03P": {
+    "heroName": "",
+    "name": "!0424_TomeOfRetrainingCaster"
+  },
+  "e03O": {
+    "heroName": "",
+    "name": "!0421,!0708,!0907_Conflagrate Blue"
+  },
+  "e03N": {
+    "heroName": "",
+    "name": "!0421,!0726_Franky_sunnny2_eff"
+  },
+  "e03M": {
+    "heroName": "",
+    "name": "!0418_!crimsonwake!"
+  },
+  "e03L": {
+    "heroName": "",
+    "name": "!0418_Mr.War3_XZ4"
+  },
+  "e03K": {
+    "heroName": "",
+    "name": "!0418_ph_dajian_daoguang012"
+  },
+  "e03J": {
+    "heroName": "",
+    "name": "!0418_AZ_PA_B11"
+  },
+  "e03I": {
+    "heroName": "",
+    "name": "!0417_dierge"
+  },
+  "e03H": {
+    "heroName": "",
+    "name": "!0416_feralspiritdone"
+  },
+  "e03G": {
+    "heroName": "",
+    "name": "!0414_Sgod_Slash_no99"
+  },
+  "e03F": {
+    "heroName": "",
+    "name": "!0414,!0606,!0806_mihawkslashhit2"
+  },
+  "e03E": {
+    "heroName": "",
+    "name": "!0414_darkblade"
+  },
+  "e03D": {
+    "heroName": "",
+    "name": "!0413_Effect_Shadow_Assault_Mini"
+  },
+  "e03C": {
+    "heroName": "",
+    "name": "!0413_AOE21a"
+  },
+  "e03B": {
+    "heroName": "",
+    "name": "!0413,!0417,!0421,!0610_Effect Hit Wave"
+  },
+  "e03A": {
+    "heroName": "",
+    "name": "!0412,!0807,!1212_az-slash-red"
+  },
+  "e039": {
+    "heroName": "",
+    "name": "!0411,!0727_sujiejianglin3"
+  },
+  "e038": {
+    "heroName": "",
+    "name": "!0305_50"
+  },
+  "e037": {
+    "heroName": "",
+    "name": "!0411,!0727_mokuton3"
+  },
+  "e036": {
+    "heroName": "",
+    "name": "!0410,!0711_newgroundex"
+  },
+  "e035": {
+    "heroName": "",
+    "name": "!0410_FlameStrike1"
+  },
+  "e034": {
+    "heroName": "",
+    "name": "!0410_Lava Slam"
+  },
+  "e033": {
+    "heroName": "",
+    "name": "!0410,!0702,!0714_Dash_Sfx"
+  },
+  "e032": {
+    "heroName": "",
+    "name": "!0410_magmahandBig"
+  },
+  "e031": {
+    "heroName": "",
+    "name": "!0409,!0713_Shard111"
+  },
+  "e030": {
+    "heroName": "",
+    "name": "!0407_BoltImpact"
+  },
+  "e02Z": {
+    "heroName": "",
+    "name": "!0406_#Hidden_kiku_mana"
+  },
+  "e02Y": {
+    "heroName": "",
+    "name": "!0406_az_pa_c_blue2"
+  },
+  "e02X": {
+    "heroName": "",
+    "name": "!0406,!0720,!0722_Akiha Claw-blue"
+  },
+  "e02W": {
+    "heroName": "",
+    "name": "!0404_VolcanoDeath"
+  },
+  "e02V": {
+    "heroName": "",
+    "name": "!0403_DarkSummonTarget"
+  },
+  "e02U": {
+    "heroName": "",
+    "name": "!0609_Effect_M_B__90"
+  },
+  "e02T": {
+    "heroName": "",
+    "name": "!0402,!0410,!0520,!0714_NewDirtEXNofire"
+  },
+  "e02S": {
+    "heroName": "",
+    "name": "!0402,!0910_red-zhendi-2"
+  },
+  "e02R": {
+    "heroName": "",
+    "name": "!0908_TornadoElementalSmall"
+  },
+  "e02Q": {
+    "heroName": "",
+    "name": "!0402_!effect2"
+  },
+  "e02P": {
+    "heroName": "",
+    "name": "!0401_natureexplosion2"
+  },
+  "e02O": {
+    "heroName": "",
+    "name": "!0306_E_WarStompCaster__90"
+  },
+  "e02N": {
+    "heroName": "",
+    "name": "!0306,!0718,!0801,!0802,!1301_flamestrike3__90"
+  },
+  "e02M": {
+    "heroName": "",
+    "name": "!0306_[ruchi_effect]guipaiqigong_blue2"
+  },
+  "e02L": {
+    "heroName": "",
+    "name": "!0306_LUFFYQ4"
+  },
+  "e02K": {
+    "heroName": "",
+    "name": "!0306_BlinkCaster_white"
+  },
+  "e02J": {
+    "heroName": "",
+    "name": "!0305,!0406,!0534_punch2"
+  },
+  "e02I": {
+    "heroName": "",
+    "name": "!0305,!0508,!0807_nituzuo3_5"
+  },
+  "e02H": {
+    "heroName": "",
+    "name": "!0906_E_BlueLightBurst2__21"
+  },
+  "e02G": {
+    "heroName": "",
+    "name": "!0906_IonCannonWave"
+  },
+  "e02F": {
+    "heroName": "",
+    "name": "!0304_Effect_AZ_T_Misslie"
+  },
+  "e02E": {
+    "heroName": "",
+    "name": "!0304_!FireFist4"
+  },
+  "e02D": {
+    "heroName": "",
+    "name": "!0811,!0906_PsychicTarget0302"
+  },
+  "e02C": {
+    "heroName": "",
+    "name": "!0304_eqh08"
+  },
+  "e02B": {
+    "heroName": "",
+    "name": "!0304,!0801_katongoukamekkyaku"
+  },
+  "e02A": {
+    "heroName": "",
+    "name": "!0304,!0718,!0801_!Flame Aura"
+  },
+  "e029": {
+    "heroName": "",
+    "name": "!0303,!0406_az_pa_c_blue"
+  },
+  "e028": {
+    "heroName": "",
+    "name": "!0302,!0605_1shiningflare3"
+  },
+  "e027": {
+    "heroName": "",
+    "name": "!0301,!0717_AZ_Knife_light2T4"
+  },
+  "e026": {
+    "heroName": "",
+    "name": "!0907_PsychicTarget2"
+  },
+  "e025": {
+    "heroName": "",
+    "name": "!0301,!0717_Railgun3t"
+  },
+  "e024": {
+    "heroName": "",
+    "name": "!0301_1gun55_d"
+  },
+  "e023": {
+    "heroName": "",
+    "name": "!0242_fallinlove5"
+  },
+  "e022": {
+    "heroName": "",
+    "name": "!0242_VampiricAura"
+  },
+  "e021": {
+    "heroName": "",
+    "name": "!0240,!0718,!0801_Asuma-Explosion4"
+  },
+  "e020": {
+    "heroName": "",
+    "name": "!0609_Effect_Slam_M"
+  },
+  "e01Z": {
+    "heroName": "",
+    "name": "!0238,!0602_!watersteal2"
+  },
+  "e01Y": {
+    "heroName": "",
+    "name": "!0609_[sar4"
+  },
+  "e01X": {
+    "heroName": "",
+    "name": "!0235_NewSparksEX"
+  },
+  "e01W": {
+    "heroName": "",
+    "name": "!0234_@100"
+  },
+  "e01V": {
+    "heroName": "",
+    "name": "!0234_gem_two_diamond"
+  },
+  "e01U": {
+    "heroName": "",
+    "name": "!0234,!0606,!0708,!0719,!0720_nituzuo2"
+  },
+  "e01T": {
+    "heroName": "",
+    "name": "!0233_JudgementTarget"
+  },
+  "e01S": {
+    "heroName": "",
+    "name": "!0233_tiger"
+  },
+  "e01R": {
+    "heroName": "",
+    "name": "!0608_ReapersClawsRed"
+  },
+  "e01Q": {
+    "heroName": "",
+    "name": "!0231_DarkSummonTarget"
+  },
+  "e01P": {
+    "heroName": "",
+    "name": "!0230_effect_chanrao"
+  },
+  "e01O": {
+    "heroName": "",
+    "name": "!0608_ReapersClawsRed2"
+  },
+  "e01N": {
+    "heroName": "",
+    "name": "!0608_BS"
+  },
+  "e01M": {
+    "heroName": "",
+    "name": "!0224_FireLordDeathExplode"
+  },
+  "e01L": {
+    "heroName": "",
+    "name": "!0226_FrostNovaTarget"
+  },
+  "e01K": {
+    "heroName": "",
+    "name": "!0225_ph_dajian_daoguang012"
+  },
+  "e01J": {
+    "heroName": "",
+    "name": "!0222,!0705,!0710,!0719_WarStompCaster_nocrack"
+  },
+  "e01I": {
+    "heroName": "",
+    "name": "!0217_bulletdummy"
+  },
+  "e01H": {
+    "heroName": "",
+    "name": "!0216,!0705_Effect_AZ_T_Misslie"
+  },
+  "e01G": {
+    "heroName": "",
+    "name": "!0213_TauntCaster"
+  },
+  "e01F": {
+    "heroName": "",
+    "name": "!0212_DefendCaster"
+  },
+  "e01E": {
+    "heroName": "",
+    "name": "!0211_mihawkslashhit"
+  },
+  "e01D": {
+    "heroName": "",
+    "name": "!0210,!0911_az-xiapi"
+  },
+  "e01C": {
+    "heroName": "",
+    "name": "!0209_magellan003"
+  },
+  "e01B": {
+    "heroName": "",
+    "name": "!0207_Akiha Claw sakura"
+  },
+  "e01A": {
+    "heroName": "",
+    "name": "초월위습"
+  },
+  "e019": {
+    "heroName": "",
+    "name": "희귀위습"
+  },
+  "e018": {
+    "heroName": "",
+    "name": "흔함선택위습"
+  },
+  "e017": {
+    "heroName": "",
+    "name": "안흔함위습"
+  },
+  "e016": {
+    "heroName": "",
+    "name": "특별위습"
+  },
+  "e015": {
+    "heroName": "",
+    "name": "전설위습"
+  },
+  "e014": {
+    "heroName": "",
+    "name": "!0206,!0707,!0712,!0718,!1301_FreezingRing"
+  },
+  "e013": {
+    "heroName": "",
+    "name": "!0206,!0403,!0603_WarStompCaster"
+  },
+  "e012": {
+    "heroName": "",
+    "name": "!0205,!0518,!0530_kkslq8"
+  },
+  "e011": {
+    "heroName": "",
+    "name": "!0205,!0529,!0719,!1203_ThunderClapCaster"
+  },
+  "e010": {
+    "heroName": "",
+    "name": "!0204_Stomp"
+  },
+  "e00Z": {
+    "heroName": "",
+    "name": "!0203,!0510,!0711_AvengerMissile2"
+  },
+  "e00Y": {
+    "heroName": "",
+    "name": "!0203,!0510,!0711_BlackHoles"
+  },
+  "e00X": {
+    "heroName": "",
+    "name": "!0202,!0234,!0411,!0719_fuzzystomp"
+  },
+  "e00W": {
+    "heroName": "",
+    "name": "!0202,!0602,!0704_WARRR2111"
+  },
+  "e00V": {
+    "heroName": "",
+    "name": "!0202_CatapultMissile3"
+  },
+  "e00U": {
+    "heroName": "",
+    "name": "!0208,!0911_JDP_Blue2"
+  },
+  "e00T": {
+    "heroName": "",
+    "name": "!0121,!0233_darkblade"
+  },
+  "e00S": {
+    "heroName": "",
+    "name": "!0608_ch"
+  },
+  "e00R": {
+    "heroName": "",
+    "name": "!0114_baSICSTRIKE2"
+  },
+  "e00Q": {
+    "heroName": "",
+    "name": "!0114_LaserStrike14"
+  },
+  "e00P": {
+    "heroName": "",
+    "name": "!0113,!0410,!0714_DoomDeath4"
+  },
+  "e00O": {
+    "heroName": "",
+    "name": "!0608_az-slash-red"
+  },
+  "e00N": {
+    "heroName": "",
+    "name": "!0608_bloq3"
+  },
+  "e00M": {
+    "heroName": "",
+    "name": "!0608_AZ_BaoHunJue2"
+  },
+  "e00L": {
+    "heroName": "",
+    "name": "!0608_chushou_by_wood_effect_blood_xuebao"
+  },
+  "e00K": {
+    "heroName": "",
+    "name": "!0104_Cyclone"
+  },
+  "e00J": {
+    "heroName": "",
+    "name": "!0607,!0702_swordeff1"
+  },
+  "e00I": {
+    "heroName": "",
+    "name": "!0607,!0702,!1210_animeslashfinal"
+  },
+  "e00H": {
+    "heroName": "",
+    "name": "!0728_Bonney_Kuma"
+  },
+  "e00G": {
+    "heroName": "",
+    "name": "!0721_BY_Fire_type4"
+  },
+  "e00F": {
+    "heroName": "",
+    "name": "!0717_BirdCage"
+  },
+  "e00E": {
+    "heroName": "",
+    "name": "!0721_LucciAwk_e0FG"
+  },
+  "e00D": {
+    "heroName": "",
+    "name": "!0721_JudgementTarget"
+  },
+  "e00C": {
+    "heroName": "",
+    "name": "!0716_LawRoom"
+  },
+  "e00B": {
+    "heroName": "",
+    "name": "!0610_BugiShip"
+  },
+  "e00A": {
+    "heroName": "",
+    "name": "!0610_Alvida"
+  },
+  "e009": {
+    "heroName": "",
+    "name": "!0805_DevilSlams2__90"
+  },
+  "e008": {
+    "heroName": "",
+    "name": "!0718_FirePillar"
+  },
+  "e007": {
+    "heroName": "",
+    "name": "!0716_White SlashB"
+  },
+  "e006": {
+    "heroName": "",
+    "name": "!0716_[Spell]AliceShootingStar"
+  },
+  "e005": {
+    "heroName": "",
+    "name": "!0604_Ain"
+  },
+  "e004": {
+    "heroName": "",
+    "name": "!1303_Queen BR2"
+  },
+  "e003": {
+    "heroName": "",
+    "name": "라인몹이속더미"
+  },
+  "e002": {
+    "heroName": "",
+    "name": "!1301_ef-modelpack"
+  },
+  "e001": {
+    "heroName": "",
+    "name": "!0424_PurgeBuffTarget"
+  },
+  "e000": {
+    "heroName": "",
+    "name": "!1302_Flamestrike Mystic II3"
+  },
+  "H0CO": {
+    "heroName": "코비 - 초월",
+    "name": "해군의 미래"
+  },
+  "H0CL": {
+    "heroName": "로브 루치 - 초월",
+    "name": "검은 정의를 좇는 하얀 새"
+  },
+  "H0C4": {
+    "heroName": "기록지침",
+    "name": "기록지침"
+  },
+  "H0BY": {
+    "heroName": "주얼리 보니 - 초월",
+    "name": "니카 같은 미래"
+  },
+  "H0BX": {
+    "heroName": "주얼리 보니 - 초월",
+    "name": "일그러진 미래"
+  },
+  "H0BV": {
+    "heroName": "프랑키 - 초월",
+    "name": "프랑키 장군"
+  },
+  "H0BT": {
+    "heroName": "롤로노아 조로 - 초월",
+    "name": "염왕"
+  },
+  "H0BS": {
+    "heroName": "",
+    "name": "아이템도박-"
+  },
+  "H0BO": {
+    "heroName": "료쿠규 - 초월",
+    "name": "신 해군대장 초록 소"
+  },
+  "H0BL": {
+    "heroName": "료쿠규 - 초월",
+    "name": "신 해군대장 초록 소"
+  },
+  "H0BK": {
+    "heroName": "니카 - 영원",
+    "name": "태양의 신"
+  },
+  "H0BE": {
+    "heroName": "야마토 - 초월",
+    "name": "오니히메 인수화"
+  },
+  "H0BD": {
+    "heroName": "야마토 - 초월",
+    "name": "오니히메"
+  },
+  "H0B7": {
+    "heroName": "",
+    "name": "능력치 증가"
+  },
+  "H0B6": {
+    "heroName": "토니토니 쵸파 - 초월",
+    "name": "몬스터포인트"
+  },
+  "H0B5": {
+    "heroName": "키자루 - 초월",
+    "name": "해군대장 노란 원숭이"
+  },
+  "H0B4": {
+    "heroName": "유스타스 키드 - 초월",
+    "name": "신세대의 이단아"
+  },
+  "H0B3": {
+    "heroName": "루피-블랙맘바 - 초월",
+    "name": "다섯번째 황제"
+  },
+  "H0B2": {
+    "heroName": "스네이크맨 - 초월",
+    "name": "다섯번째 황제"
+  },
+  "H0B1": {
+    "heroName": "아오키지 - 초월",
+    "name": "전 해군대장 푸른 꿩"
+  },
+  "H0B0": {
+    "heroName": "",
+    "name": "고급 유닛 생성"
+  },
+  "H0AZ": {
+    "heroName": "",
+    "name": "돈도박 고급"
+  },
+  "H0AY": {
+    "heroName": "호시가키 키사메 - 초월",
+    "name": "사메하다"
+  },
+  "H0AW": {
+    "heroName": "",
+    "name": "유닛도박 이세계"
+  },
+  "H0AU": {
+    "heroName": "",
+    "name": "미션 - 깅 제압"
+  },
+  "H0AT": {
+    "heroName": "",
+    "name": "미션 - 클리크 제압"
+  },
+  "H0AS": {
+    "heroName": "",
+    "name": "미션 - 그림자를 흡수한 모리아 처치"
+  },
+  "H0AR": {
+    "heroName": "",
+    "name": "미션 - 피카 처치"
+  },
+  "H0AQ": {
+    "heroName": "",
+    "name": "미션 - 폭군 와포루 처치"
+  },
+  "H0AP": {
+    "heroName": "",
+    "name": "미션 - 거프 저지"
+  },
+  "H0AO": {
+    "heroName": "",
+    "name": "미션 - 바제스 처치"
+  },
+  "H0AM": {
+    "heroName": "요크 - 초월",
+    "name": "PUNK - 06"
+  },
+  "H0AE": {
+    "heroName": "아틀라스 - 초월",
+    "name": "PUNK - 05"
+  },
+  "H0AB": {
+    "heroName": "릴리스 - 초월",
+    "name": "PUNK - 02"
+  },
+  "H0AA": {
+    "heroName": "닥터 베가펑크 - 초월",
+    "name": "세계 최고의 과학자"
+  },
+  "H0A5": {
+    "heroName": "타시기 - 초월",
+    "name": "여름휴가 타시기"
+  },
+  "H09I": {
+    "heroName": "브룩 - 초월",
+    "name": "소울 킹"
+  },
+  "H09H": {
+    "heroName": "상디 - 초월",
+    "name": "지옥에서 돌아온 자"
+  },
+  "H09G": {
+    "heroName": "상디 - 초월",
+    "name": "지옥에서 돌아온 자"
+  },
+  "H09F": {
+    "heroName": "롤로노아 조로 - 초월",
+    "name": "최강의 검사"
+  },
+  "H09E": {
+    "heroName": "돈키호테 도플라밍고 - 초월",
+    "name": "어둠의 조커"
+  },
+  "H09D": {
+    "heroName": "각성 도플라밍고 - 초월",
+    "name": "어둠의 조커"
+  },
+  "H09C": {
+    "heroName": "우솝 - 초월",
+    "name": "바다의 전사"
+  },
+  "H09B": {
+    "heroName": "우솝 - 초월",
+    "name": "바다의 전사"
+  },
+  "H09A": {
+    "heroName": "징베 - 초월",
+    "name": "바다의 협객"
+  },
+  "H099": {
+    "heroName": "몽키.D.루피 - 초월",
+    "name": "해적왕이 될 사나이"
+  },
+  "H098": {
+    "heroName": "니코 로빈 - 초월",
+    "name": "악마의 자식"
+  },
+  "H097": {
+    "heroName": "아오키지 - 초월",
+    "name": "전 해군대장 푸른 꿩"
+  },
+  "H096": {
+    "heroName": "트라팔가 로우 - 초월",
+    "name": "백개의 심장을 바친 자"
+  },
+  "H095": {
+    "heroName": "아카이누 - 초월",
+    "name": "해군원수 붉은 개"
+  },
+  "H094": {
+    "heroName": "바질 호킨스 - 초월",
+    "name": "운명의 마술사"
+  },
+  "H093": {
+    "heroName": "토니토니 쵸파 - 초월",
+    "name": "몬스터포인트"
+  },
+  "H092": {
+    "heroName": "사보 - 초월",
+    "name": "혁명군 참모총장"
+  },
+  "H091": {
+    "heroName": "토니토니 쵸파 - 초월",
+    "name": "순록 의사"
+  },
+  "H090": {
+    "heroName": "검은수염 - 초월",
+    "name": "치밀하고 비열한 어둠"
+  },
+  "H08Z": {
+    "heroName": "샹크스 - 초월",
+    "name": "정상해전 종결자"
+  },
+  "H08Y": {
+    "heroName": "프랑키 - 초월",
+    "name": "무적의 아이언 파이러츠"
+  },
+  "H08X": {
+    "heroName": "후지토라 잇쇼우 - 초월",
+    "name": "분노하는 맹호"
+  },
+  "H08W": {
+    "heroName": "로브 루치 - 초월",
+    "name": "검은 정의를 좇는 하얀 새"
+  },
+  "H08V": {
+    "heroName": "나미 - 초월",
+    "name": "날씨는 맑음"
+  },
+  "H08U": {
+    "heroName": "시라호시 - 초월",
+    "name": "해왕류를 다스리는 인어공주"
+  },
+  "H08T": {
+    "heroName": "두 초월유닛 모두 재료로 사용가능",
+    "name": "루피 or 스네이크맨 - 초월"
+  },
+  "H08J": {
+    "heroName": "키자루 - 초월",
+    "name": "해군대장 노란 원숭이"
+  },
+  "H08E": {
+    "heroName": "니코 로빈 - 초월",
+    "name": "바니걸"
+  },
+  "H08B": {
+    "heroName": "나미 - 초월",
+    "name": "바니걸"
+  },
+  "H05N": {
+    "heroName": "타시기 - 초월",
+    "name": "해군의 홍일점"
+  },
+  "H05M": {
+    "heroName": "기록지침",
+    "name": "기록지침"
+  },
+  "H0BN": {
+    "heroName": "트라팔가 로우 - 초월",
+    "name": "백개의 심장을 훔친 자"
+  },
+  "h0BP": {
+    "heroName": "",
+    "name": "f로우 감마나이프 분신 - 초월"
+  },
+  "e0KN": {
+    "heroName": "",
+    "name": "!0716_LawRoom2"
+  },
+  "h0BQ": {
+    "heroName": "",
+    "name": "펄스건 마르코 - 전설"
+  },
+  "e0L5": {
+    "heroName": "",
+    "name": "!0509,!1202_Effect BY_Wood_Eff_Ord_NiYa_Bh3_LiXingZaoWu"
+  },
+  "e0MR": {
+    "heroName": "",
+    "name": "!0509,!1202_Effect Blue-Shandian-Qiquan"
+  },
+  "e0MS": {
+    "heroName": "",
+    "name": "!0509,!1202_Effect BY_Wood_Eff_Ord_NiYa_Bh3_QuanFeng"
+  },
+  "e0MT": {
+    "heroName": "",
+    "name": "!0725_kid"
+  },
+  "h0E5": {
+    "heroName": "",
+    "name": "!!!!!비오식만능더미"
+  },
+  "h0BU": {
+    "heroName": "기록지침",
+    "name": "환전소"
+  },
+  "e0MW": {
+    "heroName": "",
+    "name": "!1201_Nezuko3-1"
+  },
+  "e0MX": {
+    "heroName": "",
+    "name": "!1201_NezukoSpin"
+  },
+  "e0MY": {
+    "heroName": "",
+    "name": "!1201_NezukoSpin2"
+  },
+  "e0N1": {
+    "heroName": "",
+    "name": "!1202,!1203_Effect TX_Shunshenzhishu"
+  },
+  "e0N2": {
+    "heroName": "",
+    "name": "!1202_Effect File00002124"
+  },
+  "e0N3": {
+    "heroName": "",
+    "name": "!1202_Effect Cast Blue"
+  },
+  "e0N4": {
+    "heroName": "",
+    "name": "!1202_Effect Charge A Blue Light Short"
+  },
+  "e0N5": {
+    "heroName": "",
+    "name": "!1202_Effect Devil Slam Blue Light"
+  },
+  "e0N7": {
+    "heroName": "",
+    "name": "!1202_Effect Laser Blue"
+  },
+  "e0N8": {
+    "heroName": "",
+    "name": "!1202_Effect Blue Spring Burst"
+  },
+  "e0N9": {
+    "heroName": "",
+    "name": "!1202_Effect Ryoul Laser Particle Blue WIde"
+  },
+  "e0NA": {
+    "heroName": "",
+    "name": "!1202_Effect DT Blue Minimalist"
+  },
+  "e0NB": {
+    "heroName": "",
+    "name": "!1202_부릉냐"
+  },
+  "e0NC": {
+    "heroName": "",
+    "name": "!1203_Effect AZ_LCDark_E"
+  },
+  "e0ND": {
+    "heroName": "",
+    "name": "!1203_Effect Baise-Magic-Shousuo"
+  },
+  "e0NE": {
+    "heroName": "",
+    "name": "!1203_Effect AZ_Lina(2)_T1_MagicMatrix"
+  },
+  "e0NF": {
+    "heroName": "",
+    "name": "!1203_Effect Blue-Zhendi-Ghost-Big"
+  },
+  "e0NG": {
+    "heroName": "",
+    "name": "!1203_Effect Blue-Hourglass-Mofa"
+  },
+  "e0NH": {
+    "heroName": "",
+    "name": "!1203_Effect Canying"
+  },
+  "e0NI": {
+    "heroName": "",
+    "name": "!1203_Effect Blue-Texiao-Xuanzhuan"
+  },
+  "e0NJ": {
+    "heroName": "",
+    "name": "!1203_Effect Sprint_Cast_Base"
+  },
+  "e0NK": {
+    "heroName": "",
+    "name": "!1203_Effect [Sepll]Linasun _T2_Blast Blue"
+  },
+  "e0NL": {
+    "heroName": "",
+    "name": "!1203_Conflagrate Blue__90"
+  },
+  "e0NM": {
+    "heroName": "",
+    "name": "!1203_Effect Shinratensei Blue"
+  },
+  "e0NN": {
+    "heroName": "",
+    "name": "!1203_Effect Air Cannon"
+  },
+  "e0NO": {
+    "heroName": "",
+    "name": "!1203,!1210_Effect Dust Wave Rune"
+  },
+  "e0NP": {
+    "heroName": "",
+    "name": "!1203_Effect Dust Wave Rune__90"
+  },
+  "e0NQ": {
+    "heroName": "",
+    "name": "!1203_Effect Dota2 War Stomp Caster Green__90"
+  },
+  "e0NR": {
+    "heroName": "",
+    "name": "!1203_Effect Hit Wave__90"
+  },
+  "e0NS": {
+    "heroName": "",
+    "name": "!1204_Effect DT"
+  },
+  "e0NT": {
+    "heroName": "",
+    "name": "!1205_Effect Blue-Zhendi-Ryougi-Big"
+  },
+  "e0NU": {
+    "heroName": "",
+    "name": "!1205_Effect Pieces"
+  },
+  "e0NV": {
+    "heroName": "",
+    "name": "!1205_Effect BYDG"
+  },
+  "e0NW": {
+    "heroName": "",
+    "name": "!1205_Effect AZ_Magina[2]_B"
+  },
+  "e0NX": {
+    "heroName": "",
+    "name": "!1205_Effect Ryoul ShootGB1"
+  },
+  "e0NY": {
+    "heroName": "",
+    "name": "!1205_Effect GameBABY_mdx_lingzifengbao_001 Blue"
+  },
+  "e0O1": {
+    "heroName": "",
+    "name": "!1206_Effect JDP White Flash"
+  },
+  "e0O2": {
+    "heroName": "",
+    "name": "!1206_Effect Blessing of Moon White"
+  },
+  "e0O3": {
+    "heroName": "",
+    "name": "!1206_Effect AZ_Shockwave23 White"
+  },
+  "e0O4": {
+    "heroName": "",
+    "name": "!1206_Effect Byakuya Wing"
+  },
+  "e0O5": {
+    "heroName": "",
+    "name": "!1206_Effect Dead Spirit White"
+  },
+  "e0O6": {
+    "heroName": "",
+    "name": "!1206_Effect AZ_Shockwave Light"
+  },
+  "e0O7": {
+    "heroName": "",
+    "name": "!1206_Effect Ancientexplode Pink"
+  },
+  "e0O8": {
+    "heroName": "",
+    "name": "!1206_Effect AZ_Firering Pink"
+  },
+  "e0O9": {
+    "heroName": "",
+    "name": "!1207_Effect AZ_Meteor Explosion Green"
+  },
+  "e0OA": {
+    "heroName": "",
+    "name": "!1207_Effect DT Green"
+  },
+  "e0OB": {
+    "heroName": "",
+    "name": "!1207_Effect AZ_Warstormp"
+  },
+  "e0OC": {
+    "heroName": "",
+    "name": "!1207_Effect Dust Tail Thic"
+  },
+  "e0OD": {
+    "heroName": "",
+    "name": "!1207_Effect Dota2 Impale Target Ground"
+  },
+  "e0OE": {
+    "heroName": "",
+    "name": "!1208_Effect Purification Caster Yellow"
+  },
+  "e0OF": {
+    "heroName": "",
+    "name": "!1208_Effect BY_Wood_Eff_Ord_DanGe_Dus_Kuosan_1_1_1"
+  },
+  "e0OG": {
+    "heroName": "",
+    "name": "!1209_Effect CharmTarget Purple"
+  },
+  "e0OI": {
+    "heroName": "",
+    "name": "!1209_Effect AZ_F095_1"
+  },
+  "e0OJ": {
+    "heroName": "",
+    "name": "!1209_Effect Yukari Train"
+  },
+  "e0OK": {
+    "heroName": "",
+    "name": "!1209_Effect Yukari Train__90"
+  },
+  "e0OL": {
+    "heroName": "",
+    "name": "!1209_Effect Explosion"
+  },
+  "e0OM": {
+    "heroName": "",
+    "name": "!1209_Effect AZ_D020_1 Purple"
+  },
+  "e0ON": {
+    "heroName": "",
+    "name": "!1209_Effect Slam Purple"
+  },
+  "e0OO": {
+    "heroName": "",
+    "name": "!1209_Effect AZ_Dimen"
+  },
+  "e0OP": {
+    "heroName": "",
+    "name": "!1209_Effect AZ_Sorceresspf_T2 Purple"
+  },
+  "e0OQ": {
+    "heroName": "",
+    "name": "!1209_Effect AerialExplosionV3 Purple"
+  },
+  "e0OR": {
+    "heroName": "",
+    "name": "!1209_Effect Mythic_Void Teleport Target__90"
+  },
+  "e0OS": {
+    "heroName": "",
+    "name": "!1209_Effect Mythic_Heal Purple__90"
+  },
+  "e0OU": {
+    "heroName": "",
+    "name": "!1209_Effect Attack Wood Purple"
+  },
+  "e0OV": {
+    "heroName": "",
+    "name": "!1209_Effect Spring Burst Purple"
+  },
+  "e0OW": {
+    "heroName": "",
+    "name": "!1209_Effect Laser Purple__90"
+  },
+  "e0OX": {
+    "heroName": "",
+    "name": "!1210_AZ_CMpink_F_OriginMage"
+  },
+  "e0OY": {
+    "heroName": "",
+    "name": "!1210_Culling Slash Pink"
+  },
+  "e0OZ": {
+    "heroName": "",
+    "name": "!1210_55"
+  },
+  "e0P0": {
+    "heroName": "",
+    "name": "!1211_Vinz Nova Arcane"
+  },
+  "e0P1": {
+    "heroName": "",
+    "name": "!1211_BlackHole"
+  },
+  "e0P2": {
+    "heroName": "",
+    "name": "!1211_Ao160%"
+  },
+  "e0P3": {
+    "heroName": "",
+    "name": "!1211_FortressDeathx2"
+  },
+  "e0P4": {
+    "heroName": "",
+    "name": "!1211_Aka160%"
+  },
+  "e0P5": {
+    "heroName": "",
+    "name": "!1211_AZ_BHSickle_J_right1"
+  },
+  "e0P6": {
+    "heroName": "",
+    "name": "!1211_Mr.War3_JSSXL"
+  },
+  "e0P7": {
+    "heroName": "",
+    "name": "!1211_pong2SS"
+  },
+  "e0P8": {
+    "heroName": "",
+    "name": "!1211_Murasaki300%"
+  },
+  "e0P9": {
+    "heroName": "",
+    "name": "!1211_BY_Wood_Effect_Order_MoBai_Dev_DiLieQuan_diliequan"
+  },
+  "e0PA": {
+    "heroName": "",
+    "name": "!1212_tx-shqy10-E"
+  },
+  "e0PB": {
+    "heroName": "",
+    "name": "!1212_Smoke_Guni"
+  },
+  "e0PC": {
+    "heroName": "",
+    "name": "!1212_snipe_sj"
+  },
+  "e0PD": {
+    "heroName": "",
+    "name": "!1212_AZ_EarthShaker_E1szup"
+  },
+  "e0PE": {
+    "heroName": "",
+    "name": "!1212_Air"
+  },
+  "e0PF": {
+    "heroName": "",
+    "name": "!1212_AZ_Sniper(2)_R"
+  },
+  "e0PG": {
+    "heroName": "",
+    "name": "!1212_bullet"
+  },
+  "e0PH": {
+    "heroName": "",
+    "name": "!1212_BY_Wood_Eff_Buf_Int_Diz_1__90"
+  },
+  "e0PI": {
+    "heroName": "",
+    "name": "!1211_BlackPlane"
+  },
+  "e0PJ": {
+    "heroName": "",
+    "name": "!1213_Sans999"
+  },
+  "e0PK": {
+    "heroName": "",
+    "name": "!1213_Sans99999"
+  },
+  "e0PL": {
+    "heroName": "",
+    "name": "!1213_SansK"
+  },
+  "e0PM": {
+    "heroName": "",
+    "name": "!1213_Rimuru-17"
+  },
+  "e0PN": {
+    "heroName": "",
+    "name": "!1213_EV-qilangKsblue"
+  },
+  "e0PO": {
+    "heroName": "",
+    "name": "!1213_ZK_BM_Red knife shine4-Blue-1__45"
+  },
+  "e0PP": {
+    "heroName": "",
+    "name": "!1213_ZK_BM_Red knife shine4-Blue-1"
+  },
+  "e0PQ": {
+    "heroName": "",
+    "name": "!1213_BlusFlashz"
+  },
+  "h0BW": {
+    "heroName": "",
+    "name": "카이도 - 불멸 "
+  },
+  "H0BZ": {
+    "heroName": "야마토 - 초월",
+    "name": "펑크아트"
+  },
+  "e0PR": {
+    "heroName": "",
+    "name": "!0808_16PF_4"
+  },
+  "H0C0": {
+    "heroName": "야마토 - 초월",
+    "name": "펑크아트"
+  },
+  "H0C1": {
+    "heroName": "시라호시 - 초월",
+    "name": "순백의 공주"
+  },
+  "h0C2": {
+    "heroName": "",
+    "name": "한마 유지로 - 신비"
+  },
+  "h0C6": {
+    "heroName": "",
+    "name": "붉은갸라도스 - 초월"
+  },
+  "e0PS": {
+    "heroName": "",
+    "name": "!0712_turtle"
+  },
+  "h0C8": {
+    "heroName": "",
+    "name": "레오 - 전설"
+  }
+}
