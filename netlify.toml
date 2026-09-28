@@ -1,0 +1,12 @@
+[build]
+command = "node scripts/build-site.cjs"
+publish = ".site-build"
+
+[functions]
+directory = "netlify/functions"
+node_bundler = "esbuild"
+
+[[headers]]
+for = "/*"
+[headers.values]
+Referrer-Policy = "no-referrer"

@@ -8,6 +8,7 @@ import { createToolbar } from "./main/toolbar.js";
 import { createViewButtons } from "./main/view-buttons.js";
 import { initializePatchNotes } from "./main/patch-notes.js";
 import { connectUpdates } from "./main/update-connection.js";
+import { initializeUnitConnection } from "./main/unit-connection.js";
 
 const container = document.getElementsByClassName("container")[0];
 container.style.gridTemplateRows = `repeat(${Var.containerGrid}, 1fr)`;
@@ -23,3 +24,4 @@ createViewButtons();
 CountOn();
 initializePatchNotes();
 connectUpdates();
+initializeUnitConnection();

@@ -5,3 +5,5 @@
 !.env.example
 .exe-build/
 dist/
+node_modules/
+.site-build/

@@ -20,6 +20,7 @@
     "ws": "^8.18.1"
   },
   "devDependencies": {
-    "eslint": "^9.23.0"
+    "eslint": "^9.23.0",
+    "w3gjs": "4.3.0"
   }
 }

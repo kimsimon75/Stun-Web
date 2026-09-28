@@ -1,4 +1,25 @@
 const catalog = require('./catalog.json');
+const replayCatalog = require('./replay/catalog-2.323.json');
+const { createHash } = require('node:crypto');
+function readToken(token) { return createHash('sha256').update('stun-read-v1:'+token).digest('hex'); }
+function normalizeSnapshot(data) {
+    if(data?.kind !== 'replay-observations') return identify(data);
+    if(data.mapVersion !== '2.323' || !/^[a-f0-9]{64}$/.test(data.replayId || '')
+        || !Number.isSafeInteger(data.replayTimeMs) || data.replayTimeMs < 0 || data.replayTimeMs > 86400000
+        || !Number.isSafeInteger(data.combinationAttempts) || data.combinationAttempts < 0 || data.combinationAttempts > 100000
+        || !Array.isArray(data.units) || data.units.length > 20000) throw new Error('리플레이 관측 형식 오류');
+    const seen=new Set(), groups=new Map();
+    for(const u of data.units) {
+        if(!u || !/^\d+:\d+$/.test(u.instanceId || '') || u.instanceId.length>32 || seen.has(u.instanceId)
+            || !/^[\x20-\x7e]{4}$/.test(u.typeId || '') || !Number.isInteger(u.observerPlayerId) || u.observerPlayerId<1 || u.observerPlayerId>24
+            || !Number.isSafeInteger(u.lastSeenMs) || u.lastSeenMs<0 || u.lastSeenMs>data.replayTimeMs) throw new Error('관측 유닛 형식 오류');
+        seen.add(u.instanceId);
+        const key=u.observerPlayerId+':'+u.typeId, definition=replayCatalog[u.typeId];
+        if(!groups.has(key)) groups.set(key,{observerPlayerId:u.observerPlayerId,typeId:u.typeId,name:definition?.heroName||definition?.name||`미확인 (${u.typeId})`,known:!!definition,count:0,lastSeenMs:0});
+        const group=groups.get(key);group.count++;group.lastSeenMs=Math.max(group.lastSeenMs,u.lastSeenMs);
+    }
+    return {kind:data.kind,mapVersion:data.mapVersion,replayId:data.replayId,replayTimeMs:data.replayTimeMs,combinationAttempts:data.combinationAttempts,units:[...groups.values()],total:seen.size};
+}
 function identify(data) {
     if (data?.mapVersion !== '2.322' || !Array.isArray(data.units) || data.units.length > 20000) throw new Error('2.322 유닛 스냅샷이 필요합니다.');
     const seen = new Set(), groups = new Map();
@@ -42,4 +63,4 @@ async function send(data, config, fetchImpl = fetch) {
     if (!response.ok) throw new Error(`Netlify 전송 실패: HTTP ${response.status}`);
     if ((await response.json()).accepted !== true) throw new Error('Netlify 응답 형식 오류');
 }
-module.exports = { identify, parse, send, endpoint };
+module.exports = { identify, parse, send, endpoint, normalizeSnapshot, readToken };
