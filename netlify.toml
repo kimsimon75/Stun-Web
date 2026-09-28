@@ -1,10 +1,13 @@
 [build]
-command = "node scripts/build-site.cjs"
+command = "npm run build"
 publish = ".site-build"
 
 [functions]
-directory = "netlify/functions"
+directory = ".functions-build"
 node_bundler = "esbuild"
+
+[build.environment]
+NODE_VERSION = "22"
 
 [[headers]]
 for = "/*"

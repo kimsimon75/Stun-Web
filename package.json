@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
+    "build": "node scripts/build-site.cjs && node scripts/build-functions.cjs",
     "test": "node --test tests/*.test.mjs"
   },
   "author": "",
@@ -20,6 +21,7 @@
     "ws": "^8.18.1"
   },
   "devDependencies": {
+    "esbuild": "0.28.2",
     "eslint": "^9.23.0",
     "w3gjs": "4.3.0"
   }

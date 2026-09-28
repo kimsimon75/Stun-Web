@@ -34,10 +34,12 @@
 
 ## 코드와 빌드
 
+502 응답에 `Cannot find package '@netlify/blobs'`가 나오면 함수 배포물에 SDK가 누락된 것입니다. `npm run build`가 SDK와 유닛 목록을 포함한 `.functions-build/unit-snapshots.mjs`를 생성하며, `netlify.toml`은 이 폴더를 함수 경로로 사용합니다. 원본 `.mjs` 하나만 따로 업로드하지 마세요. Git 연동 배포는 변경된 `package.json`, `package-lock.json`, 빌드 스크립트와 `netlify.toml`을 함께 반영한 뒤 다시 배포합니다. EXE와 토큰 변경은 필요 없습니다.
+
 EXE 진입점 `unit-bridge/exe.cjs`, 감시/전송 `unit-bridge/replay/watch.cjs`, 검증/토큰 `unit-bridge/core.cjs`, 서버 `netlify/functions/unit-snapshots.mjs`, 화면 `main/unit-connection.js`.
 
 ```powershell
-node scripts/build-site.cjs
+npm run build
 node --test tests/replay-link.test.mjs tests/replay-reader.test.mjs tests/netlify-unit-bridge.test.mjs tests/unit-assembler.test.mjs
 node .exe-build/node_modules/@yao-pkg/pkg/lib-es5/bin.js unit-bridge/exe.cjs --targets node22-win-x64 --no-bytecode --public-packages "*" --public --output dist/StunReplayLink.exe
 ```
