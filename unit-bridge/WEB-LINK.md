@@ -34,6 +34,8 @@
 
 ## 코드와 빌드
 
+Netlify 빌드는 `npm ci --include=dev && npm run build`를 실행합니다. 저장소에 과거부터 추적되던 `node_modules`가 있고 일부 패키지의 `dist` 파일이 누락되어 있으므로, 캐시나 체크아웃된 패키지를 그대로 사용하지 않고 lockfile 기준으로 다시 설치합니다. `.gitignore`에 `node_modules/`를 추가해도 이미 추적된 파일은 제거되지 않습니다. 로컬 EXE와 토큰은 이 변경의 영향을 받지 않습니다.
+
 502 응답에 `Cannot find package '@netlify/blobs'`가 나오면 함수 배포물에 SDK가 누락된 것입니다. `npm run build`가 SDK와 유닛 목록을 포함한 `.functions-build/unit-snapshots.mjs`를 생성하며, `netlify.toml`은 이 폴더를 함수 경로로 사용합니다. 원본 `.mjs` 하나만 따로 업로드하지 마세요. Git 연동 배포는 변경된 `package.json`, `package-lock.json`, 빌드 스크립트와 `netlify.toml`을 함께 반영한 뒤 다시 배포합니다. EXE와 토큰 변경은 필요 없습니다.
 
 EXE 진입점 `unit-bridge/exe.cjs`, 감시/전송 `unit-bridge/replay/watch.cjs`, 검증/토큰 `unit-bridge/core.cjs`, 서버 `netlify/functions/unit-snapshots.mjs`, 화면 `main/unit-connection.js`.
