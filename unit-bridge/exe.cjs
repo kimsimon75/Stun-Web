@@ -65,6 +65,7 @@ async function main() {
         if(args[0]!=='--watch' || !args[1] || args.length>3 || (args.length===3 && args[2]!=='--send')) throw new Error(help);
         return watch(args[1],args[2]==='--send');
     }
+    console.log('충돌 조사용 임시 버전: Warcraft 실행 중에는 리플레이를 읽지 않습니다. 종료 후 분석만 지원합니다.');
     console.log(help);
     const input=readline.createInterface({input:process.stdin,output:process.stdout});
     try {
@@ -75,8 +76,8 @@ async function main() {
         if(choice!=='4') {
             const settings=await config();
             if(choice==='3'&&!/^[a-f0-9]{64}$/.test(settings.UNIT_BRIDGE_TOKEN||''))throw new Error('exe 옆 .env의 UNIT_BRIDGE_TOKEN을 확인하세요.');
-            const file=(await input.question('진행 중인 리플레이 .w3g 파일 경로 (따옴표 가능) > ')).trim().replace(/^"|"$/g,'');
-            if(!file)throw new Error('리플레이 파일 경로가 필요합니다.');
+            const suggested=path.join(os.homedir(),'Documents','Warcraft III','BattleNet');
+            const file=(await input.question(`리플레이 폴더 또는 파일 경로 [Enter: ${suggested} 폴더 자동 감시] > `)).trim().replace(/^"|"$/g,'')||suggested;
             input.close();return watchReplay(file,choice==='3',settings);
         }
         const suggested=path.join(os.homedir(),'Documents','Warcraft III','CustomMapData','networkio','requests');

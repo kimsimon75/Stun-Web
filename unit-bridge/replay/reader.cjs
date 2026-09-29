@@ -20,6 +20,8 @@ class ExtendedActions extends ActionParser {
     }
     parseAction(raw, post) {
         const id = post && raw > 0x77 ? raw + 1 : raw;
+        // Reforged pause is a one-byte action; the legacy parser skips a byte.
+        if(post && raw === 0x01) return {id:0x01};
         // In this post-2.0.2 replay raw 0x77 is sync, not the old W3API layout.
         if(post && raw === 0x77) return {id:0x78,identifier:this.readZeroTermString('utf8'),value:this.readZeroTermString('utf8'),tail:this.readUInt32LE()};
         if(id === 0x7b) return {id,source:this.readNetTag(),ability:this.readFourCC(),order:this.readFourCC()};
