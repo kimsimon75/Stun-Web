@@ -1,5 +1,6 @@
 const catalog = require('./catalog.json');
 const replayCatalog = require('./replay/catalog-2.323.json');
+const {rules:traitRules}=require('./replay/trait-transitions.cjs');
 const { createHash } = require('node:crypto');
 function readToken(token) { return createHash('sha256').update('stun-read-v1:'+token).digest('hex'); }
 function normalizeSnapshot(data) {
@@ -8,17 +9,30 @@ function normalizeSnapshot(data) {
         || !Number.isSafeInteger(data.replayTimeMs) || data.replayTimeMs < 0 || data.replayTimeMs > 86400000
         || !Number.isSafeInteger(data.combinationAttempts) || data.combinationAttempts < 0 || data.combinationAttempts > 100000
         || !Array.isArray(data.units) || data.units.length > 20000) throw new Error('리플레이 관측 형식 오류');
+    const traitTransitions=data.traitTransitions??[];
+    if(!Array.isArray(traitTransitions)||traitTransitions.length>20000)throw new Error('특강 전환 형식 오류');
+    const replaced=new Set(),targets=new Set(),byId=new Map(data.units.map(u=>[u?.instanceId,u]));
+    for(const t of traitTransitions){
+        const rule=traitRules[t?.abilityId],from=byId.get(t?.fromInstanceId),to=byId.get(t?.toInstanceId);
+        if(!rule||!from||!to||from===to||replaced.has(t.fromInstanceId)||targets.has(t.toInstanceId)
+            ||t.fromTypeId!==rule[0]||t.toTypeId!==rule[1]||from.typeId!==rule[0]||to.typeId!==rule[1]
+            ||from.observerPlayerId!==t.observerPlayerId||to.observerPlayerId!==t.observerPlayerId
+            ||!Number.isSafeInteger(t.timeMs)||t.timeMs<0||t.timeMs>data.replayTimeMs
+            ||from.lastSeenMs>t.timeMs||to.lastSeenMs<t.timeMs)throw new Error('특강 전환 형식 오류');
+        replaced.add(t.fromInstanceId);targets.add(t.toInstanceId);
+    }
     const seen=new Set(), groups=new Map();
     for(const u of data.units) {
         if(!u || !/^\d+:\d+$/.test(u.instanceId || '') || u.instanceId.length>32 || seen.has(u.instanceId)
             || !/^[\x20-\x7e]{4}$/.test(u.typeId || '') || !Number.isInteger(u.observerPlayerId) || u.observerPlayerId<1 || u.observerPlayerId>24
             || !Number.isSafeInteger(u.lastSeenMs) || u.lastSeenMs<0 || u.lastSeenMs>data.replayTimeMs) throw new Error('관측 유닛 형식 오류');
         seen.add(u.instanceId);
+        if(replaced.has(u.instanceId))continue;
         const key=u.observerPlayerId+':'+u.typeId, definition=replayCatalog[u.typeId];
         if(!groups.has(key)) groups.set(key,{observerPlayerId:u.observerPlayerId,typeId:u.typeId,name:definition?.heroName||definition?.name||`미확인 (${u.typeId})`,known:!!definition,count:0,lastSeenMs:0});
         const group=groups.get(key);group.count++;group.lastSeenMs=Math.max(group.lastSeenMs,u.lastSeenMs);
     }
-    return {kind:data.kind,mapVersion:data.mapVersion,replayId:data.replayId,replayTimeMs:data.replayTimeMs,combinationAttempts:data.combinationAttempts,units:[...groups.values()],total:seen.size};
+    return {kind:data.kind,mapVersion:data.mapVersion,replayId:data.replayId,replayTimeMs:data.replayTimeMs,combinationAttempts:data.combinationAttempts,units:[...groups.values()],total:seen.size-replaced.size,traitTransitions};
 }
 function identify(data) {
     if (data?.mapVersion !== '2.322' || !Array.isArray(data.units) || data.units.length > 20000) throw new Error('2.322 유닛 스냅샷이 필요합니다.');

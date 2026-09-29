@@ -4,10 +4,12 @@ const {analyze}=require('./reader.cjs');
 const {normalizeSnapshot,send}=require('../core.cjs');
 const {resolveReplay}=require('./source.cjs');
 const {gameRunning}=require('./game-guard.cjs');
+const {findTraitTransitions}=require('./trait-transitions.cjs');
 function snapshot(result,buffer) {
     const units=new Map();
     for(const o of result.observations) units.set(o.objectTag,{instanceId:o.objectTag,typeId:o.typeId,observerPlayerId:o.commandPlayerId,lastSeenMs:o.timeMs});
-    return {kind:'replay-observations',mapVersion:'2.323',replayId:createHash('sha256').update(buffer.subarray(68,80+buffer.readUInt16LE(68))).digest('hex'),replayTimeMs:result.timeMs,combinationAttempts:result.commands.filter(c=>c.isCombination).length,units:[...units.values()]};
+    const traitTransitions=findTraitTransitions(result);
+    return {kind:'replay-observations',mapVersion:'2.323',replayId:createHash('sha256').update(buffer.subarray(68,80+buffer.readUInt16LE(68))).digest('hex'),replayTimeMs:result.timeMs,combinationAttempts:result.commands.filter(c=>c.isCombination).length,units:[...units.values()],traitTransitions};
 }
 async function watchReplay(file,publish,config,{once=false}={}) {
     let signature='',pending=null,lastSend=0,activeFile='',lastProgress=Date.now(),lastNotice=0,lastError='';

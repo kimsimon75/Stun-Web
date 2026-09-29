@@ -1,9 +1,14 @@
+import { Unit, Var, Func } from '../import.js';
+import { CountOn } from './refresh.js';
+import { Collect } from './buff-sync.js';
+import { applyTraitCounts, traitBuffTotals } from './trait-counts.js';
+
 export function initializeUnitConnection() {
     const panel=document.createElement('section');
     panel.className='unit-connection';
     panel.setAttribute('aria-labelledby','unit-link-title');
     panel.innerHTML=`<div class="section-heading"><div><span class="section-index">LIVE</span><h2 id="unit-link-title">게임 유닛 연동</h2></div></div>
-    <p>EXE 옆 <strong>web-read-token.txt</strong>의 연결 코드를 입력하세요. 관측 이력은 현재 보유 패와 다를 수 있어 계산기에 자동 적용하지 않습니다.</p>
+    <p>EXE 옆 <strong>web-read-token.txt</strong>의 연결 코드를 입력하세요. 일반 관측 수량은 자동 적용하지 않습니다. 플레이어를 선택하면 특강 명령 뒤 변신이 관측된 상디·센고쿠·마르코는 기본 수량 1개를 특강 수량으로 전환합니다. 관측 기반 판정이며 특포 잔액을 직접 읽지는 않습니다.</p>
     <form class="unit-link-form"><label for="unit-read-token">조회용 연결 코드</label><input id="unit-read-token" type="password" autocomplete="off" spellcheck="false" required pattern="[a-f0-9]{64}" placeholder="조회용 코드 64자리"><button type="submit">연결</button><button type="button" data-disconnect>연결 해제</button></form>
     <p data-status role="status" aria-live="polite">연결 대기</p><p data-summary></p>
     <label>기록의 플레이어 <select data-player><option value="all">전체</option></select></label>
@@ -11,10 +16,20 @@ export function initializeUnitConnection() {
     document.querySelector('.workspace').before(panel);
     const form=panel.querySelector('form'),input=panel.querySelector('input'),status=panel.querySelector('[data-status]'),summary=panel.querySelector('[data-summary]'),filter=panel.querySelector('select'),body=panel.querySelector('tbody');
     let timer,controller,epoch=0,token='',latest=null;
+    const appliedTraits=new Set();
+    function applyTraits(){
+        const before=traitBuffTotals(Unit.allUnits,Unit.Rate);
+        if(!applyTraitCounts(latest,filter.value,Unit.allUnits,appliedTraits))return;
+        const after=traitBuffTotals(Unit.allUnits,Unit.Rate);
+        for(const [stat,key] of [['speedBonusEx','atkSpeedBuff'],['manaRegen','manaRegen'],['healthRegen','healthRegen'],['speedDebuff','slow']])Var[stat]+=after[key]-before[key];
+        Unit.allUnits.forEach((u,index)=>{const original=Unit.findUnit(u.rank,u.name);if(original)original.Check=u.Check;Collect(u,index);});
+        Func.UnitTotalStun();CountOn();
+    }
     const clock=ms=>`${Math.floor(ms/60000)}:${String(Math.floor(ms%60000/1000)).padStart(2,'0')}`;
     function render() {
         body.replaceChildren();
         if(!latest)return;
+        applyTraits();
         const replay=latest.kind==='replay-observations';
         for(const unit of latest.units) {
             const player=replay?unit.observerPlayerId:unit.playerId+1;
