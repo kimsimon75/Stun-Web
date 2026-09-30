@@ -162,26 +162,31 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 let s2 = u.stun2.type != "none" ? u.stun2.dur : 0;
                 let CheckU = Unit.allUnits.find(items => items.rank === u.rank && items.name === u.name);
     
-                let unitSpeedBonusEx = RoundX(u.atkSpeedBonus + RoundX((CheckU.Check ? (Var.speedBonusEx ) : Var.speedBonusEx + u.atkSpeedBuff) / 100, 3), 3);
+                let appliedSpeedBuff = CheckU.Check
+                    ? Var.speedBonusEx
+                    : Var.speedBonusEx + u.atkSpeedBuff;
+
+                // 자신에게 적용되지 않는 팀 공속 버프는 선택 여부와 관계없이
+                // 해당 유닛 자신의 공격 속도 계산에서 제외한다.
+                if (!u.atkSpeedBuffAffectsSelf) {
+                    appliedSpeedBuff -= u.atkSpeedBuff;
+                }
+
+                // 우타를 아직 선택하지 않은 상태에서는 자신의 27% 버프를 포함한
+                // 예상 수치를 보여준다. 이때 이미 선택된 헤드셋 12%는 우타에게
+                // 적용되지 않으므로 중복 합산하지 않는다.
+                if (u.name === "우타" && !CheckU.Check) {
+                    const headset = Unit.allUnits.find(item =>
+                        item.name === "우타의 헤드셋" && item.rank === "아이템"
+                    );
+                    if (headset?.Check) appliedSpeedBuff -= headset.atkSpeedBuff;
+                }
+
+                let unitSpeedBonusEx = RoundX(
+                    u.atkSpeedBonus + RoundX(appliedSpeedBuff / 100, 3),
+                    3
+                );
     
-                const uta = Unit.allUnits.find(items => items.name == "우타의 헤드셋" && items.rank == "아이템");
-                
-                if(u.name == "우타" && uta.Check)
-                    {
-                        unitSpeedBonusEx = RoundX(
-                        u.atkSpeedBonus +
-                            RoundX(
-                            ((CheckU.Check > 0)
-                            ? Var.speedBonusEx - u.atkSpeedBuff
-                            : Var.speedBonusEx - (uta.atkSpeedBuff)
-                            ) / 100,
-                            3
-                        ),
-                        3
-                        );
-    
-        
-                    }
                 if(Unit.idxToRank(sortCount) == "초월함" || u.name == "니카")
                     unitSpeedBonusEx = RoundX(unitSpeedBonusEx + Var.dex / 100, 3);
                 let t = u.attackCycle / ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx));

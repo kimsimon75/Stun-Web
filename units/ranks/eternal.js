@@ -4,7 +4,7 @@ import { STUN, SLOW } from "../effects.js";
 export const eternalUnits = [
     // 기존
     unit("영원한", "니카",     { rawcode: "H0BK", atkSpeedBonus: 3.10, attackCycle: 0.57, stun1: STUN.chance(0.1, 2.0, 500), mana: 150, manaDuration: 3, atkSpeedBuff: 25, manaRange: 750 }),
-    unit("영원한", "버기", { rawcode: "h05A", atkSpeedBonus : 3.59, attackCycle : 0.82, stun1: STUN.chance(0.0425, 4, 2000), stun2 : STUN.chance(0.11, 1.65, 500), atkSpeedBuff: 65, slow: 25 }),
+    unit("영원한", "버기", { rawcode: "h05A", atkSpeedBonus : 3.59, attackCycle : 0.82, stun1: STUN.chance(0.0425, 4, 2000), stun2 : STUN.chance(0.11, 1.65, 500), atkSpeedBuff: 65, atkSpeedBuffAffectsSelf: false, slow: 25 }),
     unit("영원한", "우타",     { rawcode: "h067", atkSpeedBonus: 3.10, attackCycle: 0.67, stun1: STUN.chance(0.1, 1.5, 500), atkSpeedBuff: 27, slow: 45 }),
     unit("영원한", "카벤딧슈", { rawcode: "h05B", atkSpeedBonus: 3.15, attackCycle: 0.71, stun1: STUN.chance(0.1, 2.3, 550), mana: 100, manaDuration: 3, manaRange: 500 }),
 

@@ -144,13 +144,36 @@ test('buff groups preserve lower-tier checks when activating higher tier', () =>
         const el = new Element(); CheckEvent(el, u, Unit.allUnits.indexOf(u));
         el.events.change({ target: { checked } });
     };
+    const uta = Unit.unitStat['영원한'].find(u => u.name === '우타');
+    const utaWithoutHeadset = uta.StunCalCulate;
     change('우타의 헤드셋', '아이템', true);
     assert.equal(Var.speedBonusEx, 12);
+    assert.equal(uta.StunCalCulate, utaWithoutHeadset, '헤드셋만 선택해도 우타의 스턴 가중치는 늘지 않아야 합니다.');
     change('우타', '영원한', true);
     assert.equal(Var.speedBonusEx, 27);
     assert.equal(Unit.allUnits.find(u => u.name === '우타의 헤드셋').Check, 1);
+    UnitTotalStun();
+    const interval = uta.attackCycle / Math.min(5, 1 + uta.atkSpeedBonus + 0.27);
+    const expected = Math.log(1 - StunCalCulator(interval, uta.stun1.p, uta.stun1.dur, interval)) / Math.log(Var.StunCalCulation);
+    assert(Math.abs(uta.StunCalCulate - expected) < 1e-12, '헤드셋 12%가 우타 자신의 스턴 가중치에 섞이면 안 됩니다.');
     change('우타', '영원한', false);
     assert.equal(Var.speedBonusEx, 12);
+});
+
+test('eternal Buggy receives external attack speed buffs without applying his own aura to himself', () => {
+    const change = (name, rank, checked) => {
+        const u = Unit.allUnits.find(u => u.name === name && u.rank === rank);
+        const el = new Element(); CheckEvent(el, u, Unit.allUnits.indexOf(u));
+        el.events.change({ target: { checked } });
+    };
+    const buggy = Unit.unitStat['영원한'].find(u => u.name === '버기');
+    const baseStun = buggy.StunCalCulate;
+
+    change('버기', '영원한', true);
+    assert.equal(buggy.StunCalCulate, baseStun, '버기의 65% 팀 버프는 자신에게 적용되지 않아야 합니다.');
+
+    change('가죽장갑', '아이템', true);
+    assert(buggy.StunCalCulate > baseStun, '외부 공속 버프는 버기의 스턴 가중치를 높여야 합니다.');
 });
 
 test('checkbox sync tolerates missing controls and updates every copy', () => {

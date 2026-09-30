@@ -15,6 +15,7 @@ export const UNIT_DEFAULTS = Object.freeze({
   manaRange: 0,
   selfAtkSpeedBuff: 0,
   atkSpeedBuff: 0,
+  atkSpeedBuffAffectsSelf: true,
   manaSelfRegen: 0,
 
   healthRegen : 0,
