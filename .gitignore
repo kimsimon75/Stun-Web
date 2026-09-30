@@ -1,12 +1,7 @@
-# Local map extraction data and downloaded analysis tools.
-.map-analysis/
 .env
 .env.*
 !.env.example
-.exe-build/
-dist/
 node_modules/
 .site-build/
-.functions-build/
-**/bin/
-**/obj/
+.vs/
+.vscode/

@@ -156,15 +156,3 @@ input[type="checkbox"] { accent-color: var(--accent); }
 .Stack1 > * + *, .Stack2 > * + * { border-left: 1px solid #bccbc2; }
 .Stack4 .Button, #bar > .interactive { border-color: #aabcb0; }
 #container2 > div:has(.unitName) > * + * { border-left: 1px solid #c3cfc7 !important; }
-.unit-connection { margin: 24px 0; padding: 24px; border: 1px solid #3d536c; border-radius: 16px; background: #101b2c; color: #eaf0fa; }
-.unit-connection p { color: #b9c9dc; line-height: 1.6; }
-.unit-connection .section-heading { padding: 0 0 16px; background: transparent; border-color: #35465c; }
-.unit-connection .section-heading h2 { color: #eef5ff; }
-.unit-connection .section-index { color: #77d7c4; }
-.unit-link-form { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
-.unit-link-form input { min-width: 180px; flex: 1; padding: 10px; background: #091322; color: #eef5ff; border: 1px solid #63748b; border-radius: 8px; }
-.unit-link-form button, .unit-connection select { padding: 10px 14px; background: #223c59; color: #fff; border: 1px solid #6686aa; border-radius: 8px; cursor: pointer; }
-.unit-link-scroll { max-height: 360px; overflow: auto; margin-top: 16px; }
-.unit-link-scroll table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
-.unit-link-scroll th, .unit-link-scroll td { padding: 10px; border-bottom: 1px solid #35465c; white-space: nowrap; }
-.unit-link-scroll th { position: sticky; top: 0; background: #17283d; }

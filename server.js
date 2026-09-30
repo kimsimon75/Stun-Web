@@ -1,23 +1,28 @@
-const http = require('http');
-const WebSocket = require('ws');
-const express = require('express');
+const http = require('node:http');
+const { createReadStream, stat } = require('node:fs');
+const { extname, join, normalize } = require('node:path');
 
-const app = express();
+const types = {
+    '.html': 'text/html; charset=utf-8',
+    '.js': 'text/javascript; charset=utf-8',
+    '.css': 'text/css; charset=utf-8',
+    '.svg': 'image/svg+xml',
+    '.png': 'image/png',
+    '.md': 'text/markdown; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
+};
 
-// 정적 파일 제공 (index.html 같은 클라이언트 파일 서빙 가능)
-app.use(express.static(__dirname));
-
-// HTTP 서버 생성 (Express 사용)
-const server = http.createServer(app);
-
-// 라우트 설정 (index.html 제공)
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+const server = http.createServer((request, response) => {
+    const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
+    const file = normalize(join(__dirname, relative));
+    if (!file.startsWith(__dirname)) { response.writeHead(403).end(); return; }
+    stat(file, (error, info) => {
+        if (error || !info.isFile()) { response.writeHead(404).end('Not found'); return; }
+        response.writeHead(200, { 'content-type': types[extname(file)] || 'application/octet-stream' });
+        createReadStream(file).pipe(response);
+    });
 });
 
-// 서버 실행 (ws://localhost:8080 사용 가능)
 const PORT = 8080;
-server.listen(PORT, () => {
-    console.log(`🚀 서버가 http://localhost:${PORT} 에서 실행 중!`);
-    console.log(`🚀 WebSocket은 ws://localhost:${PORT} 에서 실행 중!`);
-});
+server.listen(PORT, () => console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`));
