@@ -25,3 +25,9 @@ test('repeated selections do not become multiple units and replay identity ignor
  const a=snapshot(result,buffer);assert.equal(a.units.length,1);assert.equal(a.units[0].lastSeenMs,90);
  buffer.writeUInt32LE(500,32);assert.equal(snapshot(result,buffer).replayId,a.replayId);
 });
+test('live observer data keeps current per-player counts',()=>{
+ const live={kind:'live-observer',mapVersion:'2.323',gameTimeMs:12000,mapName:'ORDR 2.323',players:[{playerId:0,name:'player',traitPoints:4}],units:[{playerId:0,typeId:'h02E',count:2}]};
+ const result=core.normalizeSnapshot(live);
+ assert.equal(result.kind,'live-observer');assert.equal(result.units[0].count,2);assert.equal(result.players[0].traitPoints,4);
+ assert.throws(()=>core.normalizeSnapshot({...live,units:[...live.units,...live.units]}));
+});

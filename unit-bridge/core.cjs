@@ -4,6 +4,7 @@ const {rules:traitRules}=require('./replay/trait-transitions.cjs');
 const { createHash } = require('node:crypto');
 function readToken(token) { return createHash('sha256').update('stun-read-v1:'+token).digest('hex'); }
 function normalizeSnapshot(data) {
+    if(data?.kind === 'live-observer') return normalizeLiveObserver(data);
     if(data?.kind !== 'replay-observations') return identify(data);
     if(data.mapVersion !== '2.323' || !/^[a-f0-9]{64}$/.test(data.replayId || '')
         || !Number.isSafeInteger(data.replayTimeMs) || data.replayTimeMs < 0 || data.replayTimeMs > 86400000
@@ -33,6 +34,30 @@ function normalizeSnapshot(data) {
         const group=groups.get(key);group.count++;group.lastSeenMs=Math.max(group.lastSeenMs,u.lastSeenMs);
     }
     return {kind:data.kind,mapVersion:data.mapVersion,replayId:data.replayId,replayTimeMs:data.replayTimeMs,combinationAttempts:data.combinationAttempts,units:[...groups.values()],total:seen.size-replaced.size,traitTransitions};
+}
+function normalizeLiveObserver(data) {
+    if(data.mapVersion !== '2.323'
+        || !Number.isSafeInteger(data.gameTimeMs) || data.gameTimeMs < 0 || data.gameTimeMs > 86400000
+        || !Array.isArray(data.players) || data.players.length > 28
+        || !Array.isArray(data.units) || data.units.length > 20000) throw new Error('실시간 관측 형식 오류');
+    const playerIds=new Set(), players=[];
+    for(const p of data.players){
+        if(!p || !Number.isInteger(p.playerId) || p.playerId<0 || p.playerId>27 || playerIds.has(p.playerId)
+            || typeof p.name!=='string' || p.name.length>100
+            || !Number.isSafeInteger(p.traitPoints) || p.traitPoints<0 || p.traitPoints>1000000) throw new Error('실시간 플레이어 형식 오류');
+        playerIds.add(p.playerId);players.push({playerId:p.playerId,name:p.name,traitPoints:p.traitPoints});
+    }
+    const keys=new Set(), units=[];
+    for(const u of data.units){
+        const key=`${u?.playerId}:${u?.typeId}`;
+        if(!u || !playerIds.has(u.playerId) || !/^[\x20-\x7e]{4}$/.test(u.typeId||'') || keys.has(key)
+            || !Number.isSafeInteger(u.count) || u.count<0 || u.count>100000) throw new Error('실시간 유닛 형식 오류');
+        keys.add(key);
+        if(u.count===0)continue;
+        const definition=replayCatalog[u.typeId]||catalog[u.typeId];
+        units.push({playerId:u.playerId,typeId:u.typeId,name:definition?.heroName||definition?.name||`미확인 (${u.typeId})`,known:!!definition,count:u.count});
+    }
+    return {kind:'live-observer',mapVersion:'2.323',gameTimeMs:data.gameTimeMs,mapName:typeof data.mapName==='string'?data.mapName.slice(0,256):'',players,units,total:units.reduce((sum,u)=>sum+u.count,0)};
 }
 function identify(data) {
     if (data?.mapVersion !== '2.322' || !Array.isArray(data.units) || data.units.length > 20000) throw new Error('2.322 유닛 스냅샷이 필요합니다.');

@@ -65,11 +65,11 @@ async function main() {
         if(args[0]!=='--watch' || !args[1] || args.length>3 || (args.length===3 && args[2]!=='--send')) throw new Error(help);
         return watch(args[1],args[2]==='--send');
     }
-    console.log('충돌 조사용 임시 버전: Warcraft 실행 중에는 리플레이를 읽지 않습니다. 종료 후 분석만 지원합니다.');
+    console.log('2·3번은 워크래프트 실행 중에도 리플레이 파일을 계속 감시합니다.');
     console.log(help);
     const input=readline.createInterface({input:process.stdin,output:process.stdout});
     try {
-        const choice=(await input.question('1 샘플 / 2 리플레이 로컬 감시 / 3 리플레이 웹 전송 / 4 기존 수정맵 전송 / 0 종료 > ')).trim();
+        const choice=(await input.question('1 샘플 / 2 실시간 로컬 감시 / 3 실시간 웹 전송 / 4 기존 수정맵 / 0 종료 > ')).trim();
         if(choice==='0') return;
         if(choice==='1') { demo(); await input.question('Enter로 종료'); return; }
         if(!['2','3','4'].includes(choice)) throw new Error('메뉴 번호를 확인하세요.');
