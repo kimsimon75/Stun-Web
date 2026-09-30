@@ -24,5 +24,13 @@ const server = http.createServer((request, response) => {
     });
 });
 
-const PORT = 8080;
+const PORT = Number(process.env.PORT) || 8080;
+server.on('error', error => {
+    if (error.code === 'EADDRINUSE') {
+        console.error(`${PORT} 포트를 다른 프로그램이 사용 중입니다. 기존 서버를 종료하거나 PORT=8081로 실행하세요.`);
+        process.exitCode = 1;
+        return;
+    }
+    throw error;
+});
 server.listen(PORT, () => console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`));
