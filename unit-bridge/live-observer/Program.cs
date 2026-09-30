@@ -24,13 +24,17 @@ http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer
 var cancellation = new CancellationTokenSource();
 Console.CancelKeyPress += (_, e) => { e.Cancel = true; cancellation.Cancel(); };
 string lastFingerprint = "", lastStatus = "";
+var emptyObserverReads = 0;
 
 while (!cancellation.IsCancellationRequested)
 {
     using var observer = ObserverMemory.TryOpen();
     if (observer is null)
     {
-        Status("워크래프트 공유 메모리 대기 중", ref lastStatus);
+        var warcraftRunning=System.Diagnostics.Process.GetProcessesByName("Warcraft III").Length>0;
+        Status(warcraftRunning
+            ? "Warcraft는 실행 중이지만 관전자 API가 열리지 않았습니다 · 플레이어 모드에서는 실시간 유닛 정보가 제공되지 않습니다"
+            : "워크래프트 공유 메모리 대기 중", ref lastStatus);
         await Delay(cancellation.Token); continue;
     }
     observer.SetRefreshRate(500);
@@ -40,9 +44,15 @@ while (!cancellation.IsCancellationRequested)
         var snapshot = observer.ReadStable();
         if (snapshot is null || !snapshot.InGame)
         {
-            Status("게임 시작 대기 중", ref lastStatus);
+            var warcraftRunning=System.Diagnostics.Process.GetProcessesByName("Warcraft III").Length>0;
+            var empty=snapshot is not null && snapshot.GameTimeMs==0 && snapshot.MapName.Length==0 && snapshot.Players.Count==0;
+            emptyObserverReads=warcraftRunning&&empty?emptyObserverReads+1:0;
+            Status(emptyObserverReads>=3
+                ? "Warcraft는 실행 중이지만 관전자 API 데이터가 없습니다 · 플레이어 모드에서는 실시간 유닛 정보가 제공되지 않습니다"
+                : "게임 시작 대기 중", ref lastStatus);
             await Delay(cancellation.Token); continue;
         }
+        emptyObserverReads=0;
         frozenTicks=snapshot.GameTimeMs==lastGameTime?frozenTicks+1:0;lastGameTime=snapshot.GameTimeMs;
         if(frozenTicks>=5){Status("게임 상태 다시 연결 중",ref lastStatus);break;}
         if (!snapshot.MapName.Contains("ORDR", StringComparison.OrdinalIgnoreCase) && !snapshot.MapName.Contains("2.323", StringComparison.OrdinalIgnoreCase))
