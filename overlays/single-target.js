@@ -2,6 +2,8 @@ import { Var, Unit, Func } from "../import.js";
 
 export function renderSingleTarget({ itemList }) {
     Unit.Mono.forEach((item,index) =>{
+        const damageType = item[8];
+        const damageMultiplier = Unit.Seige[damageType];
         var t = 1 / item[3] * Math.min(Func.RoundX(1 + item[2] + (Var.speedBonusEx + Var.dex) / 100,3), 5);
 
     if(Unit.idxToRank(item[1]) === "희귀함"
@@ -19,13 +21,14 @@ export function renderSingleTarget({ itemList }) {
 
         const Grid = document.createElement("div");
         Grid.style.display = "grid";
-        Grid.style.gridTemplateColumns = "1.5fr 1fr 1fr"
+        Grid.style.gridTemplateColumns = "minmax(0, 1.6fr) repeat(2, minmax(0, 0.8fr)) minmax(0, 0.65fr)";
+        Grid.style.columnGap = "0.25rem";
 
         itemList.appendChild(Grid);
 
         const UnitName = document.createElement("div");
         UnitName.className = "Button BigFont";
-        UnitName.style.padding = "1rem";
+        UnitName.style.padding = "0.4rem 0.5rem";
         UnitName.style.borderRight = "none";
         if(index !== 0)
             UnitName.style.borderTop = "none";
@@ -35,12 +38,12 @@ export function renderSingleTarget({ itemList }) {
 
         const first = document.createElement("div");
         first.className = "Button BigFont";
-        first.style.padding = "1rem";
+        first.style.padding = "0.4rem 0.5rem";
         first.style.borderRight = "none";
         if(index !== 0)
             first.style.borderTop = "none";
 
-        first.innerText = Func.RoundX(Math.log(1 - item[5] * item[8]) / Math.log(1 - 0.75) * item[4] * t * 10 / 1.912, 3);
+        first.innerText = Func.RoundX(Math.log(1 - item[5] * damageMultiplier) / Math.log(1 - 0.75) * item[4] * t * 10 / 1.798, 3);
 
 
         Grid.appendChild(first);
@@ -48,12 +51,22 @@ export function renderSingleTarget({ itemList }) {
 
         const second = document.createElement("div");
         second.className = "Button BigFont";
-        second.style.padding = "1rem";
+        second.style.padding = "0.4rem 0.5rem";
         if(index !== 0)
             second.style.borderTop = "none";
-        second.innerText = Func.RoundX(Math.log(1 - item[7] * item[8]) / Math.log(1 - 0.75) * item[6] * t * 10/ 1.912 , 3);
+        second.innerText = Func.RoundX(Math.log(1 - item[7] * damageMultiplier) / Math.log(1 - 0.75) * item[6] * t * 10/ 1.798 , 3);
 
         Grid.appendChild(second);
+
+
+        const third = document.createElement("div");
+        third.className = "Button BigFont";
+        third.style.padding = "0.4rem 0.5rem";
+        if(index !== 0)
+            third.style.borderTop = "none";
+        third.innerText = damageType;
+
+        Grid.appendChild(third);
 
     })
 }
