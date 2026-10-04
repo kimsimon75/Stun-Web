@@ -71,25 +71,14 @@ async function main(args) {
     const markdown = await readFile(file, 'utf8');
     if (!markdown.trim()) throw new Error('패치노트 본문이 비어 있습니다.');
     const date = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Seoul' }).format(new Date());
-    if (process.env.PATCH_API_URL) {
-        const { publishViaApi } = require('./publish-via-api.cjs');
-        const result = await publishViaApi({ version, markdown, date, dryRun: flags.includes('--dry-run'), replace: flags.includes('--replace') });
-        console.log(result.dryRun ? `게시 미리보기:\n${JSON.stringify(result.index, null, 2)}` : `패치노트 게시 완료: ${version}`);
-        if (result.notification === 'failed') console.warn('저장은 완료됐으나 알림 요청에 실패했습니다. 본문을 다시 게시하지 말고 알림만 재시도하세요.');
-        return;
-    }
-    // AWS_PROFILE 또는 표준 AWS 환경변수/공유 자격증명을 사용합니다.
-    const client = new S3Client({ region: 'ap-northeast-2' });
-    try {
-        const result = await publishAndNotify(client, { version, markdown, date, dryRun: flags.includes('--dry-run'), replace: flags.includes('--replace') });
-        console.log(result.dryRun ? `업로드 미리보기 (변경 없음):\n${JSON.stringify(result.index, null, 2)}` : `패치노트 게시 완료: ${result.url}`);
-    } finally {
-        client.destroy();
-    }
+    const { publishViaApi } = require('./publish-via-api.cjs');
+    const result = await publishViaApi({ version, markdown, date, dryRun: flags.includes('--dry-run'), replace: flags.includes('--replace') });
+    console.log(result.dryRun ? `게시 미리보기:\n${JSON.stringify(result.index, null, 2)}` : `패치노트 게시 완료: ${version}`);
+    if (result.notification === 'failed') console.warn('저장은 완료됐으나 알림 요청에 실패했습니다. 본문을 다시 게시하지 말고 알림만 재시도하세요.');
 }
 
 if (require.main === module) main(process.argv.slice(2)).catch(error => {
-    console.error(error.name === 'CredentialsProviderError' ? 'AWS 인증을 찾지 못했습니다. AWS_PROFILE 또는 표준 AWS 인증 환경변수를 설정하세요.' : error.message);
+    console.error(error.message);
     process.exitCode = 1;
 });
 module.exports = { publish, updateIndex, publishAndNotify };

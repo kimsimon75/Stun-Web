@@ -5,7 +5,10 @@ const sub = text => ({ 'Fn::Sub': text });
 const attr = (name, key) => ({ 'Fn::GetAtt': [name, key] });
 const template = {
     AWSTemplateFormatVersion: '2010-09-09',
-    Description: 'Authenticated patch note publisher for Stun Web',
+    Description: 'Token-authenticated patch note publisher for Stun Web',
+    Parameters: {
+        PublishToken: { Type: 'String', NoEcho: true, MinLength: 32, Description: 'Bearer token used by patch-commit.cjs' },
+    },
     Resources: {
         Logs: { Type: 'AWS::Logs::LogGroup', Properties: { LogGroupName: '/aws/lambda/PublishPatchNote', RetentionInDays: 14 } },
         Role: { Type: 'AWS::IAM::Role', Properties: {
@@ -18,18 +21,17 @@ const template = {
             ] } }],
         } },
         Publisher: { Type: 'AWS::Lambda::Function', Properties: { FunctionName: 'PublishPatchNote', Runtime: 'nodejs22.x', Handler: 'index.handler', Timeout: 25, MemorySize: 256,
-            Role: attr('Role', 'Arn'), Environment: { Variables: { PATCH_BUCKET: 'patchnote', NOTIFY_FUNCTION: 'PutUpdate' } },
+            Role: attr('Role', 'Arn'), Environment: { Variables: { PATCH_BUCKET: 'patchnote', NOTIFY_FUNCTION: 'PutUpdate', PUBLISH_TOKEN: ref('PublishToken') } },
             Code: { ZipFile: fs.readFileSync(path.join(__dirname, 'publish-patch/index.cjs'), 'utf8') },
         } },
         Api: { Type: 'AWS::ApiGatewayV2::Api', Properties: { Name: 'StunPatchPublisher', ProtocolType: 'HTTP' } },
         Integration: { Type: 'AWS::ApiGatewayV2::Integration', Properties: { ApiId: ref('Api'), IntegrationType: 'AWS_PROXY', IntegrationUri: attr('Publisher', 'Arn'), PayloadFormatVersion: '2.0', TimeoutInMillis: 29000 } },
-        Route: { Type: 'AWS::ApiGatewayV2::Route', Properties: { ApiId: ref('Api'), RouteKey: 'POST /patchnotes', AuthorizationType: 'AWS_IAM', Target: { 'Fn::Join': ['/', ['integrations', ref('Integration')]] } } },
+        Route: { Type: 'AWS::ApiGatewayV2::Route', Properties: { ApiId: ref('Api'), RouteKey: 'POST /patchnotes', AuthorizationType: 'NONE', Target: { 'Fn::Join': ['/', ['integrations', ref('Integration')]] } } },
         Stage: { Type: 'AWS::ApiGatewayV2::Stage', Properties: { ApiId: ref('Api'), StageName: '$default', AutoDeploy: true, DefaultRouteSettings: { ThrottlingBurstLimit: 2, ThrottlingRateLimit: 1 } } },
         Permission: { Type: 'AWS::Lambda::Permission', Properties: { FunctionName: ref('Publisher'), Action: 'lambda:InvokeFunction', Principal: 'apigateway.amazonaws.com', SourceArn: sub('arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${Api}/*/POST/patchnotes') } },
     },
     Outputs: {
         PublishUrl: { Value: sub('https://${Api}.execute-api.${AWS::Region}.${AWS::URLSuffix}/patchnotes') },
-        CallerResource: { Description: 'Grant execute-api:Invoke on this ARN to the publishing identity', Value: sub('arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${Api}/$default/POST/patchnotes') },
     },
 };
 fs.writeFileSync(path.join(__dirname, 'patch-publisher.template.json'), JSON.stringify(template, null, 2) + '\n');

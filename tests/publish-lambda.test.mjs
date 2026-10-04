@@ -5,10 +5,11 @@ const require = createRequire(import.meta.url);
 const { createHandler } = require('../aws/publish-patch/index.cjs');
 const { publishViaApi } = require('../publish-via-api.cjs');
 const input = { version: 'test-1', date: '2026-09-27', markdown: '# Patch' };
-const event = data => ({ rawPath: '/patchnotes', requestContext: { http: { method: 'POST' } }, body: JSON.stringify(data) });
+const testToken = 'test-token-that-is-at-least-32-characters-long';
+const event = (data, token = testToken) => ({ rawPath: '/patchnotes', requestContext: { http: { method: 'POST' } }, headers: { authorization: `Bearer ${token}` }, body: JSON.stringify(data) });
 function fixture({ failAt, badIndex = false, notifyFail = false } = {}) {
     const calls = []; let notified = 0;
-    const handler = createHandler({ s3: { async send(command) {
+    const handler = createHandler({ publishToken: testToken, s3: { async send(command) {
         calls.push(command.input);
         if (calls.length === failAt) throw Object.assign(new Error(), { name: 'PreconditionFailed' });
         if (calls.length === 1) return { ETag: 'etag', Body: { transformToString: async () => badIndex ? '{}' : '[{"version":"old","date":"2026-09-01"}]' } };
@@ -29,6 +30,12 @@ test('validation and preview cannot write', async () => {
     const f = fixture(); assert.equal((await f.handler(event({ ...input, dryRun: true }))).statusCode, 200);
     assert.equal(f.calls.length, 1); assert.equal(f.notified(), 0);
 });
+test('missing or invalid publishing tokens are rejected before S3 access', async () => {
+    const f = fixture();
+    assert.equal((await f.handler(event(input, 'wrong-token'))).statusCode, 401);
+    assert.equal((await f.handler({ ...event(input), headers: {} })).statusCode, 401);
+    assert.equal(f.calls.length, 0);
+});
 test('corrupt index and write conflicts never notify', async () => {
     for (const options of [{ badIndex: true }, { failAt: 2 }, { failAt: 3 }]) {
         const f = fixture(options); const r = await f.handler(event(input));
@@ -40,13 +47,12 @@ test('notification failure preserves publication success', async () => {
     const f = fixture({ notifyFail: true }); const result = JSON.parse((await f.handler(event(input))).body);
     assert.equal(result.published, true); assert.equal(result.notification, 'failed');
 });
-test('Node signs API request with temporary credentials without a network call', async () => {
+test('Node sends the publishing token without AWS credentials', async () => {
     const response = await publishViaApi(input, {
         endpoint: 'https://example.execute-api.ap-northeast-2.amazonaws.com/patchnotes',
-        credentials: { accessKeyId: 'TEST', secretAccessKey: 'test-secret', sessionToken: 'test-session' },
+        token: testToken,
         fetchImpl: async (url, request) => {
-            assert.match(request.headers.authorization, /AWS4-HMAC-SHA256/);
-            assert.equal(request.headers['x-amz-security-token'], 'test-session');
+            assert.equal(request.headers.authorization, `Bearer ${testToken}`);
             assert.deepEqual(JSON.parse(request.body), input);
             return { ok: true, json: async () => ({ published: true }) };
         },

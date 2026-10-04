@@ -40,7 +40,7 @@ export function renderSingleTarget({ itemList }) {
         if(index !== 0)
             first.style.borderTop = "none";
 
-        first.innerText = Func.RoundX(Math.log(1 - item[5] * item[8]) / Math.log(1 - 0.75) * item[4] * t * 10 / 1.7, 3);
+        first.innerText = Func.RoundX(Math.log(1 - item[5] * item[8]) / Math.log(1 - 0.75) * item[4] * t * 10 / 1.912, 3);
 
 
         Grid.appendChild(first);
@@ -51,7 +51,7 @@ export function renderSingleTarget({ itemList }) {
         second.style.padding = "1rem";
         if(index !== 0)
             second.style.borderTop = "none";
-        second.innerText = Func.RoundX(Math.log(1 - item[7] * item[8]) / Math.log(1 - 0.75) * item[6] * t * 10/ 1.7 , 3);
+        second.innerText = Func.RoundX(Math.log(1 - item[7] * item[8]) / Math.log(1 - 0.75) * item[6] * t * 10/ 1.912 , 3);
 
         Grid.appendChild(second);
 

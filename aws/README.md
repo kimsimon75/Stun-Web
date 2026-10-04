@@ -1,8 +1,8 @@
 # 패치노트 게시 API 배포
 
-`patch-publisher.template.json`은 서울 리전에 배포할 CloudFormation 템플릿입니다. `node aws/build-template.cjs`로 Lambda 소스를 포함해 재생성합니다.
+`patch-publisher.template.json`은 서울 리전에 배포할 CloudFormation 템플릿입니다. `node aws/build-template.cjs`로 Lambda 소스를 포함해 재생성합니다. 배포할 때 32자 이상의 `PublishToken`을 입력하고 같은 값을 로컬 `.env`의 `PATCH_API_TOKEN`에 저장합니다.
 
-생성 리소스: `PublishPatchNote` Lambda(Node.js 22), `StunPatchPublisher` HTTP API, `POST /patchnotes` IAM 인증 경로, 실행 역할, 14일 보관 로그 그룹. 기존 S3 버킷과 PutUpdate 함수는 생성/수정하지 않습니다.
+생성 리소스: `PublishPatchNote` Lambda(Node.js 22), `StunPatchPublisher` HTTP API, 토큰 인증 `POST /patchnotes` 경로, 실행 역할, 14일 보관 로그 그룹. 기존 S3 버킷과 PutUpdate 함수는 생성/수정하지 않습니다.
 
 실행 역할의 권한:
 - `patchnote/patchnotes/*` 오브젝트 읽기·쓰기
@@ -12,9 +12,9 @@
 
 CloudFormation에서 템플릿 파일을 업로드하고 스택 이름 `stun-patch-publisher`로 생성합니다. IAM 리소스 생성 승인이 필요합니다. 이 파일을 만든 것만으로 AWS 리소스가 생성되는 것은 아닙니다.
 
-완료 후 Outputs의 `PublishUrl` 값을 로컬 `.env`의 `PATCH_API_URL`에 입력합니다. `CallerResource` ARN에 대해 `execute-api:Invoke` 권한이 있는 로컬 AWS 프로필을 사용합니다. 호출자 자격증명은 이 템플릿에서 만들거나 발급하지 않습니다.
+완료 후 Outputs의 `PublishUrl` 값을 로컬 `.env`의 `PATCH_API_URL`에 입력합니다. AWS CLI 프로필은 필요하지 않습니다. 토큰은 Git에 커밋하거나 다른 사람에게 공개하지 마세요.
 
-`PATCH_API_URL` 설정 시 `node patch-commit.cjs <버전> <본문.md> --dry-run`이 서명된 API 요청으로 미리보기를 수행합니다. 설정이 없으면 기존 S3 직접 게시 방식이 유지됩니다. 미리보기는 파일·목록·알림을 변경하지 않습니다. 실제 게시 확인은 승인된 본문으로 수행해야 합니다.
+`node patch-commit.cjs <버전> <본문.md> --dry-run`은 토큰을 담은 API 요청으로 미리보기를 수행합니다. 미리보기는 파일·목록·알림을 변경하지 않습니다. 실제 게시 확인은 승인된 본문으로 수행해야 합니다.
 
 서버는 버전·날짜·본문 크기를 검증하고, 본문 후 목록을 순서대로 저장하며 목록에는 ETag 조건을 사용합니다. 두 파일 저장은 원자적 트랜잭션이 아니므로 목록 저장 실패 시 `bodySaved`로 부분 성공을 알립니다. 같은 버전 동시 교체는 운영자가 직렬로 수행해야 합니다. 알림 실패는 게시 성공과 별도로 반환합니다. 현재 PutUpdate의 성공 응답은 모든 접속자 전달 성공을 보장하지 않습니다.
 

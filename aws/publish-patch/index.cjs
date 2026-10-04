@@ -1,12 +1,24 @@
 const { S3Client, GetObjectCommand, PutObjectCommand } = require('@aws-sdk/client-s3');
+const { timingSafeEqual } = require('node:crypto');
 
 const reply = (statusCode, data) => ({ statusCode, headers: { 'content-type': 'application/json; charset=utf-8' }, body: JSON.stringify(data) });
 
-function createHandler({ s3, notify, bucket = 'patchnote' }) {
+function hasValidToken(event, expectedToken) {
+    if (typeof expectedToken !== 'string' || expectedToken.length < 32) return false;
+    const headers = event.headers || {};
+    const authorization = headers.authorization ?? headers.Authorization ?? '';
+    const suppliedToken = authorization.startsWith('Bearer ') ? authorization.slice(7) : '';
+    const supplied = Buffer.from(suppliedToken);
+    const expected = Buffer.from(expectedToken);
+    return supplied.length === expected.length && timingSafeEqual(supplied, expected);
+}
+
+function createHandler({ s3, notify, bucket = 'patchnote', publishToken }) {
     return async event => {
         if (event.requestContext?.http?.method !== 'POST' || event.rawPath !== '/patchnotes') {
             return reply(404, { message: '올바르지 않은 경로입니다.' });
         }
+        if (!hasValidToken(event, publishToken)) return reply(401, { message: '게시 인증에 실패했습니다.' });
         let input;
         try {
             const body = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body;
@@ -57,6 +69,7 @@ exports.handler = async event => {
         const lambda = new LambdaClient({});
         runtimeHandler = createHandler({
             s3: new S3Client({}), bucket: process.env.PATCH_BUCKET,
+            publishToken: process.env.PUBLISH_TOKEN,
             notify: async () => {
                 const response = await lambda.send(new InvokeCommand({ FunctionName: process.env.NOTIFY_FUNCTION,
                     InvocationType: 'RequestResponse', Payload: Buffer.from(JSON.stringify({ requestContext: { routeKey: 'POST /webhook' } })) }));
