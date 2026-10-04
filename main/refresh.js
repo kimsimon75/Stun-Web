@@ -4,8 +4,14 @@ import { Var, Func, Unit } from "../import.js";
 
 export function CountOn() {
 
-    Var.m_god = Math.max(Math.min(Func.RoundX(484 - 3.875*Var.speedDebuff, 3), Var.max_move), Var.min_move);
-    Var.m_nightmare = Math.max(Math.min(Func.RoundX(484 - 3.875*Var.speedDebuff, 3), Var.max_move), Var.min_move);
+    const selectedFiveElders = Unit.allUnits.filter(unit => unit.rank === "오로성" && unit.Check > 0);
+    const sharedSpeedDebuff = Var.speedDebuff - selectedFiveElders.reduce((sum, unit) => sum + unit.slow, 0);
+    const difficultyDebuff = difficulty => sharedSpeedDebuff + selectedFiveElders.reduce((sum, unit) => (
+        sum + (unit.difficultyBuffs?.[difficulty]?.slow ?? unit.slow)
+    ), 0);
+
+    Var.m_god = Math.max(Math.min(Func.RoundX(484 - 3.875 * difficultyDebuff("god"), 3), Var.max_move), Var.min_move);
+    Var.m_nightmare = Math.max(Math.min(Func.RoundX(484 - 3.875 * difficultyDebuff("nightmare"), 3), Var.max_move), Var.min_move);
 
     const ranges = Unit.allUnits.filter(u => u.Check > 0).flatMap(u => {
         const position = Unit.findUnitPos(u.rank, u.name);

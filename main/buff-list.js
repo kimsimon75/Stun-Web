@@ -27,7 +27,11 @@ export function populateBuffMenus(DebuffOverlay, DebuffScroll, HRegenOverlay, HR
                 Scrolls[i].appendChild(menu);
 
                 const unitName = document.createElement("p");
-                unitName.innerText = `${item.name}(${item.rank}) ${items[i]}${(i===0||i==3) ? "%" : ""}`;
+                const difficultyField = i === 0 ? "atkSpeedBuff" : i === 3 ? "slow" : null;
+                const difficultyText = difficultyField && item.difficultyBuffs
+                    ? ` 악몽 ${item.difficultyBuffs.nightmare[difficultyField]}% · 신 ${item.difficultyBuffs.god[difficultyField]}%`
+                    : ` ${items[i]}${(i===0||i==3) ? "%" : ""}`;
+                unitName.innerText = `${item.name}(${item.rank})${difficultyText}`;
                 switch(i)
                 {
                     case 0:

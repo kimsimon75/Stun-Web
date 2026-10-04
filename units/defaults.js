@@ -22,6 +22,9 @@ export const UNIT_DEFAULTS = Object.freeze({
   manaRegen : 0,
 
   slow: 0,
+  percentDamageReduction: 0,
+  magicDefenseBonus: 0,
+  difficultyBuffs: null,
   Check: 0,
 
   StunCalCulate: 0,
@@ -40,4 +43,5 @@ export const RANK_DEFAULTS = Object.freeze({
   "제한됨":   { },
   "신비함":   { },
   "왜곡됨":   { },
+  "오로성":   { },
 });

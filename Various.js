@@ -29,6 +29,7 @@ export const Var = {
     koby : 0,
     intel : 0,
     dex : 0,
+    difficulty: "nightmare",
 
     StunCalCulation : 0.2,
     min_move: 89,

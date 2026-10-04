@@ -38,6 +38,7 @@
 | 연구소 | `ranks/laboratory.js` |
 | 항법 | `ranks/navigation.js` |
 | 특수함 | `ranks/special-buffs.js` |
+| 오로성 | `ranks/five-elders.js` |
 
 `unitStat`의 키 순서와 등급별 배열 순서는 화면 및 조회 인덱스에 사용됩니다.
 `unitsByRankIndex`는 해당 배열을 그대로 참조합니다.

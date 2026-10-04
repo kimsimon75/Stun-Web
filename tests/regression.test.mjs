@@ -12,6 +12,7 @@ import { parseStatValue } from '../main/stat-control.js';
 import { renderManaTiming } from '../overlays/mana-timing.js';
 import { renderStunCalculator } from '../overlays/stun-calculator.js';
 import { renderUnitDetail } from '../overlays/unit-detail.js';
+import { applyFiveElderPercentDamageEffect } from '../units/five-elders-effects.js';
 
 class Element {
     constructor() { this.style = {}; this.children = []; this.events = {}; this.value = ''; this.innerText = ''; this.parentElement = { classList: { toggle() {} } }; }
@@ -230,4 +231,21 @@ test('range summary only contains selected finite ranges', async () => {
     unit.Check = 0;
     CountOn();
     assert.deepEqual(Var.Sort, []);
+});
+
+test('Five Elders affect only their intended percent-damage types by difficulty', () => {
+    const warcury = Unit.allUnits.find(u => u.name === '워큐리' && u.rank === '오로성');
+    const saturn = Unit.allUnits.find(u => u.name === '새턴' && u.rank === '오로성');
+    const apply = (elder, damageType, damageMultiplier, difficulty) => applyFiveElderPercentDamageEffect({
+        elder, damageType, damageMultiplier, difficulty,
+    });
+
+    assert(Math.abs(apply(null, '마법', 0.8, 'nightmare') - 0.72) < 1e-12);
+    assert(Math.abs(apply(null, '마법', 0.8, 'god') - 0.76) < 1e-12);
+    assert(Math.abs(apply(warcury, '마법', 0.8, 'nightmare') - 0.64) < 1e-12);
+    assert(Math.abs(apply(warcury, '마법', 0.8, 'god') - 0.704) < 1e-12);
+    assert.equal(apply(warcury, '관통', 0.9, 'nightmare'), 0.9);
+    assert(Math.abs(apply(saturn, '관통', 0.9, 'nightmare') - 0.81) < 1e-12);
+    assert(Math.abs(apply(saturn, '관통', 0.9, 'god') - 0.837) < 1e-12);
+    assert(Math.abs(apply(saturn, '마법', 0.8, 'nightmare') - 0.72) < 1e-12);
 });

@@ -14,6 +14,7 @@ import { itemsUnits } from "./ranks/items.js";
 import { laboratoryUnits } from "./ranks/laboratory.js";
 import { navigationUnits } from "./ranks/navigation.js";
 import { specialBuffsUnits } from "./ranks/special-buffs.js";
+import { fiveEldersUnits } from "./ranks/five-elders.js";
 
 // 등급과 유닛의 기존 표시 순서를 유지합니다.
 export const unitStat = {
@@ -33,4 +34,5 @@ export const unitStat = {
   "연구소": laboratoryUnits,
   "항법": navigationUnits,
   "특수함": specialBuffsUnits,
+  "오로성": fiveEldersUnits,
 };

@@ -17,6 +17,7 @@ export const unitRates = {
     연구소: 13,
     항법: 14,
     특수함: 15,
+    오로성: 16,
 }
 
 export const rankByIndex = (() => {

@@ -171,6 +171,7 @@ export function openOverlay(sortCount, unitCount) {
         renderRyumaCondition({ overlayContent });
     }
     else if (sortCount == 800 && unitCount == 800) {
+        overlayContent.classList.add("single-target-overlay");
         renderSingleTarget({ itemList });
     }
     else if (sortCount == -1) {
