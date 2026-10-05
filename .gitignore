@@ -6,6 +6,8 @@ node_modules/
 .functions-build/
 dist/
 .exe-build/
+**/bin/
+**/obj/
 web-read-token.txt
 .vs/
 .vscode/
