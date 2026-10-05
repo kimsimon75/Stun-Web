@@ -33,6 +33,22 @@ h1 { font-size: clamp(25px, 2.5vw, 37px); font-weight: 750; letter-spacing: -1.6
 .notes-link:hover { border-color: var(--accent); color: var(--accent); }
 .notes-link span { margin-left: 14px; }
 .workspace, .tools-section, .patch-section { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 4px 18px #183c2804; }
+.unit-connection { background: #101b2c; color: #eaf0fa; border: 1px solid #3d536c; border-radius: 16px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 8px 28px #09132224; }
+.unit-connection .section-heading { background: #17283d; border-bottom-color: #35465c; }
+.unit-connection .section-heading h2 { color: #eef5ff; }
+.unit-connection .section-heading p, .unit-link-content > p { color: #b9c9dc; }
+.unit-link-content { padding: 18px 24px 22px; }
+.unit-link-content > p { margin: 0 0 12px; line-height: 1.55; }
+.unit-link-form, .unit-link-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.unit-link-form { margin: 14px 0; }
+.unit-link-form input { min-width: 220px; flex: 1; padding: 10px 12px; background: #091322; color: #eef5ff; border: 1px solid #63748b; border-radius: 8px; }
+.unit-link-form button, .unit-connection select { padding: 9px 13px; background: #223c59; color: #fff; border: 1px solid #6686aa; border-radius: 8px; cursor: pointer; }
+.unit-link-meta { justify-content: space-between; }
+.unit-link-meta p { margin: 0; color: #77d7c4; }
+.unit-link-scroll { max-height: 260px; overflow: auto; margin-top: 12px; }
+.unit-link-scroll table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+.unit-link-scroll th, .unit-link-scroll td { padding: 9px 10px; border-bottom: 1px solid #35465c; white-space: nowrap; }
+.unit-link-scroll th { position: sticky; top: 0; background: #17283d; }
 .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; }
 .section-heading > div { display: flex; align-items: center; gap: 11px; }
 .section-heading h2 { font-size: 15px; letter-spacing: -.4px; margin: 0; font-weight: 700; }

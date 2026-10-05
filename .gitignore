@@ -3,5 +3,9 @@
 !.env.example
 node_modules/
 .site-build/
+.functions-build/
+dist/
+.exe-build/
+web-read-token.txt
 .vs/
 .vscode/

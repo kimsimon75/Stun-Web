@@ -2,6 +2,10 @@
 command = "npm ci --include=dev && npm run build"
 publish = ".site-build"
 
+[functions]
+directory = ".functions-build"
+node_bundler = "esbuild"
+
 [build.environment]
 NODE_VERSION = "22"
 

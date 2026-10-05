@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "build": "node scripts/build-site.cjs",
+    "build": "node scripts/build-site.cjs && node scripts/build-functions.cjs",
     "test": "node --test tests/*.test.mjs"
   },
   "author": "",
@@ -11,5 +11,10 @@
   "description": "",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1141.0"
+  },
+  "devDependencies": {
+    "@netlify/blobs": "11.1.1",
+    "esbuild": "0.28.2",
+    "w3gjs": "4.3.0"
   }
 }
