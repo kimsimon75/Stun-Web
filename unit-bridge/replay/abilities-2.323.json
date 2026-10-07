@@ -3852,7 +3852,7 @@
   "A0OM": {
     "name": "!0706_쵸파탱크",
     "tooltip": "프랑키의 걸작 중 하나인 슈퍼 쵸파 탱크입니다.\n\n◎기본효과 : 공격속도 느림, 공격력 매우 높음\n　▶ 초월 업그레이드 효과를 받지 않습니다\n◎추가효과 : 450범위 기본 공격 피해량의 100% 데미지\n　▶ 공격시마다 단일적에게 추가로 45만(x1~1.5) 마법 데미지",
-    "icon": "ReplaceableTextures\\CommandButtons\\BTNSeigeEngine.blp"
+    "icon": "ReplaceableTextures\\CommandButtons\\BTNHeroEngine.blp"
   },
   "A0OL": {
     "name": "!0706_의료품",

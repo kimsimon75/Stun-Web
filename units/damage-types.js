@@ -1,8 +1,7 @@
-export const Seige = {
+export const Hero = {
     패기: 1.05,
     일반: 1,
     관통: 0.9,
-    공성: 0.85,
-    히든: 0.8,
+    공성: 0.8,
     마법: 0.8,
 }

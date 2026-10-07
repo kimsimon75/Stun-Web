@@ -1,6 +1,6 @@
 // 기존 import 경로와 공개 이름을 유지하는 진입점.
 export { unitRates, rankByIndex, idxToRank } from "./units/ranks.js";
-export { Seige } from "./units/damage-types.js";
+export { Hero } from "./units/damage-types.js";
 export { STUN, SLOW } from "./units/effects.js";
 export { UNIT_DEFAULTS, RANK_DEFAULTS } from "./units/defaults.js";
 export { unit } from "./units/factory.js";

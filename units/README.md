@@ -6,7 +6,7 @@
 | 수정할 내용 | 파일 |
 | --- | --- |
 | 등급 번호와 이름 변환 | `ranks.js` |
-| 공격 유형별 계수 (`Seige`) | `damage-types.js` |
+| 공격 유형별 계수 (`Hero`) | `damage-types.js` |
 | 스턴·이감 효과 생성 (`STUN`, `SLOW`) | `effects.js` |
 | 유닛 및 등급 기본값 | `defaults.js` |
 | 유닛 생성 (`unit`) | `factory.js` |

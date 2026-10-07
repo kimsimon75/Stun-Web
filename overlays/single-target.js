@@ -16,7 +16,7 @@ export function renderSingleTarget({ itemList }) {
         const damageType = item[8];
         const damageMultiplier = applyFiveElderPercentDamageEffect({
             damageType,
-            damageMultiplier: Unit.Seige[damageType],
+            damageMultiplier: Unit.Hero[damageType],
             elder: getSelectedElder(),
             difficulty: Var.difficulty,
         });
