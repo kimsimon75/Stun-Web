@@ -113,6 +113,12 @@ test('Laboon calculation follows the catalog stun duration', () => {
         unit.stun1.dur = original;
         UnitTotalStun();
     }
+    const itemList = new Element();
+    renderUnitDetail({ itemList, ...Unit.findUnitPos('전설적인', '라분'), u: unit });
+    const text = itemList.children.map(item => item.innerText).join('\n');
+    assert.match(text, /7타는 확정 스턴/);
+    assert.match(text, /스턴 1 편차 \(10초\) : ±\d+\.\d{2}%/);
+    assert(!text.includes('NaN'));
 });
 
 test('slow sorting never mutates buff indexes and keeps zero-rate effects', () => {
@@ -137,6 +143,14 @@ test('deviation mode preserves selected counts and total stun', () => {
         const pos = Unit.findUnitPos('초월함', name);
         assert.equal(nodes.get(`c-${pos.sortCount}-${pos.unitCount}`).innerText, 2);
     }
+    const pos = Unit.findUnitPos('초월함', '샹크스');
+    const display = nodes.get(`r-${pos.sortCount}-${pos.unitCount}`);
+    assert.match(display.innerText, /^±\d+\.\d{2}%$/);
+    assert.match(display.title, /10초.*표준편차/);
+    Var.deviationToggle = false;
+    refreshStunTable();
+    assert.match(display.innerText, /스턴$/);
+    assert.equal(display.title, '');
 });
 
 test('buff groups preserve lower-tier checks when activating higher tier', () => {

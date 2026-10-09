@@ -1,4 +1,5 @@
 import {Var, Unit} from "./import.js";
+import { laboonStunUptime } from "./units/laboon-stun.js";
 
 export const SetElemental = function(){
     document.getElementsByClassName("TotalStun")[0].innerText = Var.totalStun.toFixed(3) + "스턴";
@@ -205,6 +206,7 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 }           
                  
     
+                u.StunAttackInterval = t;
                 let unitManaRegen = Var.manaRegen + Brave(Var.koby) + ((Unit.idxToRank(sortCount)  === "초월함" || u.name === "니카") ? Var.intel * 0.08 : 0);
                 let unitHealthRegen = Var.healthRegen + Brave(Var.koby) + ((Unit.idxToRank(sortCount)  === "초월함" || u.name === "니카") ? Var.intel * 0.04 : 0);
     
@@ -212,38 +214,8 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 let m_stun = u.manaDuration;
                 let stun = 0;
     
-                if (u.name === "라분") // 라분
-                {
-                    let delay = 0.39/ ((1 + unitSpeedBonusEx) > 5 ? 5 : (1 + unitSpeedBonusEx))
-                    const times = Array.from({ length: 7 }, (_, k) => k * t + delay);
-                    stun = Math.log(1 - (
-                    ((0.65 + times[0] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[0])) * 0.27 +
-                    ((0.65 + times[1] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[1])) * 0.27 * (1 - 0.27) +
-                    ((0.65 + times[2] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[2])) * 0.27 * Math.pow(1 - 0.27, 2) +
-                    ((0.65 + times[3] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[3])) * 0.27 * Math.pow(1 - 0.27, 3) +
-                    ((0.65 + times[4] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[4])) * 0.27 * Math.pow(1 - 0.27, 4) +
-                    ((0.65 + times[5] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[5])) * 0.27 * Math.pow(1 - 0.27, 5) +
-                    ((0.65 + times[6] > u.stun1.dur) ? u.stun1.dur : (0.65 + times[6])) *
-                    (1 - 
-                        0.27 - 
-                        0.27 * (1 - 0.27) - 
-                        0.27 * Math.pow(1 - 0.27, 2) -
-                        0.27 * Math.pow(1 - 0.27, 3) - 
-                        0.27 * Math.pow(1 - 0.27, 4)- 
-                        0.27 * Math.pow(1 - 0.27, 5))) / 
-                        ((0.65 + times[0]) * 0.27 +
-                        (0.65 + times[1]) * 0.27 * (1 - 0.27) +
-                        (0.65 + times[2]) * 0.27 * Math.pow(1 - 0.27, 2) +
-                        (0.65 + times[3]) * 0.27 * Math.pow(1 - 0.27, 3) +
-                        (0.65 + times[4]) * 0.27 * Math.pow(1 - 0.27, 4) +
-                        (0.65 + times[5]) * 0.27 * Math.pow(1 - 0.27, 5) +
-                        (0.65 + times[6] ) *
-                        (1 - 
-                            (0.27 + 0.27 * Math.pow(1 - 0.27, 1) + 
-                        0.27 * Math.pow(1 - 0.27, 2) + 
-                        0.27 * Math.pow(1 - 0.27, 3) + 
-                        0.27 * Math.pow(1 - 0.27, 4) + 
-                        0.27 * Math.pow(1 - 0.27, 5))))) / Math.log(Var.StunCalCulation);
+                if (u.name === "라분") {
+                    stun = Math.log(1 - laboonStunUptime(u)) / Math.log(Var.StunCalCulation);
                 }
                 else if(u.name === "죠즈")
                 {

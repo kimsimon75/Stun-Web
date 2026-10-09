@@ -1,5 +1,6 @@
 import { Var, Unit, Func } from "../import.js";
 import { RoundX } from "../function.js";
+import { unitStunDeviation } from "../units/stun-deviation.js";
 
 export function renderUnitDetail({ itemList, sortCount, unitCount, u }) {
     let x1 = u.stun1.p;
@@ -15,6 +16,13 @@ export function renderUnitDetail({ itemList, sortCount, unitCount, u }) {
     let m_stun = u.manaDuration;
     let n1 = Math.floor(s1 * t);
     let n2 = Math.floor(s2 * t);
+
+    if (u.name === "라분") {
+        t = 1 / u.StunAttackInterval;
+        const note = document.createElement("li");
+        note.innerText = "스턴 발동 후 0.65초 대기하고 다시 공격합니다. 1~6타는 각각 27%, 7타는 확정 스턴입니다. 첫 타격 지연은 0.39초를 공속 배율로 나눠 반영합니다.";
+        itemList.appendChild(note);
+    }
 
     if (u.showSkillBreakdown) {
         const note = document.createElement("li");
@@ -101,64 +109,11 @@ export function renderUnitDetail({ itemList, sortCount, unitCount, u }) {
                     item.innerText = `스턴 1 샐 확률 : ${(-(x1 * s1 * t - n1 * x1 - 1) * Math.pow(1 - x1, n1) * 100).toFixed(2)}%`;
                 break;
             case 11:
-                if (u.name == "라분") {
-                    let count = 0;
-                    let time1 = 0.65 + 0 / t - u.stun1.dur;
-                    if (time1 > 0)
-                        count++;
-                    else
-                        time1 = 0;
-
-                    let time2 = 0.65 + 1 / t - u.stun1.dur;
-                    if (time2 > 0)
-                        count++;
-                    else
-                        time2 = 0;
-
-                    let time3 = 0.65 + 2 / t - u.stun1.dur;
-                    if (time3 > 0)
-                        count++;
-                    else
-                        time3 = 0;
-
-                    let time4 = 0.65 + 3 / t - u.stun1.dur;
-                    if (time4 > 0)
-                        count++;
-                    else
-                        time4 = 0;
-
-                    let time5 = 0.65 + 4 / t - u.stun1.dur;
-                    if (time5 > 0)
-                        count++;
-                    else
-                        time5 = 0;
-
-                    let time6 = 0.65 + 5 / t - u.stun1.dur;
-                    if (time6 > 0)
-                        count++;
-                    else
-                        time6 = 0;
-
-                    let time7 = 0.65 + 6 / t - u.stun1.dur;
-                    if (time7 > 0)
-                        count++;
-                    else
-                        time7 = 0;
-                    item.innerText = `스턴 1 편차 : ${((
-                        time1 * x1 * Math.pow(1 - x1, count - 7) +
-                        time2 * x1 * Math.pow(1 - x1, count - 6) +
-                        time3 * x1 * Math.pow(1 - x1, count - 5) +
-                        time4 * x1 * Math.pow(1 - x1, count - 4) +
-                        time5 * x1 * Math.pow(1 - x1, count - 3) +
-                        time6 * x1 * Math.pow(1 - x1, count - 2) +
-                        time7 * (
-                            1 -
-                            x1 -
-                            x1 * (1 - x1) -
-                            x1 * Math.pow(1 - x1, 2) -
-                            x1 * Math.pow(1 - x1, 3) -
-                            x1 * Math.pow(1 - x1, 4) -
-                            x1 * Math.pow(1 - x1, 5)))).toFixed(3)}초`;
+                if (u.name === "라분") {
+                    const estimate = unitStunDeviation(u);
+                    item.innerText = estimate
+                        ? `스턴 1 편차 (10초) : ±${estimate.deviationPercent.toFixed(2)}%`
+                        : "스턴 1 편차 : 측정 불가";
                 }
                 else if (u.UnitName == "루피") {
                     item.innerText = `스턴 1 편차 : ${((n1 + 1 + 1 / x1) / t - s1).toFixed(3)}초`;
