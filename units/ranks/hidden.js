@@ -3,7 +3,7 @@ import { STUN, SLOW } from "../effects.js";
 
 export const hiddenUnits = [
     // 기존
-    unit("히든", "방주맥심", { rawcode: "h03X", atkSpeedBonus: 2.6, attackCycle: 0.64, slow2: SLOW.chance(0.14, 3, 30) }),
+    unit("히든", "방주맥심", { rawcode: "h03X", atkSpeedBonus: 2.6, attackCycle: 0.64, slow1: SLOW.chance(0.14, 3, 30) }),
     unit("히든", "봉쿠레",     { rawcode: "h03O", atkSpeedBonus: 2.6, attackCycle: 0.94, stun1: STUN.chance(0.12, 1.65, 500) }),
     unit("히든", "써니호",     { rawcode: "h03L", atkSpeedBonus: 2.6, attackCycle: 0.45, stun1: STUN.chance(0.1, 1.4, 600) }),
     unit("히든", "아오키지",   { rawcode: "h041", atkSpeedBonus: 2.6, attackCycle: 0.79, stun1: STUN.chance(0.1, 1.7, 415), slow: 35 }),

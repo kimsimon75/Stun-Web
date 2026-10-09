@@ -1,5 +1,4 @@
 import {Var, Unit} from "./import.js";
-import { laboonStunUptime } from "./units/laboon-stun.js";
 
 export const SetElemental = function(){
     document.getElementsByClassName("TotalStun")[0].innerText = Var.totalStun.toFixed(3) + "스턴";
@@ -215,7 +214,24 @@ export function lowSpeed(sortCount, unitCount, AfterShock) {
                 let stun = 0;
     
                 if (u.name === "라분") {
-                    stun = Math.log(1 - laboonStunUptime(u)) / Math.log(Var.StunCalCulation);
+                    const delay = 0.39 * (t / u.attackCycle);
+                    const chance = u.stun1.p;
+                    let expectedTime = 0;
+                    let expectedStun = 0;
+                    const cycles = [];
+
+                    for (let hit = 0; hit < 7; hit++) {
+                        // 1~6타는 확률 발동, 앞의 6타가 실패하면 7타는 확정.
+                        const probability = (1 - chance) ** hit * (hit === 6 ? 1 : chance);
+                        const time = 0.65 + delay + hit * t;
+                        const stunnedTime = Math.min(u.stun1.dur, time);
+                        cycles.push({ probability, time, stunnedTime });
+                        expectedTime += time * probability;
+                        expectedStun += stunnedTime * probability;
+                    }
+
+                    u.StunCycles = cycles;
+                    stun = Math.log(1 - expectedStun / expectedTime) / Math.log(Var.StunCalCulation);
                 }
                 else if(u.name === "죠즈")
                 {

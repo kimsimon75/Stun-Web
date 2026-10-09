@@ -1,5 +1,3 @@
-import { laboonStunCycles, laboonStunUptime } from './laboon-stun.js';
-
 export const STUN_DEVIATION_WINDOW = 10;
 
 // Stationary attack model: attacks are independent, and a stun refreshes its
@@ -65,17 +63,21 @@ export function estimateStunDeviation(interval, effects, window = STUN_DEVIATION
     };
 }
 
-export function estimateLaboonDeviation(unit, window = STUN_DEVIATION_WINDOW) {
-    const cycles = laboonStunCycles(unit);
-    if (!cycles || !Number.isFinite(window) || window <= 0) return null;
-    const expectedPeriod = cycles.reduce((sum, cycle) => sum + cycle.probability * cycle.period, 0);
-    const mean = laboonStunUptime(unit);
-    if (cycles.every(cycle => cycle.probability === 0 || cycle.covered === cycle.period)) {
-        return { meanPercent: 100, deviationPercent: 0, model: 'laboon' };
-    }
-    // Reproducible finite-window simulation, including the stationary starting
-    // phase. Longer cycles occupy more time, so the first cycle is length-biased.
-    // Every later cycle uses the actual capped geometric distribution above.
+// Reuse the exact same cycles as the uptime calculation. Sample a stationary
+// 10-second window: its initial cycle is length-biased and begins at a random
+// phase; later cycles follow their original proc probabilities. A fixed seed
+// makes the approximation stable between UI refreshes.
+export function estimateCycleDeviation(cycles, window = STUN_DEVIATION_WINDOW) {
+    if (!Array.isArray(cycles) || !cycles.length || !Number.isFinite(window) || window <= 0
+        || cycles.some(cycle => !Number.isFinite(cycle.probability) || cycle.probability < 0
+            || !Number.isFinite(cycle.time) || cycle.time <= 0 || !Number.isFinite(cycle.stunnedTime)
+            || cycle.stunnedTime < 0 || cycle.stunnedTime > cycle.time)) return null;
+    const probabilitySum = cycles.reduce((sum, cycle) => sum + cycle.probability, 0);
+    if (Math.abs(probabilitySum - 1) > 1e-8) return null;
+    const expectedTime = cycles.reduce((sum, cycle) => sum + cycle.probability * cycle.time, 0);
+    const expectedStun = cycles.reduce((sum, cycle) => sum + cycle.probability * cycle.stunnedTime, 0);
+    const mean = expectedStun / expectedTime;
+    if (mean === 0 || mean === 1) return { meanPercent: mean * 100, deviationPercent: 0, model: 'cycle' };
     let state = 0x19ab007;
     const random = () => {
         state ^= state << 13;
@@ -84,9 +86,9 @@ export function estimateLaboonDeviation(unit, window = STUN_DEVIATION_WINDOW) {
         return (state >>> 0) / 4294967296;
     };
     const sample = stationary => {
-        let target = random();
+        let target = random() * probabilitySum;
         for (const cycle of cycles) {
-            target -= cycle.probability * (stationary ? cycle.period / expectedPeriod : 1);
+            target -= cycle.probability * (stationary ? cycle.time / expectedTime : 1);
             if (target <= 0) return cycle;
         }
         return cycles[cycles.length - 1];
@@ -95,12 +97,12 @@ export function estimateLaboonDeviation(unit, window = STUN_DEVIATION_WINDOW) {
     let squaredError = 0;
     for (let index = 0; index < samples; index++) {
         let cycle = sample(true);
-        let phase = random() * cycle.period;
+        let phase = random() * cycle.time;
         let remaining = window;
         let covered = 0;
         while (remaining > 0) {
-            const elapsed = Math.min(remaining, cycle.period - phase);
-            covered += Math.max(0, Math.min(cycle.covered, phase + elapsed) - phase);
+            const elapsed = Math.min(remaining, cycle.time - phase);
+            covered += Math.max(0, Math.min(cycle.stunnedTime, phase + elapsed) - phase);
             remaining -= elapsed;
             if (remaining <= 0) break;
             cycle = sample(false);
@@ -108,11 +110,11 @@ export function estimateLaboonDeviation(unit, window = STUN_DEVIATION_WINDOW) {
         }
         squaredError += (covered / window - mean) ** 2;
     }
-    return { meanPercent: mean * 100, deviationPercent: 100 * Math.sqrt(squaredError / samples), model: 'laboon' };
+    return { meanPercent: mean * 100, deviationPercent: 100 * Math.sqrt(squaredError / samples), model: 'cycle' };
 }
 
 export function unitStunDeviation(unit) {
-    if (unit.name === '라분') return estimateLaboonDeviation(unit);
+    if (unit.name === '라분') return estimateCycleDeviation(unit.StunCycles);
     if (unit.stun1.type === 'cooldown') return { meanPercent: 100 * Math.min(1, unit.stun1.dur / unit.stun1.cd), deviationPercent: 0 };
     if (unit.stun1.type === 'none' && unit.stun2.type === 'none') return null;
     return estimateStunDeviation(unit.StunAttackInterval, [unit.stun1, unit.stun2]);

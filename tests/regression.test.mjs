@@ -13,6 +13,7 @@ import { renderManaTiming } from '../overlays/mana-timing.js';
 import { renderStunCalculator } from '../overlays/stun-calculator.js';
 import { renderUnitDetail } from '../overlays/unit-detail.js';
 import { applyFiveElderPercentDamageEffect } from '../units/five-elders-effects.js';
+import { unitStunDeviation } from '../units/stun-deviation.js';
 
 class Element {
     constructor() { this.style = {}; this.children = []; this.events = {}; this.value = ''; this.innerText = ''; this.parentElement = { classList: { toggle() {} } }; }
@@ -113,12 +114,34 @@ test('Laboon calculation follows the catalog stun duration', () => {
         unit.stun1.dur = original;
         UnitTotalStun();
     }
-    const itemList = new Element();
-    renderUnitDetail({ itemList, ...Unit.findUnitPos('전설적인', '라분'), u: unit });
-    const text = itemList.children.map(item => item.innerText).join('\n');
-    assert.match(text, /7타는 확정 스턴/);
-    assert.match(text, /스턴 1 편차 \(10초\) : ±\d+\.\d{2}%/);
-    assert(!text.includes('NaN'));
+});
+
+test('simplified Laboon formula preserves the original weighted result across attack speeds', () => {
+    const unit = Unit.unitStat['전설적인'].find(u => u.name === '라분');
+    const royal = Unit.allUnits.find(u => u.rank === '항법' && u.name === '로얄로더');
+    const originalDuration = unit.stun1.dur;
+    const probabilities = [0.27, 0.27 * 0.73, 0.27 * 0.73 ** 2,
+        0.27 * 0.73 ** 3, 0.27 * 0.73 ** 4, 0.27 * 0.73 ** 5];
+    probabilities.push(1 - probabilities.reduce((sum, p) => sum + p, 0));
+    try {
+        for (const speed of [0, 100, 400]) for (const duration of [0, 0.9, 2.25]) for (const selected of [0, 1]) {
+            Var.speedBonusEx = speed;
+            royal.Check = selected;
+            unit.stun1.dur = duration;
+            UnitTotalStun();
+            const t = unit.StunAttackInterval;
+            const intervals = probabilities.map((_, hit) => 0.65 + 0.39 * (t / unit.attackCycle) + hit * t);
+            const weightedTime = intervals.reduce((sum, time, hit) => sum + time * probabilities[hit], 0);
+            const weightedStun = intervals.reduce((sum, time, hit) => sum + Math.min(duration, time) * probabilities[hit], 0);
+            const expected = Math.log(1 - weightedStun / weightedTime) / Math.log(Var.StunCalCulation);
+            assert(Math.abs(unit.StunCalCulate - expected) < 1e-10);
+        }
+    } finally {
+        unit.stun1.dur = originalDuration;
+        royal.Check = 0;
+        Var.speedBonusEx = defaults.speedBonusEx;
+        UnitTotalStun();
+    }
 });
 
 test('slow sorting never mutates buff indexes and keeps zero-rate effects', () => {
@@ -130,6 +153,30 @@ test('slow sorting never mutates buff indexes and keeps zero-rate effects', () =
     assert(result.every((u, i) => i === 0 || Unit.unitRates[result[i - 1].rank] >= Unit.unitRates[u.rank]));
     result[0].SlowCalculate = 0;
     assert(getSlowUnits().includes(result[0]));
+});
+
+test('Laboon deviation and detail use the same delayed seven-hit cycles as uptime', () => {
+    const unit = Unit.unitStat['전설적인'].find(u => u.name === '라분');
+    assert.equal(unit.StunCycles.length, 7);
+    assert.equal(unit.StunCycles[0].time, 0.65 + 0.39 * (unit.StunAttackInterval / unit.attackCycle));
+    assert.equal(unit.StunCycles[6].probability, 0.73 ** 6);
+    const estimate = unitStunDeviation(unit);
+    const uptime = 100 * (1 - Var.StunCalCulation ** unit.StunCalCulate);
+    assert(Math.abs(estimate.meanPercent - uptime) < 1e-10);
+    const pos = Unit.findUnitPos('전설적인', '라분');
+    Var.deviationToggle = true;
+    refreshStunTable();
+    const display = nodes.get(`r-${pos.sortCount}-${pos.unitCount}`);
+    assert.equal(display.innerText, `±${estimate.deviationPercent.toFixed(2)}%`);
+    assert.match(display.title, /7타 확정/);
+    const itemList = new Element();
+    renderUnitDetail({ itemList, ...pos, u: unit });
+    assert(itemList.children.some(item => item.innerText === `스턴 1 편차 (10초) : ${display.innerText}`));
+    Var.speedBonusEx += 100;
+    UnitTotalStun();
+    const buffed = unitStunDeviation(unit);
+    assert(buffed.meanPercent > estimate.meanPercent);
+    assert(buffed.deviationPercent < estimate.deviationPercent);
 });
 
 test('deviation mode preserves selected counts and total stun', () => {

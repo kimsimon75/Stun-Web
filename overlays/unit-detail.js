@@ -17,13 +17,6 @@ export function renderUnitDetail({ itemList, sortCount, unitCount, u }) {
     let n1 = Math.floor(s1 * t);
     let n2 = Math.floor(s2 * t);
 
-    if (u.name === "라분") {
-        t = 1 / u.StunAttackInterval;
-        const note = document.createElement("li");
-        note.innerText = "스턴 발동 후 0.65초 대기하고 다시 공격합니다. 1~6타는 각각 27%, 7타는 확정 스턴입니다. 첫 타격 지연은 0.39초를 공속 배율로 나눠 반영합니다.";
-        itemList.appendChild(note);
-    }
-
     if (u.showSkillBreakdown) {
         const note = document.createElement("li");
         note.innerText = "샷건과 로켓은 각각 계산합니다. 마나 설정을 켜면 총 스턴 지수·가동률에 로켓을 합산하고, 끄면 샷건만 반영합니다.";

@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { estimateStunDeviation, estimateLaboonDeviation, unitStunDeviation } from '../units/stun-deviation.js';
-import { laboonStunCycles, laboonStunUptime } from '../units/laboon-stun.js';
+import { estimateStunDeviation, estimateCycleDeviation, unitStunDeviation } from '../units/stun-deviation.js';
 
 const chance = (p, dur) => ({ type: 'chance', p, dur });
 
@@ -65,53 +64,49 @@ test('fixed cooldowns have no proc randomness and mana-only effects need a separ
     assert.equal(unitStunDeviation({ stun1: { type: 'none' }, stun2: { type: 'none' } }), null);
 });
 
-const laboon = (p = 0.27, duration = 2.25) => ({
-    name: '라분', attackCycle: 1.33, StunAttackInterval: 0.5,
-    stun1: chance(p, duration), stun2: { type: 'none' },
-});
-
-test('Laboon probabilities stop at the seventh hit and match the existing uptime formula', () => {
-    const unit = laboon();
-    const cycles = laboonStunCycles(unit);
-    assert.equal(cycles.length, 7);
-    assert(Math.abs(cycles.reduce((sum, cycle) => sum + cycle.probability, 0) - 1) < 1e-12);
-    assert.equal(cycles[0].probability, 0.27);
-    assert.equal(cycles[6].probability, 0.73 ** 6);
-    assert.equal(cycles[0].period, 0.65 + 0.39 * 0.5 / 1.33);
-    assert.equal(cycles[6].period, cycles[0].period + 6 * 0.5);
-    // Independently enumerate first success for hits 1..6; otherwise force hit 7.
-    let expectedTime = 0, expectedStun = 0;
-    for (let hits = 1; hits <= 7; hits++) {
-        const probability = hits < 7 ? 0.27 * 0.73 ** (hits - 1) : 0.73 ** 6;
-        const time = 0.65 + 0.39 / (1.33 / 0.5) + (hits - 1) * 0.5;
-        expectedTime += probability * time;
-        expectedStun += probability * Math.min(2.25, time);
-    }
-    assert(Math.abs(laboonStunUptime(unit) - expectedStun / expectedTime) < 1e-12);
-    assert.equal(laboonStunCycles(laboon(0))[6].probability, 1);
-    assert.equal(laboonStunCycles(laboon(1))[0].probability, 1);
-});
-
-test('Laboon finite-window deviation respects the guaranteed hit, random phase and full coverage', () => {
-    const unit = laboon(0);
-    const period = laboonStunCycles(unit)[6].period;
-    // No ordinary procs: every cycle is exactly seven hits. Integrate a random
-    // phase directly, without the production simulation or its random generator.
-    const window = 10;
-    const mean = laboonStunUptime(unit);
+test('cycle deviation matches direct phase integration of a fixed repeating stun', () => {
+    const cycles = [{ probability: 1, time: 3.7, stunnedTime: 2.25 }];
+    const mean = 2.25 / 3.7;
     let variance = 0;
     const phases = 8192;
     for (let index = 0; index < phases; index++) {
-        const phase = period * (index + 0.5) / phases;
+        const phase = 3.7 * (index + 0.5) / phases;
         let covered = 0;
-        for (let event = -phase; event < window; event += period) {
-            covered += Math.max(0, Math.min(window, event + 2.25) - Math.max(0, event));
+        for (let event = -phase; event < 10; event += 3.7) {
+            covered += Math.max(0, Math.min(10, event + 2.25) - Math.max(0, event));
         }
-        variance += (covered / window - mean) ** 2 / phases;
+        variance += (covered / 10 - mean) ** 2 / phases;
     }
-    const estimate = estimateLaboonDeviation(unit);
-    assert(Math.abs(estimate.deviationPercent - 100 * Math.sqrt(variance)) < 0.15);
-    assert.deepEqual(estimateLaboonDeviation(laboon()), estimateLaboonDeviation(laboon()));
-    assert.equal(estimateLaboonDeviation(laboon(0.27, 10)).deviationPercent, 0);
-    assert.equal(estimateLaboonDeviation(laboon(0.27, 10)).meanPercent, 100);
+    const actual = estimateCycleDeviation(cycles);
+    assert.equal(actual.meanPercent, mean * 100);
+    assert(Math.abs(actual.deviationPercent - 100 * Math.sqrt(variance)) < 0.15);
+    assert.equal(estimateCycleDeviation([{ probability: 1, time: 3, stunnedTime: 3 }]).deviationPercent, 0);
+    assert.equal(estimateCycleDeviation([{ probability: 1, time: 3, stunnedTime: 0 }]).deviationPercent, 0);
+    assert.equal(estimateCycleDeviation([{ probability: 1, time: 0, stunnedTime: 0 }]), null);
+});
+
+test('capped cycle windows use a time-weighted starting phase and stable sampling', () => {
+    const cycles = Array.from({ length: 7 }, (_, hit) => ({
+        probability: 0.73 ** hit * (hit === 6 ? 1 : 0.27),
+        time: 0.65 + 0.39 * 0.5 / 1.33 + hit * 0.5,
+        stunnedTime: Math.min(2.25, 0.65 + 0.39 * 0.5 / 1.33 + hit * 0.5),
+    }));
+    // This short window can cross at most one event. Integrate every initial
+    // cycle and phase directly, using no production RNG or simulation loop.
+    const window = 0.2;
+    const expectedTime = cycles.reduce((sum, cycle) => sum + cycle.probability * cycle.time, 0);
+    const mean = cycles.reduce((sum, cycle) => sum + cycle.probability * cycle.stunnedTime, 0) / expectedTime;
+    let variance = 0;
+    const phases = 8192;
+    for (const cycle of cycles) for (let index = 0; index < phases; index++) {
+        const phase = cycle.time * (index + 0.5) / phases;
+        const initialStun = Math.max(0, Math.min(cycle.stunnedTime, phase + window) - phase);
+        const afterEvent = Math.max(0, phase + window - cycle.time);
+        variance += ((initialStun + afterEvent) / window - mean) ** 2
+            * cycle.probability * cycle.time / expectedTime / phases;
+    }
+    const estimate = estimateCycleDeviation(cycles, window);
+    assert(Math.abs(estimate.deviationPercent - 100 * Math.sqrt(variance)) < 0.2);
+    assert.deepEqual(estimateCycleDeviation(cycles), estimateCycleDeviation(cycles));
+    assert.deepEqual(unitStunDeviation({ name: '라분', StunCycles: cycles }), estimateCycleDeviation(cycles));
 });
